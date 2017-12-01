@@ -6,12 +6,18 @@
     android:layout_height="match_parent"
     tools:context="com.fundrive.navaidlclient.MainActivity">
 
-    <Button
-        android:id="@+id/send2navi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onSend2NaviClick"
-        android:text="send request"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="42dp" />
+    <!--<Button-->
+        <!--android:id="@+id/send2navi"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:onClick="onSend2NaviClick"-->
+        <!--android:text="send request"-->
+        <!--tools:layout_editor_absoluteX="30dp"-->
+        <!--tools:layout_editor_absoluteY="42dp" />-->
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:onClick="onListViewClick"
+        android:id="@+id/lv"
+     />
 </android.support.constraint.ConstraintLayout>

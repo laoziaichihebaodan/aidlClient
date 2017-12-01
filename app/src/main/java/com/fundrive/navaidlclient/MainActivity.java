@@ -9,6 +9,8 @@ import android.os.RemoteException;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.fundrive.andrive.INavRemoteNotifier;
 import com.fundrive.andrive.INavRemoteRequest;
@@ -17,11 +19,13 @@ public class MainActivity extends AppCompatActivity {
 
     INavRemoteRequest mNavService;
     boolean mBind = false;
-
+    ListView lv ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+       // lv = findViewById(R.id.lv);
+        //lv.setAdapter(new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,Resource.strArr));
     }
 
     @Override
@@ -68,13 +72,14 @@ public class MainActivity extends AppCompatActivity {
         public void onServiceConnected(ComponentName className,
                                        IBinder service) {
             mNavService = INavRemoteRequest.Stub.asInterface(service);
-
             try {
+
                 mNavService.addListener(iMyNaviNotifyHandler);
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
             mBind = true;
+            Resource.init(MainActivity.this,mNavService,mBind);
         }
 
         @Override
@@ -85,13 +90,16 @@ public class MainActivity extends AppCompatActivity {
 
     /** Called when a button is clicked (the button in the layout file attaches to
      * this method with the android:onClick attribute) */
-    public void onSend2NaviClick(View v) throws RemoteException {
-        if (mBind) {
-            // Call a method from the LocalService.
-            // However, if this call were something that might hang, then this request should
-            // occur in a separate thread to avoid slowing down the activity performance.
-            mNavService.request(0x2003, "{\"operationType\":1,\"screenId\":1}");
-            //Toast.makeText(this, "number: " + num, Toast.LENGTH_SHORT).show();
-        }
+//    public void onSend2NaviClick(View v) throws RemoteException {
+//        if (mBind) {
+//            // Call a method from the LocalService.
+//            // However, if this call were something that might hang, then this request should
+//            // occur in a separate thread to avoid slowing down the activity performance.
+//            mNavService.request(0x2003, "{\"operationType\":1,\"screenId\":1}");
+//            //Toast.makeText(this, "number: " + num, Toast.LENGTH_SHORT).show();
+//        }
+//    }
+
+    public void onListViewClick(View view) {
     }
 }
