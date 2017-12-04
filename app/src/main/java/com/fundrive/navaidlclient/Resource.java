@@ -1,16 +1,14 @@
 package com.fundrive.navaidlclient;
 
 import android.app.Activity;
-import android.content.ComponentName;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.RemoteException;
-import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -23,6 +21,7 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -48,10 +47,13 @@ public class Resource {
             "设置NavApp静音开",
             "设置NavApp静音关",
             "设置NavApp算路避让规则",
-            "设置NavApp的时间信息",
+            "设置NavApp的时间信息12",
+            "设置NavApp的时间信息24",
             "设置NavApp的输入法",
-            "设置NavApp的语言",
-            "设置NavApp的多媒体信息",
+            "设置NavApp的语言中文",
+            "设置NavApp的语言英文",
+            "设置NavApp的多媒体信息蓝牙",
+            "设置NavApp的多媒体信息FM",
             "设置NavApp导航信息发送开启",
             "设置NavApp导航信息发送关闭",
             "设置NavApp导航播报语音类型(随机)",
@@ -62,22 +64,27 @@ public class Resource {
             "保存NavApp数据",
             "显示NavApp",
             "隐藏NavApp",
-            "缩小地图",
-            "放大地图",
+            "缩小第二个屏幕地图",
+            "放大第一个屏幕地图",
             "获取NavApp的导航引导信息",
             "重播当前导航语音提示语句",
             "画面迁移",
             "改变NavApp的UI视觉属性",
             "NavApp显示动态信息",
-            "开始导航",
-            "停止导航",
+            "开始真实导航",
+            "停止真实导航",
+            "开始模拟导航",
+            "停止模拟导航",
             "获取NavApp的当前状态",
             "NavApp显示交互目标的音量(随机)",
             "删除NavApp的当前路线",
             "获取GPS信息",
-            "切换地图视图模式(随机)",
+            "切换地图视图模式(第一个屏幕3D)",
+            "切换地图视图模式(第一个屏幕2D)",
+            "切换地图视图模式(第二个屏幕3D)",
+            "切换地图视图模式(第二个屏幕2D)",
             "条件算路",
-            "设置NavApp画面所的在显示屏幕",
+            "设置NavApp画面所的在显示屏幕(默认仪表盘)",
             "条件搜索POI"
     };
 
@@ -85,16 +92,17 @@ public class Resource {
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
     }
     public static Context ctx;
-    static INavRemoteRequest NavService;
+    static INavRemoteRequest navService;
     static boolean bind;
-    public static void init(Context context,INavRemoteRequest mNavService,boolean mBind) {
+    public static void init(Context context) {
         ctx = context;
-        NavService = mNavService;
-        bind = mBind;
         mShareConfiguration = new ShareConfiguration(ctx, ShareConfiguration.SETTING_INFOS);
         initWlan();
     }
-
+    public static void initRequest(INavRemoteRequest mNavService,boolean mBind) {
+        navService = mNavService;
+        bind = mBind;
+    }
     private static MyHandler myHandler = new MyHandler();
     public static class MyHandler extends Handler {
         @Override
@@ -114,7 +122,7 @@ public class Resource {
                 case RECIVEDATA_STATE:
                     String data = msg.obj.toString();
                     Resource.showInfo(ctx,data);
-                    Resource.sendBroad(ctx,Integer.parseInt(data));
+                    Resource.callAidlFun(Integer.parseInt(data));
                     break;
                 default: break;
             }
@@ -164,235 +172,216 @@ public class Resource {
         }.start();
     }
 
-    public static void sendBroad(Context context,int position) {
-
-        int intType = 0x2003;
+    public static void callAidlFun(int position) {
+        if (navService == null) {
+            Log.e("wjh","navService == null");
+            return;
+        }
+        Random random = new Random();
+        int intType = -1;
         String strJson = null;
-        strJson = "{\"operationType\":1,\"screenId\":1}";
-//        switch (position) {
-//            case 0://导航Active
-//                intType = NaviConstant.DATA_TYPE_STRING;
-//                strType = NaviConstant.Active;
-//                break;
-//            case 1://停止模拟导航
-//                intContent = 0;
-//                intType = NaviConstant.DATA_TYPE_INT;
-//                strType = NaviConstant.SIMULATION_NAVIGATION;
-//                break;
-//            case 2://开始模拟导航
-//                intContent = 1;
-//                intType = NaviConstant.DATA_TYPE_INT;
-//                strType = NaviConstant.SIMULATION_NAVIGATION;
-//                break;
-//            case 3://通知退出导航
-//                intType = NaviConstant.DATA_TYPE_STRING;
-//                strType = NaviConstant.EXIT_NAVIGATION;
-//                break;
-//            case 4://隐藏当前导航画面
-//                intType = NaviConstant.DATA_TYPE_STRING;
-//                strType = NaviConstant.HIDE_VIEW;
-//                break;
-//            case 5://点击导航按钮后，显示导航画面
-//                intType = NaviConstant.DATA_TYPE_STRING;
-//                strType = NaviConstant.SHOW_VIEW;
-//                break;
-//            case 6://白天
-//                strContent = "0";
-//                intType = NaviConstant.DATA_TYPE_STRING;
-//                strType = NaviConstant.DAY_NIGHT;
-//                break;
-//            case 7://黑夜
-//                strContent = "1";
-//                intType = NaviConstant.DATA_TYPE_STRING;
-//                strType = NaviConstant.DAY_NIGHT;
-//                break;
-//            case 8://中文
-//                strContent = "0";
-//                intType = NaviConstant.DATA_TYPE_STRING;
-//                strType = NaviConstant.LANGUAGE;
-//                break;
-//            case 9://英文
-//                strContent = "1";
-//                intType = NaviConstant.DATA_TYPE_STRING;
-//                strType = NaviConstant.LANGUAGE;
-//                break;
-//            case 10://TBT提示开
-//                intContent = 1;
-//                intType = NaviConstant.DATA_TYPE_INT;
-//                strType = NaviConstant.TBT;
-//                break;
-//            case 11://TBT提示关
-//                intContent = 0;
-//                intType = NaviConstant.DATA_TYPE_INT;
-//                strType = NaviConstant.SDCARD_STATU;
-//                break;
-//            case 12://SD存在状态  0:不存在
-//                intContent = 0;
-//                intType = NaviConstant.DATA_TYPE_INT;
-//                strType = NaviConstant.SDCARD_STATU;
-//                break;
-//            case 13://SD存在状态  1:存在
-//                intContent = 1;
-//                intType = NaviConstant.DATA_TYPE_INT;
-//                strType = NaviConstant.SDCARD_STATU;
-//                break;
-//            case 14://通知导航保存数据
-//                intType = NaviConstant.DATA_TYPE_STRING;
-//                strType = NaviConstant.SAVE_DATA;
-//                break;
-//            case 15://时间格式12小时
-//                intContent = 12;
-//                intType = NaviConstant.DATA_TYPE_INT;
-//                strType = NaviConstant.TIME_FORMAT;
-//                break;
-//            case 16://时间格式24小时
-//                intContent = 24;
-//                intType = NaviConstant.DATA_TYPE_INT;
-//                strType = NaviConstant.TIME_FORMAT;
-//                break;
-//            case 17://获取GPS时间
-//                strContent = "24";
-//                intType = NaviConstant.DATA_TYPE_STRING;
-//                strType = NaviConstant.REQUEST_SYSTIME;
-//                break;
-//            case 18://系统音量值
-//                strContent = "24";
-//                intType = NaviConstant.DATA_TYPE_STRING;
-//                strType = NaviConstant.SET_SYSTEM_VOLUME;
-//                break;
-//            case 19://导航音量值
-//                strContent = "10";
-//                intType = NaviConstant.DATA_TYPE_STRING;
-//                strType = NaviConstant.SET_NAVI_VOLUME;
-//                break;
-//            case 20://导航静音
-//                intContent = 1;
-//                intType = NaviConstant.DATA_TYPE_INT;
-//                strType = NaviConstant.SET_NAVI_MUTE;
-//                break;
-//            case 21://导航关闭静音
-//                intContent = 0;
-//                intType = NaviConstant.DATA_TYPE_INT;
-//                strType = NaviConstant.SET_NAVI_MUTE;
-//                break;
-//            case 22://
-//                strContent = "中文测试";
-//                intType = NaviConstant.DATA_TYPE_STRING;
-//                strType = NaviConstant.BLUETOOTH_CALL;
-//                break;
-//            case 23://音频源切换/音频源不可用
-//                intContent = 0;
-//                intContent1 = 0;
-//                len = 2;
-//                intType = NaviConstant.DATA_TYPE_STRUCT;
-//                strType = NaviConstant.SET_AUDIO_SOURCE;
-//                break;
-//            case 24://FM使用当地交通台
-//                intContent = 3;
-//                intContent1 = 998;
-//                intContent2 = 5;
-//                len = 3;
-//                intType = NaviConstant.DATA_TYPE_STRUCT;
-//                strType = NaviConstant.FM_DATA_TO;
-//                break;
-//            case 25://"USB多媒体曲目信息
-//                strContent = "黄梅戏";
-//                intType = NaviConstant.DATA_TYPE_STRING;
-//                strType = NaviConstant.USB_RECORD;
-//                break;
-//            case 26://Bluetooth曲目信息
-//                strContent = "中国好歌曲";
-//                intType = NaviConstant.DATA_TYPE_STRING;
-//                strType = NaviConstant.BLUETOOTH_RECORD;
-//                break;
-//            case 27://Bluetooth当蓝牙通话中，通知导航静音
-//                strContent = "1";
-//                intType = NaviConstant.DATA_TYPE_STRING;
-//                strType = NaviConstant.BLUETOOTH_CALL;
-//                break;
-//            case 28://Bluetooth当蓝牙通话结束，通知导航开启声音
-//                strContent = "0";
-//                intType = NaviConstant.DATA_TYPE_STRING;
-//                strType = NaviConstant.BLUETOOTH_CALL;
-//                break;
-//            case 29://音频源切换0:默认
-//                intContent = 1;
-//                intContent1 = 0;
-//                len = 2;
-//                intType = NaviConstant.DATA_TYPE_STRUCT;
-//                strType = NaviConstant.SET_AUDIO_SOURCE;
-//                break;
-//            case 30://音频源切换1：FM
-//                intContent = 1;
-//                intContent1 = 1;
-//                len = 2;
-//                intType = NaviConstant.DATA_TYPE_STRUCT;
-//                strType = NaviConstant.SET_AUDIO_SOURCE;
-//                break;
-//            case 31://音频源切换2:USB(MusicPlay)
-//                intContent = 1;
-//                intContent1 = 2;
-//                len = 2;
-//                intType = NaviConstant.DATA_TYPE_STRUCT;
-//                strType = NaviConstant.SET_AUDIO_SOURCE;
-//                break;
-//            case 32://音频源切换4：BTCallPhone
-//                intContent = 1;
-//                intContent1 = 4;
-//                len = 2;
-//                intType = NaviConstant.DATA_TYPE_STRUCT;
-//                strType = NaviConstant.SET_AUDIO_SOURCE;
-//                break;
-//            case 33://音频源切换5:BTMUSIC
-//                intContent = 1;
-//                intContent1 = 5;
-//                len = 2;
-//                intType = NaviConstant.DATA_TYPE_STRUCT;
-//                strType = NaviConstant.SET_AUDIO_SOURCE;
-//                break;
-//            case 34://音频源切换7:HDMI
-//                intContent = 1;
-//                intContent1 = 7;
-//                len = 2;
-//                intType = NaviConstant.DATA_TYPE_STRUCT;
-//                strType = NaviConstant.SET_AUDIO_SOURCE;
-//                break;
-//            case 35://音频源切换8:AUX
-//                intContent = 1;
-//                intContent1 = 8;
-//                len = 2;
-//                intType = NaviConstant.DATA_TYPE_STRUCT;
-//                strType = NaviConstant.SET_AUDIO_SOURCE;
-//                break;
-//            case 36://启动导航
-//                if (true) {
-//                    Intent m_intent = new Intent();
-//                    m_intent.setComponent(new ComponentName("com.fundrive.andrive", "com.fundrive.andrive.FullscreenActivity"));
-//                    m_intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                    context.startActivity(m_intent);
-//                    return;
-//                }
-//                break;
-//        }
-//        intent.putExtra("CODE", strType);
-//        intent.putExtra("TYPE", intType);
-//        if (intType == NaviConstant.DATA_TYPE_INT) {
-//            bundle.putInt("DATA",intContent);
-//        } else if  (intType == NaviConstant.DATA_TYPE_STRING){
-//            bundle.putString("DATA",strContent);
-//        } else  if  (intType == NaviConstant.DATA_TYPE_STRUCT){//语音命令
-//            if (len >= 2) {
-//
-//                bundle.putInt("DATA",intContent);
-//                bundle.putInt("DATA1",intContent1);
-//            }
-//            if(len >= 3) {
-//                bundle.putInt("DATA2",intContent2);
-//            }
-//        }
+        int randomInt ;
+        String randomStr ;
+        switch (position) {
+            case 0://设置NavApp授权序列号
+                intType = Constant.IA_CMD_SET_AUTHORIZE_SERIAL_NUMBER;
+                strJson = Constant.IA_CMD_SET_AUTHORIZE_SERIAL_NUMBER_CONTENT;
+                break;
+            case 1://白天
+                intType = Constant.IA_CMD_SET_MAP_DISPLAY_MODE;
+                strJson = Constant.IA_CMD_SET_MAP_DISPLAY_MODE_DAY;
+                break;
+            case 2://黑夜
+                intType = Constant.IA_CMD_SET_MAP_DISPLAY_MODE;
+                strJson = Constant.IA_CMD_SET_MAP_DISPLAY_MODE_NIGHT;
+                break;
+            case 3://设置NavApp音量
+                intType = Constant.IA_CMD_SET_SOUND_VOLUME;
+                randomInt = random.nextInt(101);
+                randomStr = Integer.toString(randomInt);
+                strJson = Constant.IA_CMD_SET_SOUND_VOLUME_SIZE + randomStr+"}";
+                break;
+            case 4://设置NavApp静音开
+                intType = Constant.IA_CMD_SET_MUTE_SWITCH;
+                strJson = Constant.IA_CMD_SET_MUTE_SWITCH_ON;
+                break;
+            case 5://设置NavApp静音关
+                intType = Constant.IA_CMD_SET_MUTE_SWITCH;
+                strJson = Constant.IA_CMD_SET_MUTE_SWITCH_OFF;
+                break;
+            case 6://设置NavApp算路避让规则
+                intType = Constant.IA_CMD_SET_ROUTE_CONDITION;
+                strJson = Constant.IA_CMD_SET_ROUTE_CONDITION_CONTENT;
+                break;
+            case 7://设置NavApp的时间信息12
+                intType = Constant.IA_CMD_SET_TIME_INFOMATION;
+                strJson = Constant.IA_CMD_SET_TIME_INFOMATION_12;
+                break;
+            case 8://设置NavApp的时间信息24
+                intType = Constant.IA_CMD_SET_TIME_INFOMATION;
+                strJson = Constant.IA_CMD_SET_TIME_INFOMATION_24;
+                break;
+            case 9://设置NavApp的输入法
+                intType = Constant.IA_CMD_SET_TYPE_WRITING;
+                strJson = Constant.IA_CMD_SET_TYPE_WRITING_CONTENT;
+                break;
+            case 10://设置NavApp的语言中文
+                intType = Constant.IA_CMD_SET_LANGUAGE;
+                strJson = Constant.IA_CMD_SET_LANGUAGE_CHINASE;
+                break;
+            case 11://设置NavApp的语言英文
+                intType = Constant.IA_CMD_SET_LANGUAGE;
+                strJson = Constant.IA_CMD_SET_LANGUAGE_ENGLISH;
+                break;
+            case 12://设置NavApp的多媒体信息蓝牙
+                intType = Constant.IA_CMD_SET_MULTIMEDIA_INFOMATION;
+                strJson = Constant.IA_CMD_SET_MULTIMEDIA_INFOMATION_BLUETOOTH;
+                break;
+            case 13://设置NavApp的多媒体信息FM
+                intType = Constant.IA_CMD_SET_MULTIMEDIA_INFOMATION;
+                strJson = Constant.IA_CMD_SET_MULTIMEDIA_INFOMATION_FM;
+                break;
+            case 14://设置NavApp导航信息发送开启
+                intType = Constant.IA_CMD_SET_TBT_SWITCH_STATUS;
+                strJson = Constant.IA_CMD_SET_TBT_SWITCH_STATUS_ON;
+                break;
+            case 15://设置NavApp导航信息发送关闭
+                intType = Constant.IA_CMD_SET_TBT_SWITCH_STATUS;
+                strJson = Constant.IA_CMD_SET_TBT_SWITCH_STATUS_OFF;
+                break;
+            case 16://设置NavApp导航播报语音类型
+                intType = Constant.IA_CMD_SET_GUIDENCE_SOUND_TYPE;
+                randomInt = random.nextInt(6) + 1;
+                randomStr = Integer.toString(randomInt);
+                strJson = Constant.IA_CMD_SET_GUIDENCE_SOUND_TYPE_ + randomStr +"}";
+                break;
+            case 17://更新交互目标的写状态
+                randomInt = random.nextInt(2) + 1;
+                randomStr = Integer.toString(randomInt);
+                intType = Constant.IA_CMD_UPDATE_IATARGET_WRITING_STATUS;
+                strJson = Constant.IA_CMD_UPDATE_IATARGET_WRITING_STATUS_ + randomStr + "}";
+                break;
+            case 18://更新交互目标的路径状态
+                randomInt = random.nextInt(2) + 1;
+                randomStr = Integer.toString(randomInt);
+                intType = Constant.IA_CMD_UPDATE_IATARGET_ROUTE_STATUS;
+                strJson = Constant.IA_CMD_UPDATE_IATARGET_ROUTE_STATUS_ + randomStr + "}";
+                break;
+            case 19://启动导航程序
+                intType = Constant.IA_CMD_STARTUP_OR_EXIT;
+                strJson = Constant.IA_CMD_STARTUP;
+                break;
+            case 20://退出导航程序
+                intType = Constant.IA_CMD_STARTUP_OR_EXIT;
+                strJson = Constant.IA_CMD_EXIT;
+                break;
+            case 21://保存NavApp数据
+                intType = Constant.IA_CMD_SAVE_DATA;
+                strJson = Constant.IA_CMD_SAVE_DATA_CONTENT;
+                break;
+            case 22://显示NavApp
+                intType = Constant.IA_CMD_SHOW_OR_HIDE;
+                strJson = Constant.IA_CMD_SHOW;
+                break;
+            case 23://隐藏NavApp
+                intType = Constant.IA_CMD_SHOW_OR_HIDE;
+                strJson = Constant.IA_CMD_HIDE;
+                break;
+            case 24://缩小地图
+                intType = Constant.IA_CMD_ZOOM_MAP;
+                strJson = Constant.IA_CMD_ZOOM_MAP_OUT_2;
+                break;
+            case 25://放大地图
+                intType = Constant.IA_CMD_ZOOM_MAP;
+                strJson = Constant.IA_CMD_ZOOM_MAP_IN_1;
+                break;
+            case 26://获取NavApp的导航引导信息
+                intType = Constant.IA_CMD_GET_NAVI_INFO;
+                strJson = Constant.IA_CMD_GET_NAVI_INFO_CONTENT;
+                break;
+            case 27://重播当前导航语音提示语句
+                intType = Constant.IA_CMD_REPEAT_NAVI_SOUND;
+                strJson = Constant.IA_CMD_REPEAT_NAVI_SOUND_CONTENT;
+                break;
+            case 28://画面迁移
+                intType = Constant.IA_CMD_MOVE_UI;
+                strJson = Constant.IA_CMD_MOVE_UI_CONTENT;
+                break;
+            case 29://改变NavApp的UI视觉属性
+                intType = Constant.IA_CMD_CHANGE_NAVI_UI_VISUAL_ATTRIBUTES;
+                strJson = Constant.IA_CMD_CHANGE_NAVI_UI_VISUAL_ATTRIBUTES_CONTENT;
+                break;
+            case 30://9NavApp显示动态信息
+                intType = Constant.IA_CMD_SHOW_DANAMIC_INFOMATION;
+                strJson = Constant.IA_CMD_SHOW_DANAMIC_INFOMATION_CONTENT;
+                break;
+            case 31://开始真实导航
+                intType = Constant.IA_CMD_SART_OR_STOP_NAVI_GUIDE;
+                strJson = Constant.IA_CMD_SART_OR_STOP_NAVI_GUIDE_START;
+                break;
+            case 32://停止真实导航
+                intType = Constant.IA_CMD_SART_OR_STOP_NAVI_GUIDE;
+                strJson = Constant.IA_CMD_SART_OR_STOP_NAVI_GUIDE_END;
+                break;
+            case 33://开始模拟导航
+                intType = Constant.IA_CMD_SART_OR_STOP_NAVI_GUIDE;
+                strJson = Constant.IA_CMD_SART_OR_STOP_NAVI_GUIDE_SIMULATION_START;
+                break;
+            case 34://停止模拟导航
+                intType = Constant.IA_CMD_SART_OR_STOP_NAVI_GUIDE;
+                strJson = Constant.IA_CMD_SART_OR_STOP_NAVI_GUIDE_SIMULATION_END;
+                break;
+            case 35://获取NavApp的当前状态
+                intType = Constant.IA_CMD_GET_NAVI_STATUAS;
+                strJson = Constant.IA_CMD_GET_NAVI_STATUAS_CONTENT;
+                break;
+            case 36://NavApp显示交互目标的音量(默认30)
+                randomInt = random.nextInt(101);
+                randomStr = Integer.toString(randomInt);
+                intType = Constant.IA_CMD_SHOW_TARGET_SOUND_VOLUME;
+                strJson = Constant.IA_CMD_SHOW_TARGET_SOUND_VOLUME_CONTENT + randomStr + "}";
+                break;
+            case 37://删除NavApp的当前路线
+                intType = Constant.IA_CMD_DELET_NAVI_ROUTE;
+                strJson = Constant.IA_CMD_DELET_NAVI_ROUTE_CONTENT;
+                break;
+            case 38://获取GPS信息
+                intType = Constant.IA_CMD_GET_GPS_INFO;
+                strJson = Constant.IA_CMD_GET_GPS_INFO_CONTENT;
+                break;
+            case 39://切换地图视图模式(第一个屏幕3D)
+                intType = Constant.IA_CMD_SET_MAP_VIEW_MODE;
+                strJson = Constant.IA_CMD_SET_MAP_VIEW_MODE_1SCREEN_3D;
+                break;
+            case 40://切换地图视图模式(第一个屏幕2D)
+
+                intType = Constant.IA_CMD_SET_MAP_VIEW_MODE;
+                strJson = Constant.IA_CMD_SET_MAP_VIEW_MODE_1SCREEN_2D;
+                break;
+            case 41://切换地图视图模式(第二个屏幕3D)
+                intType = Constant.IA_CMD_SET_MAP_VIEW_MODE;
+                strJson = Constant.IA_CMD_SET_MAP_VIEW_MODE_2SCREEN_3D;
+                break;
+            case 42://切换地图视图模式(第二个屏幕2D)
+                intType = Constant.IA_CMD_SET_MAP_VIEW_MODE;
+                strJson = Constant.IA_CMD_SET_MAP_VIEW_MODE_2SCREEN_2D;
+                break;
+            case 43://条件算路
+                intType = Constant.IA_CMD_ROUTE_BY_CONDITION;
+                strJson = Constant.IA_CMD_ROUTE_BY_CONDITION_1;
+                break;
+            case 44://设置NavApp画面所的在显示屏幕
+                intType = Constant.IA_CMD_SET_DISPLAY_SCREEN_FOR_NAVAPP;
+                strJson = Constant.IA_CMD_SET_DISPLAY_SCREEN_FOR_NAVAPP_SHOW2;
+                break;
+            case 45://条件搜索POI
+                intType = Constant.IA_CMD_SEARCH_POI_BY_CONDITION;
+                strJson = Constant.IA_CMD_SEARCH_POI_BY_CONDITION_CONTETN;
+                break;
+        }
         if(bind) {
             try {
-                NavService.request(intType,strJson);
+                navService.request(intType,strJson);
             } catch (RemoteException e) {
                 e.printStackTrace();
             }

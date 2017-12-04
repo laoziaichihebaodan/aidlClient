@@ -8,14 +8,17 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.fundrive.andrive.INavRemoteNotifier;
 import com.fundrive.andrive.INavRemoteRequest;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     INavRemoteRequest mNavService;
     boolean mBind = false;
@@ -24,8 +27,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-       // lv = findViewById(R.id.lv);
-        //lv.setAdapter(new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,Resource.strArr));
+        lv = findViewById(R.id.lv);
+        lv.setAdapter(new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,Resource.strArr));
+        lv.setOnItemClickListener(this);
+        Resource.init(this);
     }
 
     @Override
@@ -79,14 +84,28 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             mBind = true;
-            Resource.init(MainActivity.this,mNavService,mBind);
+            Resource.initRequest(mNavService,mBind);
+            Log.d("wjh","绑定成功");
+            Toast.makeText(MainActivity.this,"绑定成功",Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void onServiceDisconnected(ComponentName arg0) {
             mBind = false;
+            Toast.makeText(MainActivity.this,"绑定失败",Toast.LENGTH_SHORT).show();
+            Log.d("wjh","绑定失败");
         }
     };
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        if (Resource.device_model == ShareConfiguration.MODEL_CLIENT) {
+            Resource.data = Integer.toString(i);
+            Resource.udpClient();
+        } else if (Resource.device_model == ShareConfiguration.MODEL_SERVER)
+            //调用aidl函数
+            Resource.callAidlFun(i);
+    }
 
     /** Called when a button is clicked (the button in the layout file attaches to
      * this method with the android:onClick attribute) */
@@ -100,6 +119,4 @@ public class MainActivity extends AppCompatActivity {
 //        }
 //    }
 
-    public void onListViewClick(View view) {
-    }
 }
