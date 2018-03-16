@@ -54,8 +54,8 @@ public class Resource {
             "设置NavApp的语言英文",
             "设置NavApp的多媒体信息蓝牙",
             "设置NavApp的多媒体信息FM",
-            "设置NavApp导航信息发送开启",
-            "设置NavApp导航信息发送关闭",
+            "设置NavApp导航信息发送/开启",
+            "设置NavApp导航信息发送/关闭",
             "设置NavApp导航播报语音类型(随机)",
             "更新交互目标的写状态(随机)",
             "更新交互目标的路径状态(随机)",
@@ -85,6 +85,14 @@ public class Resource {
             "切换地图视图模式(第二个屏幕2D)",
             "条件算路",
             "设置NavApp画面所的在显示屏幕(默认仪表盘)",
+            "List动画操作",
+            "导航到家",
+            "导航到收藏列表中的第10个收藏点",
+            "定位自车",
+            "打开蓝牙音乐",
+            "关闭视频",
+            "查看如何使用NavApp",
+            "查看如何播放音乐",
             "条件搜索POI"
     };
 
@@ -378,6 +386,42 @@ public class Resource {
                 intType = Constant.IA_CMD_SEARCH_POI_BY_CONDITION;
                 strJson = Constant.IA_CMD_SEARCH_POI_BY_CONDITION_CONTETN;
                 break;
+            case 46://第1个List垂直向下翻页
+                intType = Constant.IA_CMD_CURRENT_UI_LIST_ANIMATION;
+                strJson = Constant.IA_CMD_CURRENT_UI_LIST_ANIMATION_ONE;
+                break;
+            case 47://导航到家
+                intType = Constant.IA_CMD_FAVORITE_GUIDANCE;
+                strJson = Constant.IA_CMD_FAVORITE_GUIDANCE_HOME;
+                break;
+            case 48://导航到收藏列表中的第10个收藏点
+                intType = Constant.IA_CMD_FAVORITE_GUIDANCE;
+                strJson = Constant.IA_CMD_FAVORITE_GUIDANCE_TEN;
+                break;
+            case 49://定位自车
+                intType = Constant.IA_CMD_LOCATE_THE_CAR;
+                strJson = "";
+                break;
+            case 50://打开蓝牙音乐
+                intType = Constant.IA_CMD_NAVAPP_CONTROL_MULTIMEDIA;
+                strJson = Constant.IA_CMD_NAVAPP_CONTROL_MULTIMEDIA_OPEN_BLUETOOTH;
+                break;
+            case 51://关闭视频
+                intType = Constant.IA_CMD_NAVAPP_CONTROL_MULTIMEDIA;
+                strJson = Constant.IA_CMD_NAVAPP_CONTROL_MULTIMEDIA_CLOSE_VODEO;
+                break;
+            case 52://查看如何使用NavApp
+                intType = Constant.IA_CMD_BROWSE_HELP_INFORMATION;
+                strJson = Constant.IA_CMD_BROWSE_HELP_INFORMATION_USE_NAV;
+                break;
+            case 53://查看如何播放音乐
+                intType = Constant.IA_CMD_BROWSE_HELP_INFORMATION;
+                strJson = Constant.IA_CMD_BROWSE_HELP_INFORMATION_PLAY_MUSIC;
+                break;
+            case 54://条件搜索POI
+                intType = Constant.IA_CMD_SEARCH_POI_BY_CONDITION;
+                strJson = Constant.IA_CMD_SEARCH_POI_BY_CONDITION_CONTETN;
+                break;
         }
         if(bind) {
             try {
@@ -450,6 +494,9 @@ public class Resource {
                 while(StartServer) {
                     DatagramPacket dp = new DatagramPacket(buf,1024);
                     try {
+                        if (ds == null ) {
+                            return;
+                        }
                         ds.receive(dp);
                         String data = new String(dp.getData(), 0, dp.getLength());
                         if (data != null || data != "") {

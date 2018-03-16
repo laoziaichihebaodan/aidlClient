@@ -255,36 +255,25 @@ public class Constant {
      *2.16条件算路
      */
     public static int IA_CMD_ROUTE_BY_CONDITION = 0x200F;
-    public static String IA_CMD_ROUTE_BY_CONDITION_1 = "{\n" +
-            "\"endPoint\":" +
-            "{" +
-                "\"iaPoiType\":351," +
-                "\"iaTypeIconId\":0," +
-                "\"iaPoiPos\":" +
-                "{" +
-                    "\"longitude\":11632902," +
-                    "\"latitude\":3990550" +
-                "}," +
-                "\"iaPoiDisPos\":" +
-                "{" +
-                    "\"longitude\":11632902," +
-                    "\"latitude\":3990550" +
-                "}," +
-                "\"iaPoiId\":4294967295," +
-                "\"iaChildPoiNum\":0," +
-                "\"iaCompoundId\":0," +
-                "\"iaPoiName\":\"会城门\"," +
-                "\"iaPoiAdress\":\"北京市海淀区65路下行(北京西站-动物园枢纽站)\"," +
-                "\"iaPoiPhone\":\"\"," +
-                "\"iaRegionName\":\"北京市海淀区\"," +
-                "\"iaPoiTypeName\":\"公交车站\"," +
-                "\"iaExternalFlag\":false," +
-                "\"iaJobSid\":\"\"," +
-                "\"iaCustomerSid\":\"\"," +
-                "\"iaTagIconId\":0," +
-                "\"iaTagName\":\"\"" +
-            "}" +
-      "}";
+    public static String IA_CMD_ROUTE_BY_CONDITION_1 =  "{\"endPoint\":{\n" +
+            "\"iaPoiType\":244,\n" +
+            "\"iaPoiPos\" : {\n" +
+            "\"longitude\":12160606,\n" +
+            "\"latitude\" : 3132359\n" +
+            "},\n" +
+            "\"iaPoiDisPos\" : {\n" +
+            "\"longitude\":12160605,\n" +
+            "\"latitude\" : 3132374\n" +
+            "},\n" +
+            "\"iaPoiId\" : 4294967295,\n" +
+            "\"iaChildPoiNum\" : 0,\n" +
+            "\"iaCompoundId\" : 80262454763061964,\n" +
+            "\"iaPoiName\" : \"德尔福科技研发中心Test\",\n" +
+            "\"iaPoiAdress\" : \"上海市浦东新区德林路118号\",\n" +
+            "\"iaPoiPhone\" : \"021-28968866\",\n" +
+            "\"iaRegionName\" : \"上海市浦东新区\",\n" +
+            "\"iaPoiTypeName\" : \"科研及技术服务\"\n" +
+            "}}";
     public static String IA_CMD_ROUTE_BY_CONDITION_2 = "";
     public static String IA_CMD_ROUTE_BY_CONDITION_3 = "";
     public static String IA_CMD_ROUTE_BY_CONDITION_4 = "";
@@ -299,6 +288,57 @@ public class Constant {
     public static int IA_CMD_SET_DISPLAY_SCREEN_FOR_NAVAPP = 0x2010;
     public static String IA_CMD_SET_DISPLAY_SCREEN_FOR_NAVAPP_SHOW1= "{\"iaDisPlayScreenId\":1}";
     public static String IA_CMD_SET_DISPLAY_SCREEN_FOR_NAVAPP_SHOW2= "{\"iaDisPlayScreenId\":2}";
+
+    /**
+     *2.18 List动画操作
+     */
+    public static int IA_CMD_CURRENT_UI_LIST_ANIMATION = 0x2011;
+    public static String IA_CMD_CURRENT_UI_LIST_ANIMATION_ONE= "{\"iaListAnimaType\": [4]}";//当前画面中的第1个List垂直向下翻页
+    public static String IA_CMD_CURRENT_UI_LIST_ANIMATION_TWO= "{\"iaListAnimaType\": [0,4,8]}";//当前画面中的第2个List垂直向下翻页，第3个List垂直向下滚动
+
+    /**
+     *2.19 收藏点导航
+     */
+    public static int IA_CMD_FAVORITE_GUIDANCE = 0x2012;
+    public static String IA_CMD_FAVORITE_GUIDANCE_HOME = "{" +//导航到家
+            " \"iaFavoriteGuide\": {" +
+            "    \"iaFavTye\": 1," +
+            "    \"iaFavIndex\": -1" +
+            " }" +
+            "}";
+
+    //导航到收藏列表中的第10个收藏点
+    public static String IA_CMD_FAVORITE_GUIDANCE_TEN = "{" +
+            " \"iaFavoriteGuide\": {" +
+            "    \"iaFavTye\": 0," +
+            "    \"iaFavIndex\": 9" +
+            " }" +
+            "}";
+
+    /**
+     *2.20 定位自车
+     */
+    public static int IA_CMD_LOCATE_THE_CAR = 0x2013;
+
+    /**
+     *2.21 NavApp执行多媒体控制
+     */
+    public static int IA_CMD_NAVAPP_CONTROL_MULTIMEDIA = 0x2014;
+    public static String IA_CMD_NAVAPP_CONTROL_MULTIMEDIA_OPEN_BLUETOOTH = "{" +//打开蓝牙音乐
+            "  \"iaMultimediaOpType\":4," +
+            "  \"iaMultiMediaApp\":4" +
+            "}";
+    public static String IA_CMD_NAVAPP_CONTROL_MULTIMEDIA_CLOSE_VODEO = "{" + //关闭视频
+            "  \"iaMultimediaOpType\":5," +
+            "  \"iaMultiMediaApp\":10" +
+            "}";
+
+    /**
+     *2.22 查看帮助信息
+     */
+    public static int IA_CMD_BROWSE_HELP_INFORMATION = 0x2015;
+    public static String IA_CMD_BROWSE_HELP_INFORMATION_USE_NAV = "{\"iaHelpType\":1}";//查看如何使用NavApp
+    public static String IA_CMD_BROWSE_HELP_INFORMATION_PLAY_MUSIC = "{\"iaHelpType\":6}";//查看如何播放音乐
 
     /**
      *3.0条件搜索POI
