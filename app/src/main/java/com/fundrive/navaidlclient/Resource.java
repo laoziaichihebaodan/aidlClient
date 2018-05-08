@@ -76,8 +76,10 @@ public class Resource {
             new CmdBean(0x100C, "交互目标的路径状态",
                     Constant.IA_CMD_UPDATE_IATARGET_ROUTE_STATUS_YES),
             new CmdBean(0x2001, "保存NavApp数据", ""),
-            new CmdBean(0x2002, "显示/隐藏NavApp",
+            new CmdBean(0x2002, "隐藏NavApp",
                     Constant.IA_CMD_HIDE),
+            new CmdBean(0x2002, "显示NavApp",
+                    Constant.IA_CMD_SHOW),
             new CmdBean(0x2003, "缩小/放大地图",
                     Constant.IA_CMD_ZOOM_MAP_IN_1),
             new CmdBean(0x2004, "获取NavApp的导航引导信息",
@@ -388,7 +390,7 @@ public class Resource {
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String input = meditText.getText().toString();
+                String input = meditText.getText().toString().trim();
                 if (input.equals("")) {
                     Toast.makeText(ctx, "IP地址不能为空！", Toast.LENGTH_LONG).show();
                     return;
