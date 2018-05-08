@@ -8,11 +8,14 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -25,22 +28,43 @@ import com.fundrive.navaidlclient.bean.CmdBean;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, View.OnClickListener {
 
     INavRemoteRequest mNavService;
     boolean mBind = false;
     ListView lv;
-    private int intType;
-    private String strJson;
-    private EditText editText;
+    private AutoCompleteTextView editText;
     private Button button;
+    private ArrayAdapter<CmdBean> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         lv = findViewById(R.id.lv);
-        lv.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, Resource.beans));
+        button = findViewById(R.id.btn_clear);
+        editText =  findViewById(R.id.et_content);
+        button.setOnClickListener(this);
+
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, Resource.beans);
+        lv.setAdapter(adapter);
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                adapter.getFilter().filter(s);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        //editText.setAdapter(adapter);
         lv.setOnItemClickListener(this);
         Resource.init(this);
     }
@@ -112,7 +136,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
 
-        final CmdBean bean = Resource.beans[i];
+        final CmdBean bean = adapter.getItem(i);
         if (Resource.device_model == ShareConfiguration.MODEL_CLIENT) {
 
             DialogUtils.initDialog(this, bean.getStrJson(), new View.OnClickListener() {
@@ -124,7 +148,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                         jsonObject.put("intType", bean.getCMD());
                         jsonObject.put("strJson", s);
                         Resource.udpClient(jsonObject.toString());
-                        Log.d("MainActivity", "onClick: 组装数据===="+jsonObject.toString());
+                        Log.d("MainActivity", "onClick: 组装数据====" + jsonObject.toString());
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -141,13 +165,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                         jsonObject.put("intType", bean.getCMD());
                         jsonObject.put("strJson", s);
                         Resource.callAidlFun(jsonObject.toString());
-                        Log.d("MainActivity", "onClick: 组装数据===="+jsonObject.toString());
+                        Log.d("MainActivity", "onClick: 组装数据====" + jsonObject.toString());
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
             });
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        editText.setText("");
     }
 
 
