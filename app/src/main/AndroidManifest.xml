@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.fundrive.navaidlclient">
+
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,6 +20,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".modules.AuthorNumberActivity" />
+        <activity android:name=".modules.MapDisplayModeActivity" />
+        <activity android:name=".modules.SetValumeActivity" />
+        <activity android:name=".modules.SetMuteActivity" />
+        <activity android:name=".modules.RouteConditionActivity" />
+        <activity android:name=".modules.TimeInfoActivity" />
+        <activity android:name=".modules.LanguageActivity" />
+        <activity android:name=".modules.MutimediaInformationActivity" />
+        <activity android:name=".modules.GuideSoundTypeActivity" />
+        <activity android:name=".modules.WritingStateActivity" />
+        <activity android:name=".modules.RoutStateActivity" />
+        <activity android:name=".modules.ShowHideActivity" />
+        <activity android:name=".modules.ScaleMapActivity" />
+        <activity android:name=".modules.SwitchNavActivity"></activity>
     </application>
 
 </manifest>

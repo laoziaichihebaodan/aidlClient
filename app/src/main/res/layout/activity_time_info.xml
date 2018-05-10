@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".modules.TimeInfoActivity">
+    <TextView
+        android:text="时间信息相关设置"
+        android:textSize="24dp"
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+    <Spinner
+        android:layout_marginTop="24dp"
+        android:layout_below="@id/title"
+        android:id="@+id/sp_set_mode"
+        android:entries="@array/time_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Spinner
+        android:layout_marginTop="24dp"
+        android:id="@+id/sp_time_mode"
+        android:layout_below="@id/sp_set_mode"
+        android:layout_width="match_parent"
+        android:entries="@array/time_mode"
+        android:layout_height="wrap_content"/>
+   <TextView
+       android:layout_marginTop="24dp"
+       android:id="@+id/tv_time"
+       android:text="未选择时间"
+       android:layout_below="@id/sp_time_mode"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content" />
+    <Button
+        android:layout_marginTop="24dp"
+        android:layout_below="@id/tv_time"
+        android:id="@+id/btn_select"
+        android:text="选择时间"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:layout_below="@id/btn_select"
+        android:id="@+id/btn_commit"
+        android:text="应用"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+
+</RelativeLayout>

@@ -24,6 +24,20 @@ import android.widget.Toast;
 import com.fundrive.andrive.INavRemoteNotifier;
 import com.fundrive.andrive.INavRemoteRequest;
 import com.fundrive.navaidlclient.bean.CmdBean;
+import com.fundrive.navaidlclient.modules.AuthorNumberActivity;
+import com.fundrive.navaidlclient.modules.GuideSoundTypeActivity;
+import com.fundrive.navaidlclient.modules.LanguageActivity;
+import com.fundrive.navaidlclient.modules.MapDisplayModeActivity;
+import com.fundrive.navaidlclient.modules.MutimediaInformationActivity;
+import com.fundrive.navaidlclient.modules.RoutStateActivity;
+import com.fundrive.navaidlclient.modules.RouteConditionActivity;
+import com.fundrive.navaidlclient.modules.ScaleMapActivity;
+import com.fundrive.navaidlclient.modules.SetMuteActivity;
+import com.fundrive.navaidlclient.modules.SetValumeActivity;
+import com.fundrive.navaidlclient.modules.ShowHideActivity;
+import com.fundrive.navaidlclient.modules.SwitchNavActivity;
+import com.fundrive.navaidlclient.modules.TimeInfoActivity;
+import com.fundrive.navaidlclient.modules.WritingStateActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         setContentView(R.layout.activity_main);
         lv = findViewById(R.id.lv);
         button = findViewById(R.id.btn_clear);
-        editText =  findViewById(R.id.et_content);
+        editText = findViewById(R.id.et_content);
         button.setOnClickListener(this);
 
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, Resource.beans);
@@ -137,41 +151,111 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
 
         final CmdBean bean = adapter.getItem(i);
+        Intent intent;
+        switch (bean.getCMD()) {
+            case Constant.IA_CMD_SET_AUTHORIZE_SERIAL_NUMBER:
+                startActivity(new Intent(this, AuthorNumberActivity.class));
+                break;
+            case Constant.IA_CMD_SET_MAP_DISPLAY_MODE:
+                startActivity(new Intent(this, MapDisplayModeActivity.class));
+                break;
+            case Constant.IA_CMD_SET_SOUND_VOLUME:
+                startActivity(new Intent(this, SetValumeActivity.class));
+                break;
+            case Constant.IA_CMD_SET_MUTE_SWITCH:
+                intent = new Intent(this, SetMuteActivity.class);
+                intent.putExtra("title", "设置静音");
+                intent.putExtra("key", "muteState");
+                intent.putExtra(Constant.CMD_KEY, Constant.IA_CMD_SET_MUTE_SWITCH);
+                startActivity(intent);
+                break;
+            case Constant.IA_CMD_SET_ROUTE_CONDITION:
+                startActivity(new Intent(this, RouteConditionActivity.class));
+                break;
+            case Constant.IA_CMD_SET_TIME_INFOMATION:
+                startActivity(new Intent(this, TimeInfoActivity.class));
+                break;
+            case Constant.IA_CMD_SET_TYPE_WRITING:
+                sendMessage(Constant.IA_CMD_SET_TYPE_WRITING);
+                break;
+            case Constant.IA_CMD_SET_LANGUAGE:
+                startActivity(new Intent(this, LanguageActivity.class));
+                break;
+            case Constant.IA_CMD_SET_MULTIMEDIA_INFOMATION:
+                startActivity(new Intent(this, MutimediaInformationActivity.class));
+                break;
+            case Constant.IA_CMD_SET_TBT_SWITCH_STATUS:
+                intent = new Intent(this, SetMuteActivity.class);
+                intent.putExtra("key", "state");
+                intent.putExtra("title", "导航信息发送开关");
+                intent.putExtra(Constant.CMD_KEY, Constant.IA_CMD_SET_TBT_SWITCH_STATUS);
+                startActivity(intent);
+                break;
+            case Constant.IA_CMD_SET_GUIDENCE_SOUND_TYPE:
+                startActivity(new Intent(this, GuideSoundTypeActivity.class));
+                break;
+            case Constant.IA_CMD_UPDATE_IATARGET_WRITING_STATUS:
+                startActivity(new Intent(this, WritingStateActivity.class));
+                break;
+            case Constant.IA_CMD_UPDATE_IATARGET_ROUTE_STATUS:
+                startActivity(new Intent(this, RoutStateActivity.class));
+                break;
+            case Constant.IA_CMD_SAVE_DATA:
+                sendMessage(Constant.IA_CMD_SAVE_DATA);
+                break;
+            case Constant.IA_CMD_SHOW_OR_HIDE:
+                startActivity(new Intent(this, ShowHideActivity.class));
+                break;
+            case Constant.IA_CMD_ZOOM_MAP:
+                startActivity(new Intent(this, ScaleMapActivity.class));
+                break;
+            case Constant.IA_CMD_GET_NAVI_INFO:
+                sendMessage(Constant.IA_CMD_GET_NAVI_INFO);
+                break;
+            case Constant.IA_CMD_REPEAT_NAVI_SOUND:
+                sendMessage(Constant.IA_CMD_REPEAT_NAVI_SOUND);
+                break;
+            case Constant.IA_CMD_MOVE_UI:
+                sendMessage(Constant.IA_CMD_MOVE_UI);
+                break;
+            case Constant.IA_CMD_CHANGE_NAVI_UI_VISUAL_ATTRIBUTES:
+                sendMessage(Constant.IA_CMD_CHANGE_NAVI_UI_VISUAL_ATTRIBUTES);
+                break;
+            case Constant.IA_CMD_SHOW_DANAMIC_INFOMATION:
+                sendMessage(Constant.IA_CMD_SHOW_DANAMIC_INFOMATION);
+                break;
+            case Constant.IA_CMD_SART_OR_STOP_NAVI_GUIDE:
+                startActivity(new Intent(this, SwitchNavActivity.class));
+                break;
+        }
+
+    }
+
+    /**
+     * 发送空消息
+     */
+    protected void sendMessage(int cmd) {
+        JSONObject cmdJson = new JSONObject();
+        try {
+            cmdJson.put(Constant.CMD_KEY, cmd);
+            cmdJson.put(Constant.JSON_KEY, "");
+            sendMessage(cmdJson.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 发送消息
+     *
+     * @param message
+     */
+    protected void sendMessage(String message) {
         if (Resource.device_model == ShareConfiguration.MODEL_CLIENT) {
-
-            DialogUtils.initDialog(this, bean.getStrJson(), new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    try {
-                        String s = ((EditText) v).getText().toString();
-                        JSONObject jsonObject = new JSONObject();
-                        jsonObject.put("intType", bean.getCMD());
-                        jsonObject.put("strJson", s);
-                        Resource.udpClient(jsonObject.toString());
-                        Log.d("MainActivity", "onClick: 组装数据====" + jsonObject.toString());
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-        } else if (Resource.device_model == ShareConfiguration.MODEL_SERVER)
-            //调用aidl函数
-            DialogUtils.initDialog(this, bean.getStrJson(), new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    try {
-                        String s = ((EditText) v).getText().toString();
-                        JSONObject jsonObject = new JSONObject();
-                        jsonObject.put("intType", bean.getCMD());
-                        jsonObject.put("strJson", s);
-                        Resource.callAidlFun(jsonObject.toString());
-                        Log.d("MainActivity", "onClick: 组装数据====" + jsonObject.toString());
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-
+            Resource.udpClient(message);
+        } else {
+            Resource.callAidlFun(message);
+        }
     }
 
     @Override
