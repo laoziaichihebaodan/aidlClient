@@ -33,7 +33,10 @@
         <activity android:name=".modules.RoutStateActivity" />
         <activity android:name=".modules.ShowHideActivity" />
         <activity android:name=".modules.ScaleMapActivity" />
-        <activity android:name=".modules.SwitchNavActivity"></activity>
+        <activity android:name=".modules.SwitchNavActivity" />
+        <activity android:name=".modules.ShowTargetVolumeActivity" />
+        <activity android:name=".modules.SwitchMapViewActivity" />
+        <activity android:name=".modules.RouteByConditionActivity"></activity>
     </application>
 
 </manifest>

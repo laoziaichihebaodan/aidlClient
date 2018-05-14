@@ -4,12 +4,11 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -17,7 +16,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -30,11 +28,14 @@ import com.fundrive.navaidlclient.modules.LanguageActivity;
 import com.fundrive.navaidlclient.modules.MapDisplayModeActivity;
 import com.fundrive.navaidlclient.modules.MutimediaInformationActivity;
 import com.fundrive.navaidlclient.modules.RoutStateActivity;
+import com.fundrive.navaidlclient.modules.RouteByConditionActivity;
 import com.fundrive.navaidlclient.modules.RouteConditionActivity;
 import com.fundrive.navaidlclient.modules.ScaleMapActivity;
 import com.fundrive.navaidlclient.modules.SetMuteActivity;
 import com.fundrive.navaidlclient.modules.SetValumeActivity;
 import com.fundrive.navaidlclient.modules.ShowHideActivity;
+import com.fundrive.navaidlclient.modules.ShowTargetVolumeActivity;
+import com.fundrive.navaidlclient.modules.SwitchMapViewActivity;
 import com.fundrive.navaidlclient.modules.SwitchNavActivity;
 import com.fundrive.navaidlclient.modules.TimeInfoActivity;
 import com.fundrive.navaidlclient.modules.WritingStateActivity;
@@ -226,6 +227,24 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 break;
             case Constant.IA_CMD_SART_OR_STOP_NAVI_GUIDE:
                 startActivity(new Intent(this, SwitchNavActivity.class));
+                break;
+            case Constant.IA_CMD_GET_NAVI_STATUAS:
+                sendMessage(Constant.IA_CMD_GET_NAVI_STATUAS);
+                break;
+            case Constant.IA_CMD_SHOW_TARGET_SOUND_VOLUME:
+                startActivity(new Intent(this, ShowTargetVolumeActivity.class));
+                break;
+            case Constant.IA_CMD_DELET_NAVI_ROUTE:
+                sendMessage(Constant.IA_CMD_DELET_NAVI_ROUTE);
+                break;
+            case Constant.IA_CMD_GET_GPS_INFO:
+                sendMessage(Constant.IA_CMD_GET_GPS_INFO);
+                break;
+            case Constant.IA_CMD_SET_MAP_VIEW_MODE:
+                startActivity(new Intent(this, SwitchMapViewActivity.class));
+                break;
+            case Constant.IA_CMD_ROUTE_BY_CONDITION:
+                startActivity(new Intent(this, RouteByConditionActivity.class));
                 break;
         }
 
