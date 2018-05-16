@@ -36,7 +36,11 @@
         <activity android:name=".modules.SwitchNavActivity" />
         <activity android:name=".modules.ShowTargetVolumeActivity" />
         <activity android:name=".modules.SwitchMapViewActivity" />
-        <activity android:name=".modules.RouteByConditionActivity"></activity>
+        <activity android:name=".modules.RouteByConditionActivity" />
+        <activity android:name=".modules.SetDisplayScreenActivity" />
+        <activity android:name=".modules.ListAnimationActivity" />
+        <activity android:name=".modules.FavoriteGuidanceActivity" />
+        <activity android:name=".modules.ControlMutimediaActivity"></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".modules.FavoriteGuidanceActivity">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="收藏点导航"
+        android:textSize="24dp" />
+
+    <TextView
+        android:id="@+id/tv_real_or_vir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:text="导航类型"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title" />
+
+    <Spinner
+        android:id="@+id/sp_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/navi_mode"
+        app:layout_constraintBottom_toBottomOf="@id/tv_real_or_vir"
+        app:layout_constraintStart_toEndOf="@id/tv_real_or_vir"
+        app:layout_constraintTop_toTopOf="@id/tv_real_or_vir" />
+
+    <TextView
+        android:id="@+id/tv_to_guide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:text="导航到"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sp_mode" />
+
+    <Spinner
+        android:id="@+id/sp_where"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/favi_type"
+        app:layout_constraintBottom_toBottomOf="@id/tv_to_guide"
+        app:layout_constraintStart_toEndOf="@id/tv_to_guide"
+        app:layout_constraintTop_toTopOf="@id/tv_to_guide" />
+    <Button
+        android:id="@+id/btn_commit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="应用"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</android.support.constraint.ConstraintLayout>

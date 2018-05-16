@@ -23,14 +23,18 @@ import com.fundrive.andrive.INavRemoteNotifier;
 import com.fundrive.andrive.INavRemoteRequest;
 import com.fundrive.navaidlclient.bean.CmdBean;
 import com.fundrive.navaidlclient.modules.AuthorNumberActivity;
+import com.fundrive.navaidlclient.modules.ControlMutimediaActivity;
+import com.fundrive.navaidlclient.modules.FavoriteGuidanceActivity;
 import com.fundrive.navaidlclient.modules.GuideSoundTypeActivity;
 import com.fundrive.navaidlclient.modules.LanguageActivity;
+import com.fundrive.navaidlclient.modules.ListAnimationActivity;
 import com.fundrive.navaidlclient.modules.MapDisplayModeActivity;
 import com.fundrive.navaidlclient.modules.MutimediaInformationActivity;
 import com.fundrive.navaidlclient.modules.RoutStateActivity;
 import com.fundrive.navaidlclient.modules.RouteByConditionActivity;
 import com.fundrive.navaidlclient.modules.RouteConditionActivity;
 import com.fundrive.navaidlclient.modules.ScaleMapActivity;
+import com.fundrive.navaidlclient.modules.SetDisplayScreenActivity;
 import com.fundrive.navaidlclient.modules.SetMuteActivity;
 import com.fundrive.navaidlclient.modules.SetValumeActivity;
 import com.fundrive.navaidlclient.modules.ShowHideActivity;
@@ -245,6 +249,21 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 break;
             case Constant.IA_CMD_ROUTE_BY_CONDITION:
                 startActivity(new Intent(this, RouteByConditionActivity.class));
+                break;
+            case Constant.IA_CMD_SET_DISPLAY_SCREEN_FOR_NAVAPP:
+                startActivity(new Intent(this, SetDisplayScreenActivity.class));
+                break;
+            case Constant.IA_CMD_CURRENT_UI_LIST_ANIMATION:
+                startActivity(new Intent(this, ListAnimationActivity.class));
+                break;
+            case Constant.IA_CMD_FAVORITE_GUIDANCE:
+                startActivity(new Intent(this, FavoriteGuidanceActivity.class));
+                break;
+            case Constant.IA_CMD_LOCATE_THE_CAR:
+                sendMessage(Constant.IA_CMD_LOCATE_THE_CAR);
+                break;
+            case Constant.IA_CMD_NAVAPP_CONTROL_MULTIMEDIA:
+                startActivity(new Intent(this,ControlMutimediaActivity.class));
                 break;
         }
 

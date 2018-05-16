@@ -80,7 +80,8 @@
         <item>无效</item>
         <item>交互目标可写</item>
         <item>交互目标不可写</item>
-    </string-array><string-array name="route_state">
+    </string-array>
+    <string-array name="route_state">
         <item>无效</item>
         <item>交互目标有路径</item>
         <item>交互目标无路径</item>
@@ -90,4 +91,90 @@
         <item>车头朝上</item>
         <item>3D视图</item>
     </string-array>
+    <string-array name="screen_id">
+        <item>无效</item>
+        <item>主机屏幕</item>
+        <item>仪表盘屏幕</item>
+    </string-array>
+    <!--动画类型-->
+    <string-array name="animation_type">
+        <item>无效</item>
+        <item>水平向左翻页</item>
+        <item>水平向右翻页</item>
+        <item>垂直向上翻页</item>
+        <item>垂直向下翻页</item>
+        <item>水平向左滚动</item>
+        <item>水平向右滚动</item>
+        <item>垂直向上滚动</item>
+        <item>垂直向下滚动</item>
+        <item>停止动画</item>
+    </string-array>
+    <!--导航类型-->
+    <string-array name="navi_mode">
+        <item>无效</item>
+        <item>模拟导航</item>
+        <item>实际导航</item>
+    </string-array>
+    <!--收藏点类型-->
+    <string-array name="favi_type">
+        <item>无效</item>
+        <item>家</item>
+        <item>公司</item>
+    </string-array>
+    <!--多媒体操作类型-->
+    <string-array name="media_opration_type">
+        <item>无效</item>
+        <item>上一曲目</item>
+        <item>下一曲目</item>
+        <item>暂停</item>
+        <item>打开指定类型的多媒体应用</item>
+        <item>关闭指定类型的多媒体应用</item>
+        <item>切换收音调制方式为AM</item>
+        <item>切换收音调制方式为FM</item>
+        <item>搜索电台</item>
+        <item>打电话</item>
+        <item>查询联系方式</item>
+        <item>播放音乐</item>
+        <item>搜索音乐</item>
+        <item>设置音乐播放模式</item>
+    </string-array>
+    <!--多媒体应用类别-->
+    <string-array name="media_app_type">
+        <item>无效</item>
+        <item>收音机</item>
+        <item>蓝牙电话</item>
+        <item>音乐</item>
+        <item>蓝牙音乐</item>
+        <item>USB音乐</item>
+        <item>音乐哼唱</item>
+        <item>音乐识别</item>
+        <item>音频输入</item>
+        <item>音频设置</item>
+        <item>视频</item>
+        <item>蓝牙视频</item>
+        <item>USB视频</item>
+        <item>iPod</item>
+        <item>CarLife</item>
+        <item>天气预报</item>
+    </string-array>
+    <!--音乐播放模式-->
+    <string-array name="music_play_mode">
+        <item>无效</item>
+        <item>单曲循环</item>
+        <item>顺序循环</item>
+        <item>随机播放</item>
+        <item>循环播放</item>
+    </string-array>
+    <!--音频源类型-->
+    <string-array name="audio_type">
+        <item>无效类型</item>
+        <item>调频</item>
+        <item>USB</item>
+        <item>蓝牙电话</item>
+        <item>蓝牙音乐</item>
+        <item>高清晰多媒体</item>
+        <item>辅助音频输入</item>
+    </string-array>
+
+
 </resources>
