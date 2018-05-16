@@ -40,7 +40,9 @@
         <activity android:name=".modules.SetDisplayScreenActivity" />
         <activity android:name=".modules.ListAnimationActivity" />
         <activity android:name=".modules.FavoriteGuidanceActivity" />
-        <activity android:name=".modules.ControlMutimediaActivity"></activity>
+        <activity android:name=".modules.ControlMutimediaActivity" />
+        <activity android:name=".modules.HelpInfoActivity" />
+        <activity android:name=".modules.SelectRouteGuideActivity"></activity>
     </application>
 
 </manifest>

@@ -26,6 +26,7 @@ import com.fundrive.navaidlclient.modules.AuthorNumberActivity;
 import com.fundrive.navaidlclient.modules.ControlMutimediaActivity;
 import com.fundrive.navaidlclient.modules.FavoriteGuidanceActivity;
 import com.fundrive.navaidlclient.modules.GuideSoundTypeActivity;
+import com.fundrive.navaidlclient.modules.HelpInfoActivity;
 import com.fundrive.navaidlclient.modules.LanguageActivity;
 import com.fundrive.navaidlclient.modules.ListAnimationActivity;
 import com.fundrive.navaidlclient.modules.MapDisplayModeActivity;
@@ -34,6 +35,7 @@ import com.fundrive.navaidlclient.modules.RoutStateActivity;
 import com.fundrive.navaidlclient.modules.RouteByConditionActivity;
 import com.fundrive.navaidlclient.modules.RouteConditionActivity;
 import com.fundrive.navaidlclient.modules.ScaleMapActivity;
+import com.fundrive.navaidlclient.modules.SelectRouteGuideActivity;
 import com.fundrive.navaidlclient.modules.SetDisplayScreenActivity;
 import com.fundrive.navaidlclient.modules.SetMuteActivity;
 import com.fundrive.navaidlclient.modules.SetValumeActivity;
@@ -263,7 +265,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 sendMessage(Constant.IA_CMD_LOCATE_THE_CAR);
                 break;
             case Constant.IA_CMD_NAVAPP_CONTROL_MULTIMEDIA:
-                startActivity(new Intent(this,ControlMutimediaActivity.class));
+                startActivity(new Intent(this, ControlMutimediaActivity.class));
+                break;
+            case Constant.IA_CMD_BROWSE_HELP_INFORMATION:
+                startActivity(new Intent(this, HelpInfoActivity.class));
+                break;
+            case Constant.IA_CMD_START_GUIDING_WITH_ROUTE:
+                startActivity(new Intent(this, SelectRouteGuideActivity.class));
                 break;
         }
 

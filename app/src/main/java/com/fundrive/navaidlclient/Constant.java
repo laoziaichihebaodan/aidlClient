@@ -349,7 +349,7 @@ public class Constant {
     /**
      * 2.23 指定线路导航
      */
-   // public static final int IA_CMD_START_GUIDING_WITH_ROUTE = 0x2016;
+    public static final int IA_CMD_START_GUIDING_WITH_ROUTE = 0x2016;
     public static  String IA_CMD_START_GUIDING_WITH_ROUTE_CONTENT = "{\n" +
             "  \"routeNumber\": 2,\n" +
             "  \"guideType\": 1\n" +

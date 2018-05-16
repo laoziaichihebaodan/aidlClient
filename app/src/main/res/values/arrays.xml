@@ -49,7 +49,7 @@
     </string-array>
     <!--音频源类型-->
     <string-array name="source_type">
-        <item>无效类型</item>
+        <item>点击选择</item>
         <item>调频</item>
         <item>USB</item>
         <item>蓝牙电话</item>
@@ -59,7 +59,7 @@
     </string-array>
     <!--收音电台的波段-->
     <string-array name="radio_band">
-        <item>无效波段</item>
+        <item>点击选择</item>
         <item>AM1波段</item>
         <item>AM2波段</item>
         <item>FM1波段</item>
@@ -68,7 +68,7 @@
     </string-array>
     <!--导航语音类型-->
     <string-array name="guide_sound">
-        <item>无效</item>
+        <item>点击选择</item>
         <item>普通话女音</item>
         <item>普通话男音</item>
         <item>英语女音</item>
@@ -98,7 +98,7 @@
     </string-array>
     <!--动画类型-->
     <string-array name="animation_type">
-        <item>无效</item>
+        <item>点击选择</item>
         <item>水平向左翻页</item>
         <item>水平向右翻页</item>
         <item>垂直向上翻页</item>
@@ -111,19 +111,19 @@
     </string-array>
     <!--导航类型-->
     <string-array name="navi_mode">
-        <item>无效</item>
+        <item>点击选择导航模式</item>
         <item>模拟导航</item>
         <item>实际导航</item>
     </string-array>
     <!--收藏点类型-->
     <string-array name="favi_type">
-        <item>无效</item>
+        <item>点击选择</item>
         <item>家</item>
         <item>公司</item>
     </string-array>
     <!--多媒体操作类型-->
     <string-array name="media_opration_type">
-        <item>无效</item>
+        <item>点击选择</item>
         <item>上一曲目</item>
         <item>下一曲目</item>
         <item>暂停</item>
@@ -140,7 +140,7 @@
     </string-array>
     <!--多媒体应用类别-->
     <string-array name="media_app_type">
-        <item>无效</item>
+        <item>点击选择</item>
         <item>收音机</item>
         <item>蓝牙电话</item>
         <item>音乐</item>
@@ -159,7 +159,7 @@
     </string-array>
     <!--音乐播放模式-->
     <string-array name="music_play_mode">
-        <item>无效</item>
+        <item>点击选择</item>
         <item>单曲循环</item>
         <item>顺序循环</item>
         <item>随机播放</item>
@@ -167,13 +167,62 @@
     </string-array>
     <!--音频源类型-->
     <string-array name="audio_type">
-        <item>无效类型</item>
+        <item>点击选择</item>
         <item>调频</item>
         <item>USB</item>
         <item>蓝牙电话</item>
         <item>蓝牙音乐</item>
         <item>高清晰多媒体</item>
         <item>辅助音频输入</item>
+    </string-array>
+    <!--帮助信息-->
+    <string-array name="help_info">
+        <item>点击选择</item>
+        <item>NavApp使用帮助</item>
+        <item>语音使用帮助</item>
+        <item>电话拨号帮助</item>
+        <item>收音帮助</item>
+        <item>空调使用帮助</item>
+        <item>音乐播放帮助</item>
+        <item>导航引导帮助</item>
+    </string-array>
+    <!--选择线路-->
+    <string-array name="route_number">
+        <item>点击选择线路</item>
+        <item>线路1</item>
+        <item>线路2</item>
+        <item>线路3</item>
+        <item>线路4</item>
+    </string-array>
+
+    <!--窗口模式-->
+    <string-array name="window_mode">
+        <item>选择窗口模式</item>
+        <item>显示三张卡片视图</item>
+        <item>隐藏三张卡片视图</item>
+
+    </string-array>
+    <!--选择播报频率-->
+    <string-array name="boardcast_mode">
+        <item>选择播报频率</item>
+        <item>简洁模式</item>
+        <item>标准模式</item>
+        <item>安全模式</item>
+    </string-array>
+    <!--路径浏览模式-->
+    <string-array name="route_view_mode">
+        <item>选择浏览模式</item>
+        <item>显示标准路径</item>
+        <item>显示全路径</item>
+    </string-array>
+    <!--路径点类型-->
+    <string-array name="route_point_type">
+        <item>选择地点类型</item>
+        <item>起点</item>
+        <item>途径点1</item>
+        <item>途径点2</item>
+        <item>途径点3</item>
+        <item>终点</item>
     </string-array>
 
 
