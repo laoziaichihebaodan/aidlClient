@@ -7,6 +7,7 @@ package com.fundrive.navaidlclient;
 public class Constant {
     public static final String CMD_KEY = "intType";
     public static final String JSON_KEY = "strJson";
+
     /**
      * 1.1设置NavApp授权序列号
      */
@@ -357,16 +358,24 @@ public class Constant {
     /**
      * 2.24 切换NavApp窗口模式
      */
-    public static String IA_CMD_CHANGE_NAVAPP_WINDOW_MODE = "{\"windowMode\":1}";
+    public static final int IA_CMD_CHANGE_NAVAPP_WINDOW_MODE = 0x2017;
+    public static String IA_CMD_CHANGE_NAVAPP_WINDOW_MODE_CONTENT = "{\"windowMode\":1}";
+
+    /**
+     * 2.25 获取NavApp窗口模式
+     */
+    public static final int IA_CMD_GET_NAVAPP_WINDOW_MODE = 0x2018;
 
     /**
      * 2.26 获取收藏点
      */
-    public static String IA_CMD_GET_FAVORITE_POINT = "{\"iaFavType\": 1}";
+    public static final int IA_CMD_GET_FAVORITE_POINT = 0x2019;
+    public static String IA_CMD_GET_FAVORITE_POINT_CONTENT = "{\"iaFavType\": 1}";
     /**
      * 2.27 更新收藏点
      */
-    public static String IA_CMD_UPDATE_FAVORITE_POINT = "{\n" +
+    public static final int IA_CMD_UPDATE_FAVORITE_POINT = 0x201A;
+    public static String IA_CMD_UPDATE_FAVORITE_POINT_CONTENT = "{\n" +
             "  \"iaFavType\": 1,\n" +
             "  \"favContent\":{\n" +
             "      \"iaPoiType\": 78,\n" +
@@ -391,11 +400,12 @@ public class Constant {
     /**
      * 2.28 键盘输入
      */
-    public static String IA_CMD_UPDATE_KEYBOARD_INPUT = "{\n\"iaKeyboardInput\":\"人民广场\"\n}";
+    public static final int IA_CMD_UPDATE_KEYBOARD_INPUT = 0x202A;
+    public static String IA_CMD_UPDATE_KEYBOARD_INPUT_CONTENT = "{\n\"iaKeyboardInput\":\"人民广场\"\n}";
     /**
      * 3.0条件搜索POI
      */
-    public static int IA_CMD_SEARCH_POI_BY_CONDITION = 0x3000;
+    public static final int IA_CMD_SEARCH_POI_BY_CONDITION = 0x3000;
     public static String IA_CMD_SEARCH_POI_BY_CONDITION_CONTETN = "{\n" +
             "  \"poiSearchType\": 2,\n" +
             "  \"poiSearchCenter\": {\n" +

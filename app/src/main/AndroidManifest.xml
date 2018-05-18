@@ -42,7 +42,12 @@
         <activity android:name=".modules.FavoriteGuidanceActivity" />
         <activity android:name=".modules.ControlMutimediaActivity" />
         <activity android:name=".modules.HelpInfoActivity" />
-        <activity android:name=".modules.SelectRouteGuideActivity"></activity>
+        <activity android:name=".modules.SelectRouteGuideActivity" />
+        <activity android:name=".modules.SwitchWindowModeActivity" />
+        <activity android:name=".modules.GetFavoritePointActivity" />
+        <activity android:name=".modules.UpdateFavActivity" />
+        <activity android:name=".modules.InputActivity" />
+        <activity android:name=".modules.SearchPoiByConditionActivity"></activity>
     </application>
 
 </manifest>

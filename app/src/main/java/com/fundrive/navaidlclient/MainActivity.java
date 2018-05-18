@@ -25,8 +25,10 @@ import com.fundrive.navaidlclient.bean.CmdBean;
 import com.fundrive.navaidlclient.modules.AuthorNumberActivity;
 import com.fundrive.navaidlclient.modules.ControlMutimediaActivity;
 import com.fundrive.navaidlclient.modules.FavoriteGuidanceActivity;
+import com.fundrive.navaidlclient.modules.GetFavoritePointActivity;
 import com.fundrive.navaidlclient.modules.GuideSoundTypeActivity;
 import com.fundrive.navaidlclient.modules.HelpInfoActivity;
+import com.fundrive.navaidlclient.modules.InputActivity;
 import com.fundrive.navaidlclient.modules.LanguageActivity;
 import com.fundrive.navaidlclient.modules.ListAnimationActivity;
 import com.fundrive.navaidlclient.modules.MapDisplayModeActivity;
@@ -35,6 +37,7 @@ import com.fundrive.navaidlclient.modules.RoutStateActivity;
 import com.fundrive.navaidlclient.modules.RouteByConditionActivity;
 import com.fundrive.navaidlclient.modules.RouteConditionActivity;
 import com.fundrive.navaidlclient.modules.ScaleMapActivity;
+import com.fundrive.navaidlclient.modules.SearchPoiByConditionActivity;
 import com.fundrive.navaidlclient.modules.SelectRouteGuideActivity;
 import com.fundrive.navaidlclient.modules.SetDisplayScreenActivity;
 import com.fundrive.navaidlclient.modules.SetMuteActivity;
@@ -43,7 +46,9 @@ import com.fundrive.navaidlclient.modules.ShowHideActivity;
 import com.fundrive.navaidlclient.modules.ShowTargetVolumeActivity;
 import com.fundrive.navaidlclient.modules.SwitchMapViewActivity;
 import com.fundrive.navaidlclient.modules.SwitchNavActivity;
+import com.fundrive.navaidlclient.modules.SwitchWindowModeActivity;
 import com.fundrive.navaidlclient.modules.TimeInfoActivity;
+import com.fundrive.navaidlclient.modules.UpdateFavActivity;
 import com.fundrive.navaidlclient.modules.WritingStateActivity;
 
 import org.json.JSONException;
@@ -272,6 +277,24 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 break;
             case Constant.IA_CMD_START_GUIDING_WITH_ROUTE:
                 startActivity(new Intent(this, SelectRouteGuideActivity.class));
+                break;
+            case Constant.IA_CMD_CHANGE_NAVAPP_WINDOW_MODE:
+                startActivity(new Intent(this, SwitchWindowModeActivity.class));
+                break;
+            case Constant.IA_CMD_GET_NAVAPP_WINDOW_MODE:
+                sendMessage(Constant.IA_CMD_GET_NAVAPP_WINDOW_MODE);
+                break;
+            case Constant.IA_CMD_GET_FAVORITE_POINT:
+                startActivity(new Intent(this, GetFavoritePointActivity.class));
+                break;
+            case Constant.IA_CMD_UPDATE_FAVORITE_POINT:
+                startActivity(new Intent(this, UpdateFavActivity.class));
+                break;
+            case Constant.IA_CMD_UPDATE_KEYBOARD_INPUT:
+                startActivity(new Intent(this, InputActivity.class));
+                break;
+            case Constant.IA_CMD_SEARCH_POI_BY_CONDITION:
+                startActivity(new Intent(this, SearchPoiByConditionActivity.class));
                 break;
         }
 

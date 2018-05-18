@@ -1,17 +1,14 @@
 package com.fundrive.navaidlclient.modules;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.fundrive.navaidlclient.Constant;
+import com.fundrive.navaidlclient.JsonKey;
 import com.fundrive.navaidlclient.R;
-import com.fundrive.navaidlclient.Resource;
-import com.fundrive.navaidlclient.ShareConfiguration;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -53,7 +50,7 @@ public class AuthorNumberActivity extends BaseActivity {
        JSONObject cmdJson = new JSONObject();
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("authorNumber", num);
+            jsonObject.put(JsonKey.AUTHOR_NUMBER, num);
 
             cmdJson.put(Constant.CMD_KEY, Constant.IA_CMD_SET_AUTHORIZE_SERIAL_NUMBER);
             cmdJson.put(Constant.JSON_KEY, jsonObject);

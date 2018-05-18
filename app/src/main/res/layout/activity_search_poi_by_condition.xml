@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".modules.SearchPoiByConditionActivity">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="条件搜索POI"
+        android:textSize="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/sp_search_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/poi_search_type"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title" />
+
+    <Spinner
+        android:id="@+id/sp_center_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/search_center_type"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sp_search_type" />
+
+    <Spinner
+        android:id="@+id/sp_center_exp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/search_center_expression"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sp_center_type" />
+
+    <TextView
+        android:id="@+id/tv_center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:text="搜索中心名称"
+        android:textSize="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sp_center_exp" />
+
+    <EditText
+        android:id="@+id/et_center_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLength="64"
+        android:text="五角场"
+        app:layout_constraintBottom_toBottomOf="@id/tv_center"
+        app:layout_constraintStart_toEndOf="@id/tv_center"
+        app:layout_constraintTop_toTopOf="@id/tv_center" />
+
+    <TextView
+        android:id="@+id/tv_center_point"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:text="搜索中心经纬度"
+        app:layout_constraintTop_toBottomOf="@id/tv_center" />
+
+    <EditText
+        android:id="@+id/et_long"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="12152054"
+        app:layout_constraintBottom_toBottomOf="@id/tv_center_point"
+        app:layout_constraintStart_toEndOf="@id/tv_center_point"
+        app:layout_constraintTop_toTopOf="@id/tv_center_point" />
+
+    <EditText
+        android:id="@+id/et_lat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:text="3130811"
+        app:layout_constraintBottom_toBottomOf="@id/tv_center_point"
+        app:layout_constraintStart_toEndOf="@id/et_long"
+        app:layout_constraintTop_toTopOf="@id/tv_center_point" />
+
+    <Spinner
+        android:id="@+id/sp_scope_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/search_scope_type"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_lat" />
+
+    <Spinner
+        android:id="@+id/sp_scope_exp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/search_scope_expression"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sp_scope_type" />
+
+    <TextView
+        android:id="@+id/tv_scope"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:text="搜索范围(名称或者行政区号)"
+        android:textSize="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sp_scope_exp" />
+
+    <EditText
+        android:id="@+id/et_scope"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLength="64"
+        android:text="上海"
+        app:layout_constraintBottom_toBottomOf="@id/tv_scope"
+        app:layout_constraintStart_toEndOf="@id/tv_scope"
+        app:layout_constraintTop_toTopOf="@id/tv_scope" />
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="搜索内容"
+        android:textSize="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_scope" />
+
+    <EditText
+        android:id="@+id/et_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLength="64"
+        android:text="麦当劳"
+        app:layout_constraintBottom_toBottomOf="@id/tv_content"
+        app:layout_constraintStart_toEndOf="@id/tv_content"
+        app:layout_constraintTop_toTopOf="@id/tv_content" />
+
+    <TextView
+        android:id="@+id/tv_radius"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="搜索半径"
+        android:textSize="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_content" />
+
+    <EditText
+        android:id="@+id/et_radius"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:text="10000"
+        app:layout_constraintBottom_toBottomOf="@id/tv_radius"
+        app:layout_constraintStart_toEndOf="@id/tv_radius"
+        app:layout_constraintTop_toTopOf="@id/tv_radius" />
+
+    <TextView
+        android:id="@+id/tv_data_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="每页显示数据条数"
+        android:textSize="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_radius" />
+
+    <EditText
+        android:id="@+id/et_data_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5"
+        app:layout_constraintBottom_toBottomOf="@id/tv_data_size"
+        app:layout_constraintStart_toEndOf="@id/tv_data_size"
+        app:layout_constraintTop_toTopOf="@id/tv_data_size" />
+
+    <Button
+        android:id="@+id/btn_commit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="开始搜索"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_data_size" />
+
+</android.support.constraint.ConstraintLayout>
