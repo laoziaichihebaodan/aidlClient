@@ -179,7 +179,7 @@ public class SearchPoiByConditionActivity extends BaseActivity implements View.O
             jsonObject.put("poiSearchType", searchType);
 
 
-            cmdJson.put(Constant.CMD_KEY,Constant.IA_CMD_UPDATE_KEYBOARD_INPUT);
+            cmdJson.put(Constant.CMD_KEY,Constant.IA_CMD_SEARCH_POI_BY_CONDITION);
             cmdJson.put(Constant.JSON_KEY, jsonObject);
 
             String message = cmdJson.toString();
