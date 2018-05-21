@@ -42,6 +42,7 @@ import com.fundrive.navaidlclient.modules.ScaleMapActivity;
 import com.fundrive.navaidlclient.modules.SearchPoiByConditionActivity;
 import com.fundrive.navaidlclient.modules.SelectPoiSearchCenter;
 import com.fundrive.navaidlclient.modules.SelectRouteGuideActivity;
+import com.fundrive.navaidlclient.modules.SetBoardcastModeActivity;
 import com.fundrive.navaidlclient.modules.SetDisplayScreenActivity;
 import com.fundrive.navaidlclient.modules.SetMuteActivity;
 import com.fundrive.navaidlclient.modules.SetRouteViewModeActivity;
@@ -334,7 +335,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 startActivity(new Intent(this, SetRouteViewModeActivity.class));
                 break;
             case Constant.IA_CMD_SET_BOARDCAST_MODE:
-
+                startActivity(new Intent(this, SetBoardcastModeActivity.class));
                 break;
             case Constant.IA_CMD_GET_REMAINING_ROUTEINFO:
                 sendMessage(Constant.IA_CMD_GET_REMAINING_ROUTEINFO);
