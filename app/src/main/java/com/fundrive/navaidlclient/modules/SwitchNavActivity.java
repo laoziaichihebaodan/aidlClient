@@ -73,7 +73,7 @@ public class SwitchNavActivity extends BaseActivity {
         try {
             jsonObject.put("operationType", opType);
             jsonObject.put("guideType", guideType);
-            cmdJson.put(Constant.CMD_KEY,Constant.IA_CMD_SHOW_OR_HIDE);
+            cmdJson.put(Constant.CMD_KEY,Constant.IA_CMD_SART_OR_STOP_NAVI_GUIDE);
             cmdJson.put(Constant.JSON_KEY, jsonObject);
 
             String message = cmdJson.toString();
