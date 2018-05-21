@@ -50,7 +50,9 @@
         <activity android:name=".modules.SearchPoiByConditionActivity" />
         <activity android:name=".modules.GetPoiPageDataActivity" />
         <activity android:name=".modules.SelectPoiSearchCenter" />
-        <activity android:name=".modules.GetPonitInfoActivity"></activity>
+        <activity android:name=".modules.GetPonitInfoActivity" />
+        <activity android:name=".modules.SetRouteViewModeActivity" />
+        <activity android:name=".modules.SetBoardcastModeActivity"></activity>
     </application>
 
 </manifest>

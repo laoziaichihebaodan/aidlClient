@@ -449,31 +449,38 @@ public class Constant {
     /**
      * 4.1 开启/关闭超速提醒
      */
-    public static String IA_CMD_ENABLE_SPEEDLIMIT_WARNING = "{\"enable\":true}";
+    public static final int IA_CMD_ENABLE_SPEEDLIMIT_WARNING = 0x4000;
+    public static String IA_CMD_ENABLE_SPEEDLIMIT_WARNING_CONTENT = "{\"enable\":true}";
     /**
      * 4.2 开启/关闭电子警察
      */
-    public static String IA_CMD_ENABLE_CAMERA_WARNING = "{\"enable\":true}";
+    public static final int IA_CMD_ENABLE_CAMERA_WARNING = 0x4001;
+    public static String IA_CMD_ENABLE_CAMERA_WARNING_CONTENT = "{\"enable\":true}";
     /**
      * 4.3 开启/关闭实时路况
      */
-    public static String IA_CMD_ENABLE_TMC = "{\"enable\":true}";
+    public static final int IA_CMD_ENABLE_TMC = 0x4002;
+    public static String IA_CMD_ENABLE_TMC_CONTENT = "{\"enable\":true}";
     /**
      * 4.4 设置路径浏览模式
      */
-    public static String IA_CMD_SET_ROUTE_VIEW_MODE = "{\"routeviewMode\":2}";
+    public static final int IA_CMD_SET_ROUTE_VIEW_MODE = 0x4003;
+    public static String IA_CMD_SET_ROUTE_VIEW_MODE_CONTENT = "{\"routeviewMode\":2}";
     /**
      * 4.5 设置NavApp导航播报频率
      */
-    public static String IA_CMD_SET_BOARDCAST_MODE = "{\"boardcastMode\":1}";
+    public static final int IA_CMD_SET_BOARDCAST_MODE = 0x4004;
+    public static String IA_CMD_SET_BOARDCAST_MODE_CONSTANT = "{\"boardcastMode\":1}";
     /**
      * 4.6 获取剩余路线信息
      */
-    public static String IA_CMD_GET_REMAINING_ROUTEINFO = "";
+    public static final int IA_CMD_GET_REMAINING_ROUTEINFO = 0x4005;
+    public static String IA_CMD_GET_REMAINING_ROUTEINFO_CONTANT = "";
     /**
      * 4.7 开启/关闭避开限行道路功能
      */
-    public static String IA_CMD_ENABLE_AVOID_RESTRICTION_ROADS = "{\"enable\":true}";
+    public static final int IA_CMD_ENABLE_AVOID_RESTRICTION_ROADS = 0x4006;
+    public static String IA_CMD_ENABLE_AVOID_RESTRICTION_ROADS_CONTENT = "{\"enable\":true}";
 
 
 }

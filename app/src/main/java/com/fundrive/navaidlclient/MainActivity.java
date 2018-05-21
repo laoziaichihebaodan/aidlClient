@@ -44,6 +44,7 @@ import com.fundrive.navaidlclient.modules.SelectPoiSearchCenter;
 import com.fundrive.navaidlclient.modules.SelectRouteGuideActivity;
 import com.fundrive.navaidlclient.modules.SetDisplayScreenActivity;
 import com.fundrive.navaidlclient.modules.SetMuteActivity;
+import com.fundrive.navaidlclient.modules.SetRouteViewModeActivity;
 import com.fundrive.navaidlclient.modules.SetValumeActivity;
 import com.fundrive.navaidlclient.modules.ShowHideActivity;
 import com.fundrive.navaidlclient.modules.ShowTargetVolumeActivity;
@@ -300,13 +301,50 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 startActivity(new Intent(this, SearchPoiByConditionActivity.class));
                 break;
             case Constant.IA_CMD_SELECT_POI_SEARCH_CENTER:
-                startActivity(new Intent(this,SelectPoiSearchCenter.class));
+                startActivity(new Intent(this, SelectPoiSearchCenter.class));
                 break;
             case Constant.IA_CMD_GET_POI_PAGE_DATA:
                 startActivity(new Intent(this, GetPoiPageDataActivity.class));
                 break;
             case Constant.IA_CMD_GET_SPECIFIC_POINT_INFO:
                 startActivity(new Intent(this, GetPonitInfoActivity.class));
+                break;
+            case Constant.IA_CMD_ENABLE_SPEEDLIMIT_WARNING:
+                intent = new Intent(this, SetMuteActivity.class);
+                intent.putExtra("title", "开启/关闭超速提醒");
+                intent.putExtra("key", "enable");
+                intent.putExtra(Constant.CMD_KEY, Constant.IA_CMD_ENABLE_SPEEDLIMIT_WARNING);
+                startActivity(intent);
+                break;
+            case Constant.IA_CMD_ENABLE_CAMERA_WARNING:
+                intent = new Intent(this, SetMuteActivity.class);
+                intent.putExtra("title", "开启/关闭电子警察");
+                intent.putExtra("key", "enable");
+                intent.putExtra(Constant.CMD_KEY, Constant.IA_CMD_ENABLE_CAMERA_WARNING);
+                startActivity(intent);
+                break;
+            case Constant.IA_CMD_ENABLE_TMC:
+                intent = new Intent(this, SetMuteActivity.class);
+                intent.putExtra("title", "开启/关闭实时路况");
+                intent.putExtra("key", "enable");
+                intent.putExtra(Constant.CMD_KEY, Constant.IA_CMD_ENABLE_TMC);
+                startActivity(intent);
+                break;
+            case Constant.IA_CMD_SET_ROUTE_VIEW_MODE:
+                startActivity(new Intent(this, SetRouteViewModeActivity.class));
+                break;
+            case Constant.IA_CMD_SET_BOARDCAST_MODE:
+
+                break;
+            case Constant.IA_CMD_GET_REMAINING_ROUTEINFO:
+                sendMessage(Constant.IA_CMD_GET_REMAINING_ROUTEINFO);
+                break;
+            case Constant.IA_CMD_ENABLE_AVOID_RESTRICTION_ROADS:
+                intent = new Intent(this, SetMuteActivity.class);
+                intent.putExtra("title", "开启/关闭避开限行道路功能");
+                intent.putExtra("key", "enable");
+                intent.putExtra(Constant.CMD_KEY, Constant.IA_CMD_ENABLE_AVOID_RESTRICTION_ROADS);
+                startActivity(intent);
                 break;
         }
 
