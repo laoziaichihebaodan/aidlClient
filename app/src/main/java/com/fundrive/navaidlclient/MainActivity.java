@@ -26,6 +26,8 @@ import com.fundrive.navaidlclient.modules.AuthorNumberActivity;
 import com.fundrive.navaidlclient.modules.ControlMutimediaActivity;
 import com.fundrive.navaidlclient.modules.FavoriteGuidanceActivity;
 import com.fundrive.navaidlclient.modules.GetFavoritePointActivity;
+import com.fundrive.navaidlclient.modules.GetPoiPageDataActivity;
+import com.fundrive.navaidlclient.modules.GetPonitInfoActivity;
 import com.fundrive.navaidlclient.modules.GuideSoundTypeActivity;
 import com.fundrive.navaidlclient.modules.HelpInfoActivity;
 import com.fundrive.navaidlclient.modules.InputActivity;
@@ -38,6 +40,7 @@ import com.fundrive.navaidlclient.modules.RouteByConditionActivity;
 import com.fundrive.navaidlclient.modules.RouteConditionActivity;
 import com.fundrive.navaidlclient.modules.ScaleMapActivity;
 import com.fundrive.navaidlclient.modules.SearchPoiByConditionActivity;
+import com.fundrive.navaidlclient.modules.SelectPoiSearchCenter;
 import com.fundrive.navaidlclient.modules.SelectRouteGuideActivity;
 import com.fundrive.navaidlclient.modules.SetDisplayScreenActivity;
 import com.fundrive.navaidlclient.modules.SetMuteActivity;
@@ -295,6 +298,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 break;
             case Constant.IA_CMD_SEARCH_POI_BY_CONDITION:
                 startActivity(new Intent(this, SearchPoiByConditionActivity.class));
+                break;
+            case Constant.IA_CMD_SELECT_POI_SEARCH_CENTER:
+                startActivity(new Intent(this,SelectPoiSearchCenter.class));
+                break;
+            case Constant.IA_CMD_GET_POI_PAGE_DATA:
+                startActivity(new Intent(this, GetPoiPageDataActivity.class));
+                break;
+            case Constant.IA_CMD_GET_SPECIFIC_POINT_INFO:
+                startActivity(new Intent(this, GetPonitInfoActivity.class));
                 break;
         }
 

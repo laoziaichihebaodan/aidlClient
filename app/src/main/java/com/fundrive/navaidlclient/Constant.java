@@ -351,7 +351,7 @@ public class Constant {
      * 2.23 指定线路导航
      */
     public static final int IA_CMD_START_GUIDING_WITH_ROUTE = 0x2016;
-    public static  String IA_CMD_START_GUIDING_WITH_ROUTE_CONTENT = "{\n" +
+    public static String IA_CMD_START_GUIDING_WITH_ROUTE_CONTENT = "{\n" +
             "  \"routeNumber\": 2,\n" +
             "  \"guideType\": 1\n" +
             "}";
@@ -426,18 +426,21 @@ public class Constant {
     /**
      * 3.2 选择POI条件搜索时的搜索中心点
      */
-    public static String IA_CMD_SELECT_POI_SEARCH_CENTER = "{\"poiSearchCenterIndex\":2}";
+    public static final int IA_CMD_SELECT_POI_SEARCH_CENTER = 0x3001;
+    public static String IA_CMD_SELECT_POI_SEARCH_CENTER_CONTENT = "{\"poiSearchCenterIndex\":2}";
     /**
      * 3.3 获取给定页面的POI页数据
      */
-    public static String IA_CMD_GET_POI_PAGE_DATA = "{\n" +
+    public static final int IA_CMD_GET_POI_PAGE_DATA = 0x3002;
+    public static String IA_CMD_GET_POI_PAGE_DATA_CONTENT = "{\n" +
             " \"poiDataType\": 2,\n" +
             " \"poiDataPageNum\": 2\n" +
             "}\n";
     /**
      * 3.4 获取指定经纬度位置详细信息
      */
-    public static String IA_CMD_GET_SPECIFIC_POINT_INFO = "{\n" +
+    public static final int IA_CMD_GET_SPECIFIC_POINT_INFO = 0x3003;
+    public static String IA_CMD_GET_SPECIFIC_POINT_INFO_CONTENT = "{\n" +
             "    \"longitude\": 0,\n" +
             "    \"latitude\" : 0\n" +
             "}";
@@ -450,7 +453,7 @@ public class Constant {
     /**
      * 4.2 开启/关闭电子警察
      */
-    public static String IA_CMD_ENABLE_CAMERA_WARNING ="{\"enable\":true}";
+    public static String IA_CMD_ENABLE_CAMERA_WARNING = "{\"enable\":true}";
     /**
      * 4.3 开启/关闭实时路况
      */
@@ -471,7 +474,6 @@ public class Constant {
      * 4.7 开启/关闭避开限行道路功能
      */
     public static String IA_CMD_ENABLE_AVOID_RESTRICTION_ROADS = "{\"enable\":true}";
-
 
 
 }

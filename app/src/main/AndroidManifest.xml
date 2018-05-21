@@ -47,7 +47,10 @@
         <activity android:name=".modules.GetFavoritePointActivity" />
         <activity android:name=".modules.UpdateFavActivity" />
         <activity android:name=".modules.InputActivity" />
-        <activity android:name=".modules.SearchPoiByConditionActivity"></activity>
+        <activity android:name=".modules.SearchPoiByConditionActivity" />
+        <activity android:name=".modules.GetPoiPageDataActivity" />
+        <activity android:name=".modules.SelectPoiSearchCenter" />
+        <activity android:name=".modules.GetPonitInfoActivity"></activity>
     </application>
 
 </manifest>
