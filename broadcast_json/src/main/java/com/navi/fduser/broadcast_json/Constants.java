@@ -136,8 +136,8 @@ public interface Constants {
     String CARD_TYPES = "CARD_TYPES"; // 加油无忧卡片类型
     String EXTRA_KEYWORD = "EXTRA_KEYWORD"; // 搜索关键字 加油站
     String EXTRA_MYLOCLAT = "EXTRA_MYLOCLAT";//纬度
-    String  EXTRA_MYLOCLON = "EXTRA_MYLOCLON"; // 经度
-    String  EXTRA_SEARCHTYPE ="EXTRA_SEARCHTYPE";// 搜索类型
+    String EXTRA_MYLOCLON = "EXTRA_MYLOCLON"; // 经度
+    String EXTRA_SEARCHTYPE = "EXTRA_SEARCHTYPE";// 搜索类型
     String EXTRA_MAXCOUNT = "EXTRA_MAXCOUNT"; // 搜索最大个数
     String IS_CANCEL = "IS_CANCEL";//   1/0 1：取消、0：规划 // 是否取消
 
@@ -146,8 +146,26 @@ public interface Constants {
     String EXTRA_AVOID_TRAFFIC_JAM_CONTROL = "EXTRA_AVOID_TRAFFIC_JAM_CONTROL";//true：避开；false：忽略
 
     //2.4.4.2 目的地附近停车场弹窗选择  第三方通过接口可传入停车场选择的结果，auto执行对应操作
-    int Type_SECLET_PARK = 10052;
-    String EXTRA_PARK_DATA= "EXTRA_PARK_DATA";//(-1：忽略;0：第一个停车场；1：第二个停车场；2：第三停车场)
+    int Type_SELCET_PARK = 10052;
+    String EXTRA_PARK_DATA = "EXTRA_PARK_DATA";//(-1：忽略;0：第一个停车场；1：第二个停车场；2：第三停车场)
+
+    //2.4.5.2 接收到第三方应用关于续航消息的选择，以此判断是否续航
+    int TYPE_GUIDE = 10049;
+    String EXTRA_ENDURANCE_DATA = "EXTRA_ENDURANCE_DATA";//true(继续),false(取消)
+    //2.4.6.2 第三方可通过接口传入选择结果，调用auto执行对应操作。
+    int TYPE_SELECT_ROUTE= 10050;
+    String EXTRA_SEND2CAR_DATA = "EXTRA_SEND2CAR_DATA";//true(规划路线);false(取消)
+    //2.5.1 支持第三方通过接口主动获取auto是否处于前台可见状态/是否处在导航中。
+    int TYPE_GET_APP_STATE = 12404;
+   String  EXTRA_REQUEST_AUTO_STATE="EXTRA_REQUEST_AUTO_STATE";//int
+                                /**
+                                 * EXTRA_REQUEST_AUTO_STATE第三方查询地图的状态
+                                 * 0：前后台状态查询
+                                 * 1：导航状态查询
+                                 * 2：导航中路线信息查询
+                                 */
+
+                                
     //=========================================================
     /**
      * 1.1设置NavApp授权序列号
