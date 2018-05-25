@@ -14,7 +14,7 @@ public interface Constants {
     String EXTRA_CHANGE_APP_RECT_RIGHT = "EXTRA_CHANGE_APP_RECT_RIGHT";//矩阵right值
     String EXTRA_CHANGE_APP_RECT_BOTTOM = "EXTRA_CHANGE_APP_RECT_BOTTOM";//矩阵bottom值
 
-    //1.1.2 地图标注
+    //1.1.2 地图标注  第三方发送名称或经纬度信息给auto,auto展示一个标注点或者启动auto后展现一个标注点
     int TYPE_MARK_POINT = 10039;
     String SOURCE_APP = "SOURCE_APP";//第三方应用名称(String)
     String POINAME = "POINAME";//POI 名称(String)（必填）
@@ -22,17 +22,18 @@ public interface Constants {
     String LON = "LON";//（必填）经度
     String DEV = "DEV";//（必填）是否偏移(0:lat 和 lon 是已经加密后的,不需要国测加密; 1:需要国测加密)
 
-    //1.2.1 指定偏移量移图
+    //1.2.1 指定偏移量移图 以某个位置为中心，设置制动的上下左右偏移的位置。
     int SET_OFFSET = 10004;
     String EXTRA_OFFSET_X = "EXTRA_OFFSET_X";//x轴偏移量(int)
     String EXTRA_OFFSET_Y = "EXTRA_OFFSET_Y";//y轴偏移量(int)
 
-    //1.2.2.1 收藏当前点
+    //1.2.2.1 收藏当前点  车机系统发送收藏当前点信息给auto【任何场景下都支持（包含导航，巡航，以及非地图界面）】
     int TYPE_ADD_FAVOR = 11003;
     //1.2.2.2收藏当前点的结果透出
     String EXTRA_FAVORITE_MY_LOCATION = "EXTRA_FAVORITE_MY_LOCATION";// (String) 当前车位数据；
 
-    //1.2.3 地图操作
+    //1.2.3 地图操作 第三方发送相关消息可对auto图面进行操作，auto响应，其中包含实时路况的开启与关闭、缩放地图、视图模式的转换，可同时
+    //组合使用。
     /*\\地图操作
     @param type 0 实时路况; 1 缩放地图; 2 视图模式（必填）
     type为0：opera 0 实时路况开；1实时路况关
@@ -51,19 +52,20 @@ public interface Constants {
     int TYPE_HIDE = 10031;
     //1.3.5 进入家/公司设置
     int TYPE_SET_FAVOR = 10070;
-    //1.4.1 根据经纬度查看POI
+    //1.4.1 根据经纬度查看POI  传入经纬度信息进行poi查看，在地图左侧显示poi的相关信息，其名称是通过逆地理获取的
     int TYPE_POI_INFO_BY_POINT = 10013;
     String EXTRA_LON = "EXTRA_LON";//经度
     String EXTRA_LAT = "EXTRA_LAT";//维度
     String EXTRA_DEV = "EXTRA_DEV";//是否偏移(0:lat 和 lon 是已经加密后的,不需要国测加密; 1:需要国测加密)(必填)(int
-    //1.4.2 根据地址查看POI
+    //1.4.2 根据地址查看POI 并展现在地图左侧。
     int TYPE_POI_INFO_BY_ADDRESS = 10011;
     String EXTRA_ADDRESS = "EXTRA_ADDRESS";
-    //1.4.3 POI名称显示
+    //1.4.3 POI名称显示 例如：一键导航给出的名称是“麦当劳”，但实际上此处的逆地理为”XX大楼”，在这种情况下，信息卡片显示“麦当劳”。即第三方同时传入经纬度和
+    //poi名称时，信息卡片优先显示第三方传入poi名称。
     int TYPE_POI_INFO_BY_NAME = 10012;
     //1.4.4 查看我的位置
     int TYPE_POI_INFO_SELF = 10008;
-    //1.5.1 恢复默认设置
+    //1.5.1 恢复默认设置 在任意界面响应导航恢复出厂设置的动作。
     int TYPE_RESET = 11001;
     //1.5.2 查询后台巡航播报的开关状态
     int TYPE_BOARD_STATE = 12007;
@@ -71,6 +73,81 @@ public interface Constants {
     //1.5.3 设置后台巡航播报开关
     int TYPE_BOARD_SWITCH = 12006;
     String EXTRA_SETTING_RESULT = "EXTRA_SETTING_RESULT";//true（boolean类型）（true设置为开，false设置为关）
+    //1.5.5 巡航播报设置
+    // @param type 0 : 所有 ；1: 路况播报；2: 电子眼播报； 3: 警示播报；
+    //@param opera 0 : 打开 ；1: 关闭 ；
+    int TYPE_SET_BROADCAST_FUN = 10064;
+    //1.5.6 设置昼夜模式
+    int TYPE_DAY_NIGHT = 10048;
+    String EXTRA_DAY_NIGHT_MODE = "EXTRA_DAY_NIGHT_MODE";//昼夜模式类型（int）
+    //1.6.1 获取静音状态 第三方请求获取当前静音状态（包括临时静音和永久静音）。
+    int TYPE_GET_MUTE_STATE = 10071;
+    //1.6.2 设置地图是否播报
+    int TYPE_SET_MUTE = 10047;
+    String EXTRA_MUTE = "EXTRA_MUTE";//是否永久静音
+    String EXTRA_CASUAL_MUTE = "EXTRA_CASUAL_MUTE";//是否临时静音
+    //1.6.3 设置语音播报角色 role 0:国语女声; 1：国语男声; 2：周星星；3：广东话；4：林志玲 ； 5：郭德纲；
+    //1.4.2 以上版本支持
+    //role 6:东北话; 7：河南话;8：湖南话；9：四川话；10：台湾话 ；
+    int TYPE_SET_ROLE = 10044;
+    String VOICE_ROLE = "VOICE_ROLE";//语音角色（int）role
+    //2.1.1 设置拓展屏的地图状态 在支持多屏显示的项目上，且开启双屏绘制功能，系统方可通过协议设置指定拓展屏的地图状态（比例尺范围设置、视图切换、车标位置设
+    //置）。如传入视角：3D，在拓展屏设置3D视角。仅支持在双屏功能接口开启的版本上响应协议指令，其他场景下均不响应。
+    //版本支持：官网2.6及以上版本
+    int TYPE_EXTERNAL_SCREEN = 10104;
+    String EXTRA_EXTERNAL_ENGINE_ID = "EXTRA_EXTERNAL_ENGINE_ID"; //仪表对应的engine id
+    String EXTRA_EXTERNAL_MAP_MODE = "EXTRA_EXTERNAL_MAP_MODE";/*仪表模式
+            0 : 2D车首上
+            1 : 2D北首上
+            2 : 3D车首上
+            其它值表示取消固定*/
+    String EXTRA_EXTERNAL_MAP_POSITION = "EXTRA_EXTERNAL_MAP_POSITION"; /*仪表车标位置
+            1 : 左侧
+            2 : 居中
+            3 : 右侧
+            其它值表示取消固定*/
+    String EXTRA_EXTERNAL_MAP_LEVEL = "EXTRA_EXTERNAL_MAP_LEVEL"; //仪表比例尺级别（0~17）
+    //2.1.2 设置拓展屏的路口大图开启/关闭
+    int TYPE_EXTERNAL_SCREEN_SWITCH = 10105;
+    String EXTRA_EXTERNAL_CROSS_CONTROL = "EXTRA_EXTERNAL_CROSS_CONTROL"; /*: 仪表路口大图开关
+                                                        true: 显示
+                                                        false : 不显示*/
+    //2.1.3 设置拓展屏的路口大图类型
+    int TYPE_EXTERNAL_SCREEN_TYPE = 10106;
+    String EXTRA_EXTERNAL_CROSS_TYPE = "EXTRA_EXTERNAL_CROSS_TYPE"; /*: 路口大图类型
+                                                        0 : 栅格图
+                                                        1 : 矢量图
+                                                        2 : 3D实景*/
+    //2.3.3 当前行政区域信息请求
+    int TYPE_GET_REGION_INFO = 10029;
+    //2.3.5 传入经纬度查询当前行政区域
+    int TYPE_GET_REGION_INFO_BY_POINT = 10077;
+    //2.3.6  发起路况查询请求
+    int TYPE_GET_TRAFFIC_CONDITION = 12401;
+    String EXTRA_TRAFFIC_CONDITION = "EXTRA_TRAFFIC_CONDITION";//火车站堵不堵（String类型）
+    //2.3.7 前方路况查询
+    int TYPE_GET_TRAFFIC_CONDITION_AHEAD = 10109;
+    //2.4.1  回家回公司的弹条消息的控制，如出发、取消
+    int TYPE_CONTROL_MESSAGE = 12004;
+    String EXTRA_HOME_OR_COMPANY_WHAT = "EXTRA_HOME_OR_COMPANY_WHAT";//true：出发；false：取消
+    //2.4.2 油量预警弹条控制消息
+    // 加油无忧字段说明
+    int TYPE_WARING_OIL_CONTROL = 13005;
+    String CARD_TYPES = "CARD_TYPES"; // 加油无忧卡片类型
+    String EXTRA_KEYWORD = "EXTRA_KEYWORD"; // 搜索关键字 加油站
+    String EXTRA_MYLOCLAT = "EXTRA_MYLOCLAT";//纬度
+    String  EXTRA_MYLOCLON = "EXTRA_MYLOCLON"; // 经度
+    String  EXTRA_SEARCHTYPE ="EXTRA_SEARCHTYPE";// 搜索类型
+    String EXTRA_MAXCOUNT = "EXTRA_MAXCOUNT"; // 搜索最大个数
+    String IS_CANCEL = "IS_CANCEL";//   1/0 1：取消、0：规划 // 是否取消
+
+    //2.4.3.2  接收第三方对更优路线（躲避拥堵）弹窗的控制，如选择避开或者忽略
+    int TYPE_AVOID_CONTROL = 12106;
+    String EXTRA_AVOID_TRAFFIC_JAM_CONTROL = "EXTRA_AVOID_TRAFFIC_JAM_CONTROL";//true：避开；false：忽略
+
+    //2.4.4.2 目的地附近停车场弹窗选择  第三方通过接口可传入停车场选择的结果，auto执行对应操作
+    int Type_SECLET_PARK = 10052;
+    String EXTRA_PARK_DATA= "EXTRA_PARK_DATA";//(-1：忽略;0：第一个停车场；1：第二个停车场；2：第三停车场)
     //=========================================================
     /**
      * 1.1设置NavApp授权序列号

@@ -14,6 +14,8 @@ public class MapReceiver extends BroadcastReceiver {
             String action = intent.getAction();
             int cmd = 0;
             JSONObject jsonObject = new JSONObject();
+            int type = intent.getIntExtra(Constants.EXTRA_TYPE, 0);
+            int opType = intent.getIntExtra(Constants.EXTRA_OPERA, 0);
             //来自云雀的广播
             if (Constants.BROADCAST_ACTION.equals(action)) {
                 switch (intent.getIntExtra(Constants.KEY_TYPE, 0)) {
@@ -22,8 +24,7 @@ public class MapReceiver extends BroadcastReceiver {
                     case Constants.TYPE_ADD_FAVOR://收藏当前点
                         break;
                     case Constants.TYPE_MAP_OPERA://地图操作:
-                        int type = intent.getIntExtra(Constants.EXTRA_TYPE, 0);
-                        int opType = intent.getIntExtra(Constants.EXTRA_OPERA, 0);
+
                         if (0 == type) {//实时路况 opType 0 开启,1关闭
                             cmd = Constants.IA_CMD_ENABLE_TMC;
                             jsonObject.put("enable", opType == 0);
@@ -67,6 +68,59 @@ public class MapReceiver extends BroadcastReceiver {
 
                         jsonObject.put("longitude", 0);
                         jsonObject.put("latitude", 0);
+                        break;
+                    case Constants.TYPE_POI_INFO_BY_ADDRESS://根据地址显示POI信息
+
+                        break;
+                    case Constants.TYPE_POI_INFO_BY_NAME://POI名称显示
+                        break;
+                    case Constants.TYPE_POI_INFO_SELF://查看我的位置
+                        break;
+                    case Constants.TYPE_RESET://恢复默认设置
+                        break;
+                    case Constants.TYPE_BOARD_STATE://查询后台巡航播报的开关状态
+                        break;
+                    case Constants.TYPE_BOARD_SWITCH://设置后台巡航播报的开关状态
+                        break;
+                    case Constants.TYPE_SET_BROADCAST_FUN://巡航播报设置
+                        break;
+                    case Constants.TYPE_DAY_NIGHT://设置昼夜模式
+                        int mode = intent.getIntExtra(Constants.EXTRA_DAY_NIGHT_MODE, 0);
+                        cmd = Constants.IA_CMD_SET_MAP_DISPLAY_MODE;
+                        jsonObject.put("mode", mode == 0 ? 3 : mode);
+                        break;
+                    case Constants.TYPE_GET_MUTE_STATE://获取静音状态
+
+                        break;
+                    case Constants.TYPE_SET_MUTE:
+                        cmd = Constants.IA_CMD_SET_MUTE_SWITCH;
+                        int mute = intent.getIntExtra(Constants.EXTRA_MUTE, 0);
+                        jsonObject.put("muteState", mute == 1);
+                        break;
+                    case Constants.TYPE_SET_ROLE://设置语音角色
+                        cmd = Constants.IA_CMD_SET_GUIDENCE_SOUND_TYPE;
+                        int role = intent.getIntExtra(Constants.VOICE_ROLE, 0);
+                        jsonObject.put("voiceType", role == 0 ? 1 : 2);
+                        break;
+                    case Constants.TYPE_EXTERNAL_SCREEN://设置扩展屏幕
+                        break;
+                    case Constants.TYPE_EXTERNAL_SCREEN_SWITCH://设置拓展屏的路口大图开启/关闭
+                        break;
+                    case Constants.TYPE_EXTERNAL_SCREEN_TYPE:// 设置拓展屏的路口大图类型
+                        break;
+                    case Constants.TYPE_GET_REGION_INFO://当前行政区域信息请求
+                        break;
+                    case Constants.TYPE_GET_REGION_INFO_BY_POINT://传入经纬度查询当前行政区域
+                        break;
+                    case Constants.TYPE_GET_TRAFFIC_CONDITION://路况查询请求
+                        break;
+                    case Constants.TYPE_GET_TRAFFIC_CONDITION_AHEAD://前方路况
+                        break;
+                    case Constants.TYPE_CONTROL_MESSAGE:
+                        break;
+                    case Constants.TYPE_WARING_OIL_CONTROL:
+                        break;
+                    case Constants.TYPE_AVOID_CONTROL:
                         break;
                 }
                 if (null != messageListener) {
