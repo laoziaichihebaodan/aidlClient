@@ -1,0 +1,101 @@
+{
+  "deleteCurRoute":true,
+  "__option_startPoint__":"startPoint 可选, 当没有startPoint时以自车为起点算路",
+  "startPoint": {
+    "iaPoiType": 351,
+    "iaPoiPos": {
+      "longitude": 12151236,
+      "latitude": 3129925
+    },
+    "iaPoiDisPos": {
+      "longitude": 12151236,
+      "latitude": 3129925
+    },
+    "iaPoiId": 4294967295,
+    "iaChildPoiNum": 0,
+    "iaCompoundId": 0,
+    "iaPoiName": "五角场",
+    "iaPoiAdress": "上海市杨浦区55路下行(世界路新江湾城-南浦大桥)",
+    "iaPoiPhone": "",
+    "iaRegionName": "上海市杨浦区",
+    "iaPoiTypeName": "公交车站"
+  },
+  "__option_waypoint__":"routeWay1, routeWay2, routeWay3 可选",
+  "routeWay1": {
+    "iaPoiType": 351,
+    "iaPoiPos": {
+      "longitude": 11879601,
+      "latitude": 3208640
+    },
+    "iaPoiDisPos": {
+      "longitude": 11879601,
+      "latitude": 3208640
+    },
+    "iaPoiId": 4294967295,
+    "iaChildPoiNum": 0,
+    "iaCompoundId": 0,
+    "iaPoiName": "南京站",
+    "iaPoiAdress": "江苏省南京市玄武区地铁1号线下行(中国药科大学站-迈皋桥站)",
+    "iaPoiPhone": "",
+    "iaRegionName": "江苏省南京市",
+    "iaPoiTypeName": "公交车站"
+  },
+  "routeWay2": {
+    "iaPoiType": 207,
+    "iaPoiPos": {
+      "longitude": 11448715,
+      "latitude": 3800845
+    },
+    "iaPoiDisPos": {
+      "longitude": 11448615,
+      "latitude": 3801072
+    },
+    "iaPoiId": 4294967295,
+    "iaChildPoiNum": 0,
+    "iaCompoundId": 0,
+    "iaPoiName": "石家庄火车站(石家庄站)",
+    "iaPoiAdress": "河北省石家庄市桥西区新石南路与京广西街交汇附近",
+    "iaPoiPhone": "",
+    "iaRegionName": "河北省石家庄市",
+    "iaPoiTypeName": "火车站"
+  },
+  "routeWay3": {
+    "iaPoiType": 124,
+    "iaPoiPos": {
+      "longitude": 11718431,
+      "latitude": 3908446
+    },
+    "iaPoiDisPos": {
+      "longitude": 11718428,
+      "latitude": 3908463
+    },
+    "iaPoiId": 4294967295,
+    "iaChildPoiNum": 0,
+    "iaCompoundId": 0,
+    "iaPoiName": "天津京剧院",
+    "iaPoiAdress": "天津市河西区环湖中路6号",
+    "iaPoiPhone": "",
+    "iaRegionName": "天津市河西区",
+    "iaPoiTypeName": "剧场、戏院、音乐厅"
+  },
+  "__option_endPoint__":"endPoint 必选",
+  "endPoint": {
+    "iaPoiType": 351,
+    "iaPoiPos": {
+      "longitude": 11632902,
+      "latitude": 3990550
+    },
+    "iaPoiDisPos": {
+      "longitude": 11632902,
+      "latitude": 3990550
+    },
+    "iaPoiId": 4294967295,
+    "iaChildPoiNum": 0,
+    "iaCompoundId": 0,
+    "iaPoiName": "会城门",
+    "iaPoiAdress": "北京市海淀区65路下行(北京西站-动物园枢纽站)",
+    "iaPoiPhone": "",
+    "iaRegionName": "北京市海淀区",
+    "iaPoiTypeName": "公交车站"
+  }
+}

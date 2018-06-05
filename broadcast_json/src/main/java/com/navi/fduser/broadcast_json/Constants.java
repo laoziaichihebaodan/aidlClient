@@ -129,7 +129,8 @@ public interface Constants {
     /**
      * 1.5.5 巡航播报设置
      */
-
+    //EXTRA_TYPE:类型（int）type
+    //EXTRA_OPERA:操作（int）opera
     // @param type 0 : 所有 ；1: 路况播报；2: 电子眼播报； 3: 警示播报；
     //@param opera 0 : 打开 ；1: 关闭 ；
     int TYPE_SET_BROADCAST_FUN = 10064;

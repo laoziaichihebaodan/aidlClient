@@ -83,6 +83,19 @@ public class MapReceiver extends BroadcastReceiver {
                     case Constants.TYPE_BOARD_SWITCH://设置后台巡航播报的开关状态
                         break;
                     case Constants.TYPE_SET_BROADCAST_FUN://巡航播报设置
+                        if (0 == opType) {//开启
+                            jsonObject.put("enable", true);
+                        }else {
+                            jsonObject.put("enable", false);
+                        }
+
+                        if (1 == type) {//路况播报
+                            cmd = Constants.IA_CMD_ENABLE_TMC;
+                        } else if (2 == type) {//电子眼
+                            cmd = Constants.IA_CMD_ENABLE_CAMERA_WARNING;
+                        } else if (3 == type) {//警示播报
+                            cmd = Constants.IA_CMD_ENABLE_SPEEDLIMIT_WARNING;
+                        }
                         break;
                     case Constants.TYPE_DAY_NIGHT://设置昼夜模式
                         int mode = intent.getIntExtra(Constants.EXTRA_DAY_NIGHT_MODE, 0);
@@ -116,11 +129,36 @@ public class MapReceiver extends BroadcastReceiver {
                         break;
                     case Constants.TYPE_GET_TRAFFIC_CONDITION_AHEAD://前方路况
                         break;
-                    case Constants.TYPE_CONTROL_MESSAGE:
+                    case Constants.TYPE_CONTROL_MESSAGE:// 回家回公司的弹条消息的控制，如出发、取消
                         break;
-                    case Constants.TYPE_WARING_OIL_CONTROL:
+                    case Constants.TYPE_WARING_OIL_CONTROL://加油无忧
                         break;
                     case Constants.TYPE_AVOID_CONTROL:
+                        break;
+                    case Constants.Type_SELCET_PARK:
+                        break;
+                    case Constants.TYPE_GUIDE:
+                        break;
+                    case Constants.TYPE_SELECT_ROUTE:
+                        break;
+                    case Constants.TYPE_GET_APP_STATE:
+                        break;
+                    case Constants.TYPE_ACCEPT_VOICE_CONTROL:
+                        break;
+                    case Constants.TYPE_SEND_PICTURE:
+                        break;
+                    case Constants.TYPE_REPORT_EVENT:
+                        break;
+                    case Constants.TYPE_GET_LAST_STATE:
+                        break;
+                    case Constants.TYPE_GET_LAST_GUIDE:
+                        break;
+                    case Constants.TYPE_RETRY_OR_EXIT:
+                        break;
+                    case Constants.TYPE_GET_HIGHTWAY_INFO:
+                        break;
+                    case Constants.TYPE_ROUTE_BY_CONDITION:
+
                         break;
                 }
                 if (null != messageListener) {
