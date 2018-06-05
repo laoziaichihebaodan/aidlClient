@@ -52,7 +52,8 @@
         <activity android:name=".modules.SelectPoiSearchCenter" />
         <activity android:name=".modules.GetPonitInfoActivity" />
         <activity android:name=".modules.SetRouteViewModeActivity" />
-        <activity android:name=".modules.SetBoardcastModeActivity"></activity>
+        <activity android:name=".modules.SetBoardcastModeActivity" />
+        <activity android:name=".position.PointActivity"></activity>
     </application>
 
 </manifest>

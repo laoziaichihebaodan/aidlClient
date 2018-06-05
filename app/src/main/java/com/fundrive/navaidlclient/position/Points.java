@@ -1,4 +1,4 @@
-package com.fundrive.navaidlclient.bean.position;
+package com.fundrive.navaidlclient.position;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -15,13 +15,16 @@ public class Points {
         JSONObject iaPoiDisPos = new JSONObject();
         try {
             startPoision.put("iaPoiType", poitype);
+
             iaPoiPos.put("longitude", poiLong);
             iaPoiPos.put("latitude", poiLat);
+
             iaPoiDisPos.put("longitude", disLong);
             iaPoiDisPos.put("latitude", disLat);
 
-            startPoision.put("iaPoiType", iaPoiPos);
+            startPoision.put("iaPoiPos", iaPoiPos);
             startPoision.put("iaPoiDisPos", iaPoiDisPos);
+
             startPoision.put("iaPoiId", iaPoiId);
             startPoision.put("iaChildPoiNum", childPoiNum);
             startPoision.put("iaCompoundId", compoundId);

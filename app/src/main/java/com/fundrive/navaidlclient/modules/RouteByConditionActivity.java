@@ -1,5 +1,6 @@
 package com.fundrive.navaidlclient.modules;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -8,7 +9,8 @@ import android.widget.Switch;
 
 import com.fundrive.navaidlclient.Constant;
 import com.fundrive.navaidlclient.R;
-import com.fundrive.navaidlclient.bean.position.Points;
+import com.fundrive.navaidlclient.position.PointActivity;
+import com.fundrive.navaidlclient.position.Points;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,7 +37,7 @@ public class RouteByConditionActivity extends BaseActivity {
     Button btnCommit;
     private boolean deleteRoute = false;
 
-    private JSONObject startPoint = Points.pointJson(351,
+    public static JSONObject startPoint = Points.pointJson(351,
             12151236, 3129925,
             12151236, 3129925,
             4294967295l,
@@ -44,7 +46,7 @@ public class RouteByConditionActivity extends BaseActivity {
             "五角场",
             "上海市杨浦区55路下行(世界路新江湾城-南浦大桥)", "", "上海市杨浦区",
             "公交车站");
-    private JSONObject endPoint = Points.pointJson(351,
+    public static JSONObject endPoint = Points.pointJson(351,
             11632902, 3990550,
             11632902, 3990550,
             4294967295L,
@@ -56,7 +58,7 @@ public class RouteByConditionActivity extends BaseActivity {
             "北京市海淀区",
             "公交车站");
 
-    private JSONObject wayPoint1 = Points.pointJson(
+    public static JSONObject wayPoint1 = Points.pointJson(
             351,
             11879601, 3208640,
             11879601, 3208640,
@@ -70,7 +72,7 @@ public class RouteByConditionActivity extends BaseActivity {
             "公交车站");
 
 
-    private JSONObject wayPoint2 = Points.pointJson(
+    public static JSONObject wayPoint2 = Points.pointJson(
             207,
             11448715, 3800845,
             11448615, 3801072,
@@ -82,7 +84,7 @@ public class RouteByConditionActivity extends BaseActivity {
             "火车站");
 
 
-    private JSONObject wayPoint3 = Points.pointJson(
+    public static JSONObject wayPoint3 = Points.pointJson(
             351,
             11632902, 3990550,
             11632902, 3990550,
@@ -104,25 +106,36 @@ public class RouteByConditionActivity extends BaseActivity {
 
     @OnClick({R.id.set_start, R.id.btn_end_pos, R.id.set_way_pos1, R.id.set_way_pos2, R.id.set_way_pos3, R.id.btn_commit})
     public void onViewClicked(View view) {
+
+        Intent intent = new Intent(this, PointActivity.class);
         switch (view.getId()) {
             case R.id.set_start:
-                if (setStart.isChecked())
+                if (setStart.isChecked()){
+                    intent.putExtra("json", 0);
+                    startActivity(intent);
+                }
 
                 break;
             case R.id.btn_end_pos:
-
+                intent.putExtra("json", 1);
+                startActivity(intent);
                 break;
             case R.id.set_way_pos1:
                 if (setWayPos1.isChecked()) {
+                    intent.putExtra("json", 2);
+                    startActivity(intent);
                 }
                 break;
             case R.id.set_way_pos2:
                 if (setWayPos2.isChecked()) {
+                    intent.putExtra("json", 3);
+                    startActivity(intent);
                 }
                 break;
             case R.id.set_way_pos3:
                 if (setWayPos3.isChecked()) {
-
+                    intent.putExtra("json", 4);
+                    startActivity(intent);
                 }
                 break;
             case R.id.btn_commit:

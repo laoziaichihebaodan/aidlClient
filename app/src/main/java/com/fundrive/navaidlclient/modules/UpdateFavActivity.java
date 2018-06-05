@@ -100,7 +100,7 @@ public class UpdateFavActivity extends BaseActivity {
             poiJson.put("longitude", longtitude);
             poiJson.put("latitude", latitude);
 
-            disPoiJson.put("longtitude", disLong);
+            disPoiJson.put("longitude", disLong);
             disPoiJson.put("latitude", disLat);
 
             favorJson.put("iaPoiType", poiType);
