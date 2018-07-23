@@ -105,8 +105,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onStart();
 
         // Bind to Navigation Service
-        Intent intent = new Intent("NavigationAIDLService");
-        intent.setPackage("com.fundrive.andrive");
+        //Intent intent = new Intent("NavigationAIDLService");
+        //intent.setPackage("com.fundrive.andrive");
+        //Intent intent = new Intent("NavService");
+        Intent intent = new Intent();
+        ComponentName navService = new ComponentName("com.fundrive.naviwidgetdemo",
+                "com.fundrive.naviwidgetdemo.NavService");
+        intent.setComponent(navService);
+
         bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
     }
 
