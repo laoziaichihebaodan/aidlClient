@@ -72,7 +72,7 @@ public class FavoriteGuidanceActivity extends BaseActivity {
 
             cmdJson.put(Constant.CMD_KEY, Constant.IA_CMD_FAVORITE_GUIDANCE);
             cmdJson.put(Constant.JSON_KEY, jsonObject);
-
+            System.out.println(jsonObject.toString());
             String message = cmdJson.toString();
             sendMessage(message);
             Log.d(TAG, "makeJson: " + message);

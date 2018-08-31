@@ -1,0 +1,13 @@
+"加油站"
+"offLine": "加油站", "onLine": "加油加气站",
+"停车场":
+"offLine": "停车场", "onLine": "停车场",
+"卫生间":
+"offLine": "卫生间", "onLine": "公共厕所"}},
+"美食": {"offLine": "餐饮", "onLine": "餐饮服务"}},
+"银行": {"offLine": "银行", "onLine": "银行"}},
+  {"购物": {"offLine": "商场", "onLine": "综合性商场"}},
+  {"医院": {"offLine": "医院", "onLine": "综合医院"}},
+  {"酒店": {"offLine": "酒店", "onLine": "宾馆饭店"}},
+  {"4S店": {"offLine": "4s店", "onLine": "汽车服务"}},
+  {"维修": {"offLine": "汽车维护与保养", "onLine": "汽车维修、养护与美容"}}
