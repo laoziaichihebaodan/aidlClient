@@ -302,6 +302,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             case Constant.IA_CMD_UPDATE_FAVORITE_POINT:
                 startActivity(new Intent(this, UpdateFavActivity.class));
                 break;
+            case Constant.IA_CMD_UPDATE_FAVORITE_POINT_AND_GUIDE:
+                startActivity(new Intent(this, UpdateFavActivity.class)
+                        .putExtra("cmd",Constant.IA_CMD_UPDATE_FAVORITE_POINT_AND_GUIDE));
+                break;
             case Constant.IA_CMD_UPDATE_KEYBOARD_INPUT:
                 startActivity(new Intent(this, InputActivity.class));
                 break;

@@ -126,6 +126,8 @@ public class Resource {
                     Constant.IA_CMD_GET_FAVORITE_POINT_CONTENT),
             new CmdBean(Constant.IA_CMD_UPDATE_FAVORITE_POINT, "更新收藏点",
                     Constant.IA_CMD_UPDATE_FAVORITE_POINT_CONTENT),
+            new CmdBean(Constant.IA_CMD_UPDATE_FAVORITE_POINT_AND_GUIDE,"更新收藏点并导航",
+                    Constant.IA_CMD_UPDATE_FAVORITE_POINT_CONTENT),
             new CmdBean(Constant.IA_CMD_UPDATE_KEYBOARD_INPUT, "键盘输入字符串",
                     Constant.IA_CMD_UPDATE_KEYBOARD_INPUT_CONTENT),
             new CmdBean(Constant.IA_CMD_SEARCH_POI_BY_CONDITION, "条件搜索POI",

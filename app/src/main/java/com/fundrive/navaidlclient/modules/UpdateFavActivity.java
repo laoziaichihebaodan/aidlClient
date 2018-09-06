@@ -1,5 +1,6 @@
 package com.fundrive.navaidlclient.modules;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -49,12 +50,17 @@ public class UpdateFavActivity extends BaseActivity {
     EditText etTypeName;
 
     private int favType = 1;
+    private int cmd  = Constant.IA_CMD_UPDATE_FAVORITE_POINT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_fav);
         ButterKnife.bind(this);
+        Intent intent = getIntent();
+        if (intent.hasExtra("cmd")) {
+            cmd = intent.getIntExtra("cmd", Constant.IA_CMD_UPDATE_FAVORITE_POINT);
+        }
         spType.setSelection(1);
         spType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -118,7 +124,7 @@ public class UpdateFavActivity extends BaseActivity {
             jsonObject.put("iaFavType", favType);
             jsonObject.put("favContent", favorJson);
 
-            cmdJson.put(Constant.CMD_KEY,Constant.IA_CMD_UPDATE_FAVORITE_POINT);
+            cmdJson.put(Constant.CMD_KEY, cmd);
             cmdJson.put(Constant.JSON_KEY, jsonObject);
 
             String message = cmdJson.toString();

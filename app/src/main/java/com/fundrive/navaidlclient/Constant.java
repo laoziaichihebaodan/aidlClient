@@ -403,6 +403,10 @@ public class Constant {
     public static final int IA_CMD_UPDATE_KEYBOARD_INPUT = 0x202A;
     public static String IA_CMD_UPDATE_KEYBOARD_INPUT_CONTENT = "{\n\"iaKeyboardInput\":\"人民广场\"\n}";
     /**
+     * 2.29 更新收藏点并导航
+     */
+    public static final int IA_CMD_UPDATE_FAVORITE_POINT_AND_GUIDE = 0x201B;
+    /**
      * 3.0条件搜索POI
      */
     public static final int IA_CMD_SEARCH_POI_BY_CONDITION = 0x3000;
