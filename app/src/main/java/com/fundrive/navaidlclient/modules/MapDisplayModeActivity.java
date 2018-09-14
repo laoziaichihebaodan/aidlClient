@@ -25,7 +25,7 @@ public class MapDisplayModeActivity extends BaseActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.btn_day, R.id.btn_night,R.id.btn_auto})
+    @OnClick({R.id.btn_day, R.id.btn_night,R.id.btn_auto,R.id.btn_get_mode})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_day://白天
@@ -37,6 +37,23 @@ public class MapDisplayModeActivity extends BaseActivity {
             case R.id.btn_auto:
                 makeJson(3);
                 break;
+            case R.id.btn_get_mode:
+                makeJson();
+                break;
+        }
+    }
+
+    private void makeJson() {
+        JSONObject cmdJson = new JSONObject();
+        try {
+            cmdJson.put(Constant.CMD_KEY, Constant.IA_CMD_GET_MAP_DISPLAY_MODE);
+            cmdJson.put(Constant.JSON_KEY, "");
+
+            String message = cmdJson.toString();
+            sendMessage(message);
+            Log.d(TAG, "makeJson: "+message);
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
 

@@ -21,6 +21,8 @@ public class Constant {
     public static String IA_CMD_SET_MAP_DISPLAY_MODE_DAY = "{\"mode\":1}";
     public static String IA_CMD_SET_MAP_DISPLAY_MODE_NIGHT = "{\"mode\":2}";
 
+    public static final int IA_CMD_GET_MAP_DISPLAY_MODE = 0x202C;
+
     /**
      * 1.3设置NavApp音量
      */
