@@ -1,14 +1,11 @@
 package com.fundrive.navaidlclient.modules;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 
 import com.fundrive.navaidlclient.Constant;
 import com.fundrive.navaidlclient.R;
-import com.fundrive.navaidlclient.Resource;
-import com.fundrive.navaidlclient.ShareConfiguration;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,7 +25,7 @@ public class MapDisplayModeActivity extends BaseActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.btn_day, R.id.btn_night})
+    @OnClick({R.id.btn_day, R.id.btn_night,R.id.btn_auto})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_day://白天
@@ -36,6 +33,9 @@ public class MapDisplayModeActivity extends BaseActivity {
                 break;
             case R.id.btn_night://黑夜
                 makeJson(2);
+                break;
+            case R.id.btn_auto:
+                makeJson(3);
                 break;
         }
     }

@@ -28,5 +28,11 @@
         android:layout_alignTop="@+id/btn_day"
         android:layout_marginEnd="94dp"
         android:text="黑夜" />
+    <Button
+        android:id="@+id/btn_auto"
+        android:layout_below="@id/btn_day"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>
