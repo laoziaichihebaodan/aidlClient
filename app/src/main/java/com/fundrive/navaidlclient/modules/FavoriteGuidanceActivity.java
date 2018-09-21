@@ -67,8 +67,8 @@ public class FavoriteGuidanceActivity extends BaseActivity {
         JSONObject jsonObject = new JSONObject();
 
         try {
-            jsonObject.put("iaFavType", naiMode);
-            jsonObject.put("guideType", toWhere);
+            jsonObject.put("iaFavType", toWhere);
+            jsonObject.put("guideType", naiMode);
 
             cmdJson.put(Constant.CMD_KEY, Constant.IA_CMD_FAVORITE_GUIDANCE);
             cmdJson.put(Constant.JSON_KEY, jsonObject);

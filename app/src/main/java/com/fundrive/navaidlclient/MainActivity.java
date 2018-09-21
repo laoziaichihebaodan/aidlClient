@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         @Override
         public void onNotify(int ia_cmd, String ia_json) throws RemoteException {
             System.out.println(ia_cmd);
-            Toast.makeText(MainActivity.this, ""+ia_json, Toast.LENGTH_SHORT).show();
+            System.out.println(""+ia_json);
         }
     };
 
