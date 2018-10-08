@@ -2,8 +2,8 @@
 <resources>
     <!--避让类型-->
     <string-array name="avoid_types">
-        <item>不针对任何路段类型做避让</item>
-        <item>避让高速与快速路</item>
+        <item>最短路</item>
+        <item>高速优先</item>
         <item>避让收费路段</item>
         <item>避让轮渡</item>
         <item>避让隧道(仅在 v2 版引擎中支持)</item>
@@ -11,6 +11,9 @@
         <item>避让城市快速路</item>
         <item>避让高架(仅在 v2 版引擎中支持)</item>
         <item>避让未铺设道路(仅在 v2 版引擎中支持)</item>
+        <item>避让拥堵(仅在 v2 版引擎中支持)</item>
+        <item>避让因为交通事件阻断的道路(仅在 v2 版引擎中支持)</item>
+        <item>算路时是否考虑红绿灯代价, WARNING: 仅供调试用</item>
     </string-array>
     <!--避让规则-->
     <string-array name="route_rules">

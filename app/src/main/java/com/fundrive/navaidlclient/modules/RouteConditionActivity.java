@@ -32,9 +32,7 @@ public class RouteConditionActivity extends BaseActivity {
     @BindView(R.id.btn_commit)
     Button btnCommit;
     //避让类型取值范围
-    private int[] types = {0x00, 0x10 | 0x20, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80};
-    //避让规则取值范围
-    private int[] rules = {0, 1, 2, 3, 4};
+    private int[] types = {1, 1<<1 , 1<<8, 1<<9, 1<<10, 1<<11,1<<12,1<<13,1<<14, 1<<24,1<<25, 1<<26};
     //开启关闭
     private boolean enabled = false;
 
@@ -56,17 +54,7 @@ public class RouteConditionActivity extends BaseActivity {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-        spRouteRule.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                rule = rules[position];
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
         spSwitch.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -86,16 +74,15 @@ public class RouteConditionActivity extends BaseActivity {
 
     @OnClick(R.id.btn_commit)
     public void onViewClicked() {
-        makeJson(type,rule,enabled);
+        makeJson(type,enabled);
     }
 
-    private void makeJson(int type, int rule, boolean on) {
+    private void makeJson(int type, boolean on) {
         JSONObject cmdJson = new JSONObject();
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("avoidType", type);
-            jsonObject.put("routeRule", rule);
-            jsonObject.put("operation", on);
+            jsonObject.put("iaRoutePreference", type);
+            jsonObject.put("enable", on);
 
             cmdJson.put(Constant.CMD_KEY, Constant.IA_CMD_SET_ROUTE_CONDITION);
             cmdJson.put(Constant.JSON_KEY, jsonObject);
