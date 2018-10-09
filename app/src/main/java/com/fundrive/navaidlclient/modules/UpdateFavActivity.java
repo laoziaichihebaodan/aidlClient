@@ -101,6 +101,7 @@ public class UpdateFavActivity extends BaseActivity {
         JSONObject favorJson = new JSONObject();
         JSONObject poiJson = new JSONObject();
         JSONObject disPoiJson = new JSONObject();
+        JSONObject timeJson = new JSONObject();
 
         try {
             poiJson.put("longitude", longtitude);
@@ -121,9 +122,12 @@ public class UpdateFavActivity extends BaseActivity {
             favorJson.put("iaRegionName", region);
             favorJson.put("iaPoiTypeName", typeName);
 
+            timeJson.put("hour",19);
+            timeJson.put("minute",30);
+
             jsonObject.put("iaFavType", favType);
             jsonObject.put("favContent", favorJson);
-
+            jsonObject.put("predictionTime",timeJson);
             cmdJson.put(Constant.CMD_KEY, cmd);
             cmdJson.put(Constant.JSON_KEY, jsonObject);
 
