@@ -117,7 +117,7 @@ public class UpdateFavActivity extends BaseActivity {
             favorJson.put("iaChildPoiNum", childNum);
             favorJson.put("iaCompoundId", compoundId);
             favorJson.put("iaPoiName", poiName);
-            favorJson.put("iaPoiAddress", poiAddress);
+            favorJson.put("iaPoiAdress", poiAddress);
             favorJson.put("iaPoiPhone", poiPhone);
             favorJson.put("iaRegionName", region);
             favorJson.put("iaPoiTypeName", typeName);
