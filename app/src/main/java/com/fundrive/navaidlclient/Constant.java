@@ -407,9 +407,14 @@ public class Constant {
     public static final int IA_CMD_UPDATE_KEYBOARD_INPUT = 0x202A;
     public static String IA_CMD_UPDATE_KEYBOARD_INPUT_CONTENT = "{\n\"iaKeyboardInput\":\"人民广场\"\n}";
     /**
-     * 2.29 更新收藏点并导航
+     * 2.29 猜测家和公司
      */
-    public static final int IA_CMD_UPDATE_FAVORITE_POINT_AND_GUIDE = 0x201B;
+    public static final int IA_CMD_UPDATE_FAVORITE_POINT_AND_GUESS = 0x201B;
+
+    /**
+     *更新收藏并导航
+     */
+    public static final int IA_CMD_UPDATE_FAVORITE_POINT_AND_NAVI = 0x201C;
     /**
      * 3.0条件搜索POI
      */
@@ -489,6 +494,16 @@ public class Constant {
      */
     public static final int IA_CMD_ENABLE_AVOID_RESTRICTION_ROADS = 0x4006;
     public static String IA_CMD_ENABLE_AVOID_RESTRICTION_ROADS_CONTENT = "{\"enable\":true}";
+
+    /**
+     * 设置巡航声音
+     */
+    public static final int IA_CMD_SET_SOUND_CRUISE = 0x4009;
+
+    /**
+     * 低电量通知
+     */
+    public static final int IA_CMD_BATTERY_LOW = 0x400A;
 
     /**
      * 5.0.6	TMC查询

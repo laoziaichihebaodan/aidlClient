@@ -126,7 +126,9 @@ public class Resource {
                     Constant.IA_CMD_GET_FAVORITE_POINT_CONTENT),
             new CmdBean(Constant.IA_CMD_UPDATE_FAVORITE_POINT, "更新收藏点",
                     Constant.IA_CMD_UPDATE_FAVORITE_POINT_CONTENT),
-            new CmdBean(Constant.IA_CMD_UPDATE_FAVORITE_POINT_AND_GUIDE, "更新收藏点并导航",
+            new CmdBean(Constant.IA_CMD_UPDATE_FAVORITE_POINT_AND_GUESS, "猜测家和公司",
+                    Constant.IA_CMD_UPDATE_FAVORITE_POINT_CONTENT),
+            new CmdBean(Constant.IA_CMD_UPDATE_FAVORITE_POINT_AND_NAVI, "更新收藏并导航",
                     Constant.IA_CMD_UPDATE_FAVORITE_POINT_CONTENT),
             new CmdBean(Constant.IA_CMD_UPDATE_KEYBOARD_INPUT, "键盘输入字符串",
                     Constant.IA_CMD_UPDATE_KEYBOARD_INPUT_CONTENT),
@@ -144,6 +146,9 @@ public class Resource {
                     Constant.IA_CMD_ENABLE_CAMERA_WARNING_CONTENT),
             new CmdBean(Constant.IA_CMD_ENABLE_TMC, "开启/关闭实时路况",
                     Constant.IA_CMD_ENABLE_TMC_CONTENT),
+            new CmdBean(Constant.IA_CMD_SET_SOUND_CRUISE,"巡航播报开关",
+                    Constant.IA_CMD_ENABLE_TMC_CONTENT),
+            new CmdBean(Constant.IA_CMD_BATTERY_LOW,"低电量通知",""),
             new CmdBean(Constant.IA_CMD_SET_ROUTE_VIEW_MODE, "路径浏览模式",
                     Constant.IA_CMD_SET_ROUTE_VIEW_MODE_CONTENT),
             new CmdBean(Constant.IA_CMD_SET_BOARDCAST_MODE, "导航播报频率",
@@ -235,8 +240,8 @@ public class Resource {
                 }
                 try {
                     dsocket = new DatagramSocket();
-                     byteArrayOutputStream = new ByteArrayOutputStream();
-                     dataOutputStream = new DataOutputStream(byteArrayOutputStream);
+                    byteArrayOutputStream = new ByteArrayOutputStream();
+                    dataOutputStream = new DataOutputStream(byteArrayOutputStream);
                     dataOutputStream.writeUTF(data);
                     dataOutputStream.close();
 
@@ -345,14 +350,14 @@ public class Resource {
             @Override
             public void run() {
                 DatagramSocket ds = null;
-                byte[] buf = new byte[1024*2];
+                byte[] buf = new byte[1024 * 2];
                 try {
                     ds = new DatagramSocket(PORT);
                 } catch (SocketException e) {
                     e.printStackTrace();
                 }
                 while (StartServer) {
-                    DatagramPacket dp = new DatagramPacket(buf, 1024*2);
+                    DatagramPacket dp = new DatagramPacket(buf, 1024 * 2);
                     try {
                         if (ds == null) {
                             return;

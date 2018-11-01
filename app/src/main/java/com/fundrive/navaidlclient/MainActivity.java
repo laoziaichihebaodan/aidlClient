@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         @Override
         public void onNotify(int ia_cmd, String ia_json) throws RemoteException {
             System.out.println(ia_cmd);
-            System.out.println(""+ia_json);
+            System.out.println("" + ia_json);
         }
     };
 
@@ -264,6 +264,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             case Constant.IA_CMD_GET_GPS_INFO:
                 sendMessage(Constant.IA_CMD_GET_GPS_INFO);
                 break;
+            case Constant.IA_CMD_BATTERY_LOW:
+                sendMessage(Constant.IA_CMD_BATTERY_LOW);
+                break;
             case Constant.IA_CMD_SET_MAP_VIEW_MODE:
                 startActivity(new Intent(this, SwitchMapViewActivity.class));
                 break;
@@ -303,9 +306,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             case Constant.IA_CMD_UPDATE_FAVORITE_POINT:
                 startActivity(new Intent(this, UpdateFavActivity.class));
                 break;
-            case Constant.IA_CMD_UPDATE_FAVORITE_POINT_AND_GUIDE:
+            case Constant.IA_CMD_UPDATE_FAVORITE_POINT_AND_GUESS:
                 startActivity(new Intent(this, UpdateFavActivity.class)
-                        .putExtra("cmd",Constant.IA_CMD_UPDATE_FAVORITE_POINT_AND_GUIDE));
+                        .putExtra("cmd", Constant.IA_CMD_UPDATE_FAVORITE_POINT_AND_GUESS));
+                break;
+            case Constant.IA_CMD_UPDATE_FAVORITE_POINT_AND_NAVI:
+                startActivity(new Intent(this, UpdateFavActivity.class)
+                        .putExtra("cmd", Constant.IA_CMD_UPDATE_FAVORITE_POINT_AND_NAVI));
                 break;
             case Constant.IA_CMD_UPDATE_KEYBOARD_INPUT:
                 startActivity(new Intent(this, InputActivity.class));
@@ -341,6 +348,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 intent.putExtra("title", "开启/关闭实时路况");
                 intent.putExtra("key", "enable");
                 intent.putExtra(Constant.CMD_KEY, Constant.IA_CMD_ENABLE_TMC);
+                startActivity(intent);
+                break;
+            case Constant.IA_CMD_SET_SOUND_CRUISE:
+                intent = new Intent(this, SetMuteActivity.class);
+                intent.putExtra("title", "开启/关闭巡航播报");
+                intent.putExtra("key", "enable");
+                intent.putExtra(Constant.CMD_KEY, Constant.IA_CMD_SET_SOUND_CRUISE);
                 startActivity(intent);
                 break;
             case Constant.IA_CMD_SET_ROUTE_VIEW_MODE:
