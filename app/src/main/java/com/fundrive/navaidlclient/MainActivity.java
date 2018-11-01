@@ -53,6 +53,7 @@ import com.fundrive.navaidlclient.modules.SwitchMapViewActivity;
 import com.fundrive.navaidlclient.modules.SwitchNavActivity;
 import com.fundrive.navaidlclient.modules.SwitchWindowModeActivity;
 import com.fundrive.navaidlclient.modules.TimeInfoActivity;
+import com.fundrive.navaidlclient.modules.TmcActivity;
 import com.fundrive.navaidlclient.modules.UpdateFavActivity;
 import com.fundrive.navaidlclient.modules.WritingStateActivity;
 
@@ -357,6 +358,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 intent.putExtra("key", "enable");
                 intent.putExtra(Constant.CMD_KEY, Constant.IA_CMD_ENABLE_AVOID_RESTRICTION_ROADS);
                 startActivity(intent);
+                break;
+            case Constant.IA_CMD_TMC_BROADCAST:
+                startActivity(new Intent(this, TmcActivity.class));
                 break;
         }
 

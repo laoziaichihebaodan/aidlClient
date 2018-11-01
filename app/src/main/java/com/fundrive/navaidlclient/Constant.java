@@ -160,6 +160,8 @@ public class Constant {
     public static String IA_CMD_UPDATE_IATARGET_ROUTE_STATUS_YES = "{\"route\":1}";
     public static String IA_CMD_UPDATE_IATARGET_ROUTE_STATUS_NO = "{\"route\":2}";
 
+
+
     /**
      * 2.1启动/退出NavApp
      */
@@ -487,6 +489,11 @@ public class Constant {
      */
     public static final int IA_CMD_ENABLE_AVOID_RESTRICTION_ROADS = 0x4006;
     public static String IA_CMD_ENABLE_AVOID_RESTRICTION_ROADS_CONTENT = "{\"enable\":true}";
+
+    /**
+     * 5.0.6	TMC查询
+     */
+    public static final int IA_CMD_TMC_BROADCAST = 0x5006;
 
 
 }

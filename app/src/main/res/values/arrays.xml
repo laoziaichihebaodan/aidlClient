@@ -267,5 +267,12 @@
         <item>可选取的搜索中心点</item>
         <item>Poi搜索结果</item>
     </string-array>
+    <string-array name="boadcast_type">
+        <item>请选择查询类型</item>
+        <item>RoadTmc</item>
+        <item>RoadNameSuggest</item>
+        <item>FrontTmc</item>
+        <item>RoundTmc</item>
+    </string-array>
 
 </resources>

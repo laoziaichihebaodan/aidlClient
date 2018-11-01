@@ -126,7 +126,7 @@ public class Resource {
                     Constant.IA_CMD_GET_FAVORITE_POINT_CONTENT),
             new CmdBean(Constant.IA_CMD_UPDATE_FAVORITE_POINT, "更新收藏点",
                     Constant.IA_CMD_UPDATE_FAVORITE_POINT_CONTENT),
-            new CmdBean(Constant.IA_CMD_UPDATE_FAVORITE_POINT_AND_GUIDE,"更新收藏点并导航",
+            new CmdBean(Constant.IA_CMD_UPDATE_FAVORITE_POINT_AND_GUIDE, "更新收藏点并导航",
                     Constant.IA_CMD_UPDATE_FAVORITE_POINT_CONTENT),
             new CmdBean(Constant.IA_CMD_UPDATE_KEYBOARD_INPUT, "键盘输入字符串",
                     Constant.IA_CMD_UPDATE_KEYBOARD_INPUT_CONTENT),
@@ -151,7 +151,8 @@ public class Resource {
             new CmdBean(Constant.IA_CMD_GET_REMAINING_ROUTEINFO, "获取剩余路线信息",
                     Constant.IA_CMD_GET_REMAINING_ROUTEINFO_CONTANT),
             new CmdBean(Constant.IA_CMD_ENABLE_AVOID_RESTRICTION_ROADS, "开启/关闭避开限行道路功能",
-                    Constant.IA_CMD_ENABLE_AVOID_RESTRICTION_ROADS_CONTENT)
+                    Constant.IA_CMD_ENABLE_AVOID_RESTRICTION_ROADS_CONTENT),
+            new CmdBean(Constant.IA_CMD_TMC_BROADCAST, "TMC查询", "")
 
 
     };
