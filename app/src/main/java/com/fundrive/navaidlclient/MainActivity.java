@@ -24,6 +24,7 @@ import com.fundrive.andrive.INavRemoteRequest;
 import com.fundrive.navaidlclient.bean.CmdBean;
 import com.fundrive.navaidlclient.modules.AuthorNumberActivity;
 import com.fundrive.navaidlclient.modules.ControlMutimediaActivity;
+import com.fundrive.navaidlclient.modules.CustomMessageActivity;
 import com.fundrive.navaidlclient.modules.FavoriteGuidanceActivity;
 import com.fundrive.navaidlclient.modules.GetFavoritePointActivity;
 import com.fundrive.navaidlclient.modules.GetPoiPageDataActivity;
@@ -113,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         ComponentName navService = new ComponentName("com.fundrive.naviwidgetdemo",
                 "com.fundrive.naviwidgetdemo.NavService");
         intent.setComponent(navService);
-
+        startService(intent);
         bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
     }
 
@@ -140,6 +141,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         public void onNotify(int ia_cmd, String ia_json) throws RemoteException {
             System.out.println(ia_cmd);
             System.out.println("" + ia_json);
+        }
+
+        @Override
+        public void onTTS(String tts) throws RemoteException {
+            System.out.println("" + tts);
         }
     };
 
@@ -375,6 +381,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 break;
             case Constant.IA_CMD_TMC_BROADCAST:
                 startActivity(new Intent(this, TmcActivity.class));
+                break;
+            case 0:
+                startActivity(new Intent(this, CustomMessageActivity.class));
                 break;
         }
 

@@ -23,6 +23,8 @@ public class RouteByConditionActivity extends BaseActivity {
 
     @BindView(R.id.delete_mode)
     Switch deleteMode;
+    @BindView(R.id.is_start)
+    Switch isStart;
     @BindView(R.id.set_start)
     Switch setStart;
     @BindView(R.id.btn_end_pos)
@@ -36,6 +38,7 @@ public class RouteByConditionActivity extends BaseActivity {
     @BindView(R.id.btn_commit)
     Button btnCommit;
     private boolean deleteRoute = false;
+    private boolean startNavi = false;
 
     public static JSONObject startPoint = Points.pointJson(351,
             12151236, 3129925,
@@ -140,6 +143,7 @@ public class RouteByConditionActivity extends BaseActivity {
                 break;
             case R.id.btn_commit:
                 deleteRoute = deleteMode.isChecked();
+                startNavi = isStart.isChecked();
                 makeJson();
                 break;
         }
@@ -151,6 +155,7 @@ public class RouteByConditionActivity extends BaseActivity {
         JSONObject jsonObject = new JSONObject();
 
         try {
+            jsonObject.put("startNavi",startNavi);
             jsonObject.put("deleteCurRoute", deleteRoute);
 
             if (setStart.isChecked()) {

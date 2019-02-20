@@ -146,9 +146,9 @@ public class Resource {
                     Constant.IA_CMD_ENABLE_CAMERA_WARNING_CONTENT),
             new CmdBean(Constant.IA_CMD_ENABLE_TMC, "开启/关闭实时路况",
                     Constant.IA_CMD_ENABLE_TMC_CONTENT),
-            new CmdBean(Constant.IA_CMD_SET_SOUND_CRUISE,"巡航播报开关",
+            new CmdBean(Constant.IA_CMD_SET_SOUND_CRUISE, "巡航播报开关",
                     Constant.IA_CMD_ENABLE_TMC_CONTENT),
-            new CmdBean(Constant.IA_CMD_BATTERY_LOW,"低电量通知",""),
+            new CmdBean(Constant.IA_CMD_BATTERY_LOW, "低电量通知", ""),
             new CmdBean(Constant.IA_CMD_SET_ROUTE_VIEW_MODE, "路径浏览模式",
                     Constant.IA_CMD_SET_ROUTE_VIEW_MODE_CONTENT),
             new CmdBean(Constant.IA_CMD_SET_BOARDCAST_MODE, "导航播报频率",
@@ -157,7 +157,8 @@ public class Resource {
                     Constant.IA_CMD_GET_REMAINING_ROUTEINFO_CONTANT),
             new CmdBean(Constant.IA_CMD_ENABLE_AVOID_RESTRICTION_ROADS, "开启/关闭避开限行道路功能",
                     Constant.IA_CMD_ENABLE_AVOID_RESTRICTION_ROADS_CONTENT),
-            new CmdBean(Constant.IA_CMD_TMC_BROADCAST, "TMC查询", "")
+            new CmdBean(Constant.IA_CMD_TMC_BROADCAST, "TMC查询", ""),
+            new CmdBean(0, "自定义消息", "")
 
 
     };
