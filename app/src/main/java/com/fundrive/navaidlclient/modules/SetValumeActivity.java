@@ -65,7 +65,7 @@ public class SetValumeActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.btn_set_volume, R.id.btn_spec, R.id.btn_set_sub, R.id.btn_sub, R.id.btn_add})
+    @OnClick({R.id.btn_set_volume, R.id.btn_spec, R.id.btn_set_sub, R.id.btn_sub, R.id.btn_add, R.id.btn_return})
     public void onViewClicked(View view) {
         progress = seekBar.getProgress();
         switch (view.getId()) {
@@ -84,6 +84,9 @@ public class SetValumeActivity extends BaseActivity {
                 break;
             case R.id.btn_add:
                 seekBar.setProgress(progress + 5);
+                break;
+            case R.id.btn_return:
+                finish();
                 break;
         }
     }

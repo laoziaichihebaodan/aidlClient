@@ -3,6 +3,7 @@ package com.fundrive.navaidlclient.modules;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -37,14 +38,21 @@ public class SetMuteActivity extends BaseActivity {
         cmd = intent.getIntExtra(Constant.CMD_KEY,0);
     }
 
-    @OnClick(R.id.switch_mode)
-    public void onViewClicked() {
-        if (switchMode.isChecked()){
-            makeJson(true);
-        } else {
-            makeJson(false);
+    @OnClick({R.id.switch_mode, R.id.btn_return})
+    public void onViewClicked(View view) {
+        switch (view.getId())
+        {
+            case R.id.btn_return:
+                finish();
+                break;
+            case R.id.switch_mode:
+                if (switchMode.isChecked()){
+                    makeJson(true);
+                } else {
+                    makeJson(false);
+                }
+                break;
         }
-
     }
     private void makeJson(boolean on) {
         JSONObject cmdJson = new JSONObject();

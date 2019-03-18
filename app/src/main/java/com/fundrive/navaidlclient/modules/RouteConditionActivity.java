@@ -72,9 +72,17 @@ public class RouteConditionActivity extends BaseActivity {
         });
     }
 
-    @OnClick(R.id.btn_commit)
-    public void onViewClicked() {
-        makeJson(type,enabled);
+    @OnClick({R.id.btn_commit, R.id.btn_return})
+    public void onViewClicked(View view) {
+        switch (view.getId())
+        {
+            case R.id.btn_commit:
+                makeJson(type,enabled);
+                break;
+            case R.id.btn_return:
+                finish();
+                break;
+        }
     }
 
     private void makeJson(int type, boolean on) {

@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         lv = findViewById(R.id.lv);
         button = findViewById(R.id.btn_clear);
         editText = findViewById(R.id.et_content);
+        findViewById(R.id.btn_return).setVisibility(View.GONE);
         button.setOnClickListener(this);
 
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, Resource.beans);

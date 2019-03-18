@@ -4,16 +4,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".modules.RouteConditionActivity">
+    <include layout="@layout/item_title"/>
     <TextView
         android:text="算路规则"
-        android:textSize="24dp"
+        style="@style/Text_Title"
         android:id="@+id/title"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <LinearLayout
         android:id="@+id/ll_type"
         android:layout_marginTop="24dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_below="@id/title"
         android:orientation="horizontal"
         android:gravity="center_vertical"
@@ -22,9 +27,10 @@
 
         <TextView
             android:id="@+id/tv_type"
-            android:textSize="16dp"
             android:layout_below="@id/title"
             android:text="avoidType"
+            style="@style/Text_Explain"
+            android:layout_marginRight="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -32,13 +38,16 @@
             android:layout_toRightOf="@id/tv_type"
             android:layout_below="@id/title"
             android:id="@+id/sp_type"
+            style="@style/Text_Body"
             android:entries="@array/avoid_types"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_marginTop="24dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_width="match_parent"
         android:id="@+id/ll_route_rule"
         android:layout_below="@id/ll_type"
@@ -47,14 +56,16 @@
         <TextView
             android:id="@+id/tv_route_rule"
             android:text="routeRule"
-            android:textSize="16dp"
+            style="@style/Text_Explain"
+            android:layout_marginRight="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <Spinner
             android:id="@+id/sp_route_rule"
             android:entries="@array/route_rules"
-            android:layout_width="match_parent"
+            style="@style/Text_Body"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
 
@@ -62,16 +73,21 @@
         android:layout_below="@id/ll_route_rule"
         android:id="@+id/ll_switch"
         android:layout_marginTop="24dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
             android:text="operation"
+            style="@style/Text_Explain"
+            android:layout_marginRight="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <Spinner
             android:id="@+id/sp_switch"
             android:entries="@array/false_true"
+            style="@style/Text_Body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
@@ -82,6 +98,7 @@
         android:layout_marginTop="24dp"
         android:layout_below="@id/ll_switch"
         android:layout_centerHorizontal="true"
+        style="@style/Bottom_Solid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

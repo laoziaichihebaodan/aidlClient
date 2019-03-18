@@ -4,44 +4,52 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".modules.MapDisplayModeActivity">
+    <include layout="@layout/item_title"/>
     <TextView
         android:text="白天/黑夜模式"
-        android:textSize="24dp"
         android:id="@+id/title"
+        style="@style/Text_Title"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/btn_day"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/title"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="84dp"
-        android:text="白天" />
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="200dp"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btn_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="50dp"
+            style="@style/Bottom_Solid"
+            android:text="白天" />
 
-    <Button
-        android:id="@+id/btn_night"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/btn_day"
-        android:layout_marginEnd="94dp"
-        android:text="黑夜" />
-    <Button
-        android:id="@+id/btn_auto"
-        android:text="自动"
-        android:layout_below="@id/btn_day"
-        android:layout_centerHorizontal="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <Button
-        android:id="@+id/btn_get_mode"
-        android:text="获取当前模式"
-        android:layout_below="@id/btn_auto"
-        android:layout_marginTop="40dp"
-        android:layout_centerHorizontal="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
+        <Button
+            android:id="@+id/btn_night"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="50dp"
+            style="@style/Bottom_Solid"
+            android:text="黑夜" />
+        <Button
+            android:id="@+id/btn_auto"
+            android:text="自动"
+            style="@style/Bottom_Solid"
+            android:layout_marginRight="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btn_get_mode"
+            android:text="获取当前模式"
+            style="@style/Bottom_Solid"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 </RelativeLayout>

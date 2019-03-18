@@ -5,23 +5,27 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".modules.AuthorNumberActivity">
+    <include layout="@layout/item_title"/>
     <TextView
-        android:text="授权序列号"
-        android:textSize="24dp"
         android:id="@+id/title"
+        android:text="授权序列号"
+        style="@style/Text_Title"
+        android:layout_margin="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <EditText
         android:id="@+id/et_no"
-        android:text="CG0052162470468"
         android:lines="1"
+        style="@style/Text_Body"
+        android:layout_margin="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <Button
-        android:layout_marginTop="24dp"
-        android:layout_gravity="center_horizontal"
         android:id="@+id/btn_commit"
         android:text="发送"
+        style="@style/Bottom_Solid"
+        android:layout_marginTop="24dp"
+        android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

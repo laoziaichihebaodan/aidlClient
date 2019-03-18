@@ -25,7 +25,7 @@ public class MapDisplayModeActivity extends BaseActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.btn_day, R.id.btn_night,R.id.btn_auto,R.id.btn_get_mode})
+    @OnClick({R.id.btn_day, R.id.btn_night,R.id.btn_auto,R.id.btn_get_mode,R.id.btn_return})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_day://白天
@@ -39,6 +39,9 @@ public class MapDisplayModeActivity extends BaseActivity {
                 break;
             case R.id.btn_get_mode:
                 makeJson();
+                break;
+            case R.id.btn_return:
+                finish();
                 break;
         }
     }
