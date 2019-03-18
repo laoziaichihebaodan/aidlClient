@@ -1,13 +1,13 @@
 package com.fundrive.navaidlclient.modules;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.fundrive.navaidlclient.Constant;
 import com.fundrive.navaidlclient.R;
@@ -31,6 +31,8 @@ public class RouteConditionActivity extends BaseActivity {
     Spinner spSwitch;
     @BindView(R.id.btn_commit)
     Button btnCommit;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
     //避让类型取值范围
     private int[] types = {1, 1<<1 , 1<<8, 1<<9, 1<<10, 1<<11,1<<12,1<<13,1<<14, 1<<24,1<<25, 1<<26};
     //开启关闭
@@ -44,6 +46,7 @@ public class RouteConditionActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_route_condition);
         ButterKnife.bind(this);
+        tvTitle.setText("算路规则");
         spType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

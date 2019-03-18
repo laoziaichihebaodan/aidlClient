@@ -3,6 +3,7 @@ package com.fundrive.navaidlclient.modules;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.fundrive.navaidlclient.Constant;
 import com.fundrive.navaidlclient.R;
@@ -10,6 +11,7 @@ import com.fundrive.navaidlclient.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -17,12 +19,14 @@ import butterknife.OnClick;
  * 设置白天黑夜模式
  */
 public class MapDisplayModeActivity extends BaseActivity {
-
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map_display_mode);
         ButterKnife.bind(this);
+        tvTitle.setText("地图显示模式");
     }
 
     @OnClick({R.id.btn_day, R.id.btn_night,R.id.btn_auto,R.id.btn_get_mode,R.id.btn_return})

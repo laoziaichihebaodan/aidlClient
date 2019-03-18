@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fundrive.navaidlclient.Constant;
@@ -25,11 +26,14 @@ public class AuthorNumberActivity extends BaseActivity {
 
     @BindView(R.id.et_no)
     EditText etNo;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_author_number);
         ButterKnife.bind(this);
+        tvTitle.setText("授权序列号");
         etNo.setText("CG0052162470468");
     }
 

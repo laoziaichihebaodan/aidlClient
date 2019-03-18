@@ -38,6 +38,8 @@ public class SetValumeActivity extends BaseActivity {
     Button btnSub;
     @BindView(R.id.btn_add)
     Button btnAdd;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
     private int progress;
 
     @Override
@@ -45,7 +47,7 @@ public class SetValumeActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_valume);
         ButterKnife.bind(this);
-
+        tvTitle.setText("音量");
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
