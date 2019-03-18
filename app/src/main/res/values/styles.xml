@@ -30,6 +30,10 @@
         <item name="android:textColor">@color/text_main_body</item>
     </style>
 
+    <style name="Text_Body_Pri" parent="Text_Body">
+        <item name="android:textColor">@color/text_title</item>
+    </style>
+
     <style name="Text_Explain">
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/text_explain</item>

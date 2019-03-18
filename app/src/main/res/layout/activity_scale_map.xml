@@ -6,46 +6,48 @@
     android:layout_height="match_parent"
     tools:context=".modules.ScaleMapActivity">
 
+    <include layout="@layout/item_title" />
 
     <TextView
         android:id="@+id/title"
+        style="@style/Text_Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="100dp"
         android:text="放大/缩小地图"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Switch
         android:id="@+id/switch_mode"
+        style="@style/Text_Body"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="24dp"
+        android:switchPadding="20dp"
         android:text="切换放大缩小"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tv_scal"
         app:layout_constraintTop_toBottomOf="@+id/title" />
 
     <TextView
         android:id="@+id/tv_scal"
+        style="@style/Text_Body"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
         android:text="放大"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title" />
 
     <TextView
         android:id="@+id/tv_screen"
+        style="@style/Text_Body"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginStart="72dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="112dp"
         android:text="屏幕id"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,6 +55,7 @@
 
     <NumberPicker
         android:id="@+id/num_pick"
+        style="@style/Text_Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="88dp"
@@ -62,13 +65,12 @@
 
     <Button
         android:id="@+id/btn_commit"
+        style="@style/Bottom_Solid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="76dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginTop="60dp"
         android:text="应用"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/num_pick" />
 </android.support.constraint.ConstraintLayout>

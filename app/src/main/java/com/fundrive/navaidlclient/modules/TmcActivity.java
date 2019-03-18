@@ -32,7 +32,8 @@ public class TmcActivity extends BaseActivity {
     EditText etDirect;
     @BindView(R.id.et_radius)
     EditText etRadius;
-
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
     private int boadcastType;
     private String roadName = "";
     private String city = "";
@@ -44,6 +45,7 @@ public class TmcActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tmc);
         ButterKnife.bind(this);
+        tvTitle.setText("Tmc查询");
         spBoadcastType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -57,16 +59,23 @@ public class TmcActivity extends BaseActivity {
         });
     }
 
-    @OnClick(R.id.btn_commit)
-    public void onViewClicked() {
-        roadName = etRoad.getText().toString().trim();
-        city = etCity.getText().toString().trim();
-        direction = etDirect.getText().toString().trim();
-        String strRadius = etRadius.getText().toString().trim();
-        if (!TextUtils.isEmpty(strRadius) && TextUtils.isDigitsOnly(strRadius)) {
-            radius = Integer.valueOf(strRadius);
+    @OnClick({R.id.btn_commit, R.id.btn_return})
+    public void onViewClicked(View view) {
+        switch (view.getId()){
+            case R.id.btn_commit:
+                roadName = etRoad.getText().toString().trim();
+                city = etCity.getText().toString().trim();
+                direction = etDirect.getText().toString().trim();
+                String strRadius = etRadius.getText().toString().trim();
+                if (!TextUtils.isEmpty(strRadius) && TextUtils.isDigitsOnly(strRadius)) {
+                    radius = Integer.valueOf(strRadius);
+                }
+                makeJson();
+                break;
+            case R.id.btn_return:
+                finish();
+                break;
         }
-        makeJson();
     }
 
     private void makeJson(){

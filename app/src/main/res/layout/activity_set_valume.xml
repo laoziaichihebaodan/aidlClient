@@ -4,15 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".modules.SetValumeActivity">
-    <include layout="@layout/item_title"/>
+
+    <include layout="@layout/item_title" />
+
     <TextView
-        android:text="设置音量"
         android:id="@+id/title"
         style="@style/Text_Title"
-        android:layout_marginTop="100dp"
-        android:layout_marginLeft="20dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="100dp"
+        android:text="设置音量" />
 
     <SeekBar
         android:id="@+id/seekBar"
@@ -20,65 +22,65 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
+        android:layout_marginTop="180dp"
         android:max="100"
-        android:min="0"
-        android:layout_marginTop="180dp" />
+        android:min="0" />
 
     <Button
         android:id="@+id/btn_set_volume"
+        style="@style/Bottom_Solid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="400dp"
-        style="@style/Bottom_Solid"
         android:text="增加音量" />
 
     <TextView
-        android:layout_below="@id/seekBar"
-        android:layout_centerHorizontal="true"
         android:id="@+id/tv_value"
-        android:layout_margin="66dp"
         style="@style/Text_Body"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/seekBar"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="66dp" />
 
     <Button
         android:id="@+id/btn_spec"
+        style="@style/Bottom_Solid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/seekBar"
         android:layout_alignTop="@+id/btn_set_volume"
-        style="@style/Bottom_Solid"
         android:text="设置指定音量" />
 
     <Button
         android:id="@+id/btn_set_sub"
+        style="@style/Bottom_Solid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignTop="@+id/btn_set_volume"
         android:layout_marginEnd="50dp"
-        style="@style/Bottom_Solid"
         android:text="减少音量" />
 
     <Button
         android:id="@+id/btn_sub"
+        style="@style/Bottom_Stroke"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/seekBar"
-        android:layout_margin = "50dp"
-        style="@style/Bottom_Solid"
+        android:layout_margin="50dp"
         android:text="-" />
 
     <Button
         android:id="@+id/btn_add"
+        style="@style/Bottom_Stroke"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/seekBar"
-        android:layout_margin = "50dp"
-        style="@style/Bottom_Solid"
+        android:layout_margin="50dp"
         android:text="+" />
 </RelativeLayout>

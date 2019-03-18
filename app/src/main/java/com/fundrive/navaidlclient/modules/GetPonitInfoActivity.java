@@ -2,7 +2,9 @@ package com.fundrive.navaidlclient.modules;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.fundrive.navaidlclient.Constant;
 import com.fundrive.navaidlclient.R;
@@ -20,17 +22,26 @@ public class GetPonitInfoActivity extends BaseActivity {
     EditText etLong;
     @BindView(R.id.et_lat)
     EditText etLat;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_ponit_info);
         ButterKnife.bind(this);
+        tvTitle.setText("经纬度位置详细信息");
     }
-
-    @OnClick(R.id.btn_commit)
-    public void onViewClicked() {
-        makeJson();
+    @OnClick({R.id.btn_return, R.id.btn_commit})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.btn_return:
+                finish();
+                break;
+            case R.id.btn_commit:
+                makeJson();
+                break;
+        }
     }
 
     private void makeJson() {

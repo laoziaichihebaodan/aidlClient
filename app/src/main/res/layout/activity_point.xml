@@ -5,28 +5,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".position.PointActivity">
+
+    <include layout="@layout/item_title" />
+
     <TextView
         android:id="@+id/title"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textSize="24dp"
-        android:gravity="center"
-        android:text="设置位置信息"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:id="@+id/tv_poi_type"
+        style="@style/Text_Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="100dp"
+        android:text="设置位置信息"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_poi_type"
+        style="@style/Text_Body"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
         android:text="位置类型"
-        android:textSize="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title" />
 
     <EditText
         android:id="@+id/et_poi_type"
+        style="@style/Text_Body_Pri"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:inputType="number"
         android:text="351"
         app:layout_constraintBottom_toBottomOf="@id/tv_poi_type"
@@ -35,18 +44,21 @@
 
     <TextView
         android:id="@+id/tv_poi_long"
+        style="@style/Text_Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
         android:text="收藏点经纬度"
-        android:textSize="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_poi_type" />
 
     <EditText
         android:id="@+id/et_poi_long"
+        style="@style/Text_Body_Pri"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:text="12141938"
         app:layout_constraintBottom_toBottomOf="@id/tv_poi_long"
         app:layout_constraintStart_toEndOf="@id/tv_poi_long"
@@ -54,9 +66,10 @@
 
     <EditText
         android:id="@+id/et_poi_lat"
+        style="@style/Text_Body_Pri"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="20dp"
         android:text="3116152"
         app:layout_constraintBottom_toBottomOf="@id/tv_poi_long"
         app:layout_constraintStart_toEndOf="@id/et_poi_long"
@@ -64,18 +77,21 @@
 
     <TextView
         android:id="@+id/tv_dis_long"
+        style="@style/Text_Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
         android:text="显示点经纬度"
-        android:textSize="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_poi_long" />
 
     <EditText
         android:id="@+id/et_dis_long"
+        style="@style/Text_Body_Pri"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:text="12141708"
         app:layout_constraintBottom_toBottomOf="@id/tv_dis_long"
         app:layout_constraintStart_toEndOf="@id/tv_dis_long"
@@ -83,9 +99,10 @@
 
     <EditText
         android:id="@+id/et_dis_lat"
+        style="@style/Text_Body_Pri"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="20dp"
         android:text="3116179"
         app:layout_constraintBottom_toBottomOf="@id/tv_dis_long"
         app:layout_constraintStart_toEndOf="@id/et_dis_long"
@@ -93,18 +110,21 @@
 
     <TextView
         android:id="@+id/tv_poi_id"
+        style="@style/Text_Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
         android:text="位置ID"
-        android:textSize="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_dis_long" />
 
     <EditText
         android:id="@+id/et_poi_id"
+        style="@style/Text_Body_Pri"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:text="4294967295"
         app:layout_constraintBottom_toBottomOf="@id/tv_poi_id"
         app:layout_constraintStart_toEndOf="@id/tv_poi_id"
@@ -112,18 +132,21 @@
 
     <TextView
         android:id="@+id/tv_child_num"
+        style="@style/Text_Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
         android:text="ChildPoiNum"
-        android:textSize="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_poi_id" />
 
     <EditText
         android:id="@+id/et_child_num"
+        style="@style/Text_Body_Pri"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:text="0"
         app:layout_constraintBottom_toBottomOf="@id/tv_child_num"
         app:layout_constraintStart_toEndOf="@id/tv_child_num"
@@ -131,118 +154,144 @@
 
     <TextView
         android:id="@+id/tv_compound_id"
+        style="@style/Text_Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
         android:text="CompoundId"
-        android:textSize="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_child_num" />
+
     <EditText
         android:id="@+id/et_compound_id"
-        app:layout_constraintTop_toTopOf="@id/tv_compound_id"
-        app:layout_constraintBottom_toBottomOf="@id/tv_compound_id"
-        app:layout_constraintStart_toEndOf="@id/tv_compound_id"
-        android:text="0"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        app:layout_constraintTop_toBottomOf="@id/tv_compound_id"
-        android:id="@+id/tv_poi_name"
+        style="@style/Text_Body_Pri"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:text="0"
+        app:layout_constraintBottom_toBottomOf="@id/tv_compound_id"
+        app:layout_constraintStart_toEndOf="@id/tv_compound_id"
+        app:layout_constraintTop_toTopOf="@id/tv_compound_id" />
+
+    <TextView
+        android:id="@+id/tv_poi_name"
+        style="@style/Text_Body"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
         android:text="位置名称"
-        android:textSize="16dp"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_compound_id" />
+
     <EditText
         android:id="@+id/et_poi_name"
+        style="@style/Text_Body_Pri"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:text="上海师范大学徐汇校区"
-        app:layout_constraintTop_toTopOf="@id/tv_poi_name"
         app:layout_constraintBottom_toBottomOf="@id/tv_poi_name"
         app:layout_constraintStart_toEndOf="@id/tv_poi_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        app:layout_constraintTop_toTopOf="@id/tv_poi_name" />
 
     <TextView
         android:id="@+id/tv_address"
+        style="@style/Text_Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tv_poi_name"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
         android:text="地址"
-        android:textSize="16dp"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_poi_name" />
+
     <EditText
         android:id="@+id/et_address"
-        app:layout_constraintTop_toTopOf="@id/tv_address"
-        app:layout_constraintStart_toEndOf="@id/tv_address"
-        app:layout_constraintBottom_toBottomOf="@id/tv_address"
-        android:text="上海市徐汇区桂林路100号"
+        style="@style/Text_Body_Pri"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="上海市徐汇区桂林路100号"
+        app:layout_constraintBottom_toBottomOf="@id/tv_address"
+        app:layout_constraintStart_toEndOf="@id/tv_address"
+        app:layout_constraintTop_toTopOf="@id/tv_address" />
 
     <TextView
         android:id="@+id/tv_phone"
-        app:layout_constraintTop_toBottomOf="@id/tv_address"
+        style="@style/Text_Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
         android:text="电话"
-        android:textSize="16dp"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_address" />
+
     <EditText
         android:id="@+id/et_phone"
-        app:layout_constraintTop_toTopOf="@id/tv_phone"
+        style="@style/Text_Body_Pri"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         app:layout_constraintBottom_toBottomOf="@id/tv_phone"
         app:layout_constraintStart_toEndOf="@id/tv_phone"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"/>
+        app:layout_constraintTop_toTopOf="@id/tv_phone" />
 
     <TextView
         android:id="@+id/tv_region_name"
+        style="@style/Text_Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
         android:text="所在区"
-        android:textSize="16dp"
-        app:layout_constraintTop_toBottomOf="@id/tv_phone"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_phone" />
+
     <EditText
         android:id="@+id/et_region_name"
+        style="@style/Text_Body_Pri"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:text="上海市徐汇区"
-        app:layout_constraintTop_toTopOf="@id/tv_region_name"
         app:layout_constraintBottom_toBottomOf="@id/tv_region_name"
         app:layout_constraintStart_toEndOf="@id/tv_region_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        app:layout_constraintTop_toTopOf="@id/tv_region_name" />
 
     <TextView
         android:id="@+id/tv_type_name"
+        style="@style/Text_Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
         android:text="类型"
-        android:textSize="16dp"
-        app:layout_constraintTop_toBottomOf="@id/tv_region_name"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_region_name" />
+
     <EditText
         android:id="@+id/et_type_name"
-        android:text="大专院校"
-        app:layout_constraintTop_toTopOf="@id/tv_type_name"
-        app:layout_constraintStart_toEndOf="@id/tv_type_name"
-        app:layout_constraintBottom_toBottomOf="@id/tv_type_name"
+        style="@style/Text_Body_Pri"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="大专院校"
+        app:layout_constraintBottom_toBottomOf="@id/tv_type_name"
+        app:layout_constraintStart_toEndOf="@id/tv_type_name"
+        app:layout_constraintTop_toTopOf="@id/tv_type_name" />
 
     <Button
         android:id="@+id/btn_commit"
-        android:text="应用"
-        app:layout_constraintTop_toBottomOf="@id/tv_type_name"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        style="@style/Bottom_Solid"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="应用"
+        app:layout_constraintBottom_toBottomOf="@id/tv_type_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tv_type_name"
+        app:layout_constraintTop_toTopOf="@id/tv_type_name" />
 
 </android.support.constraint.ConstraintLayout>

@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.fundrive.navaidlclient.Constant;
 import com.fundrive.navaidlclient.R;
@@ -21,8 +21,8 @@ public class WritingStateActivity extends BaseActivity {
 
     @BindView(R.id.sp_write_state)
     Spinner spWriteState;
-    @BindView(R.id.btn_commit)
-    Button btnCommit;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
     private int state;
 
     @Override
@@ -30,6 +30,7 @@ public class WritingStateActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_writing_state);
         ButterKnife.bind(this);
+        tvTitle.setText("交互目标写状态");
         spWriteState.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -43,9 +44,16 @@ public class WritingStateActivity extends BaseActivity {
         });
     }
 
-    @OnClick(R.id.btn_commit)
-    public void onViewClicked() {
-        makeJson();
+    @OnClick({R.id.btn_commit, R.id.btn_return})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.btn_commit:
+                makeJson();
+                break;
+            case R.id.btn_return:
+                finish();
+                break;
+        }
     }
 
     private void makeJson() {

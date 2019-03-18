@@ -5,33 +5,39 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".modules.SwitchWindowModeActivity">
+
+    <include layout="@layout/item_title" />
+
     <TextView
         android:id="@+id/title"
-        android:text="切换窗口模式"
-        android:textSize="24dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        style="@style/Text_Title"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="100dp"
+        android:text="切换窗口模式"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Spinner
         android:id="@+id/sp_mode"
-        app:layout_constraintTop_toBottomOf="@id/title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="24dp"
         android:entries="@array/window_mode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title" />
 
     <Button
         android:id="@+id/btn_commit"
-        app:layout_constraintTop_toBottomOf="@id/sp_mode"
-        android:layout_marginTop="24dp"
-        android:text="应用"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        style="@style/Bottom_Solid"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="应用"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sp_mode" />
 
 </android.support.constraint.ConstraintLayout>

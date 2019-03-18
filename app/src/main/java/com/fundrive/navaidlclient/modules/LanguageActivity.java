@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.fundrive.navaidlclient.Constant;
 import com.fundrive.navaidlclient.R;
@@ -15,13 +15,14 @@ import org.json.JSONObject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-public class LanguageActivity extends BaseActivity implements View.OnClickListener {
+public class LanguageActivity extends BaseActivity{
 
     @BindView(R.id.spinner)
     Spinner spinner;
-    @BindView(R.id.btn_commit)
-    Button btnCommit;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
     private int language;
 
     @Override
@@ -29,6 +30,7 @@ public class LanguageActivity extends BaseActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_language);
         ButterKnife.bind(this);
+        tvTitle.setText("语言");
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -40,13 +42,18 @@ public class LanguageActivity extends BaseActivity implements View.OnClickListen
 
             }
         });
-
-        btnCommit.setOnClickListener(this);
     }
 
-    @Override
-    public void onClick(View v) {
-        makeJson(language);
+    @OnClick({R.id.btn_commit, R.id.btn_return})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.btn_commit:
+                makeJson(language);
+                break;
+            case R.id.btn_return:
+                finish();
+                break;
+        }
     }
 
     private void makeJson(int language) {

@@ -5,33 +5,39 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".modules.SetDisplayScreenActivity">
+
+    <include layout="@layout/item_title" />
+
     <TextView
         android:id="@+id/title"
-        android:gravity="center"
-        android:textSize="24dp"
-        android:text="设置NavApp画面所在的显示屏幕"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        style="@style/Text_Title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="100dp"
+        android:text="设置NavApp画面所在的显示屏幕"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Spinner
         android:id="@+id/sp_screen"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginTop="50dp"
-        app:layout_constraintTop_toBottomOf="@id/title"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
         android:entries="@array/screen_id"
-        android:layout_height="wrap_content"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title" />
+
     <Button
         android:id="@+id/btn_commit"
-        android:layout_marginTop="24dp"
-        app:layout_constraintTop_toBottomOf="@id/sp_screen"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:text="应用"
+        style="@style/Bottom_Solid"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="应用"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sp_screen" />
 
 </android.support.constraint.ConstraintLayout>

@@ -6,35 +6,37 @@
     android:layout_height="match_parent"
     tools:context=".modules.GuideSoundTypeActivity">
 
+    <include
+        android:id="@+id/ll_title"
+        layout="@layout/item_title" />
+
     <TextView
         android:id="@+id/title"
+        style="@style/Text_Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="100dp"
         android:text="导航语音播报类型"
-        android:textSize="24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <Spinner
         android:id="@+id/sp_sound"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
         android:entries="@array/guide_sound"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/title" />
 
     <Button
         android:id="@+id/btn_commit"
+        style="@style/Bottom_Solid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="60dp"
         android:text="应用"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

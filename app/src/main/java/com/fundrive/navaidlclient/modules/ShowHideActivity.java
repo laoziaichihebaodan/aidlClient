@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import com.fundrive.navaidlclient.Constant;
 import com.fundrive.navaidlclient.R;
@@ -13,11 +14,14 @@ import org.json.JSONObject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-public class ShowHideActivity extends BaseActivity implements View.OnClickListener {
+public class ShowHideActivity extends BaseActivity {
 
     @BindView(R.id.switch_mode)
     Switch switchMode;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
     private int state = 1;
 
     @Override
@@ -25,18 +29,24 @@ public class ShowHideActivity extends BaseActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_hide);
         ButterKnife.bind(this);
-        switchMode.setOnClickListener(this);
+        tvTitle.setText("显示隐藏NavAPP");
     }
 
-    @Override
-    public void onClick(View v) {
-        if (switchMode.isChecked()) {
-            state = 1;
-        } else {
-            state = 2;
+    @OnClick({R.id.switch_mode, R.id.btn_return})
+    public void onViewClicked(View view) {
+        switch (view.getId()){
+            case R.id.switch_mode:
+                if (switchMode.isChecked()) {
+                    state = 1;
+                } else {
+                    state = 2;
+                }
+                makeJson();
+                break;
+            case R.id.btn_return:
+                finish();
+                break;
         }
-        makeJson();
-
     }
 
     private void makeJson() {

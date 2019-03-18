@@ -17,7 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ScaleMapActivity extends BaseActivity implements View.OnClickListener {
+public class ScaleMapActivity extends BaseActivity {
 
     @BindView(R.id.switch_mode)
     Switch switchMode;
@@ -25,6 +25,8 @@ public class ScaleMapActivity extends BaseActivity implements View.OnClickListen
     TextView tvScal;
     @BindView(R.id.num_pick)
     NumberPicker numPick;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
     private int opType = 1;
     private int screenId = 1;
 
@@ -34,17 +36,33 @@ public class ScaleMapActivity extends BaseActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scale_map);
         ButterKnife.bind(this);
-        switchMode.setOnClickListener(this);
+        tvTitle.setText("放大缩小地图");
         numPick.setMaxValue(3);
         numPick.setMinValue(0);
         numPick.setValue(1);
 
     }
 
-    @OnClick(R.id.btn_commit)
-    public void onViewClicked() {
-        screenId = numPick.getValue();
-        makeJson();
+    @OnClick({R.id.btn_commit, R.id.switch_mode, R.id.btn_return})
+    public void onViewClicked(View view) {
+        switch (view.getId()){
+            case R.id.switch_mode:
+                if (switchMode.isChecked()) {
+                    opType= 2;
+                    tvScal.setText("缩小");
+                } else {
+                    opType = 1;
+                    tvScal.setText("放大");
+                }
+                break;
+            case R.id.btn_commit:
+                screenId = numPick.getValue();
+                makeJson();
+                break;
+            case R.id.btn_return:
+                finish();
+                break;
+        }
     }
 
     private void makeJson() {
@@ -61,18 +79,6 @@ public class ScaleMapActivity extends BaseActivity implements View.OnClickListen
             Log.d(TAG, "makeJson: " + message);
         } catch (JSONException e) {
             e.printStackTrace();
-        }
-    }
-
-
-    @Override
-    public void onClick(View v) {
-        if (switchMode.isChecked()) {
-            opType= 2;
-            tvScal.setText("缩小");
-        } else {
-            opType = 1;
-            tvScal.setText("放大");
         }
     }
 }

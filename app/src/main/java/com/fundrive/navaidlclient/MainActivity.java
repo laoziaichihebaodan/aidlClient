@@ -314,12 +314,16 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 startActivity(new Intent(this, UpdateFavActivity.class));
                 break;
             case Constant.IA_CMD_UPDATE_FAVORITE_POINT_AND_GUESS:
-                startActivity(new Intent(this, UpdateFavActivity.class)
-                        .putExtra("cmd", Constant.IA_CMD_UPDATE_FAVORITE_POINT_AND_GUESS));
+                intent = new Intent(this, UpdateFavActivity.class);
+                intent.putExtra("cmd", Constant.IA_CMD_UPDATE_FAVORITE_POINT_AND_GUESS);
+                intent.putExtra("title","猜测家和公司");
+                startActivity(intent);
                 break;
             case Constant.IA_CMD_UPDATE_FAVORITE_POINT_AND_NAVI:
-                startActivity(new Intent(this, UpdateFavActivity.class)
-                        .putExtra("cmd", Constant.IA_CMD_UPDATE_FAVORITE_POINT_AND_NAVI));
+                intent = new Intent(this, UpdateFavActivity.class);
+                intent.putExtra("cmd", Constant.IA_CMD_UPDATE_FAVORITE_POINT_AND_NAVI);
+                intent.putExtra("title","更新收藏并导航");
+                startActivity(intent);
                 break;
             case Constant.IA_CMD_UPDATE_KEYBOARD_INPUT:
                 startActivity(new Intent(this, InputActivity.class));

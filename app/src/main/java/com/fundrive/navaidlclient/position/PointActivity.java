@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.fundrive.navaidlclient.R;
 import com.fundrive.navaidlclient.modules.RouteByConditionActivity;
@@ -44,6 +46,8 @@ public class PointActivity extends AppCompatActivity {
     EditText etRegionName;
     @BindView(R.id.et_type_name)
     EditText etTypeName;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
     private String strPoiType;
     private int poiType;
     private long longitude;
@@ -70,6 +74,7 @@ public class PointActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_point);
         ButterKnife.bind(this);
+        tvTitle.setText("位置信息");
         intent = getIntent();
         switch (intent.getIntExtra("json", 1)) {
             case 0:
@@ -126,11 +131,18 @@ public class PointActivity extends AppCompatActivity {
 
     }
 
-    @OnClick(R.id.btn_commit)
-    public void onViewClicked() {
-        makeJson();
-        point = null;
-        finish();
+    @OnClick({R.id.btn_commit, R.id.btn_return})
+    public void onViewClicked(View view) {
+        switch (view.getId()){
+            case R.id.btn_commit:
+                makeJson();
+                point = null;
+                finish();
+                break;
+            case R.id.btn_return:
+                finish();
+                break;
+        }
     }
 
     public void makeJson() {

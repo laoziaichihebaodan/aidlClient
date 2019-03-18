@@ -2,6 +2,8 @@ package com.fundrive.navaidlclient.modules;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import com.fundrive.navaidlclient.Constant;
 import com.fundrive.navaidlclient.R;
@@ -13,17 +15,21 @@ import org.json.JSONObject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class InputActivity extends BaseActivity {
 
     @BindView(R.id.et_input)
     MyEditText etInput;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_input);
         ButterKnife.bind(this);
+        tvTitle.setText("键盘输入字符串");
         etInput.setInputTextCallback(new NavInputConnection.InputText() {
             @Override
             public void inPut(CharSequence text) {
@@ -31,6 +37,15 @@ public class InputActivity extends BaseActivity {
                 etInput.setText(text);
             }
         });
+    }
+
+    @OnClick({R.id.btn_return})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.btn_return:
+                finish();
+                break;
+        }
     }
 
     private void makeJson(CharSequence text) {

@@ -5,22 +5,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".modules.InputActivity">
+
+    <include layout="@layout/item_title" />
+
     <TextView
         android:id="@+id/title"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:textSize="24dp"
-        android:text="键盘输入字符"
+        style="@style/Text_Title"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="100dp"
+        android:text="键盘输入字符"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.fundrive.navaidlclient.view.MyEditText
         android:id="@+id/et_input"
-        android:hint="请输入测试内容"
-        app:layout_constraintTop_toBottomOf="@id/title"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="24dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="20dp"
+        android:hint="请输入测试内容"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title" />
 
 </android.support.constraint.ConstraintLayout>

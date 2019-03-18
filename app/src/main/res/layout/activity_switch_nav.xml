@@ -5,68 +5,66 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".modules.SwitchNavActivity">
+
+    <include layout="@layout/item_title" />
+
     <TextView
         android:id="@+id/title"
-        android:textSize="24dp"
-        android:text="开启关闭导航"
+        style="@style/Text_Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="100dp"
+        android:text="开启关闭导航"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Switch
         android:id="@+id/switch_on_off"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="64dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.285"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintStart_toEndOf="@+id/tv_nav"
         app:layout_constraintTop_toBottomOf="@+id/title" />
 
     <Switch
-
         android:id="@+id/switch_real_virtual"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.285"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintStart_toEndOf="@+id/tv_real"
         app:layout_constraintTop_toBottomOf="@+id/switch_on_off" />
 
     <TextView
         android:id="@+id/tv_nav"
+        style="@style/Text_Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
         android:text="开启"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title" />
 
     <TextView
         android:id="@+id/tv_real"
+        style="@style/Text_Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
         android:text="虚拟导航"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_nav" />
 
     <Button
         android:id="@+id/btn_commit"
+        style="@style/Bottom_Solid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="60dp"
         android:text="应用"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

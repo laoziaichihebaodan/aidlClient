@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.fundrive.navaidlclient.Constant;
 import com.fundrive.navaidlclient.R;
@@ -48,9 +49,11 @@ public class UpdateFavActivity extends BaseActivity {
     EditText etRegionName;
     @BindView(R.id.et_type_name)
     EditText etTypeName;
-
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
     private int favType = 1;
-    private int cmd  = Constant.IA_CMD_UPDATE_FAVORITE_POINT;
+    private int cmd = Constant.IA_CMD_UPDATE_FAVORITE_POINT;
+    private String title = "更新收藏点";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +64,10 @@ public class UpdateFavActivity extends BaseActivity {
         if (intent.hasExtra("cmd")) {
             cmd = intent.getIntExtra("cmd", Constant.IA_CMD_UPDATE_FAVORITE_POINT);
         }
+        if (intent.hasExtra("title")) {
+            title = intent.getStringExtra("title");
+        }
+        tvTitle.setText(title);
         spType.setSelection(1);
         spType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -76,10 +83,18 @@ public class UpdateFavActivity extends BaseActivity {
 
     }
 
-    @OnClick(R.id.btn_commit)
-    public void onViewClicked() {
-        makeJson();
+    @OnClick({R.id.btn_commit, R.id.btn_return})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.btn_commit:
+                makeJson();
+                break;
+            case R.id.btn_return:
+                finish();
+                break;
+        }
     }
+
     private void makeJson() {
         String strPoiType = etPoiType.getText().toString().trim();
         int poiType = Integer.decode(strPoiType);
@@ -122,18 +137,18 @@ public class UpdateFavActivity extends BaseActivity {
             favorJson.put("iaRegionName", region);
             favorJson.put("iaPoiTypeName", typeName);
 
-            timeJson.put("hour",19);
-            timeJson.put("minute",30);
+            timeJson.put("hour", 19);
+            timeJson.put("minute", 30);
 
             jsonObject.put("iaFavType", favType);
             jsonObject.put("favContent", favorJson);
-            jsonObject.put("predictionTime",timeJson);
+            jsonObject.put("predictionTime", timeJson);
             cmdJson.put(Constant.CMD_KEY, cmd);
             cmdJson.put(Constant.JSON_KEY, jsonObject);
 
             String message = cmdJson.toString();
             sendMessage(message);
-            Log.d(TAG, "makeJson: "+message);
+            Log.d(TAG, "makeJson: " + message);
         } catch (JSONException e) {
             e.printStackTrace();
         }

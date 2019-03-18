@@ -30,6 +30,8 @@ public class SwitchNavActivity extends BaseActivity {
     TextView tvReal;
     @BindView(R.id.btn_commit)
     Button btnCommit;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
     private int opType = 1;
     private int guideType = 1;
 
@@ -38,9 +40,10 @@ public class SwitchNavActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_switch_nav);
         ButterKnife.bind(this);
+        tvTitle.setText("启动关闭导航");
     }
 
-    @OnClick({R.id.switch_on_off, R.id.switch_real_virtual, R.id.btn_commit})
+    @OnClick({R.id.switch_on_off, R.id.switch_real_virtual, R.id.btn_commit, R.id.btn_return})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.switch_on_off:
@@ -63,6 +66,9 @@ public class SwitchNavActivity extends BaseActivity {
                 break;
             case R.id.btn_commit:
                 makeJson();
+                break;
+            case R.id.btn_return:
+                finish();
                 break;
         }
     }

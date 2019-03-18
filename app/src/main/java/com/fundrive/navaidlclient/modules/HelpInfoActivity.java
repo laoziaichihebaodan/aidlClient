@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.fundrive.navaidlclient.Constant;
 import com.fundrive.navaidlclient.R;
@@ -20,6 +21,8 @@ import butterknife.OnClick;
 public class HelpInfoActivity extends BaseActivity {
     @BindView(R.id.sp_help_info)
     Spinner spHelpInfo;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
     private int helpInfo;
 
     @Override
@@ -27,6 +30,7 @@ public class HelpInfoActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help_info);
         ButterKnife.bind(this);
+        tvTitle.setText("帮助信息");
         spHelpInfo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -40,9 +44,16 @@ public class HelpInfoActivity extends BaseActivity {
         });
     }
 
-    @OnClick(R.id.btn_commit)
-    public void onViewClicked() {
-        makeJson();
+    @OnClick({R.id.btn_commit, R.id.btn_return})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.btn_commit:
+                makeJson();
+                break;
+            case R.id.btn_return:
+                finish();
+                break;
+        }
     }
 
     private void makeJson() {

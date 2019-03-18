@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.fundrive.navaidlclient.Constant;
 import com.fundrive.navaidlclient.R;
@@ -22,6 +23,8 @@ public class SelectRouteGuideActivity extends BaseActivity {
     Spinner spRoute;
     @BindView(R.id.sp_mode)
     Spinner spMode;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
     private int navMode;
     private int routeNum;
 
@@ -30,6 +33,7 @@ public class SelectRouteGuideActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_route_guide);
         ButterKnife.bind(this);
+        tvTitle.setText("指定路线导航");
         spMode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -56,9 +60,16 @@ public class SelectRouteGuideActivity extends BaseActivity {
 
     }
 
-    @OnClick(R.id.btn_commit)
-    public void onViewClicked() {
-        makeJson();
+    @OnClick({R.id.btn_commit, R.id.btn_return})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.btn_commit:
+                makeJson();
+                break;
+            case R.id.btn_return:
+                finish();
+                break;
+        }
     }
 
     private void makeJson() {

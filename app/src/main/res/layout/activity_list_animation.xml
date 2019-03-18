@@ -6,15 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".modules.ListAnimationActivity">
 
+    <include layout="@layout/item_title" />
+
     <TextView
         android:id="@+id/title"
-        android:layout_width="match_parent"
+        style="@style/Text_Title"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="100dp"
         android:text="List动画"
-        android:textSize="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/lv_item"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,9 +23,8 @@
         android:id="@+id/lv_item"
         android:layout_width="wrap_content"
         android:layout_height="320dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_add"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,8 +32,10 @@
 
     <Button
         android:id="@+id/btn_add"
+        style="@style/Bottom_Stroke"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:text="增加list"
         app:layout_constraintEnd_toStartOf="parent"
         app:layout_constraintHorizontal_bias="0.2"
@@ -42,8 +44,10 @@
 
     <Button
         android:id="@+id/btn_sub"
+        style="@style/Bottom_Stroke"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:text="减少list"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/btn_add"
@@ -51,9 +55,10 @@
 
     <Button
         android:id="@+id/btn_commit"
+        style="@style/Bottom_Solid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="60dp"
         android:text="应用"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

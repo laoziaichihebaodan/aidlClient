@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.fundrive.navaidlclient.Constant;
 import com.fundrive.navaidlclient.R;
@@ -42,6 +43,8 @@ public class ControlMutimediaActivity extends BaseActivity {
     EditText etPhone;
     @BindView(R.id.btn_commit)
     Button btnCommit;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
     private int opType = 1;//操作类型 上一曲
     private int appType = 1;//多媒体应用类型 收音机
     private int playMode = 2;//播放模式 顺序播放
@@ -52,6 +55,7 @@ public class ControlMutimediaActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_control_mutimedia);
         ButterKnife.bind(this);
+        tvTitle.setText("多媒体控制");
         spOpType.setSelection(1);
         spOpType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -102,9 +106,16 @@ public class ControlMutimediaActivity extends BaseActivity {
         });
     }
 
-    @OnClick(R.id.btn_commit)
-    public void onViewClicked() {
-        makeJson();
+    @OnClick({R.id.btn_commit, R.id.btn_return})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.btn_commit:
+                makeJson();
+                break;
+            case R.id.btn_return:
+                finish();
+                break;
+        }
     }
 
 

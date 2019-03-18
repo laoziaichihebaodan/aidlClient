@@ -6,13 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".modules.GetPoiPageDataActivity">
 
+    <include layout="@layout/item_title" />
+
     <TextView
         android:id="@+id/title"
+        style="@style/Text_Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="100dp"
         android:text="获取给定页面的POI页数据"
-        android:textSize="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -20,17 +23,18 @@
         android:id="@+id/sp_page_data_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="24dp"
         android:entries="@array/poi_page_data_type"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title" />
 
     <TextView
         android:id="@+id/tv_num"
+        style="@style/Text_Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="24dp"
         android:text="选取页码"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,32 +42,37 @@
 
     <EditText
         android:id="@+id/et_num"
+        style="@style/Text_Body_Pri"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:gravity="center"
         android:text="1"
         app:layout_constraintBottom_toBottomOf="@id/tv_num"
         app:layout_constraintStart_toEndOf="@id/tv_num"
-        app:layout_constraintTop_toTopOf="@+id/tv_num" />
+        app:layout_constraintTop_toTopOf="@id/tv_num" />
 
     <Button
         android:id="@+id/btn_commit"
-        android:layout_marginTop="24dp"
-        android:text="应用"
-        app:layout_constraintTop_toBottomOf="@id/et_num"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        style="@style/Bottom_Solid"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <TextView
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="应用"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_margin="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_num" />
+
+    <TextView
         android:id="@+id/tv_instruct"
-        android:textColor="#f00"
+        style="@style/Text_Body"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="40dp"
         android:text="1、该功能仅在条件搜索POI过程中有多个可供选择的搜索中心点时 以及 POI条件搜成功后可用。
 2、poiDataPageNum需大于0且小于等于当次POI搜索结果中的最大页号才有效"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:textColor="#f00"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>

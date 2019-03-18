@@ -6,23 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".modules.ShowTargetVolumeActivity">
 
+    <include layout="@layout/item_title" />
+
     <TextView
         android:id="@+id/title"
+        style="@style/Text_Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="100dp"
         android:text="显示交互目标的音量"
-        android:textSize="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_max"
+        style="@style/Text_Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="100dp"
         android:text="目标最大音量"
-        android:textSize="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title" />
 
@@ -31,16 +35,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
+        android:layout_marginTop="30dp"
         app:layout_constraintStart_toEndOf="@id/tv_max"
         app:layout_constraintTop_toBottomOf="@id/title" />
 
     <TextView
         android:id="@+id/tv_current"
+        style="@style/Text_Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="102dp"
         android:text="当前音量"
-        android:textSize="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/np_max" />
 
@@ -49,17 +55,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="96dp"
+        android:layout_marginTop="30dp"
         app:layout_constraintStart_toEndOf="@id/tv_current"
         app:layout_constraintTop_toBottomOf="@id/np_max" />
 
     <Button
         android:id="@+id/btn_commit"
-        android:text="应用"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/np_current"
+        style="@style/Bottom_Solid"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="应用"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/np_current" />
 
 </android.support.constraint.ConstraintLayout>

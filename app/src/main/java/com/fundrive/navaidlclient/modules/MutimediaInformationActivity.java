@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.fundrive.navaidlclient.Constant;
 import com.fundrive.navaidlclient.R;
@@ -30,6 +31,8 @@ public class MutimediaInformationActivity extends BaseActivity {
     NumberPicker npInt;
     @BindView(R.id.np_dec)
     NumberPicker npDec;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
 
     private int sourceType;
     private int rand;
@@ -40,6 +43,7 @@ public class MutimediaInformationActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mutimedia_information);
         ButterKnife.bind(this);
+        tvTitle.setText("多媒体信息");
         npInt.setMaxValue(1200);
         npInt.setMinValue(70);
         npDec.setMinValue(0);
@@ -71,10 +75,18 @@ public class MutimediaInformationActivity extends BaseActivity {
         });
     }
 
-    @OnClick(R.id.btn_commit)
-    public void onViewClicked() {
-        miscName = etMisc.getText().toString().trim();
-        makeJson();
+    @OnClick({R.id.btn_commit, R.id.btn_return})
+    public void onViewClicked(View view) {
+        switch (view.getId())
+        {
+            case R.id.btn_commit:
+                miscName = etMisc.getText().toString().trim();
+                makeJson();
+                break;
+            case R.id.btn_return:
+                finish();
+                break;
+        }
     }
 
     private void makeJson() {

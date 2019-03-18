@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fundrive.navaidlclient.Constant;
@@ -18,8 +19,9 @@ import org.json.JSONObject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-public class SearchPoiByConditionActivity extends BaseActivity implements View.OnClickListener {
+public class SearchPoiByConditionActivity extends BaseActivity {
 
     @BindView(R.id.sp_search_type)
     Spinner spSearchType;
@@ -47,6 +49,8 @@ public class SearchPoiByConditionActivity extends BaseActivity implements View.O
     EditText etDataSize;
     @BindView(R.id.btn_commit)
     Button btnCommit;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
     private int searchType;
     private int centerType;
     private int scopeType;
@@ -58,7 +62,7 @@ public class SearchPoiByConditionActivity extends BaseActivity implements View.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_poi_by_condition);
         ButterKnife.bind(this);
-        btnCommit.setOnClickListener(this);
+        tvTitle.setText("条件搜索POI");
         spSearchType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -190,8 +194,15 @@ public class SearchPoiByConditionActivity extends BaseActivity implements View.O
         }
     }
 
-    @Override
-    public void onClick(View v) {
-        makeJson();
+    @OnClick({R.id.btn_return, R.id.btn_commit})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.btn_return:
+                finish();
+                break;
+            case R.id.btn_commit:
+                makeJson();
+                break;
+        }
     }
 }

@@ -6,108 +6,112 @@
     android:layout_height="match_parent"
     tools:context=".modules.RouteByConditionActivity">
 
+    <include layout="@layout/item_title" />
 
     <TextView
         android:id="@+id/title"
+        style="@style/Text_Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="100dp"
         android:text="条件算路"
-        android:textSize="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Switch
         android:id="@+id/is_start"
+        style="@style/Text_Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        android:switchPadding="50dp"
         android:text="是否直接导航"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.571"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title" />
+
     <Switch
         android:id="@+id/delete_mode"
+        style="@style/Text_Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        android:switchPadding="50dp"
         android:text="强制删除当前路线"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.517"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/is_start" />
 
     <Switch
         android:id="@+id/set_start"
+        style="@style/Text_Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        android:switchPadding="50dp"
         android:text="设置起点"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/delete_mode" />
 
     <Button
         android:id="@+id/btn_end_pos"
+        style="@style/Bottom_Solid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
         android:text="设置终点"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/set_start" />
 
     <Switch
         android:id="@+id/set_way_pos1"
+        style="@style/Text_Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        android:switchPadding="50dp"
         android:text="途经点1"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_end_pos" />
 
     <Switch
         android:id="@+id/set_way_pos2"
+        style="@style/Text_Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="24dp"
+        android:switchPadding="50dp"
         android:text="途经点2"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/set_way_pos1" />
 
     <Switch
         android:id="@+id/set_way_pos3"
+        style="@style/Text_Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        android:switchPadding="50dp"
         android:text="途经点3"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/set_way_pos2" />
+
     <Button
-        app:layout_constraintTop_toBottomOf="@id/set_way_pos3"
         android:id="@+id/btn_commit"
-        android:text="应用"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        style="@style/Bottom_Solid"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="应用"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/set_way_pos3" />
 
 
 </android.support.constraint.ConstraintLayout>

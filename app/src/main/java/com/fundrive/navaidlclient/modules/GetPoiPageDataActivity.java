@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fundrive.navaidlclient.Constant;
@@ -23,6 +24,8 @@ public class GetPoiPageDataActivity extends BaseActivity {
     Spinner spPageDataType;
     @BindView(R.id.et_num)
     EditText etNum;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
     private int pageDataType;
 
     //IA_CMD_GET_POI_PAGE_DATA
@@ -31,6 +34,7 @@ public class GetPoiPageDataActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_poi_page_data);
         ButterKnife.bind(this);
+        tvTitle.setText("给定页面的POI页数据");
         spPageDataType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -67,9 +71,15 @@ public class GetPoiPageDataActivity extends BaseActivity {
             e.printStackTrace();
         }
     }
-
-    @OnClick(R.id.btn_commit)
-    public void onViewClicked() {
-        makeJson();
+    @OnClick({R.id.btn_return, R.id.btn_commit})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.btn_return:
+                finish();
+                break;
+            case R.id.btn_commit:
+                makeJson();
+                break;
+        }
     }
 }

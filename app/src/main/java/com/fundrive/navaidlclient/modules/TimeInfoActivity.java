@@ -32,6 +32,8 @@ public class TimeInfoActivity extends BaseActivity implements OnDateSetListener 
     Spinner spTimeMode;
     @BindView(R.id.tv_time)
     TextView tvTime;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
     TimePickerDialog mDialogAll;
 
     private int year;
@@ -55,6 +57,7 @@ public class TimeInfoActivity extends BaseActivity implements OnDateSetListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time_info);
         ButterKnife.bind(this);
+        tvTitle.setText("时间信息");
         spSetMode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
@@ -101,7 +104,7 @@ public class TimeInfoActivity extends BaseActivity implements OnDateSetListener 
 
     }
 
-    @OnClick({R.id.btn_select, R.id.btn_commit})
+    @OnClick({R.id.btn_select, R.id.btn_commit, R.id.btn_return})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_select:
@@ -109,6 +112,9 @@ public class TimeInfoActivity extends BaseActivity implements OnDateSetListener 
                 break;
             case R.id.btn_commit:
                 makeJson(timeType, timeMode, year, month, day, hour, minute, second);
+                break;
+            case R.id.btn_return:
+                finish();
                 break;
         }
     }

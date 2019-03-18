@@ -34,10 +34,10 @@ public class SetMuteActivity extends BaseActivity {
         setContentView(R.layout.activity_set_mute);
         ButterKnife.bind(this);
         Intent intent = getIntent();
-        tvTitle.setText("静音开关");
         key = intent.getStringExtra("key");
         String str = intent.getStringExtra("title");
         title.setText(str);
+        tvTitle.setText(str);
         cmd = intent.getIntExtra(Constant.CMD_KEY,0);
     }
 

@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import com.fundrive.navaidlclient.Constant;
 import com.fundrive.navaidlclient.R;
@@ -37,6 +38,8 @@ public class RouteByConditionActivity extends BaseActivity {
     Switch setWayPos3;
     @BindView(R.id.btn_commit)
     Button btnCommit;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
     private boolean deleteRoute = false;
     private boolean startNavi = false;
 
@@ -105,9 +108,10 @@ public class RouteByConditionActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_route_by_condition);
         ButterKnife.bind(this);
+        tvTitle.setText("条件算路");
     }
 
-    @OnClick({R.id.set_start, R.id.btn_end_pos, R.id.set_way_pos1, R.id.set_way_pos2, R.id.set_way_pos3, R.id.btn_commit})
+    @OnClick({R.id.set_start, R.id.btn_end_pos, R.id.set_way_pos1, R.id.set_way_pos2, R.id.set_way_pos3, R.id.btn_commit, R.id.btn_return})
     public void onViewClicked(View view) {
 
         Intent intent = new Intent(this, PointActivity.class);
@@ -145,6 +149,9 @@ public class RouteByConditionActivity extends BaseActivity {
                 deleteRoute = deleteMode.isChecked();
                 startNavi = isStart.isChecked();
                 makeJson();
+                break;
+            case R.id.btn_return:
+                finish();
                 break;
         }
     }

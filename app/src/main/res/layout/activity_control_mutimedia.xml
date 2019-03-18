@@ -6,24 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".modules.ControlMutimediaActivity">
 
+    <include layout="@layout/item_title" />
+
     <TextView
         android:id="@+id/title"
+        style="@style/Text_Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="100dp"
         android:text="执行多媒体控制"
-        android:textSize="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_operation"
+        style="@style/Text_Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
         android:text="操作类型"
-        android:textSize="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title" />
 
@@ -31,6 +34,7 @@
         android:id="@+id/sp_op_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:entries="@array/media_opration_type"
         app:layout_constraintBottom_toBottomOf="@id/tv_operation"
         app:layout_constraintStart_toEndOf="@id/tv_operation"
@@ -38,12 +42,12 @@
 
     <TextView
         android:id="@+id/tv_app"
+        style="@style/Text_Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
         android:text="多媒体应用类别"
-        android:textSize="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/sp_op_type" />
 
@@ -51,6 +55,7 @@
         android:id="@+id/sp_app_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:entries="@array/media_app_type"
         app:layout_constraintBottom_toBottomOf="@id/tv_app"
         app:layout_constraintStart_toEndOf="@id/tv_app"
@@ -58,12 +63,12 @@
 
     <TextView
         android:id="@+id/tv_play_mode"
+        style="@style/Text_Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
         android:text="音乐播放模式"
-        android:textSize="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/sp_app_type" />
 
@@ -71,6 +76,7 @@
         android:id="@+id/sp_play_mode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:entries="@array/music_play_mode"
         app:layout_constraintBottom_toBottomOf="@id/tv_play_mode"
         app:layout_constraintStart_toEndOf="@id/tv_play_mode"
@@ -78,12 +84,12 @@
 
     <TextView
         android:id="@+id/tv_audio_src"
+        style="@style/Text_Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
         android:text="音频源类型"
-        android:textSize="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/sp_play_mode" />
 
@@ -91,6 +97,7 @@
         android:id="@+id/sp_audio_src"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:entries="@array/audio_type"
         app:layout_constraintBottom_toBottomOf="@id/tv_audio_src"
         app:layout_constraintStart_toEndOf="@id/tv_audio_src"
@@ -98,19 +105,21 @@
 
     <TextView
         android:id="@+id/tv_frequency"
+        style="@style/Text_Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
         android:text="频道"
-        android:textSize="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/sp_audio_src" />
 
     <EditText
         android:id="@+id/et_frequenc_int"
+        style="@style/Text_Body_Pri"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:inputType="number"
         android:text="90"
         app:layout_constraintBottom_toBottomOf="@id/tv_frequency"
@@ -119,8 +128,10 @@
 
     <EditText
         android:id="@+id/et_frequenc_dec"
+        style="@style/Text_Body_Pri"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:inputType="number"
         android:text="0"
         app:layout_constraintBottom_toBottomOf="@id/tv_frequency"
@@ -129,87 +140,102 @@
 
     <TextView
         android:id="@+id/tv_singer"
+        style="@style/Text_Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
         android:text="歌手名"
-        android:textSize="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/et_frequenc_int" />
+
     <EditText
         android:id="@+id/et_singer"
-        app:layout_constraintTop_toTopOf="@id/tv_singer"
+        style="@style/Text_Body_Pri"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="汪峰"
         app:layout_constraintBottom_toBottomOf="@id/tv_singer"
         app:layout_constraintStart_toEndOf="@id/tv_singer"
-        android:layout_width="220dp"
-        android:text="汪峰"
-        android:layout_height="wrap_content" />
+        app:layout_constraintTop_toTopOf="@id/tv_singer" />
+
     <TextView
         android:id="@+id/tv_music_name"
-        app:layout_constraintTop_toBottomOf="@id/tv_singer"
+        style="@style/Text_Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
         android:text="歌曲名"
-        android:textSize="16dp"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_singer" />
+
     <EditText
         android:id="@+id/et_misc"
+        style="@style/Text_Body_Pri"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:text="春天里"
-        app:layout_constraintTop_toTopOf="@id/tv_music_name"
         app:layout_constraintBottom_toBottomOf="@id/tv_music_name"
         app:layout_constraintStart_toEndOf="@id/tv_music_name"
-        android:layout_width="220dp"
-        android:layout_height="wrap_content" />
+        app:layout_constraintTop_toTopOf="@id/tv_music_name" />
 
     <TextView
         android:id="@+id/tv_tag"
-        app:layout_constraintTop_toBottomOf="@id/tv_music_name"
+        style="@style/Text_Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
         android:text="标签"
-        android:textSize="16dp"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_music_name" />
+
     <EditText
         android:id="@+id/et_tag"
+        style="@style/Text_Body_Pri"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:text="中国移动"
-        app:layout_constraintTop_toTopOf="@id/tv_tag"
         app:layout_constraintBottom_toBottomOf="@id/tv_tag"
         app:layout_constraintStart_toEndOf="@id/tv_tag"
-        android:layout_width="220dp"
-        android:layout_height="wrap_content" />
+        app:layout_constraintTop_toTopOf="@id/tv_tag" />
 
     <TextView
         android:id="@+id/tv_phone"
-        app:layout_constraintTop_toBottomOf="@id/tv_tag"
+        style="@style/Text_Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
         android:text="电话"
-        android:textSize="16dp"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_tag" />
+
     <EditText
         android:id="@+id/et_phone"
-        app:layout_constraintTop_toTopOf="@id/tv_phone"
-        app:layout_constraintBottom_toBottomOf="@id/tv_phone"
-        app:layout_constraintStart_toEndOf="@id/tv_phone"
+        style="@style/Text_Body_Pri"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:inputType="phone"
         android:text="10086"
-        android:layout_width="220dp"
-        android:layout_height="wrap_content" />
+        app:layout_constraintBottom_toBottomOf="@id/tv_phone"
+        app:layout_constraintStart_toEndOf="@id/tv_phone"
+        app:layout_constraintTop_toTopOf="@id/tv_phone" />
+
     <Button
         android:id="@+id/btn_commit"
+        style="@style/Bottom_Solid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:text="应用"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

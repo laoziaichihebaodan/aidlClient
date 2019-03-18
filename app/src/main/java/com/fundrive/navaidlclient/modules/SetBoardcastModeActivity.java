@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fundrive.navaidlclient.Constant;
@@ -21,6 +22,8 @@ public class SetBoardcastModeActivity extends BaseActivity {
 
     @BindView(R.id.sp_mode)
     Spinner spMode;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
     private int mode;
 
     @Override
@@ -28,6 +31,7 @@ public class SetBoardcastModeActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_boardcast_mode);
         ButterKnife.bind(this);
+        tvTitle.setText("NavApp导航播报频率");
         spMode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -42,13 +46,20 @@ public class SetBoardcastModeActivity extends BaseActivity {
 
     }
 
-    @OnClick(R.id.btn_commit)
-    public void onViewClicked() {
-        if (mode == 0) {
-            Toast.makeText(this, "请选择导航播报模式", Toast.LENGTH_SHORT).show();
-            return;
+    @OnClick({R.id.btn_return, R.id.btn_commit})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.btn_return:
+                finish();
+                break;
+            case R.id.btn_commit:
+                if (mode == 0) {
+                    Toast.makeText(this, "请选择导航播报模式", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                makeJson();
+                break;
         }
-        makeJson();
     }
 
     private void makeJson() {

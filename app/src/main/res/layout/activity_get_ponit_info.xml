@@ -6,39 +6,50 @@
     android:layout_height="match_parent"
     tools:context=".modules.GetPonitInfoActivity">
 
+    <include layout="@layout/item_title" />
+
     <TextView
         android:id="@+id/title"
+        style="@style/Text_Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="100dp"
         android:text="获取指定经纬度位置详细信息"
-        android:textSize="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_point"
+        style="@style/Text_Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="24dp"
         android:text="经纬度位置"
-        android:textSize="16dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title" />
 
     <EditText
         android:id="@+id/et_long"
+        style="@style/Text_Body_Pri"
         android:layout_width="100dp"
-        android:text="0"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:gravity="center"
         android:inputType="number"
+        android:text="0"
         app:layout_constraintBottom_toBottomOf="@id/tv_point"
         app:layout_constraintStart_toEndOf="@id/tv_point"
         app:layout_constraintTop_toTopOf="@id/tv_point" />
 
     <EditText
         android:id="@+id/et_lat"
+        style="@style/Text_Body_Pri"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:gravity="center"
         android:inputType="number"
         android:text="0"
         app:layout_constraintBottom_toBottomOf="@id/tv_point"
@@ -47,24 +58,26 @@
 
     <Button
         android:id="@+id/btn_commit"
-        android:text="应用"
-        app:layout_constraintTop_toBottomOf="@id/et_long"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp"
+        style="@style/Bottom_Solid"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="应用"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_long" />
 
     <TextView
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_margin="24dp"
         android:id="@+id/tv_instruct"
-        android:textColor="#f00"
-        android:text="该功能用于获取某个经纬度点的位置信息，该经纬度为不是通用的经纬度，是导航内部数据格式。现阶段可以传入0，用来获取自车位置信息"
+        style="@style/Text_Body"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:padding="40dp"
+        android:text="该功能用于获取某个经纬度点的位置信息，该经纬度为不是通用的经纬度，是导航内部数据格式。现阶段可以传入0，用来获取自车位置信息"
+        android:textColor="#f00"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.fundrive.navaidlclient.Constant;
 import com.fundrive.navaidlclient.R;
@@ -23,6 +24,8 @@ public class ListAnimationActivity extends BaseActivity {
 
     @BindView(R.id.lv_item)
     ListView lvItem;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
     private ArrayList<Integer> arrayList = new ArrayList<>();
     private AnimationListAdapter adapter;
 
@@ -31,12 +34,13 @@ public class ListAnimationActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_animation);
         ButterKnife.bind(this);
+        tvTitle.setText("List动画");
         arrayList.add(1);
         adapter = new AnimationListAdapter(arrayList);
         lvItem.setAdapter(adapter);
     }
 
-    @OnClick({R.id.btn_add, R.id.btn_sub, R.id.btn_commit})
+    @OnClick({R.id.btn_add, R.id.btn_sub, R.id.btn_commit, R.id.btn_return})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_add:
@@ -51,6 +55,9 @@ public class ListAnimationActivity extends BaseActivity {
                 break;
             case R.id.btn_commit:
                 makeJson();
+                break;
+            case R.id.btn_return:
+                finish();
                 break;
         }
     }

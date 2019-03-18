@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.fundrive.navaidlclient.Constant;
 import com.fundrive.navaidlclient.R;
@@ -15,13 +15,14 @@ import org.json.JSONObject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-public class GuideSoundTypeActivity extends BaseActivity implements View.OnClickListener {
+public class GuideSoundTypeActivity extends BaseActivity {
 
     @BindView(R.id.sp_sound)
     Spinner spSound;
-    @BindView(R.id.btn_commit)
-    Button btnCommit;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
     private int soundType;
 
     @Override
@@ -29,6 +30,7 @@ public class GuideSoundTypeActivity extends BaseActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guide_sound_type);
         ButterKnife.bind(this);
+        tvTitle.setText("导航播报语音类型");
         spSound.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -40,13 +42,18 @@ public class GuideSoundTypeActivity extends BaseActivity implements View.OnClick
 
             }
         });
-        btnCommit.setOnClickListener(this);
-
     }
-
-    @Override
-    public void onClick(View v) {
-        makeJson();
+    @OnClick({R.id.btn_commit, R.id.btn_return})
+    public void onViewClicked(View view) {
+        switch (view.getId())
+        {
+            case R.id.btn_return:
+                finish();
+                break;
+            case R.id.btn_commit:
+                makeJson();
+                break;
+        }
     }
     private void makeJson() {
         JSONObject cmdJson = new JSONObject();
