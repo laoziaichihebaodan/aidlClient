@@ -390,6 +390,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             case 0:
                 startActivity(new Intent(this, CustomMessageActivity.class));
                 break;
+            case Constant.IA_CMD_GO_PARKING_INFO:
+                startActivity(new Intent(this, PackInfoActivity.class));
+                break;
         }
 
     }

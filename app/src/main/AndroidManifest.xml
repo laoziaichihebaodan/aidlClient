@@ -55,7 +55,8 @@
         <activity android:name=".modules.SetBoardcastModeActivity" />
         <activity android:name=".position.PointActivity" />
         <activity android:name=".modules.TmcActivity" />
-        <activity android:name=".modules.CustomMessageActivity"></activity>
+        <activity android:name=".modules.CustomMessageActivity" />
+        <activity android:name=".modules.PackInfoActivity"></activity>
     </application>
 
 </manifest>

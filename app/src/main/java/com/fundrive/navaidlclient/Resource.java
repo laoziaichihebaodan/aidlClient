@@ -158,7 +158,8 @@ public class Resource {
             new CmdBean(Constant.IA_CMD_ENABLE_AVOID_RESTRICTION_ROADS, "开启/关闭避开限行道路功能",
                     Constant.IA_CMD_ENABLE_AVOID_RESTRICTION_ROADS_CONTENT),
             new CmdBean(Constant.IA_CMD_TMC_BROADCAST, "TMC查询", ""),
-            new CmdBean(0, "自定义消息", "")
+            new CmdBean(0, "自定义消息", ""),
+            new CmdBean(Constant.IA_CMD_GO_PARKING_INFO,"停车无忧","")
 
 
     };

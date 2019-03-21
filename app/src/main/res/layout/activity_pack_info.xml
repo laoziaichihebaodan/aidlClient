@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".modules.PackInfoActivity">
+
+    <include
+        android:id="@+id/ll_title"
+        layout="@layout/item_title" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="30dp">
+
+
+        <TextView
+            android:id="@+id/pack_in"
+            style="@style/Bottom_Solid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            android:text="进入停车场" />
+
+        <TextView
+            android:id="@+id/pack_out"
+            style="@style/Bottom_Solid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            android:text="离开停车场" />
+
+        <TextView
+            android:id="@+id/pack_state_update"
+            style="@style/Bottom_Solid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            android:text="生成订单或订单状态更新" />
+
+        <TextView
+            android:id="@+id/pack_pay_failure"
+            style="@style/Bottom_Solid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            android:text="支付失败" />
+
+        <TextView
+            android:id="@+id/pack_pay_success"
+            style="@style/Bottom_Solid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            android:text="支付成功" />
+    </LinearLayout>
+</LinearLayout>

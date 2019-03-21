@@ -510,7 +510,10 @@ public class Constant {
      */
     public static final int IA_CMD_TMC_BROADCAST = 0x5006;
 
-
+    /**
+     * 5.0.6	停车无忧
+     */
+    public static final int IA_CMD_GO_PARKING_INFO = 0x500A;
 
 
 }
