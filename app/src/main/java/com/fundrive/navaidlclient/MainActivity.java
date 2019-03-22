@@ -36,6 +36,7 @@ import com.fundrive.navaidlclient.modules.LanguageActivity;
 import com.fundrive.navaidlclient.modules.ListAnimationActivity;
 import com.fundrive.navaidlclient.modules.MapDisplayModeActivity;
 import com.fundrive.navaidlclient.modules.MutimediaInformationActivity;
+import com.fundrive.navaidlclient.modules.PackInfoActivity;
 import com.fundrive.navaidlclient.modules.RoutStateActivity;
 import com.fundrive.navaidlclient.modules.RouteByConditionActivity;
 import com.fundrive.navaidlclient.modules.RouteConditionActivity;
