@@ -463,7 +463,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 //        }
 //    }
 
-    private static String readString(File parent,String name)
+    private  String readString(File parent,String name)
 
     {
 
@@ -472,7 +472,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         StringBuffer str=new StringBuffer("");
 
         File file=new File(parent,name);
-
+        if (!file.exists()){
+            Toast.makeText(MainActivity.this,"本地json文件不存在",Toast.LENGTH_LONG).show();
+            return null;
+        }
         try {
 
             FileInputStream is=new FileInputStream(file);
@@ -517,6 +520,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
             e.printStackTrace();
             Log.e("hebaodan",e.getMessage());
+            return null;
         }
 
         return str.toString();
@@ -532,6 +536,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         if (sdCardExist) {
             File sdDir = Environment.getExternalStorageDirectory();//获取根目录
             String strJson = readString(sdDir,fileName);
+            if (strJson == null){
+                return;
+            }
             Resource.pageInfoBeans = PageInfoBean.getPageInfoBeanList(strJson);
             Log.i("hebaodan","a = "+strJson+ PageInfoBean.getPageInfoBeanList(strJson));
 
