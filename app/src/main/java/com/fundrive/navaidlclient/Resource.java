@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.fundrive.andrive.INavRemoteRequest;
 import com.fundrive.navaidlclient.bean.CmdBean;
+import com.fundrive.navaidlclient.bean.PageInfoBean;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,6 +32,7 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -39,6 +41,7 @@ import java.util.regex.Pattern;
  */
 
 public class Resource {
+    public static List<PageInfoBean> pageInfoBeans;
     private static final int PORT = 8888;
     private static final int CONNECTED_SEVER_STATE = 1; //连接服务器状态
     private static final int RECIVEDATA_STATE = 2;      //接收数据

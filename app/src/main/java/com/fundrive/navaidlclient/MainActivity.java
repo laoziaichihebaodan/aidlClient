@@ -1,12 +1,18 @@
 package com.fundrive.navaidlclient;
 
+import android.Manifest;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.IBinder;
 import android.os.RemoteException;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -22,6 +28,7 @@ import android.widget.Toast;
 import com.fundrive.andrive.INavRemoteNotifier;
 import com.fundrive.andrive.INavRemoteRequest;
 import com.fundrive.navaidlclient.bean.CmdBean;
+import com.fundrive.navaidlclient.bean.PageInfoBean;
 import com.fundrive.navaidlclient.modules.AuthorNumberActivity;
 import com.fundrive.navaidlclient.modules.ControlMutimediaActivity;
 import com.fundrive.navaidlclient.modules.CustomMessageActivity;
@@ -51,6 +58,7 @@ import com.fundrive.navaidlclient.modules.SetRouteViewModeActivity;
 import com.fundrive.navaidlclient.modules.SetValumeActivity;
 import com.fundrive.navaidlclient.modules.ShowHideActivity;
 import com.fundrive.navaidlclient.modules.ShowTargetVolumeActivity;
+import com.fundrive.navaidlclient.modules.StestActivity;
 import com.fundrive.navaidlclient.modules.SwitchMapViewActivity;
 import com.fundrive.navaidlclient.modules.SwitchNavActivity;
 import com.fundrive.navaidlclient.modules.SwitchWindowModeActivity;
@@ -58,9 +66,13 @@ import com.fundrive.navaidlclient.modules.TimeInfoActivity;
 import com.fundrive.navaidlclient.modules.TmcActivity;
 import com.fundrive.navaidlclient.modules.UpdateFavActivity;
 import com.fundrive.navaidlclient.modules.WritingStateActivity;
-
 import org.json.JSONException;
 import org.json.JSONObject;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, View.OnClickListener {
 
@@ -70,11 +82,19 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private AutoCompleteTextView editText;
     private Button button;
     private ArrayAdapter<CmdBean> adapter;
+    private int REQUEST_CODE = 1;
+    private String fileName = "data.json";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //检查读写权限
+        checkPermission();
+
+
+
         lv = findViewById(R.id.lv);
         button = findViewById(R.id.btn_clear);
         editText = findViewById(R.id.et_content);
@@ -444,4 +464,125 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 //        }
 //    }
 
+    private static String readString(File parent,String name)
+
+    {
+
+        int len=0;
+
+        StringBuffer str=new StringBuffer("");
+
+        File file=new File(parent,name);
+
+        try {
+
+            FileInputStream is=new FileInputStream(file);
+
+            InputStreamReader isr= new InputStreamReader(is);
+
+            BufferedReader in= new BufferedReader(isr);
+
+            String line=null;
+
+            while( (line=in.readLine())!=null )
+
+            {
+
+                if(len != 0)  // 处理换行符的问题
+
+                {
+
+                    str.append("\r\n"+line);
+
+                }
+
+                else
+
+                {
+
+                    str.append(line);
+
+                }
+
+                len++;
+
+            }
+
+            in.close();
+
+            is.close();
+
+        } catch (IOException e) {
+
+            // TODO Auto-generated catch block
+
+            e.printStackTrace();
+            Log.e("hebaodan",e.getMessage());
+        }
+
+        return str.toString();
+
+    }
+
+    //获取&&解析json文件
+    public void parseFileInfo(){
+        //判断sd卡是否存在
+        boolean sdCardExist = Environment.getExternalStorageState()
+                .equals(android.os.Environment.MEDIA_MOUNTED);
+        Log.i("hebaodan","sd卡是否存在 = "+sdCardExist);
+        if (sdCardExist) {
+            File sdDir = Environment.getExternalStorageDirectory();//获取根目录
+            String strJson = readString(sdDir,fileName);
+            Resource.pageInfoBeans = PageInfoBean.getPageInfoBeanList(strJson);
+            Log.i("hebaodan","a = "+strJson+ PageInfoBean.getPageInfoBeanList(strJson));
+
+        }
+    }
+
+    //检查申请权限
+    private void checkPermission() {
+        //检查权限（NEED_PERMISSION）是否被授权 PackageManager.PERMISSION_GRANTED表示同意授权
+        if (hasPermission(this,Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            //用户已经拒绝过一次，再次弹出权限申请对话框需要给用户一个解释
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission
+                    .WRITE_EXTERNAL_STORAGE)) {
+                Toast.makeText(this, "请开通相关权限，否则无法正常使用本应用！", Toast.LENGTH_SHORT).show();
+            }
+            //申请权限
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE);
+
+        } else {
+            parseFileInfo();
+            Log.i("hebaodan", "checkPermission: 已经授权！");
+        }
+    }
+
+    /**
+     * 判断是否有某个权限
+     *
+     * @param context
+     * @param permission
+     * @return
+     */
+    public static boolean hasPermission(Context context, String permission) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { // Android 6.0判断，6.0以下跳过。在清单文件注册即可，不用动态请求，这里直接视为有权限
+            if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == REQUEST_CODE){
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "授权成功！", Toast.LENGTH_SHORT).show();
+                parseFileInfo();
+            }
+        }
+
+    }
 }
