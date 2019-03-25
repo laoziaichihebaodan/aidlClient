@@ -58,7 +58,6 @@ import com.fundrive.navaidlclient.modules.SetRouteViewModeActivity;
 import com.fundrive.navaidlclient.modules.SetValumeActivity;
 import com.fundrive.navaidlclient.modules.ShowHideActivity;
 import com.fundrive.navaidlclient.modules.ShowTargetVolumeActivity;
-import com.fundrive.navaidlclient.modules.StestActivity;
 import com.fundrive.navaidlclient.modules.SwitchMapViewActivity;
 import com.fundrive.navaidlclient.modules.SwitchNavActivity;
 import com.fundrive.navaidlclient.modules.SwitchWindowModeActivity;
