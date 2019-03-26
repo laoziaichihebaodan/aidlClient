@@ -18,6 +18,39 @@ public class PageInfoBean {
         private List<SecondKey> secondKey;
         private List<ThirdKey> thirdKey;
         private List<Page> page;
+
+        public List<SecondKey> getSecondKey() {
+            return secondKey;
+        }
+
+        public void setSecondKey(List<SecondKey> secondKey) {
+            this.secondKey = secondKey;
+        }
+
+        public List<ThirdKey> getThirdKey() {
+            return thirdKey;
+        }
+
+        public void setThirdKey(List<ThirdKey> thirdKey) {
+            this.thirdKey = thirdKey;
+        }
+
+        public List<Page> getPage() {
+            return page;
+        }
+
+        public void setPage(List<Page> page) {
+            this.page = page;
+        }
+
+        @Override
+        public String toString() {
+            return "Item{" +
+                    "secondKey=" + secondKey +
+                    ", thirdKey=" + thirdKey +
+                    ", page=" + page +
+                    '}';
+        }
     }
 
     public static List<PageInfoBean> getPageInfoBeanList(String strJson){
