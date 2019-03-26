@@ -5,16 +5,17 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PageInfoBean {
+public class PageInfoBean implements Serializable{
     private String name;
     private String type;
     private String tips;
     private Item item;
 
-    public class Item{
+    public class Item implements Serializable{
         private List<SecondKey> secondKey;
         private List<ThirdKey> thirdKey;
         private List<Page> page;
@@ -65,7 +66,7 @@ public class PageInfoBean {
         return list;
     }
 
-    public class SecondKey{
+    public class SecondKey implements Serializable{
         private String nama;
 
         public String getNama() {
@@ -84,7 +85,7 @@ public class PageInfoBean {
         }
     }
 
-    public class ThirdKey{
+    public class ThirdKey implements Serializable{
         private String nama;
 
         public String getNama() {
@@ -103,7 +104,7 @@ public class PageInfoBean {
         }
     }
 
-    public class Page{
+    public class Page implements Serializable{
         private String name;//"白天模式",
         private String value;//"2",
         private String valueType;//int
@@ -223,7 +224,7 @@ public class PageInfoBean {
 
     }
 
-    public class SpinnerValue{
+    public class SpinnerValue implements Serializable{
         private String name;
         private String value;
 
@@ -286,11 +287,6 @@ public class PageInfoBean {
 
     @Override
     public String toString() {
-        return "PageInfoBean{" +
-                "name='" + name + '\'' +
-                ", type='" + type + '\'' +
-                ", tips='" + tips + '\'' +
-                ", item=" + item +
-                '}';
+        return name;
     }
 }

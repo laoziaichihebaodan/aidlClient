@@ -58,7 +58,8 @@
         <activity android:name=".position.PointActivity" />
         <activity android:name=".modules.TmcActivity" />
         <activity android:name=".modules.CustomMessageActivity" />
-        <activity android:name=".modules.PackInfoActivity"></activity>
+        <activity android:name=".modules.PackInfoActivity" />
+        <activity android:name=".modules.OpActivity"></activity>
     </application>
 
 </manifest>
