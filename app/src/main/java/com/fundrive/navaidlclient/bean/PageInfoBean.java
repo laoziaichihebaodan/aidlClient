@@ -11,7 +11,8 @@ import java.util.List;
 public class PageInfoBean {
     private String name;
     private String type;
-    private List<Item> item;
+    private String tips;
+    private Item item;
 
     public class Item{
         private List<SecondKey> secondKey;
@@ -72,6 +73,7 @@ public class PageInfoBean {
     public class Page{
         private String name;//"白天模式",
         private String value;//"2",
+        private String valueType;//int
         private String key;//"mode",
         private String type;//"singlebutton",
         private String floor;//"2",
@@ -79,6 +81,40 @@ public class PageInfoBean {
         private String parentKey;//"iaAudio",
         private String titleName;//"---",
         private String lineNum;//"1"
+        private List<SpinnerValue> spinnerValue;
+
+        @Override
+        public String toString() {
+            return "Page{" +
+                    "name='" + name + '\'' +
+                    ", value='" + value + '\'' +
+                    ", valueType='" + valueType + '\'' +
+                    ", key='" + key + '\'' +
+                    ", type='" + type + '\'' +
+                    ", floor='" + floor + '\'' +
+                    ", grandParentKey='" + grandParentKey + '\'' +
+                    ", parentKey='" + parentKey + '\'' +
+                    ", titleName='" + titleName + '\'' +
+                    ", lineNum='" + lineNum + '\'' +
+                    ", spinnerValue=" + spinnerValue +
+                    '}';
+        }
+
+        public String getValueType() {
+            return valueType;
+        }
+
+        public void setValueType(String valueType) {
+            this.valueType = valueType;
+        }
+
+        public List<SpinnerValue> getSpinnerValue() {
+            return spinnerValue;
+        }
+
+        public void setSpinnerValue(List<SpinnerValue> spinnerValue) {
+            this.spinnerValue = spinnerValue;
+        }
 
         public String getName() {
             return name;
@@ -152,18 +188,33 @@ public class PageInfoBean {
             this.lineNum = lineNum;
         }
 
+    }
+
+    public class SpinnerValue{
+        private String name;
+        private String value;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        public void setValue(String value) {
+            this.value = value;
+        }
+
         @Override
         public String toString() {
-            return "Page{" +
+            return "SpinnerValue{" +
                     "name='" + name + '\'' +
                     ", value='" + value + '\'' +
-                    ", key='" + key + '\'' +
-                    ", type='" + type + '\'' +
-                    ", floor='" + floor + '\'' +
-                    ", grandParentKey='" + grandParentKey + '\'' +
-                    ", parentKey='" + parentKey + '\'' +
-                    ", titleName='" + titleName + '\'' +
-                    ", lineNum='" + lineNum + '\'' +
                     '}';
         }
     }
@@ -184,12 +235,20 @@ public class PageInfoBean {
         this.type = type;
     }
 
-    public List<Item> getItem() {
+    public Item getItem() {
         return item;
     }
 
-    public void setItem(List<Item> item) {
+    public void setItem(Item item) {
         this.item = item;
+    }
+
+    public String getTips() {
+        return tips;
+    }
+
+    public void setTips(String tips) {
+        this.tips = tips;
     }
 
     @Override
@@ -197,6 +256,7 @@ public class PageInfoBean {
         return "PageInfoBean{" +
                 "name='" + name + '\'' +
                 ", type='" + type + '\'' +
+                ", tips='" + tips + '\'' +
                 ", item=" + item +
                 '}';
     }

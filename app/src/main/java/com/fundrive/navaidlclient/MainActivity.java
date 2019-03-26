@@ -539,8 +539,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             if (strJson == null){
                 return;
             }
+            Log.i("hebaodan","strJson = "+strJson);
             Resource.pageInfoBeans = PageInfoBean.getPageInfoBeanList(strJson);
-            Log.i("hebaodan","a = "+strJson+ PageInfoBean.getPageInfoBeanList(strJson));
+            Log.i("hebaodan","pageinfobean = "+PageInfoBean.getPageInfoBeanList(strJson));
 
         }
     }
@@ -548,7 +549,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     //检查申请权限
     private void checkPermission() {
         //检查权限（NEED_PERMISSION）是否被授权 PackageManager.PERMISSION_GRANTED表示同意授权
-        if (hasPermission(this,Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+        if (!hasPermission(this,Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
             //用户已经拒绝过一次，再次弹出权限申请对话框需要给用户一个解释
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission
                     .WRITE_EXTERNAL_STORAGE)) {

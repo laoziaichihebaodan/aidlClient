@@ -1,0 +1,98 @@
+[{
+	"name": "授权序列号",
+	"type": "list/title",
+	"tips":"",
+	"cmd": "1000",
+	"item": {
+		"secondKey": [],
+		"thirdKey": [],
+		"page": [{
+			"name": "",
+			"value": "CG0052162470468",
+			"valueType": "string",
+			"type": "edittext",
+			"key": "authorNumber",
+			"parentKey": "",
+			"grandParentKey": "",
+			"floor": "1",
+			"titleName": "授权序列号",
+			"lineNum": "1"
+		}]
+	}
+},
+{
+	"name": "地图显示模式",
+	"type": "list/title",
+	"tips":"",
+	"cmd": "1001",
+	"item": {
+		"secondKey": [],
+		"thirdKey": [],
+		"page": [{
+			"name": "设置地图显示模式",
+			"value": "1",
+			"valueType": "int",
+			"key": "mode",
+			"parentKey": "",
+			"grandParentKey": "",
+			"type": "spinner",
+			"floor": "1",
+			"spinnerValue": [{
+				"name": "白天模式",
+				"value": "1"
+			},
+			{
+				"name": "黑夜模式",
+				"value": "2"
+			}],
+			"titleName": "",
+			"lineNum": "1"
+		}]
+	}
+},
+{
+	"name": "音量",
+	"type": "list/title",
+	"tips":"",
+	"cmd": "1002",
+	"item": {
+		"secondKey": [{"name":"opType"},{"name":"volume"}],
+		"thirdKey": [],
+		"page": [{
+			"name": "音量设置模式",
+			"value": "1",
+			"valueType": "int",
+			"key": "opType",
+			"parentKey": "volumeOperation",
+			"grandParentKey": "",
+			"type": "spinner",
+			"floor": "2",
+			"spinnerValue": [{
+				"name": "设定指定音量",
+				"value": "1"
+			},
+			{
+				"name": "增加音量",
+				"value": "2"
+			},
+			{
+				"name": "减少音量",
+				"value": "3"
+			}],
+			"titleName": "",
+			"lineNum": "1"
+		},
+		{
+			"name": "",
+			"value": "2",
+			"valueType": "int",
+			"key": "volume",
+			"parentKey": "volumeOperation",
+			"grandParentKey": "",
+			"type": "edittext",
+			"floor": "2",
+			"titleName": "",
+			"lineNum": "1"
+		}]
+	}
+}]
