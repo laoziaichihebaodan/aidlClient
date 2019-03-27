@@ -147,8 +147,7 @@ public class OpActivity extends BaseActivity {
                     linearLayout.addView(et);
                     LinearLayout.LayoutParams et_params = (LinearLayout.LayoutParams) et.getLayoutParams();
                     et_params.setMargins(20,0,50,0);
-                    et_params.width = 0;
-                    et_params.weight =1;
+                    et_params.width = 400;
                     et.addTextChangedListener(new TextWatcher() {
                         @Override
                         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -164,6 +163,33 @@ public class OpActivity extends BaseActivity {
                             protocolData.getItem().getPage().set(finalI,page);
                         }
                     });
+
+                    if (i<list_page.size()-1 && list_page.get(i+1).getName().equals(page.getName())){
+                        final PageInfoBean.Page page2 = list_page.get(i+1);
+                        EditText et2 = new EditText(this);
+                        et2.setText(page2.getValue());
+                        et2.setSelection(page2.getValue().length());
+                        linearLayout.addView(et2);
+                        LinearLayout.LayoutParams et_params2 = (LinearLayout.LayoutParams) et2.getLayoutParams();
+                        et_params2.setMargins(20,0,50,0);
+                        et_params2.width = 400;
+                        et2.addTextChangedListener(new TextWatcher() {
+                            @Override
+                            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                            }
+
+                            @Override
+                            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                            }
+
+                            @Override
+                            public void afterTextChanged(Editable s) {
+                                page2.setValue(String.valueOf(s));
+                                protocolData.getItem().getPage().set(finalI+1,page2);
+                            }
+                        });
+                        i++;
+                    }
                 }
             }else if (page_type.equals("spinner")){
                 TextView tv = new TextView(this);
@@ -255,6 +281,7 @@ public class OpActivity extends BaseActivity {
             cmdJson.put(Constant.JSON_KEY, jsonObject1);
 
             String message = cmdJson.toString();
+            android.util.Log.e("zzz","sendMessage:"+message);
             sendMessage(message);
             Log.d(TAG, "makeJson: "+message);
         } catch (JSONException e) {
