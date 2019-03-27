@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,9 +17,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fundrive.navaidlclient.Constant;
 import com.fundrive.navaidlclient.R;
 import com.fundrive.navaidlclient.Resource;
 import com.fundrive.navaidlclient.bean.PageInfoBean;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +32,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class OpActivity extends AppCompatActivity {
+public class OpActivity extends BaseActivity {
 
     @BindView(R.id.tv_title)
     TextView tv_title;
@@ -41,7 +46,9 @@ public class OpActivity extends AppCompatActivity {
     LinearLayout ll_root;
 
     private PageInfoBean protocolData;
-
+    List<PageInfoBean.Page> viewList = new ArrayList<>();
+    List<PageInfoBean.SecondKey>  secondFloorKey = new ArrayList<>();
+    List<PageInfoBean.ThirdKey>  thirdFloorKey = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +59,7 @@ public class OpActivity extends AppCompatActivity {
         protocolData = (PageInfoBean) intent.getSerializableExtra("PageInfoBean");
 
         ininView();
+        initData();
 
     }
 
@@ -60,11 +68,18 @@ public class OpActivity extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.btn_apply:
                 //应用
+                makeJson();
                 break;
             case R.id.iv_return:
                 finish();
                 break;
         }
+    }
+
+    private void initData(){
+        viewList = protocolData.getItem().getPage();
+        secondFloorKey = protocolData.getItem().getSecondKey();
+        thirdFloorKey = protocolData.getItem().getThirdKey();
     }
 
     private void ininView(){
@@ -185,14 +200,81 @@ public class OpActivity extends AppCompatActivity {
             }
         }
     }
+    private void makeJson() {
+
+        List<PageInfoBean.Page> firstFloorView = new ArrayList<>();
+        List<PageInfoBean.Page> secondFloorView = new ArrayList<>();
+        List<PageInfoBean.Page> thirdFloorView = new ArrayList<>();
+        for (int i = 0; i < viewList.size(); i++) {
+            String floor = viewList.get(i).getFloor();
+            if (floor.equals("1")){
+                firstFloorView.add(viewList.get(i));
+            }else if (floor.equals("2")){
+                secondFloorView.add(viewList.get(i));
+            }else if (floor.equals("3")){
+                thirdFloorView.add(viewList.get(i));
+            }
+        }
+
+        JSONObject cmdJson = new JSONObject();
+        JSONObject jsonObject1 = new JSONObject();
+        try {
+
+            for (int i = 0; i < firstFloorView.size(); i++) {
+                putJson(jsonObject1,firstFloorView.get(i).getValueType(),firstFloorView.get(i).getKey(),firstFloorView.get(i).getValue());
+            }
+            for (int i = 0; i < secondFloorKey.size(); i++) {
+                JSONObject jsonObject2 = new JSONObject();
+                for (int j = 0; j < secondFloorView.size(); j++) {
+                    if (secondFloorKey.get(i).getName().equals(secondFloorView.get(j).getParentKey())){
+//                        jsonObject2.put(secondFloorView.get(j).getKey(),secondFloorView.get(j).getValue());
+                        putJson(jsonObject2,secondFloorView.get(j).getValueType(),secondFloorView.get(j).getKey(),secondFloorView.get(j).getValue());
+                    }
+                }
+                for (int k = 0; k < thirdFloorKey.size(); k++) {
+                    JSONObject jsonObject3 = new JSONObject();
+                    int num = 0;
+                    for (int l = 0; l < thirdFloorView.size(); l++) {
+                        if (secondFloorKey.get(i).getName().equals(thirdFloorView.get(l).getGrandParentKey()) && thirdFloorKey.get(k).equals(thirdFloorView.get(l).getParentKey())){
+//                            jsonObject3.put(thirdFloorView.get(l).getKey(),thirdFloorView.get(l).getValue());
+                            putJson(jsonObject3,thirdFloorView.get(l).getValueType(),thirdFloorView.get(l).getKey(),thirdFloorView.get(l).getValue());
+                            num++;
+                        }
+                    }
+                    if (num != 0) {
+                        jsonObject2.put(thirdFloorKey.get(k).getNama(), jsonObject3);
+                    }
+                }
+
+                jsonObject1.put(secondFloorKey.get(i).getName(),jsonObject2);
+            }
 
 
 
+            cmdJson.put(Constant.CMD_KEY, Integer.parseInt(protocolData.getCmd(),16));
+            cmdJson.put(Constant.JSON_KEY, jsonObject1);
 
+            String message = cmdJson.toString();
+            sendMessage(message);
+            Log.d(TAG, "makeJson: "+message);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 
-
-
-
-
+    private void putJson(JSONObject object,String valueType,String key,String value) throws JSONException {
+        switch (valueType){
+            case "int":
+                object.put(key,Integer.parseInt(value));
+                break;
+            case "string":
+                object.put(key,value);
+                break;
+            case "boolean":
+                boolean bValue = value.equals("true") ? true : false;
+                object.put(key,bValue);
+                break;
+        }
+    }
 
 }

@@ -13,6 +13,7 @@ public class PageInfoBean implements Serializable{
     private String name;
     private String type;
     private String tips;
+    private String cmd;
     private Item item;
 
     public class Item implements Serializable{
@@ -67,39 +68,39 @@ public class PageInfoBean implements Serializable{
     }
 
     public class SecondKey implements Serializable{
-        private String nama;
+        private String name;
 
-        public String getNama() {
-            return nama;
+        public String getName() {
+            return name;
         }
 
-        public void setNama(String nama) {
-            this.nama = nama;
+        public void setName(String name) {
+            this.name = name;
         }
 
         @Override
         public String toString() {
             return "SecondKey{" +
-                    "nama='" + nama + '\'' +
+                    "name='" + name + '\'' +
                     '}';
         }
     }
 
     public class ThirdKey implements Serializable{
-        private String nama;
+        private String name;
 
         public String getNama() {
-            return nama;
+            return name;
         }
 
-        public void setNama(String nama) {
-            this.nama = nama;
+        public void setName(String name) {
+            this.name = name;
         }
 
         @Override
         public String toString() {
             return "ThirdKey{" +
-                    "nama='" + nama + '\'' +
+                    "name='" + name + '\'' +
                     '}';
         }
     }
@@ -285,8 +286,22 @@ public class PageInfoBean implements Serializable{
         this.tips = tips;
     }
 
+    public String getCmd() {
+        return cmd;
+    }
+
+    public void setCmd(String cmd) {
+        this.cmd = cmd;
+    }
+
     @Override
     public String toString() {
-        return name;
+        return "PageInfoBean{" +
+                "name='" + name + '\'' +
+                ", type='" + type + '\'' +
+                ", tips='" + tips + '\'' +
+                ", cmd='" + cmd + '\'' +
+                ", item=" + item +
+                '}';
     }
 }
