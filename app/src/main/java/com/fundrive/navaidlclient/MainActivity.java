@@ -15,13 +15,11 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ListView;
@@ -29,6 +27,7 @@ import android.widget.Toast;
 
 import com.fundrive.andrive.INavRemoteNotifier;
 import com.fundrive.andrive.INavRemoteRequest;
+import com.fundrive.navaidlclient.adapter.PageInfoAdapter;
 import com.fundrive.navaidlclient.bean.CmdBean;
 import com.fundrive.navaidlclient.bean.PageInfoBean;
 import com.fundrive.navaidlclient.modules.AuthorNumberActivity;
@@ -78,17 +77,16 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, View.OnClickListener {
 
     INavRemoteRequest mNavService;
     boolean mBind = false;
-    ListView lv;
+    private ListView lv;
     private AutoCompleteTextView editText;
     private Button button;
-    private ArrayAdapter<PageInfoBean> adapter;
+//    private ArrayAdapter<PageInfoBean> adapter;
+    private PageInfoAdapter adapter;
     private int REQUEST_CODE = 1;
     private String fileName = "data.json";
 
@@ -101,12 +99,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         checkPermission();
 
         lv = findViewById(R.id.lv);
+        lv.setTextFilterEnabled(true);
         button = findViewById(R.id.btn_clear);
         editText = findViewById(R.id.et_content);
         findViewById(R.id.btn_return).setVisibility(View.GONE);
         button.setOnClickListener(this);
+        adapter = new PageInfoAdapter(this,Resource.pageInfoBeans);
+        lv.setAdapter(adapter);
 
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, Resource.pageInfoBeans);
+//        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, Resource.pageInfoBeans);
         lv.setAdapter(adapter);
         editText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -116,7 +117,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                adapter.getFilter().filter(s);
+//                adapter.getFilter().filter(s);
+                if (TextUtils.isEmpty(s.toString().trim()))
+                    adapter.getFilter().filter(s);//搜索文本为空时，清除ListView的过滤
+                else
+                    adapter.getFilter().filter(s.toString().trim());//设置过滤关键字
             }
 
             @Override
@@ -210,7 +215,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
 
         Intent intent = new Intent(MainActivity.this, OpActivity.class);
-        intent.putExtra("PageInfoBean", adapter.getItem(i));
+        intent.putExtra("PageInfoBean", (PageInfoBean)adapter.getItem(i));
         startActivity(intent);
 //        switch (bean.getCMD()) {
 //            case Constant.IA_CMD_SET_AUTHORIZE_SERIAL_NUMBER:
