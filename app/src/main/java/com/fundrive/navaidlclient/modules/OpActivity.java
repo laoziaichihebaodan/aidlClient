@@ -120,8 +120,11 @@ public class OpActivity extends AppCompatActivity {
                     });
                 } else {
                     TextView tv = new TextView(this);
+                    tv.setTextSize(20);
                     tv.setText(page.getName());
                     linearLayout.addView(tv);
+                    LinearLayout.LayoutParams tv_params = (LinearLayout.LayoutParams) tv.getLayoutParams();
+                    tv_params.setMargins(30,0,30,0);
 
                     EditText et = new EditText(this);
                     et.setText(page.getValue());
@@ -149,8 +152,11 @@ public class OpActivity extends AppCompatActivity {
                 }
             }else if (page_type.equals("spinner")){
                 TextView tv = new TextView(this);
+                tv.setTextSize(20);
                 tv.setText(page.getName());
                 linearLayout.addView(tv);
+                LinearLayout.LayoutParams tv_params = (LinearLayout.LayoutParams) tv.getLayoutParams();
+                tv_params.setMargins(30,0,30,0);
 
                 List<PageInfoBean.SpinnerValue> list_spinnerValue = page.getSpinnerValue();
                 List<String> list_spinnerValue_name = new ArrayList<>();
