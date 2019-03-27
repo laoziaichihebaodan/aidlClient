@@ -97,7 +97,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         //检查读写权限
         checkPermission();
+    }
 
+    private void init(){
         lv = findViewById(R.id.lv);
         lv.setTextFilterEnabled(true);
         button = findViewById(R.id.btn_clear);
@@ -509,7 +511,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     //获取&&解析json文件
-    public void parseFileInfo() {
+    public boolean parseFileInfo() {
         //判断sd卡是否存在
         boolean sdCardExist = Environment.getExternalStorageState()
                 .equals(android.os.Environment.MEDIA_MOUNTED);
@@ -518,13 +520,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             File sdDir = Environment.getExternalStorageDirectory();//获取根目录
             String strJson = readString(sdDir, fileName);
             if (strJson == null) {
-                return;
+                return false;
             }
             Log.i("hebaodan", "strJson = " + strJson);
             Resource.pageInfoBeans = PageInfoBean.getPageInfoBeanList(strJson);
             Log.i("hebaodan", "pageinfobean = " + PageInfoBean.getPageInfoBeanList(strJson));
-
+            return true;
         }
+        return false;
     }
 
     //检查申请权限
@@ -540,7 +543,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE);
 
         } else {
-            parseFileInfo();
+            if (parseFileInfo()) {
+                init();
+            }
+
             Log.i("hebaodan", "checkPermission: 已经授权！");
         }
     }
@@ -568,7 +574,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         if (requestCode == REQUEST_CODE) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(this, "授权成功！", Toast.LENGTH_SHORT).show();
-                parseFileInfo();
+                if (parseFileInfo()) {
+                    init();
+                }
+
             }
         }
 
