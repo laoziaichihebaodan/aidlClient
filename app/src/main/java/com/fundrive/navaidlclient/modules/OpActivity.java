@@ -293,7 +293,7 @@ public class OpActivity extends BaseActivity {
 
             String message = cmdJson.toString();
             sendMessage(message);
-            Log.d(TAG, "makeJson: "+message);
+            Log.i(TAG, "makeJson: "+message);
         } catch (JSONException e) {
             e.printStackTrace();
         }
