@@ -112,13 +112,13 @@ public class OpActivity extends BaseActivity {
             if (page_type.equals("edittext")){
                 if (page.getName().isEmpty()){
                     EditText et = new EditText(this);
-                    et.setText(page.getValue());
-                    et.setSelection(page.getValue().length());
                     if (page.getValueType().equals("string")){
                         et.setInputType(InputType.TYPE_CLASS_TEXT);
                     } else if (page.getValueType().equals("int")){
                         et.setInputType(InputType.TYPE_CLASS_NUMBER);
                     }
+                    et.setText(page.getValue());
+                    et.setSelection(page.getValue().length());
                     linearLayout.addView(et);
                     LinearLayout.LayoutParams et_params = (LinearLayout.LayoutParams) et.getLayoutParams();
                     et_params.setMargins(20,0,50,0);
@@ -148,13 +148,13 @@ public class OpActivity extends BaseActivity {
                     tv_params.setMargins(30,0,30,0);
 
                     EditText et = new EditText(this);
-                    et.setText(page.getValue());
-                    et.setSelection(page.getValue().length());
                     if (page.getValueType().equals("string")){
                         et.setInputType(InputType.TYPE_CLASS_TEXT);
                     } else if (page.getValueType().equals("int")){
                         et.setInputType(InputType.TYPE_CLASS_NUMBER);
                     }
+                    et.setText(page.getValue());
+                    et.setSelection(page.getValue().length());
                     linearLayout.addView(et);
                     LinearLayout.LayoutParams et_params = (LinearLayout.LayoutParams) et.getLayoutParams();
                     et_params.setMargins(20,0,50,0);
