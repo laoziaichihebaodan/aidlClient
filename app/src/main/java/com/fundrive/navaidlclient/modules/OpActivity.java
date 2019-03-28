@@ -292,7 +292,6 @@ public class OpActivity extends BaseActivity {
             cmdJson.put(Constant.JSON_KEY, jsonObject1);
 
             String message = cmdJson.toString();
-            android.util.Log.e("zzz","sendMessage:"+message);
             sendMessage(message);
             Log.d(TAG, "makeJson: "+message);
         } catch (JSONException e) {
