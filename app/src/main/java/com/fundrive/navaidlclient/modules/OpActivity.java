@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -113,6 +114,11 @@ public class OpActivity extends BaseActivity {
                     EditText et = new EditText(this);
                     et.setText(page.getValue());
                     et.setSelection(page.getValue().length());
+                    if (page.getValueType().equals("string")){
+                        et.setInputType(InputType.TYPE_CLASS_TEXT);
+                    } else if (page.getValueType().equals("int")){
+                        et.setInputType(InputType.TYPE_CLASS_NUMBER);
+                    }
                     linearLayout.addView(et);
                     LinearLayout.LayoutParams et_params = (LinearLayout.LayoutParams) et.getLayoutParams();
                     et_params.setMargins(20,0,50,0);
@@ -144,6 +150,11 @@ public class OpActivity extends BaseActivity {
                     EditText et = new EditText(this);
                     et.setText(page.getValue());
                     et.setSelection(page.getValue().length());
+                    if (page.getValueType().equals("string")){
+                        et.setInputType(InputType.TYPE_CLASS_TEXT);
+                    } else if (page.getValueType().equals("int")){
+                        et.setInputType(InputType.TYPE_CLASS_NUMBER);
+                    }
                     linearLayout.addView(et);
                     LinearLayout.LayoutParams et_params = (LinearLayout.LayoutParams) et.getLayoutParams();
                     et_params.setMargins(20,0,50,0);
