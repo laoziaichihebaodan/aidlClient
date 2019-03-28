@@ -216,9 +216,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
 
-        Intent intent = new Intent(MainActivity.this, OpActivity.class);
-        intent.putExtra("PageInfoBean", (PageInfoBean)adapter.getItem(i));
-        startActivity(intent);
+        if (((PageInfoBean)adapter.getItem(i)).getItem() == null){
+            sendMessage(Integer.parseInt(((PageInfoBean)adapter.getItem(i)).getCmd(),16));
+        } else {
+            Intent intent = new Intent(MainActivity.this, OpActivity.class);
+            intent.putExtra("PageInfoBean", (PageInfoBean)adapter.getItem(i));
+            startActivity(intent);
+        }
+
 //        switch (bean.getCMD()) {
 //            case Constant.IA_CMD_SET_AUTHORIZE_SERIAL_NUMBER:
 //                startActivity(new Intent(this, AuthorNumberActivity.class));
