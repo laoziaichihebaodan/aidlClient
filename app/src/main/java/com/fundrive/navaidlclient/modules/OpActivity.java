@@ -106,7 +106,9 @@ public class OpActivity extends BaseActivity {
             linearLayout.setOrientation(LinearLayout.HORIZONTAL);
             LinearLayout.LayoutParams ll_params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT);
             ll_params.height = 200;
-            ll_root.addView(linearLayout,ll_params);
+            if (!page_type.isEmpty()){
+                ll_root.addView(linearLayout,ll_params);
+            }
 
             final int finalI = i;
             if (page_type.equals("edittext")){
