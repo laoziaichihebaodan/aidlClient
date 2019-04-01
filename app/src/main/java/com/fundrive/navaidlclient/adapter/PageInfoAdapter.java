@@ -55,8 +55,10 @@ public class PageInfoAdapter extends BaseAdapter implements Filterable{
         tv.setText(data.get(i).getName());
         if (data.get(i).getType().trim().equals("title")){
             tv.setBackgroundResource(R.color.bg_title);
+            tv.setTextColor(context.getResources().getColor(R.color.colorAccent));
         }else{
             tv.setBackgroundResource(R.color.transparent);
+            tv.setTextColor(context.getResources().getColor(R.color.text_main_body));
         }
         return item;
     }
