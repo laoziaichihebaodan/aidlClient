@@ -72,7 +72,7 @@ public class OpActivity extends BaseActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        if (sendDialog.isShowing()){
+        if (sendDialog != null && sendDialog.isShowing()){
             sendDialog.cancel();
         }
     }
@@ -92,10 +92,12 @@ public class OpActivity extends BaseActivity {
     }
 
     private void showSendDialog(){
-        sendDialog = new AlertDialog.Builder(this)
-                .setMessage(message)
-                .create();
+        sendDialog = new AlertDialog.Builder(this).create();
         sendDialog.show();
+        sendDialog.setContentView(R.layout.send_dialog_bg);
+        TextView tv_send = sendDialog.findViewById(R.id.tv_send);
+        tv_send.setText(message);
+        tv_send.setTextIsSelectable(true);
     }
 
     private void initData(){
