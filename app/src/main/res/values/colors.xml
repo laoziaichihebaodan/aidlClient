@@ -10,4 +10,6 @@
     <color name="text_main_body">#666666</color>
     <color name="text_explain">#999999</color>
     <color name="text_hint">#CCCCCC</color>
+    <color name="bg_title">#a2aba3</color>
+    <color name="transparent">#00000000</color>
 </resources>

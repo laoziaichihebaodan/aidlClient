@@ -41,7 +41,7 @@ import java.util.regex.Pattern;
  */
 
 public class Resource {
-    public static List<PageInfoBean> pageInfoBeans;
+    public static List<PageInfoBean.Lists> pageInfoBeans;
     private static final int PORT = 8888;
     private static final int CONNECTED_SEVER_STATE = 1; //连接服务器状态
     private static final int RECIVEDATA_STATE = 2;      //接收数据

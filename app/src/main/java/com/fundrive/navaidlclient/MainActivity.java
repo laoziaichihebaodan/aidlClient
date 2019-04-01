@@ -215,13 +215,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
-
-        if (((PageInfoBean)adapter.getItem(i)).getItem() == null){
-            sendMessage(Integer.parseInt(((PageInfoBean)adapter.getItem(i)).getCmd(),16));
-        } else {
-            Intent intent = new Intent(MainActivity.this, OpActivity.class);
-            intent.putExtra("PageInfoBean", (PageInfoBean)adapter.getItem(i));
-            startActivity(intent);
+        if (!((PageInfoBean.Lists)adapter.getItem(i)).getType().trim().equals("title")) {//点击标题不处理
+            if (((PageInfoBean.Lists) adapter.getItem(i)).getItem() == null) {
+                sendMessage(Integer.parseInt(((PageInfoBean.Lists) adapter.getItem(i)).getCmd(), 16));
+            } else {
+                Intent intent = new Intent(MainActivity.this, OpActivity.class);
+                intent.putExtra("PageInfoBean", (PageInfoBean.Lists) adapter.getItem(i));
+                startActivity(intent);
+            }
         }
 
 //        switch (bean.getCMD()) {

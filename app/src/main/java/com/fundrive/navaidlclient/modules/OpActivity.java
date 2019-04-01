@@ -46,7 +46,7 @@ public class OpActivity extends BaseActivity {
     @BindView(R.id.ll_root)
     LinearLayout ll_root;
 
-    private PageInfoBean protocolData;
+    private PageInfoBean.Lists protocolData;
     List<PageInfoBean.Page> viewList = new ArrayList<>();
     List<PageInfoBean.SecondKey>  secondFloorKey = new ArrayList<>();
     List<PageInfoBean.ThirdKey>  thirdFloorKey = new ArrayList<>();
@@ -62,7 +62,7 @@ public class OpActivity extends BaseActivity {
         ButterKnife.bind(this);
 
         Intent intent = getIntent();
-        protocolData = (PageInfoBean) intent.getSerializableExtra("PageInfoBean");
+        protocolData = (PageInfoBean.Lists) intent.getSerializableExtra("PageInfoBean");
 
         ininView();
         initData();

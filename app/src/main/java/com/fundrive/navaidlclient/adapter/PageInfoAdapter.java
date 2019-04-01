@@ -1,6 +1,7 @@
 package com.fundrive.navaidlclient.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,10 +18,10 @@ import java.util.List;
 
 public class PageInfoAdapter extends BaseAdapter implements Filterable{
     private Context context;
-    private List<PageInfoBean> data;
-    private List<PageInfoBean> backData;
+    private List<PageInfoBean.Lists> data;
+    private List<PageInfoBean.Lists> backData;
     private MyFilter mFilter;
-    public PageInfoAdapter(Context context, List<PageInfoBean> data) {
+    public PageInfoAdapter(Context context, List<PageInfoBean.Lists> data) {
         this.context = context;
         this.data = data;
         this.backData = data;
@@ -52,7 +53,11 @@ public class PageInfoAdapter extends BaseAdapter implements Filterable{
         }
         TextView tv = item.findViewById(R.id.item_pageinfo_title);
         tv.setText(data.get(i).getName());
-
+        if (data.get(i).getType().trim().equals("title")){
+            tv.setBackgroundResource(R.color.bg_title);
+        }else{
+            tv.setBackgroundResource(R.color.transparent);
+        }
         return item;
     }
 
@@ -71,12 +76,12 @@ public class PageInfoAdapter extends BaseAdapter implements Filterable{
         @Override
         protected FilterResults performFiltering(CharSequence charSequence) {
             FilterResults result = new FilterResults();
-            List<PageInfoBean> list;
+            List<PageInfoBean.Lists> list;
             if (TextUtils.isEmpty(charSequence)) {//当过滤的关键字为空的时候，我们则显示所有的数据
                 list = backData;
             } else {//否则把符合条件的数据对象添加到集合中
                 list = new ArrayList<>();
-                for (PageInfoBean bean : backData) {
+                for (PageInfoBean.Lists bean : backData) {
                     if (bean.getName().contains(charSequence)) {
                         list.add(bean);
                     }
@@ -92,7 +97,7 @@ public class PageInfoAdapter extends BaseAdapter implements Filterable{
         //在publishResults方法中告诉适配器更新界面
         @Override
         protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-            data = (List<PageInfoBean>) filterResults.values;
+            data = (List<PageInfoBean.Lists>) filterResults.values;
             if (filterResults.count > 0) {
                 notifyDataSetChanged();//通知数据发生了改变
             } else {

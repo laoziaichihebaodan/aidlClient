@@ -1,48 +1,51 @@
-[
 {
-	"name": "音量",//首页列表title内容
-	"type": "list/title",//首页分类类型（暂时不用）
-	"tips":"",//发送页提示内容
-	"cmd": "1002",//协议标识（16进制去掉0x）
-	"item": {
-		"secondKey": [{"name":"volumeOperation"}],//协议json的二级key（page里面parentKey的值）
-		"thirdKey": [],//协议json的三级key（page里面grandParentKey的值）
-		"page": [{//一个object代表一个控件
-			"name": "音量设置模式：",//控件前边的名字
-			"value": "1",//拼接json的值
-			"valueType": "int",//拼接json的值的类型（小写）（int   string    boolean）
-			"key": "opType",//拼接json的key
-			"parentKey": "volumeOperation",//内容的父key
-			"grandParentKey": "",//内容的父key的父key（3级才有）
-			"type": "spinner",//控件类型（）
-			"floor": "2",//控件所在拼接json的层级
-			"spinnerValue": [{//如果控件是spinner，spinner的值在这里面取
-				"name": "设定指定音量",
-				"value": "1"
-			},
-			{
-				"name": "增加音量",
-				"value": "2"
-			},
-			{
-				"name": "减少音量",
-				"value": "3"
-			}],
-			"titleName": "",//暂时没用
-			"lineNum": "1"//控件所在行
-		},
-		{
-			"name": "请输入音量值：",
-			"value": "2",
-			"valueType": "int",
-			"key": "volume",
-			"parentKey": "volumeOperation",
-			"grandParentKey": "",
-			"type": "edittext",
-			"floor": "2",
-			"titleName": "",
-			"lineNum": "1"
-		}]
-	}
-}
+	"listType":["设置","搜索","导航","巡航"],
+	"lists":[
+      {
+          "name": "音量",//首页列表title内容
+          "type": "list/title",//首页分类类型，如果是标题 value = "title" 如果是其他 value = "listType列表中的其中一个值"
+          "tips":"",//发送页提示内容
+          "cmd": "1002",//协议标识（16进制去掉0x）
+          "item": {
+              "secondKey": [{"name":"volumeOperation"}],//协议json的二级key（page里面parentKey的值）
+              "thirdKey": [],//协议json的三级key（page里面grandParentKey的值）
+              "page": [{//一个object代表一个控件
+                  "name": "音量设置模式：",//控件前边的名字
+                  "value": "1",//拼接json的值
+                  "valueType": "int",//拼接json的值的类型（小写）（int   string    boolean）
+                  "key": "opType",//拼接json的key
+                  "parentKey": "volumeOperation",//内容的父key
+                  "grandParentKey": "",//内容的父key的父key（3级才有）
+                  "type": "spinner",//控件类型（）
+                  "floor": "2",//控件所在拼接json的层级
+                  "spinnerValue": [{//如果控件是spinner，spinner的值在这里面取
+                      "name": "设定指定音量",
+                      "value": "1"
+                  },
+                  {
+                      "name": "增加音量",
+                      "value": "2"
+                  },
+                  {
+                      "name": "减少音量",
+                      "value": "3"
+                  }],
+                  "titleName": "",//暂时没用
+                  "lineNum": "1"//控件所在行
+              },
+              {
+                  "name": "请输入音量值：",
+                  "value": "2",
+                  "valueType": "int",
+                  "key": "volume",
+                  "parentKey": "volumeOperation",
+                  "grandParentKey": "",
+                  "type": "edittext",
+                  "floor": "2",
+                  "titleName": "",
+                  "lineNum": "1"
+              }]
+          }
+      }
 ]
+}

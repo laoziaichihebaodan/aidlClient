@@ -1,5 +1,7 @@
 package com.fundrive.navaidlclient.bean;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -10,12 +12,102 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PageInfoBean implements Serializable{
-    private String name;
-    private String type;
-    private String tips;
-    private String cmd;
-    private Item item;
+    private List<String> listType;
+    private List<Lists> lists;
 
+    public static List<PageInfoBean.Lists> getPageInfoBeanList(String strJson){
+        List<PageInfoBean.Lists> list = new ArrayList<>();
+        Gson gson = new Gson();//创建Gson对象
+//        JsonParser jsonParser = new JsonParser();
+//        JsonArray jsonElements = jsonParser.parse(strJson).getAsJsonArray();//获取JsonArray对象
+//        for (JsonElement bean : jsonElements) {
+//            PageInfoBean bean1 = gson.fromJson(bean, PageInfoBean.class);//解析
+//            list.add(bean1);
+//        }
+        PageInfoBean bean = gson.fromJson(strJson, PageInfoBean.class);//解析
+        if (bean != null){
+            for (int i = 0; i < bean.getListType().size(); i++) {
+                List<PageInfoBean.Lists> list1 = new ArrayList<>();
+                list1.add(new PageInfoBean().new Lists(bean.getListType().get(i),"title",null,null,null));
+                for (int j = 0; j < bean.getLists().size(); j++) {
+                    if (bean.getListType().get(i).trim().equals(bean.getLists().get(j).getType().trim())){
+                        list1.add(bean.getLists().get(j));
+                        bean.getLists().remove(j);
+                    }
+                }
+                list.addAll(list1);
+            }
+        }
+        Log.i("hebaodan",bean+"");
+        return list;
+    }
+
+    public class Lists implements Serializable{
+        private String name;
+        private String type;
+        private String tips;
+        private String cmd;
+        private Item item;
+
+        public Lists(String name, String type, String tips, String cmd, Item item) {
+            this.name = name;
+            this.type = type;
+            this.tips = tips;
+            this.cmd = cmd;
+            this.item = item;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public void setType(String type) {
+            this.type = type;
+        }
+
+        public String getTips() {
+            return tips;
+        }
+
+        public void setTips(String tips) {
+            this.tips = tips;
+        }
+
+        public String getCmd() {
+            return cmd;
+        }
+
+        public void setCmd(String cmd) {
+            this.cmd = cmd;
+        }
+
+        public Item getItem() {
+            return item;
+        }
+
+        public void setItem(Item item) {
+            this.item = item;
+        }
+
+        @Override
+        public String toString() {
+            return "Lists{" +
+                    "name='" + name + '\'' +
+                    ", type='" + type + '\'' +
+                    ", tips='" + tips + '\'' +
+                    ", cmd='" + cmd + '\'' +
+                    ", item=" + item +
+                    '}';
+        }
+    }
     public class Item implements Serializable{
         private List<SecondKey> secondKey;
         private List<ThirdKey> thirdKey;
@@ -53,18 +145,6 @@ public class PageInfoBean implements Serializable{
                     ", page=" + page +
                     '}';
         }
-    }
-
-    public static List<PageInfoBean> getPageInfoBeanList(String strJson){
-        List<PageInfoBean> list = new ArrayList<>();
-        Gson gson = new Gson();//创建Gson对象
-        JsonParser jsonParser = new JsonParser();
-        JsonArray jsonElements = jsonParser.parse(strJson).getAsJsonArray();//获取JsonArray对象
-        for (JsonElement bean : jsonElements) {
-            PageInfoBean bean1 = gson.fromJson(bean, PageInfoBean.class);//解析
-            list.add(bean1);
-        }
-        return list;
     }
 
     public class SecondKey implements Serializable{
@@ -254,54 +334,27 @@ public class PageInfoBean implements Serializable{
         }
     }
 
-    public String getName() {
-        return name;
+    public List<String> getListType() {
+        return listType;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setListType(List<String> listType) {
+        this.listType = listType;
     }
 
-    public String getType() {
-        return type;
+    public List<Lists> getLists() {
+        return lists;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public Item getItem() {
-        return item;
-    }
-
-    public void setItem(Item item) {
-        this.item = item;
-    }
-
-    public String getTips() {
-        return tips;
-    }
-
-    public void setTips(String tips) {
-        this.tips = tips;
-    }
-
-    public String getCmd() {
-        return cmd;
-    }
-
-    public void setCmd(String cmd) {
-        this.cmd = cmd;
+    public void setLists(List<Lists> lists) {
+        this.lists = lists;
     }
 
     @Override
     public String toString() {
         return "PageInfoBean{" +
-                "name='" + name + '\'' +
-                ", type='" + type + '\'' +
-                ", tips='" + tips + '\'' +
-                ", cmd='" + cmd + '\'' +
-                ", item=" + item +
+                "listType=" + listType +
+                ", lists=" + lists +
                 '}';
     }
 }

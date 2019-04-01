@@ -6,7 +6,7 @@
 <TextView
     android:id="@+id/item_pageinfo_title"
     android:text="aaaaaaa"
-    android:layout_marginLeft="20dp"
+    android:paddingLeft="20dp"
     android:padding="10dp"
     android:textSize="20sp"
     android:layout_width="match_parent"
