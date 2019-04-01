@@ -82,7 +82,7 @@ public class PageInfoAdapter extends BaseAdapter implements Filterable{
             } else {//否则把符合条件的数据对象添加到集合中
                 list = new ArrayList<>();
                 for (PageInfoBean.Lists bean : backData) {
-                    if (bean.getName().contains(charSequence)) {
+                    if (bean.getName().contains(charSequence) && !bean.getType().trim().equals("title")) {
                         list.add(bean);
                     }
 
