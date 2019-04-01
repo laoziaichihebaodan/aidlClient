@@ -1,7 +1,8 @@
 package com.fundrive.navaidlclient.modules;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
@@ -20,7 +21,6 @@ import android.widget.Toast;
 
 import com.fundrive.navaidlclient.Constant;
 import com.fundrive.navaidlclient.R;
-import com.fundrive.navaidlclient.Resource;
 import com.fundrive.navaidlclient.bean.PageInfoBean;
 
 import org.json.JSONException;
@@ -50,6 +50,11 @@ public class OpActivity extends BaseActivity {
     List<PageInfoBean.Page> viewList = new ArrayList<>();
     List<PageInfoBean.SecondKey>  secondFloorKey = new ArrayList<>();
     List<PageInfoBean.ThirdKey>  thirdFloorKey = new ArrayList<>();
+
+
+    private String message;
+    private Dialog sendDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,17 +69,33 @@ public class OpActivity extends BaseActivity {
 
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (sendDialog.isShowing()){
+            sendDialog.cancel();
+        }
+    }
+
     @OnClick({R.id.btn_apply, R.id.iv_return})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_apply:
                 //应用
                 makeJson();
+                showSendDialog();
                 break;
             case R.id.iv_return:
                 finish();
                 break;
         }
+    }
+
+    private void showSendDialog(){
+        sendDialog = new AlertDialog.Builder(this)
+                .setMessage(message)
+                .create();
+        sendDialog.show();
     }
 
     private void initData(){
@@ -293,7 +314,7 @@ public class OpActivity extends BaseActivity {
             cmdJson.put(Constant.CMD_KEY, Integer.parseInt(protocolData.getCmd(),16));
             cmdJson.put(Constant.JSON_KEY, jsonObject1);
 
-            String message = cmdJson.toString();
+            message = cmdJson.toString();
             sendMessage(message);
             Log.i(TAG, "makeJson: "+message);
         } catch (JSONException e) {
