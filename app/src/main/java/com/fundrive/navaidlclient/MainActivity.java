@@ -136,8 +136,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         tabLayout.setOnTabSelectedListener(new XTabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(XTabLayout.Tab tab) {
-                List<PageInfoBean.Lists> list_lists = pageInfoBean.getLists(tab.getText().toString());
-            public void onTabSelected(TabLayout.Tab tab) {
                 List<PageInfoBean.Lists> list_lists = Resource.pageInfoBean.getLists(tab.getText().toString());
                 adapter.setData(list_lists);
                 adapter.notifyDataSetChanged();
