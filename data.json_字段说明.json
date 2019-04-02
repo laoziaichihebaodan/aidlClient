@@ -1,9 +1,9 @@
 {
-	"listType":["设置","搜索","导航","巡航"],
+	"listType":["设置","搜索","导航","巡航"],//分类类型
 	"lists":[
       {
           "name": "音量",//首页列表title内容
-          "type": "list/title",//首页分类类型，如果是标题 value = "title" 如果是其他 value = "listType列表中的其中一个值"
+          "type": "设置",//首页分类类型，如果是标题 value = "title" 如果是其他 value = "listType列表中的其中一个值"
           "tips":"",//发送页提示内容
           "cmd": "1002",//协议标识（16进制去掉0x）
           "item": {
