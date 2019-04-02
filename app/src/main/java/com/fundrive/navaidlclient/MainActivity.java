@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
+import android.os.Binder;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -24,6 +25,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
+import android.support.design.widget.TabLayout;
 
 import com.fundrive.andrive.INavRemoteNotifier;
 import com.fundrive.andrive.INavRemoteRequest;
@@ -77,15 +79,24 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, View.OnClickListener {
+
+    @BindView(R.id.tablayout)
+    TabLayout tabLayout;
+
+    PageInfoBean pageInfoBean = new PageInfoBean();
 
     INavRemoteRequest mNavService;
     boolean mBind = false;
     private ListView lv;
     private AutoCompleteTextView editText;
     private Button button;
-//    private ArrayAdapter<PageInfoBean> adapter;
+    //    private ArrayAdapter<PageInfoBean> adapter;
     private PageInfoAdapter adapter;
     private int REQUEST_CODE = 1;
     private String fileName = "data.json";
@@ -94,23 +105,51 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
         //检查读写权限
         checkPermission();
     }
 
-    private void init(){
+    private void init() {
         lv = findViewById(R.id.lv);
         lv.setTextFilterEnabled(true);
         button = findViewById(R.id.btn_clear);
         editText = findViewById(R.id.et_content);
         findViewById(R.id.btn_return).setVisibility(View.GONE);
         button.setOnClickListener(this);
-        adapter = new PageInfoAdapter(this,Resource.pageInfoBeans);
+
+        adapter = new PageInfoAdapter(this, pageInfoBean.getLists(pageInfoBean.getListType().get((tabLayout.getSelectedTabPosition() == -1)?0:tabLayout.getSelectedTabPosition())));
         lv.setAdapter(adapter);
 
-//        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, Resource.pageInfoBeans);
-        lv.setAdapter(adapter);
+        if (pageInfoBean.getListType() != null) {
+            for (int i = 0; i < pageInfoBean.getListType().size(); i++) {
+                tabLayout.addTab(tabLayout.newTab().setText(pageInfoBean.getListType().get(i)));
+            }
+        }
+
+        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                List<PageInfoBean.Lists> list_lists = pageInfoBean.getLists(tab.getText().toString());
+                adapter.setData(list_lists);
+                adapter.notifyDataSetChanged();
+                if (TextUtils.isEmpty(editText.getText().toString().trim()))
+                    adapter.getFilter().filter(editText.getText());//搜索文本为空时，清除ListView的过滤
+                else
+                    adapter.getFilter().filter(editText.getText().toString().trim());//设置过滤关键字
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+            }
+        });
+
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -128,7 +167,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
             @Override
             public void afterTextChanged(Editable s) {
-
             }
         });
         //editText.setAdapter(adapter);
@@ -215,7 +253,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
-        if (!((PageInfoBean.Lists)adapter.getItem(i)).getType().trim().equals("title")) {//点击标题不处理
+        if (!((PageInfoBean.Lists) adapter.getItem(i)).getType().trim().equals("title")) {//点击标题不处理
             if (((PageInfoBean.Lists) adapter.getItem(i)).getItem() == null) {
                 sendMessage(Integer.parseInt(((PageInfoBean.Lists) adapter.getItem(i)).getCmd(), 16));
             } else {
@@ -498,7 +536,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             BufferedReader in = new BufferedReader(isr);
             String line = null;
             while ((line = in.readLine()) != null) {
-                if (len != 0){  // 处理换行符的问题
+                if (len != 0) {  // 处理换行符的问题
                     str.append("\r\n" + line);
                 } else {
                     str.append(line);
@@ -529,8 +567,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 return false;
             }
             Log.i("hebaodan", "strJson = " + strJson);
-            Resource.pageInfoBeans = PageInfoBean.getPageInfoBeanList(strJson);
-            Log.i("hebaodan", "pageinfobean = " + PageInfoBean.getPageInfoBeanList(strJson));
+            Resource.pageInfoBeans = pageInfoBean.getPageInfoBeanList(strJson);
+            Log.i("hebaodan", "pageinfobean = " + pageInfoBean.getPageInfoBeanList(strJson));
             return true;
         }
         return false;

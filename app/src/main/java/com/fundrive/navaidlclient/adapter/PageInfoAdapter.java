@@ -3,6 +3,7 @@ package com.fundrive.navaidlclient.adapter;
 import android.content.Context;
 import android.graphics.Color;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -16,13 +17,19 @@ import com.fundrive.navaidlclient.bean.PageInfoBean;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PageInfoAdapter extends BaseAdapter implements Filterable{
+public class PageInfoAdapter extends BaseAdapter implements Filterable {
     private Context context;
     private List<PageInfoBean.Lists> data;
     private List<PageInfoBean.Lists> backData;
     private MyFilter mFilter;
+
     public PageInfoAdapter(Context context, List<PageInfoBean.Lists> data) {
         this.context = context;
+        this.data = data;
+        this.backData = data;
+    }
+
+    public void setData(List<PageInfoBean.Lists> data) {
         this.data = data;
         this.backData = data;
     }
@@ -46,17 +53,17 @@ public class PageInfoAdapter extends BaseAdapter implements Filterable{
     public View getView(int i, View view, ViewGroup viewGroup) {
         View item;
 
-        if (view == null){
-            item = View.inflate(context, R.layout.item_pageinfo_list,null);
-        }else{
+        if (view == null) {
+            item = View.inflate(context, R.layout.item_pageinfo_list, null);
+        } else {
             item = view;
         }
         TextView tv = item.findViewById(R.id.item_pageinfo_title);
         tv.setText(data.get(i).getName());
-        if (data.get(i).getType().trim().equals("title")){
+        if (data.get(i).getType().trim().equals("title")) {
             tv.setBackgroundResource(R.color.bg_title);
             tv.setTextColor(context.getResources().getColor(R.color.colorAccent));
-        }else{
+        } else {
             tv.setBackgroundResource(R.color.transparent);
             tv.setTextColor(context.getResources().getColor(R.color.text_main_body));
         }
@@ -66,7 +73,7 @@ public class PageInfoAdapter extends BaseAdapter implements Filterable{
     //当ListView调用setTextFilter()方法的时候，便会调用该方法
     @Override
     public Filter getFilter() {
-        if (mFilter ==null){
+        if (mFilter == null) {
             mFilter = new MyFilter();
         }
         return mFilter;

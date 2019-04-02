@@ -4,35 +4,46 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.fundrive.navaidlclient.MainActivity">
+
     <include
         android:id="@+id/ll_title"
-        layout="@layout/item_title"/>
+        layout="@layout/item_title" />
+
     <LinearLayout
         android:id="@+id/ll_input"
-        android:layout_margin="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/ll_title"
+        android:layout_margin="20dp"
         android:orientation="horizontal">
+
         <AutoCompleteTextView
             android:id="@+id/et_content"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:lines="1"
             style="@style/Text_Body"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
-            android:layout_height="wrap_content" />
+            android:layout_weight="1"
+            android:lines="1" />
+
         <Button
-            android:layout_alignParentRight="true"
-            android:text="清除文本"
             android:id="@+id/btn_clear"
             style="@style/Bottom_Solid"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="清除文本" />
     </LinearLayout>
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tablayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_input" />
+
     <ListView
         android:id="@+id/lv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/ll_input" />
+        android:layout_below="@id/tablayout" />
 </RelativeLayout>

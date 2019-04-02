@@ -15,8 +15,7 @@ public class PageInfoBean implements Serializable{
     private List<String> listType;
     private List<Lists> lists;
 
-    public static List<PageInfoBean.Lists> getPageInfoBeanList(String strJson){
-        List<PageInfoBean.Lists> list = new ArrayList<>();
+    public List<PageInfoBean.Lists> getPageInfoBeanList(String strJson){
         Gson gson = new Gson();//创建Gson对象
 //        JsonParser jsonParser = new JsonParser();
 //        JsonArray jsonElements = jsonParser.parse(strJson).getAsJsonArray();//获取JsonArray对象
@@ -26,20 +25,17 @@ public class PageInfoBean implements Serializable{
 //        }
         PageInfoBean bean = gson.fromJson(strJson, PageInfoBean.class);//解析
         if (bean != null){
-            for (int i = 0; i < bean.getListType().size(); i++) {
-                List<PageInfoBean.Lists> list1 = new ArrayList<>();
-                list1.add(new PageInfoBean().new Lists(bean.getListType().get(i),"title",null,null,null));
-                for (int j = 0; j < bean.getLists().size(); j++) {
-                    if (bean.getListType().get(i).trim().equals(bean.getLists().get(j).getType().trim())){
-                        list1.add(bean.getLists().get(j));
-                        bean.getLists().remove(j);
-                    }
-                }
-                list.addAll(list1);
+            setListType(bean.getListType());
+
+            List<Lists> lists_m = new ArrayList<>();
+            for (int j = 0; j < bean.getLists().size(); j++) {
+                lists_m.add(bean.getLists().get(j));
+                bean.getLists().remove(j);
             }
+            setLists(lists_m);
         }
         Log.i("hebaodan",bean+"");
-        return list;
+        return lists;
     }
 
     public class Lists implements Serializable{
@@ -99,13 +95,7 @@ public class PageInfoBean implements Serializable{
 
         @Override
         public String toString() {
-            return "Lists{" +
-                    "name='" + name + '\'' +
-                    ", type='" + type + '\'' +
-                    ", tips='" + tips + '\'' +
-                    ", cmd='" + cmd + '\'' +
-                    ", item=" + item +
-                    '}';
+            return name;
         }
     }
     public class Item implements Serializable{
@@ -344,6 +334,15 @@ public class PageInfoBean implements Serializable{
 
     public List<Lists> getLists() {
         return lists;
+    }
+    public List<Lists> getLists(String str_listType) {
+        List<Lists> list_listType = new ArrayList<>();
+        for (Lists lists_i:lists){
+            if (lists_i.getType().equals(str_listType)){
+                list_listType.add(lists_i);
+            }
+        }
+        return list_listType;
     }
 
     public void setLists(List<Lists> lists) {
