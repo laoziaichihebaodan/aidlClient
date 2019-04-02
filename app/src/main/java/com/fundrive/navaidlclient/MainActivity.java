@@ -599,7 +599,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 return false;
             }
             Log.i("hebaodan", "strJson = " + strJson);
-            Resource.pageInfoBean = PageInfoBean.getPageInfoBeanList(strJson);
+            if (Resource.pageInfoBean == null){
+                Resource.pageInfoBean = PageInfoBean.getPageInfoBeanList(strJson);
+            }
             Log.i("hebaodan", "pageinfobean = " + Resource.pageInfoBean.getPageInfoBeanList(strJson));
             return true;
         }
