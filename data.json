@@ -1,0 +1,2402 @@
+{
+	"listType": ["算路","设置","搜索","导航","巡航","多媒体"],
+	"lists": [
+	{
+		"name": "授权序列号",
+		"type": "设置",
+		"tips": "授权序列号最多31个字节",
+		"cmd": "1000",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "",
+				"value": "CG0052162470468",
+				"valueType": "string",
+				"type": "edittext",
+				"key": "authorNumber",
+				"parentKey": "",
+				"grandParentKey": "",
+				"floor": "1",
+				"titleName": "授权序列号",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
+		"name": "地图显示模式：白天/黑夜",
+		"type": "巡航",
+		"tips": "",
+		"cmd": "1001",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "设置地图显示模式：",
+				"value": "1",
+				"valueType": "int",
+				"key": "mode",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"floor": "1",
+				"spinnerValue": [{
+					"name": "白天模式",
+					"value": "1"
+				},
+				{
+					"name": "黑夜模式",
+					"value": "2"
+				},
+				{
+					"name": "自动",
+					"value": "3"
+				}],
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
+		"name": "音量",
+		"type": "设置",
+		"tips": "音量最大值为100(最大值可能因不同的NavApp而不同)",
+		"cmd": "1002",
+		"item": {
+			"secondKey": [{
+				"name": "volumeOperation"
+			}],
+			"thirdKey": [],
+			"page": [{
+				"name": "音量设置模式：",
+				"value": "1",
+				"valueType": "int",
+				"key": "opType",
+				"parentKey": "volumeOperation",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "设定指定音量",
+					"value": "1"
+				},
+				{
+					"name": "增加音量",
+					"value": "2"
+				},
+				{
+					"name": "减少音量",
+					"value": "3"
+				}],
+				"floor": "2",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "请输入音量值：",
+				"value": "5",
+				"valueType": "int",
+				"key": "volume",
+				"parentKey": "volumeOperation",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "2",
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
+		"name": "静音开/关",
+		"type": "设置",
+		"tips": "",
+		"cmd": "1003",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "是否静音",
+				"value": "false",
+				"valueType": "boolean",
+				"key": "muteState",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"floor": "1",
+				"spinnerValue": [{
+					"name": "静音",
+					"value": "false"
+				},
+				{
+					"name": "播报",
+					"value": "true"
+				}],
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
+		"name": "算路规则",
+		"type": "算路",
+		"tips": "",
+		"cmd": "1004",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "算路偏好：",
+				"value": "1",
+				"valueType": "int",
+				"key": "iaRoutePreference",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"floor": "1",
+				"spinnerValue": [{
+					"name": "最短路线",
+					"value": "1"
+				},
+				{
+					"name": "高速优先",
+					"value": "2"
+				},
+				{
+					"name": "避让收费",
+					"value": "256"
+				},
+				{
+					"name": "避让轮渡",
+					"value": "512"
+				},
+				{
+					"name": "避让隧道(仅在v2版引擎中支持)",
+					"value": "1024"
+				},
+				{
+					"name": "避让高速",
+					"value": "2048"
+				},
+				{
+					"name": "避让城市快速路",
+					"value": "4096"
+				},
+				{
+					"name": "避让高架(仅在v2版引擎中支持)",
+					"value": "8192"
+				},
+				{
+					"name": "避让未铺设道路(仅在v2版引擎中支持)",
+					"value": "16384"
+				},
+				{
+					"name": "避让拥堵(仅在v2版引擎中支持)",
+					"value": "16777216"
+				},
+				{
+					"name": "避让因为交通事件阻断的道路(仅在v2版引擎中支持)",
+					"value": "33554432"
+				},
+				{
+					"name": "算路时是否考虑红绿灯代价,WARNING:仅供调试试用",
+					"value": "67108864"
+				}],
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "是否开启规则：",
+				"value": "false",
+				"valueType": "boolean",
+				"key": "enable",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"floor": "1",
+				"spinnerValue": [{
+					"name": "关",
+					"value": "false"
+				},
+				{
+					"name": "开",
+					"value": "true"
+				}],
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
+		"name": "时间信息",
+		"type": "设置",
+		"tips": "",
+		"cmd": "1005",
+		"item": {}
+	},
+	{
+		"name": "输入法(未定义)",
+		"type": "设置",
+		"tips": "",
+		"cmd": "1006"
+	},
+	{
+		"name": "语言",
+		"type": "设置",
+		"tips": "",
+		"cmd": "1007",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "设置NavApp的语言：",
+				"value": "0",
+				"valueType": "int",
+				"key": "languageType",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "Simplified Chinese(default)",
+					"value": "0"
+				},
+				{
+					"name": "US Endlish",
+					"value": "1"
+				},
+				{
+					"name": "UK English",
+					"value": "2"
+				},
+				{
+					"name": "Protuguse(Brazil)",
+					"value": "3"
+				},
+				{
+					"name": "Malay(Malaysia)",
+					"value": "4"
+				},
+				{
+					"name": "Ukrainian",
+					"value": "5"
+				},
+				{
+					"name": "Russian",
+					"value": "6"
+				},
+				{
+					"name": "Thai",
+					"value": "7"
+				},
+				{
+					"name": "Indonesian",
+					"value": "8"
+				},
+				{
+					"name": "Spanish - Spain(International Sort)",
+					"value": "9"
+				}],
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
+		"name": "多媒体信息",
+		"type": "多媒体",
+		"tips": "lgdrive无多媒体功能",
+		"cmd": "1008",
+		"item": {}
+	},
+	{
+		"name": "导航信息发送开关",
+		"type": "导航",
+		"tips": "",
+		"cmd": "1009",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "导航信息发送开关：",
+				"value": "false",
+				"valueType": "boolean",
+				"key": "state",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "关",
+					"value": "false"
+				},
+				{
+					"name": "开",
+					"value": "true"
+				}],
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
+		"name": "导航播报语音类型",
+		"type": "设置",
+		"tips": "",
+		"cmd": "100A",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "导航播报语音类型：",
+				"value": "1",
+				"valueType": "int",
+				"key": "voiceType",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "普通话女音",
+					"value": "1"
+				},
+				{
+					"name": "普通话男音",
+					"value": "2"
+				},
+				{
+					"name": "英语女音",
+					"value": "3"
+				},
+				{
+					"name": "英语男音",
+					"value": "4"
+				},
+				{
+					"name": "广东话女音",
+					"value": "5"
+				},
+				{
+					"name": "广东话男音",
+					"value": "6"
+				}],
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
+		"name": "交互目标写状态",
+		"type": "设置",
+		"tips": "",
+		"cmd": "100B",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "交互目标写状态：",
+				"value": "0",
+				"valueType": "int",
+				"key": "writed",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "无效",
+					"value": "0"
+				},
+				{
+					"name": "交互目标可被写",
+					"value": "1"
+				},
+				{
+					"name": "交互目标不可写",
+					"value": "2"
+				}],
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
+		"name": "交互目标的路径状态",
+		"type": "设置",
+		"tips": "",
+		"cmd": "100C",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "交互目标的路径状态：",
+				"value": "0",
+				"valueType": "int",
+				"key": "route",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "无效",
+					"value": "0"
+				},
+				{
+					"name": "交互目标有路径",
+					"value": "1"
+				},
+				{
+					"name": "交互目标无路径",
+					"value": "2"
+				}],
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
+		"name": "显示/隐藏NavApp",
+		"type": "设置",
+		"tips": "",
+		"cmd": "2002",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "显示/隐藏NavApp：",
+				"value": "2",
+				"valueType": "int",
+				"key": "operationType",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "隐藏NavApp",
+					"value": "2"
+				},
+				{
+					"name": "显示NavApp",
+					"value": "1"
+				}],
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
+		"name": "放大/缩小地图",
+		"type": "巡航",
+		"tips": "对于只有一个屏的情况，屏幕id默认为1",
+		"cmd": "2003",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "操作：",
+				"value": "1",
+				"valueType": "int",
+				"key": "operationType",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "放大地图",
+					"value": "1"
+				},
+				{
+					"name": "缩小地图",
+					"value": "2"
+				}],
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "屏幕id：",
+				"value": "1",
+				"valueType": "int",
+				"key": "screenId",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "1",
+					"value": "1"
+				},
+				{
+					"name": "2",
+					"value": "2"
+				},
+				{
+					"name": "3",
+					"value": "3"
+				},
+				{
+					"name": "0",
+					"value": "0"
+				}],
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
+		"name": "获取NavApp的导航引导信息",
+		"type": "导航",
+		"tips": "",
+		"cmd": "2004"
+	},
+	{
+		"name": "重播当前导航语音提示语句",
+		"type": "导航",
+		"tips": "",
+		"cmd": "2005"
+	},
+	{
+		"name": "画面迁移",
+		"type": "",
+		"tips": "内部定义和控制,与外部交互目标无关",
+		"cmd": "2006"
+	},
+	{
+		"name": "改变NavApp的UI视觉属性(如导航背景)",
+		"type": "",
+		"tips": "暂未定义",
+		"cmd": "2007"
+	},
+	{
+		"name": "显示动态信息(如动态停车场)",
+		"type": "",
+		"tips": "暂未定义",
+		"cmd": "2008"
+	},
+	{
+		"name": "开始/结束导航",
+		"type": "导航",
+		"tips": "",
+		"cmd": "2009",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "操作：",
+				"value": "1",
+				"valueType": "int",
+				"key": "operationType",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "开始导航",
+					"value": "1"
+				},
+				{
+					"name": "结束导航",
+					"value": "2"
+				}],
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "真实导航/模拟导航：",
+				"value": "2",
+				"valueType": "int",
+				"key": "guideType",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "真实导航",
+					"value": "2"
+				},
+				{
+					"name": "模拟导航",
+					"value": "1"
+				}],
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
+		"name": "获取NavApp的当前状态",
+		"type": "设置",
+		"tips": "",
+		"cmd": "200A"
+	},
+	{
+		"name": "显示交互目标的音量",
+		"type": "设置",
+		"tips": "目标最大音量的最大值为100",
+		"cmd": "200B",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "目标最大音量：",
+				"value": "100",
+				"valueType": "int",
+				"key": "targetMaxVolume",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "当前音量：",
+				"value": "100",
+				"valueType": "int",
+				"key": "targetCurrentVolume",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
+		"name": "删除NavApp的当前路线",
+		"type": "导航",
+		"tips": "",
+		"cmd": "200C"
+	},
+	{
+		"name": "获取GPS信息",
+		"type": "巡航",
+		"tips": "",
+		"cmd": "200D"
+	},
+	{
+		"name": "切换地图模式(2D/3D)",
+		"type": "巡航",
+		"tips": "",
+		"cmd": "200E",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "屏幕id：",
+				"value": "1",
+				"valueType": "int",
+				"key": "screenId",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "1",
+					"value": "1"
+				},
+				{
+					"name": "2",
+					"value": "2"
+				},
+				{
+					"name": "3",
+					"value": "3"
+				},
+				{
+					"name": "0",
+					"value": "0"
+				}],
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "显示模式：",
+				"value": "0",
+				"valueType": "int",
+				"key": "viewMode",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "正北朝上",
+					"value": "0"
+				},
+				{
+					"name": "车头朝上",
+					"value": "1"
+				},
+				{
+					"name": "3D模式",
+					"value": "2"
+				}],
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
+		"name": "条件算路",
+		"type": "算路",
+		"tips": "",
+		"cmd": "200F",
+		"item": {}
+	},
+	{
+		"name": "NavApp画面所在的显示屏幕",
+		"type": "设置",
+		"tips": "",
+		"cmd": "2010",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "设置NavApp显示屏幕：",
+				"value": "1",
+				"valueType": "int",
+				"key": "iaDisPlayScreenId",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "主机屏幕",
+					"value": "1"
+				},
+				{
+					"name": "仪表盘屏幕",
+					"value": "2"
+				}],
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
+		"name": "List动画操作",
+		"type": "巡航",
+		"tips": "",
+		"cmd": "2011",
+		"item": {}
+	},
+	{
+		"name": "收藏点导航(家/公司导航)",
+		"type": "导航",
+		"tips": "当前仅支持收藏点实际导航，不支持收藏点模拟导航",
+		"cmd": "2012",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "导航类型：",
+				"value": "2",
+				"valueType": "int",
+				"key": "guideType",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "真实导航",
+					"value": "2"
+				},
+				{
+					"name": "模拟导航",
+					"value": "1"
+				}],
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "导航到：",
+				"value": "1",
+				"valueType": "int",
+				"key": "iaFavType",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "家",
+					"value": "2"
+				},
+				{
+					"name": "公司",
+					"value": "2"
+				}],
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
+		"name": "定位自车",
+		"type": "巡航",
+		"tips": "",
+		"cmd": "2013"
+	},
+	{
+		"name": "执行多媒体控制",
+		"type": "多媒体",
+		"tips": "",
+		"cmd": "2014",
+		"item": {}
+	},
+	{
+		"name": "查看帮助信息",
+		"type": "设置",
+		"tips": "",
+		"cmd": "2015",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "查看帮助信息：",
+				"value": "1",
+				"valueType": "int",
+				"key": "iaHelpType",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "NavApp使用帮助",
+					"value": "1"
+				},
+				{
+					"name": "语音使用帮助",
+					"value": "2"
+				},
+				{
+					"name": "电话拨号帮助",
+					"value": "3"
+				},
+				{
+					"name": "收音帮助",
+					"value": "4"
+				},
+				{
+					"name": "空调使用帮助",
+					"value": "5"
+				},
+				{
+					"name": "音乐播放帮助",
+					"value": "6"
+				},
+				{
+					"name": "导航引导帮助",
+					"value": "7"
+				}],
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
+		"name": "指定线路导航(协议中是否熟路模式字段未使用)",
+		"type": "导航",
+		"tips": "该功能仅在算路成功存在路线并且未导航时有效",
+		"cmd": "2016",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "指定路线：",
+				"value": "1",
+				"valueType": "int",
+				"key": "routeNumber",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "路线1",
+					"value": "1"
+				},
+				{
+					"name": "路线2",
+					"value": "2"
+				},
+				{
+					"name": "路线3",
+					"value": "3"
+				},
+				{
+					"name": "路线4",
+					"value": "4"
+				}],
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "真实导航/模拟导航：",
+				"value": "2",
+				"valueType": "int",
+				"key": "guideType",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "真实导航",
+					"value": "2"
+				},
+				{
+					"name": "模拟导航",
+					"value": "1"
+				}],
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
+		"name": "切换NavApp窗口模式",
+		"type": "设置",
+		"tips": "",
+		"cmd": "2017",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "切换窗口模式：",
+				"value": "1",
+				"valueType": "int",
+				"key": "windowMode",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "显示三张卡片视图",
+					"value": "1"
+				},
+				{
+					"name": "隐藏三张卡片视图",
+					"value": "2"
+				},
+				{
+					"name": "显示大卡",
+					"value": "3"
+				},
+				{
+					"name": "隐藏大卡",
+					"value": "4"
+				}],
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
+		"name": "获取NavApp窗口模式",
+		"type": "设置",
+		"tips": "",
+		"cmd": "2018"
+	},
+	{
+		"name": "获取收藏点",
+		"type": "巡航",
+		"tips": "",
+		"cmd": "2019",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "获取收藏点：",
+				"value": "1",
+				"valueType": "int",
+				"key": "iaFavType",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "家",
+					"value": "1"
+				},
+				{
+					"name": "公司",
+					"value": "2"
+				},
+				{
+					"name": "收藏点",
+					"value": "3"
+				}],
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
+		"name": "更新收藏点",
+		"type": "巡航",
+		"tips": "",
+		"cmd": "201A",
+		"item": {
+			"secondKey": [{
+				"name": "favContent"
+			}],
+			"thirdKey": [{
+				"name": "iaPoiPos"
+			},
+			{
+				"name": "iaPoiDisPos"
+			}],
+			"page": [{
+				"name": "选择收藏点类型：",
+				"value": "1",
+				"valueType": "int",
+				"key": "iaFavType",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "家",
+					"value": "1"
+				},
+				{
+					"name": "公司",
+					"value": "2"
+				},
+				{
+					"name": "收藏点",
+					"value": "3"
+				}],
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "位置类型：",
+				"value": "78",
+				"valueType": "int",
+				"key": "iaPoiType",
+				"parentKey": "favContent",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "2",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "收藏点经纬度：",
+				"value": "12141938",
+				"valueType": "int",
+				"key": "longitude",
+				"parentKey": "iaPoiPos",
+				"grandParentKey": "favContent",
+				"type": "edittext",
+				"floor": "3",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "收藏点经纬度：",
+				"value": "3116152",
+				"valueType": "int",
+				"key": "latitude",
+				"parentKey": "iaPoiPos",
+				"grandParentKey": "favContent",
+				"type": "edittext",
+				"floor": "3",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "显示点经纬度：",
+				"value": "12141708",
+				"valueType": "int",
+				"key": "longitude",
+				"parentKey": "iaPoiDisPos",
+				"grandParentKey": "favContent",
+				"type": "edittext",
+				"floor": "3",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "显示点经纬度：",
+				"value": "3116179",
+				"valueType": "int",
+				"key": "latitude",
+				"parentKey": "iaPoiDisPos",
+				"grandParentKey": "favContent",
+				"type": "edittext",
+				"floor": "3",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "位置ID：",
+				"value": "4294967295",
+				"valueType": "int",
+				"key": "iaPoiId",
+				"parentKey": "favContent",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "2",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "ChildPoiNum：",
+				"value": "0",
+				"valueType": "int",
+				"key": "iaChildPoiNum",
+				"parentKey": "favContent",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "2",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "Compoundld：",
+				"value": "0",
+				"valueType": "int",
+				"key": "iaCompoundId",
+				"parentKey": "favContent",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "2",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "位置名称：",
+				"value": "上海师范大学徐汇校区",
+				"valueType": "string",
+				"key": "iaPoiName",
+				"parentKey": "favContent",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "2",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "地址：",
+				"value": "上海市徐汇区桂林路100号",
+				"valueType": "int",
+				"key": "iaPoiAdress",
+				"parentKey": "favContent",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "2",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "电话：",
+				"value": "",
+				"valueType": "int",
+				"key": "iaPoiPhone",
+				"parentKey": "favContent",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "2",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "所在区：",
+				"value": "上海市徐汇区",
+				"valueType": "string",
+				"key": "iaRegionName",
+				"parentKey": "favContent",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "2",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "类型：",
+				"value": "大专院校",
+				"valueType": "int",
+				"key": "iaPoiTypeName",
+				"parentKey": "favContent",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "2",
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
+		"name": "猜测家或公司",
+		"type": "导航",
+		"tips": "",
+		"cmd": "201B",
+		"item": {
+			"secondKey": [{
+				"name": "predictionTime"
+			},
+			{
+				"name": "favContent"
+			}],
+			"thirdKey": [{
+				"name": "iaPoiPos"
+			},
+			{
+				"name": "iaPoiDisPos"
+			}],
+			"page": [{
+				"name": "选择收藏点类型：",
+				"value": "1",
+				"valueType": "int",
+				"key": "iaFavType",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "家",
+					"value": "1"
+				},
+				{
+					"name": "公司",
+					"value": "2"
+				},
+				{
+					"name": "收藏点",
+					"value": "3"
+				}],
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "",
+				"value": "19",
+				"valueType": "int",
+				"key": "hour",
+				"parentKey": "predictionTime",
+				"grandParentKey": "",
+				"type": "",
+				"floor": "2",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "",
+				"value": "30",
+				"valueType": "int",
+				"key": "mintue",
+				"parentKey": "predictionTime",
+				"grandParentKey": "",
+				"type": "",
+				"floor": "2",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "位置类型：",
+				"value": "78",
+				"valueType": "int",
+				"key": "iaPoiType",
+				"parentKey": "favContent",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "2",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "收藏点经纬度：",
+				"value": "12141938",
+				"valueType": "int",
+				"key": "longitude",
+				"parentKey": "iaPoiPos",
+				"grandParentKey": "favContent",
+				"type": "edittext",
+				"floor": "3",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "收藏点经纬度：",
+				"value": "3116152",
+				"valueType": "int",
+				"key": "latitude",
+				"parentKey": "iaPoiPos",
+				"grandParentKey": "favContent",
+				"type": "edittext",
+				"floor": "3",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "显示点经纬度：",
+				"value": "12141708",
+				"valueType": "int",
+				"key": "longitude",
+				"parentKey": "iaPoiDisPos",
+				"grandParentKey": "favContent",
+				"type": "edittext",
+				"floor": "3",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "显示点经纬度：",
+				"value": "3116179",
+				"valueType": "int",
+				"key": "latitude",
+				"parentKey": "iaPoiDisPos",
+				"grandParentKey": "favContent",
+				"type": "edittext",
+				"floor": "3",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "位置ID：",
+				"value": "4294967295",
+				"valueType": "int",
+				"key": "iaPoiId",
+				"parentKey": "favContent",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "2",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "ChildPoiNum：",
+				"value": "0",
+				"valueType": "int",
+				"key": "iaChildPoiNum",
+				"parentKey": "favContent",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "2",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "Compoundld：",
+				"value": "0",
+				"valueType": "int",
+				"key": "iaCompoundId",
+				"parentKey": "favContent",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "2",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "位置名称：",
+				"value": "上海师范大学徐汇校区",
+				"valueType": "string",
+				"key": "iaPoiName",
+				"parentKey": "favContent",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "2",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "地址：",
+				"value": "上海市徐汇区桂林路100号",
+				"valueType": "int",
+				"key": "iaPoiAdress",
+				"parentKey": "favContent",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "2",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "电话：",
+				"value": "",
+				"valueType": "int",
+				"key": "iaPoiPhone",
+				"parentKey": "favContent",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "2",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "所在区：",
+				"value": "上海市徐汇区",
+				"valueType": "string",
+				"key": "iaRegionName",
+				"parentKey": "favContent",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "2",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "类型：",
+				"value": "大专院校",
+				"valueType": "int",
+				"key": "iaPoiTypeName",
+				"parentKey": "favContent",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "2",
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
+		"name": "更新收藏并导航",
+		"type": "导航",
+		"tips": "",
+		"cmd": "201C",
+		"item": {
+			"secondKey": [{
+				"name": "favContent"
+			}],
+			"thirdKey": [{
+				"name": "iaPoiPos"
+			},
+			{
+				"name": "iaPoiDisPos"
+			}],
+			"page": [{
+				"name": "选择收藏点类型：",
+				"value": "1",
+				"valueType": "int",
+				"key": "iaFavType",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "家",
+					"value": "1"
+				},
+				{
+					"name": "公司",
+					"value": "2"
+				},
+				{
+					"name": "收藏点",
+					"value": "3"
+				}],
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "位置类型：",
+				"value": "78",
+				"valueType": "int",
+				"key": "iaPoiType",
+				"parentKey": "favContent",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "2",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "收藏点经纬度：",
+				"value": "12141938",
+				"valueType": "int",
+				"key": "longitude",
+				"parentKey": "iaPoiPos",
+				"grandParentKey": "favContent",
+				"type": "edittext",
+				"floor": "3",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "收藏点经纬度：",
+				"value": "3116152",
+				"valueType": "int",
+				"key": "latitude",
+				"parentKey": "iaPoiPos",
+				"grandParentKey": "favContent",
+				"type": "edittext",
+				"floor": "3",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "显示点经纬度：",
+				"value": "12141708",
+				"valueType": "int",
+				"key": "longitude",
+				"parentKey": "iaPoiDisPos",
+				"grandParentKey": "favContent",
+				"type": "edittext",
+				"floor": "3",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "显示点经纬度：",
+				"value": "3116179",
+				"valueType": "int",
+				"key": "latitude",
+				"parentKey": "iaPoiDisPos",
+				"grandParentKey": "favContent",
+				"type": "edittext",
+				"floor": "3",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "位置ID：",
+				"value": "4294967295",
+				"valueType": "int",
+				"key": "iaPoiId",
+				"parentKey": "favContent",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "2",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "ChildPoiNum：",
+				"value": "0",
+				"valueType": "int",
+				"key": "iaChildPoiNum",
+				"parentKey": "favContent",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "2",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "Compoundld：",
+				"value": "0",
+				"valueType": "int",
+				"key": "iaCompoundId",
+				"parentKey": "favContent",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "2",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "位置名称：",
+				"value": "上海师范大学徐汇校区",
+				"valueType": "string",
+				"key": "iaPoiName",
+				"parentKey": "favContent",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "2",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "地址：",
+				"value": "上海市徐汇区桂林路100号",
+				"valueType": "int",
+				"key": "iaPoiAdress",
+				"parentKey": "favContent",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "2",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "电话：",
+				"value": "",
+				"valueType": "int",
+				"key": "iaPoiPhone",
+				"parentKey": "favContent",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "2",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "所在区：",
+				"value": "上海市徐汇区",
+				"valueType": "string",
+				"key": "iaRegionName",
+				"parentKey": "favContent",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "2",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "类型：",
+				"value": "大专院校",
+				"valueType": "int",
+				"key": "iaPoiTypeName",
+				"parentKey": "favContent",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "2",
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
+		"name": "键盘输入字符串",
+		"type": "设置",
+		"tips": "",
+		"cmd": "202A",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "输入字符串：",
+				"value": "",
+				"valueType": "string",
+				"key": "iaKeyboardInput",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
+		"name": "条件搜索poi",
+		"type": "搜索",
+		"tips": "",
+		"cmd": "3000",
+		"item": {
+			"secondKey": [{
+				"name": "poiSearchCenter"
+			},
+			{
+				"name": "poiSearchScope"
+			}],
+			"thirdKey": [],
+			"page": [{
+				"name": "选择poi搜索类型：",
+				"value": "1",
+				"valueType": "int",
+				"key": "poiSearchType",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "默认搜索类型",
+					"value": "1"
+				},
+				{
+					"name": "周边搜索",
+					"value": "2"
+				},
+				{
+					"name": "沿路搜索",
+					"value": "3"
+				},
+				{
+					"name": "类型搜索",
+					"value": "4"
+				}],
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "是否需要深度信息：",
+				"value": "false",
+				"valueType": "boolean",
+				"key": "detail",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "不需要",
+					"value": "false"
+				},
+				{
+					"name": "需要",
+					"value": "true"
+				}],
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "排序方式：",
+				"value": "1",
+				"valueType": "int",
+				"key": "poiSortBy",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "距离升序",
+					"value": "1"
+				},
+				{
+					"name": "环境降序",
+					"value": "2"
+				},
+				{
+					"name": "服务降序",
+					"value": "3"
+				},
+				{
+					"name": "口味降序",
+					"value": "4"
+				},
+				{
+					"name": "价格升序",
+					"value": "5"
+				},
+				{
+					"name": "价格降序",
+					"value": "6"
+				},
+				{
+					"name": "智能排序",
+					"value": "0"
+				}],
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "选择中心点类型：",
+				"value": "1",
+				"valueType": "int",
+				"key": "centerType",
+				"parentKey": "poiSearchCenter",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "以交互目标指定的中心点为搜索中心",
+					"value": "1"
+				},
+				{
+					"name": "以当前自车为搜索中心点",
+					"value": "2"
+				},
+				{
+					"name": "以当前路线的起点为搜索中心点(沿路搜时可用)",
+					"value": "3"
+				},
+				{
+					"name": "以当前路线的终点为搜索中心点(沿路搜时可用)",
+					"value": "4"
+				}],
+				"floor": "2",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "选择中心的表现形式：",
+				"value": "1",
+				"valueType": "int",
+				"key": "centerExpression",
+				"parentKey": "poiSearchCenter",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "字符串的形式",
+					"value": "1"
+				},
+				{
+					"name": "经纬度形式",
+					"value": "2"
+				}],
+				"floor": "2",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "搜索中心名称：",
+				"value": "五角场",
+				"valueType": "string",
+				"key": "centerPoint",
+				"parentKey": "poiSearchCenter",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "2",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "选择搜索范围的类型：",
+				"value": "1",
+				"valueType": "int",
+				"key": "scopeType",
+				"parentKey": "poiSearchScope",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "以NavApp默认的搜索范围进行搜索",
+					"value": "1"
+				},
+				{
+					"name": "以交互目标指定的搜索范围进行搜索",
+					"value": "2"
+				}],
+				"floor": "2",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "选择搜索范围的表现形式：",
+				"value": "1",
+				"valueType": "int",
+				"key": "scopeExpression",
+				"parentKey": "poiSearchScope",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "字符串的形式",
+					"value": "1"
+				},
+				{
+					"name": "行政区域码的形式",
+					"value": "2"
+				}],
+				"floor": "2",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "搜索范围(名称或者行政区号)：",
+				"value": "上海",
+				"valueType": "string",
+				"key": "serchScope",
+				"parentKey": "poiSearchScope",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "2",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "搜索内容：",
+				"value": "麦当劳",
+				"valueType": "string",
+				"key": "poiSearchContents",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "搜索半径：",
+				"value": "10000",
+				"valueType": "int",
+				"key": "searchRadius",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "每页显示数据条数：",
+				"value": "5",
+				"valueType": "int",
+				"key": "poiDataPageSize",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
+		"name": "选择POI条件搜索时的搜索中心点",
+		"type": "搜索",
+		"tips": "1、该功能仅在条件搜索POI时中心点类型被指定为“以交互目标指定的中心点为搜索中心点”且有多个可供选择的搜索中心点时可用。2、poiSearchCenterIndex大于0且小于等于当前页中的最大有效序号才有效",
+		"cmd": "3001",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "选择POI条件搜索时的搜索中心点",
+				"value": "1",
+				"valueType": "int",
+				"key": "poiSearchCenterIndex",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
+		"name": "获取给定页面的POI页数据",
+		"type": "搜索",
+		"tips": "1、该功能仅在条件搜索POI过程中有多个可供选择的搜索中心点时 以及 POI条件搜成功后可用。2、poiDataPageNum需大于0且小于等于当次POI搜索结果中的最大页号才有效",
+		"cmd": "3002",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "选择当前页poi数据的类型：",
+				"value": "1",
+				"valueType": "int",
+				"key": "poiDataType",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "可选取的搜索中心点",
+					"value": "1"
+				},
+				{
+					"name": "Poi搜索结果",
+					"value": "2"
+				}],
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "选取页码：",
+				"value": "1",
+				"valueType": "int",
+				"key": "poiDataPageNum",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
+		"name": "获取指定经纬度位置详细信息",
+		"type": "搜索",
+		"tips": "",
+		"cmd": "3003",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "经纬度位置：",
+				"value": "0",
+				"valueType": "int",
+				"key": "longitude",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "经纬度位置：",
+				"value": "0",
+				"valueType": "int",
+				"key": "latitude",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
+		"name": "开启/关闭超速提醒",
+		"type": "设置",
+		"tips": "",
+		"cmd": "4000",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "开启/关闭超速提醒：",
+				"value": "false",
+				"valueType": "boolean",
+				"key": "enable",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "关",
+					"value": "false"
+				},
+				{
+					"name": "开",
+					"value": "true"
+				}],
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
+		"name": "开启/关闭电子警察",
+		"type": "设置",
+		"tips": "",
+		"cmd": "4001",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "开启/关闭电子警察：",
+				"value": "false",
+				"valueType": "boolean",
+				"key": "enable",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "关",
+					"value": "false"
+				},
+				{
+					"name": "开",
+					"value": "true"
+				}],
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
+		"name": "开启/关闭实时路况",
+		"type": "设置",
+		"tips": "",
+		"cmd": "4002",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "开启/关闭实时路况：",
+				"value": "false",
+				"valueType": "boolean",
+				"key": "enable",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "关",
+					"value": "false"
+				},
+				{
+					"name": "开",
+					"value": "true"
+				}],
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
+		"name": "路径浏览模式",
+		"type": "设置",
+		"tips": "",
+		"cmd": "4003",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "路径浏览模式：",
+				"value": "1",
+				"valueType": "int",
+				"key": "routeviewMode",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "标准路径",
+					"value": "1"
+				},
+				{
+					"name": "全路径",
+					"value": "2"
+				}],
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
+		"name": "导航播报频率",
+		"type": "设置",
+		"tips": "",
+		"cmd": "4004",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "设置导航播报频率：",
+				"value": "1",
+				"valueType": "int",
+				"key": "boardcastMode",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "简洁模式",
+					"value": "1"
+				},
+				{
+					"name": "标准模式",
+					"value": "2"
+				},
+				{
+					"name": "安全模式",
+					"value": "3"
+				}],
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
+		"name": "获取剩余路线信息",
+		"type": "导航",
+		"tips": "",
+		"cmd": "4005"
+	},
+	{
+		"name": "开启/关闭避开限行道路功能",
+		"type": "导航",
+		"tips": "",
+		"cmd": "4006",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "开启/关闭避开限行道路功能：",
+				"value": "false",
+				"valueType": "boolean",
+				"key": "enable",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "关闭",
+					"value": "false"
+				},
+				{
+					"name": "开启",
+					"value": "true"
+				}],
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
+		"name": "查询指定PictureId对应的路况简图",
+		"type": "导航",
+		"tips": "",
+		"cmd": "5004",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "输入Picture Id",
+				"value": "0021_201_026",
+				"valueType": "string",
+				"key": "picID",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "1",
+				"spinnerValue": [],
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
+		"name": "查询当前城市",
+		"type": "搜索",
+		"tips": "",
+		"cmd": "5005"
+	},
+	{
+		"name": "TMC路况查询",
+		"type": "导航",
+		"tips": "",
+		"cmd": "5006",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "查询类型",
+				"value": "1",
+				"valueType": "int",
+				"key": "broadcastType",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"floor": "1",
+				"spinnerValue": [{
+					"name": "指定道路路况查询",
+					"value": "1"
+				},
+				{
+					"name": "模糊道路查询",
+					"value": "2"
+				}],
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "输入道路",
+				"value": "漕宝路",
+				"valueType": "string",
+				"key": "roadName",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "1",
+				"spinnerValue": [],
+				"titleName": "",
+				"lineNum": "2"
+			},
+			{
+				"name": "输入城市",
+				"value": "上海市",
+				"valueType": "string",
+				"key": "city",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "1",
+				"spinnerValue": [],
+				"titleName": "",
+				"lineNum": "3"
+			}]
+		}
+	},
+	{
+		"name": "TMC前方路况查询",
+		"type": "导航",
+		"tips": "",
+		"cmd": "5006",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "查询类型",
+				"value": "1",
+				"valueType": "int",
+				"key": "broadcastType",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"floor": "1",
+				"spinnerValue": [{
+					"name": "前方路况查询",
+					"value": "3"
+				}],
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "相对自车方向",
+				"value": "东",
+				"valueType": "string",
+				"key": "direction",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"floor": "1",
+				"spinnerValue": [{
+					"name": "东",
+					"value": "东"
+				},
+				{
+					"name": "南",
+					"value": "南"
+				},
+				{
+					"name": "西",
+					"value": "西"
+				},
+				{
+					"name": "北",
+					"value": "北"
+				},
+				{
+					"name": "东南",
+					"value": "东南"
+				},
+				{
+					"name": "东北",
+					"value": "东北"
+				},
+				{
+					"name": "西南",
+					"value": "西南"
+				},
+				{
+					"name": "西北",
+					"value": "西北"
+				}],
+				"titleName": "",
+				"lineNum": "2"
+			}]
+		}
+	},
+	{
+		"name": "TMC周边路况查询",
+		"type": "导航",
+		"tips": "radius 查询半径，单位：m",
+		"cmd": "5006",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "查询类型",
+				"value": "1",
+				"valueType": "int",
+				"key": "broadcastType",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"floor": "1",
+				"spinnerValue": [{
+					"name": "周边路况查询",
+					"value": "4"
+				}],
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "输入半径",
+				"value": "东南",
+				"valueType": "int",
+				"key": "radius",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "1",
+				"spinnerValue": [],
+				"titleName": "",
+				"lineNum": "2"
+			}]
+		}
+	}]
+}
