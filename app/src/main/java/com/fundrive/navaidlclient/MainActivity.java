@@ -190,7 +190,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         ComponentName navService = new ComponentName("com.fundrive.naviwidgetdemo",
                 "com.fundrive.naviwidgetdemo.NavService");
         intent.setComponent(navService);
-        startService(intent);
+        //服务所在应用程序没有启动的时候8.0会报错
+//        startService(intent);
         bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
     }
 
