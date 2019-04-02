@@ -24,6 +24,7 @@ import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.support.design.widget.TabLayout;
 
@@ -84,8 +85,16 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, View.OnClickListener {
 
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, View.OnClickListener {
+    @BindView(R.id.lv)
+    ListView lv;
+    @BindView(R.id.btn_clear)
+    Button button;
+    @BindView(R.id.tv_change)
+    TextView tv_change;
+    @BindView(R.id.et_content)
+    AutoCompleteTextView editText;
     @BindView(R.id.tablayout)
     TabLayout tabLayout;
 
@@ -93,10 +102,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     INavRemoteRequest mNavService;
     boolean mBind = false;
-    private ListView lv;
-    private AutoCompleteTextView editText;
-    private Button button;
-    //    private ArrayAdapter<PageInfoBean> adapter;
+//    private ArrayAdapter<PageInfoBean> adapter;
     private PageInfoAdapter adapter;
     private int REQUEST_CODE = 1;
     private String fileName = "data.json";
@@ -106,16 +112,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
         //检查读写权限
         checkPermission();
     }
 
-    private void init() {
-        lv = findViewById(R.id.lv);
+    private void init(){
+        tv_change.setVisibility(View.VISIBLE);
+        tv_change.setOnClickListener(this);
         lv.setTextFilterEnabled(true);
-        button = findViewById(R.id.btn_clear);
-        editText = findViewById(R.id.et_content);
         findViewById(R.id.btn_return).setVisibility(View.GONE);
         button.setOnClickListener(this);
 
@@ -505,7 +509,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onClick(View v) {
-        editText.setText("");
+        switch (v.getId()){
+            case R.id.btn_clear:
+                editText.setText("");
+                break;
+            case R.id.tv_change:
+                Resource.changeWlan();
+                break;
+        }
+
     }
 
 

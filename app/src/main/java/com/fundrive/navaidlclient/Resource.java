@@ -178,7 +178,11 @@ public class Resource {
     public static void init(Context context) {
         ctx = context;
         mShareConfiguration = new ShareConfiguration(ctx, ShareConfiguration.SETTING_INFOS);
-        initWlan();
+        initWlan(mShareConfiguration.getDeviceModel());
+    }
+
+    public static void changeWlan(){
+        initWlan(0);
     }
 
     public static void initRequest(INavRemoteRequest mNavService, boolean mBind) {
@@ -299,8 +303,7 @@ public class Resource {
 
     }
 
-    private static void initWlan() {
-        device_model = mShareConfiguration.getDeviceModel();
+    private static void initWlan(int device_model) {
         switch (device_model) {
             case ShareConfiguration.MODEL_NONE_KOWN:
                 ModelChooseDialog();
