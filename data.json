@@ -2386,7 +2386,7 @@
 			},
 			{
 				"name": "输入半径",
-				"value": "东南",
+				"value": "1500",
 				"valueType": "int",
 				"key": "radius",
 				"parentKey": "",
