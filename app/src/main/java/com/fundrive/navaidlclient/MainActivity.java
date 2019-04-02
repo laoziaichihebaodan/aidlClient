@@ -99,8 +99,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @BindView(R.id.tablayout)
     TabLayout tabLayout;
 
-    PageInfoBean pageInfoBean = PageInfoBean.getInstance();
-
     INavRemoteRequest mNavService;
     boolean mBind = false;
 //    private ArrayAdapter<PageInfoBean> adapter;
@@ -124,12 +122,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         findViewById(R.id.btn_return).setVisibility(View.GONE);
         button.setOnClickListener(this);
 
-        adapter = new PageInfoAdapter(this, pageInfoBean.getLists(pageInfoBean.getListType().get((tabLayout.getSelectedTabPosition() == -1)?0:tabLayout.getSelectedTabPosition())));
+        adapter = new PageInfoAdapter(this, Resource.pageInfoBean.getLists(Resource.pageInfoBean.getListType().get((tabLayout.getSelectedTabPosition() == -1)?0:tabLayout.getSelectedTabPosition())));
         lv.setAdapter(adapter);
 
-        if (pageInfoBean.getListType() != null) {
-            for (int i = 0; i < pageInfoBean.getListType().size(); i++) {
-                tabLayout.addTab(tabLayout.newTab().setText(pageInfoBean.getListType().get(i)));
+        if (Resource.pageInfoBean.getListType() != null) {
+            for (int i = 0; i < Resource.pageInfoBean.getListType().size(); i++) {
+                tabLayout.addTab(tabLayout.newTab().setText(Resource.pageInfoBean.getListType().get(i)));
             }
         }
 
@@ -137,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                List<PageInfoBean.Lists> list_lists = pageInfoBean.getLists(tab.getText().toString());
+                List<PageInfoBean.Lists> list_lists = Resource.pageInfoBean.getLists(tab.getText().toString());
                 adapter.setData(list_lists);
                 adapter.notifyDataSetChanged();
                 if (TextUtils.isEmpty(editText.getText().toString().trim()))
@@ -598,8 +596,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 return false;
             }
             Log.i("hebaodan", "strJson = " + strJson);
-            Resource.pageInfoBeans = pageInfoBean.getPageInfoBeanList(strJson);
-            Log.i("hebaodan", "pageinfobean = " + pageInfoBean.getPageInfoBeanList(strJson));
+            Resource.pageInfoBean = PageInfoBean.getPageInfoBeanList(strJson);
+            Log.i("hebaodan", "pageinfobean = " + Resource.pageInfoBean.getPageInfoBeanList(strJson));
             return true;
         }
         return false;
