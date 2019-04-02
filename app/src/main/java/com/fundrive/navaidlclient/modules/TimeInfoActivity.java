@@ -1,5 +1,7 @@
 package com.fundrive.navaidlclient.modules;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -48,6 +50,9 @@ public class TimeInfoActivity extends BaseActivity implements OnDateSetListener 
 
     private int timeType = 0;
     private int timeMode = 0;
+
+    private String message;
+    private Dialog sendDialog;
 
     SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private Calendar instance;
@@ -104,6 +109,14 @@ public class TimeInfoActivity extends BaseActivity implements OnDateSetListener 
 
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (sendDialog != null && sendDialog.isShowing()){
+            sendDialog.cancel();
+        }
+    }
+
     @OnClick({R.id.btn_select, R.id.btn_commit, R.id.btn_return})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -112,11 +125,21 @@ public class TimeInfoActivity extends BaseActivity implements OnDateSetListener 
                 break;
             case R.id.btn_commit:
                 makeJson(timeType, timeMode, year, month, day, hour, minute, second);
+                showSendDialog();
                 break;
             case R.id.btn_return:
                 finish();
                 break;
         }
+    }
+
+    private void showSendDialog(){
+        sendDialog = new AlertDialog.Builder(this).create();
+        sendDialog.show();
+        sendDialog.setContentView(R.layout.send_dialog_bg);
+        TextView tv_send = sendDialog.findViewById(R.id.tv_send);
+        tv_send.setText(message);
+        tv_send.setTextIsSelectable(true);
     }
 
     private void makeJson(int timeType, int timeMode, int year, int month, int day, int hour, int minute, int second) {
@@ -138,7 +161,7 @@ public class TimeInfoActivity extends BaseActivity implements OnDateSetListener 
             cmdJson.put(Constant.CMD_KEY, Constant.IA_CMD_SET_TIME_INFOMATION);
             cmdJson.put(Constant.JSON_KEY, jsonObject);
 
-            String message = cmdJson.toString();
+            message = cmdJson.toString();
             sendMessage(message);
             Log.d(TAG, "makeJson: " + message);
         } catch (JSONException e) {

@@ -1,5 +1,7 @@
 package com.fundrive.navaidlclient.modules;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -49,6 +51,9 @@ public class ControlMutimediaActivity extends BaseActivity {
     private int appType = 1;//多媒体应用类型 收音机
     private int playMode = 2;//播放模式 顺序播放
     private int audioSrc = 2;//USB
+
+    private String message;
+    private Dialog sendDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,11 +111,20 @@ public class ControlMutimediaActivity extends BaseActivity {
         });
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (sendDialog != null && sendDialog.isShowing()){
+            sendDialog.cancel();
+        }
+    }
+
     @OnClick({R.id.btn_commit, R.id.btn_return})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_commit:
                 makeJson();
+                showSendDialog();
                 break;
             case R.id.btn_return:
                 finish();
@@ -118,6 +132,14 @@ public class ControlMutimediaActivity extends BaseActivity {
         }
     }
 
+    private void showSendDialog(){
+        sendDialog = new AlertDialog.Builder(this).create();
+        sendDialog.show();
+        sendDialog.setContentView(R.layout.send_dialog_bg);
+        TextView tv_send = sendDialog.findViewById(R.id.tv_send);
+        tv_send.setText(message);
+        tv_send.setTextIsSelectable(true);
+    }
 
     //组装json
     private void makeJson() {
@@ -166,7 +188,7 @@ public class ControlMutimediaActivity extends BaseActivity {
             }
             cmdJson.put(Constant.CMD_KEY, Constant.IA_CMD_NAVAPP_CONTROL_MULTIMEDIA);
             cmdJson.put(Constant.JSON_KEY, jsonObject);
-            String message = cmdJson.toString();
+            message = cmdJson.toString();
             sendMessage(message);
             Log.d(TAG, "makeJson: " + message);
         } catch (JSONException e) {

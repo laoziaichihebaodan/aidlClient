@@ -1,5 +1,7 @@
 package com.fundrive.navaidlclient.modules;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -29,6 +31,9 @@ public class ListAnimationActivity extends BaseActivity {
     private ArrayList<Integer> arrayList = new ArrayList<>();
     private AnimationListAdapter adapter;
 
+    private String message;
+    private Dialog sendDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +43,14 @@ public class ListAnimationActivity extends BaseActivity {
         arrayList.add(1);
         adapter = new AnimationListAdapter(arrayList);
         lvItem.setAdapter(adapter);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (sendDialog != null && sendDialog.isShowing()){
+            sendDialog.cancel();
+        }
     }
 
     @OnClick({R.id.btn_add, R.id.btn_sub, R.id.btn_commit, R.id.btn_return})
@@ -55,11 +68,21 @@ public class ListAnimationActivity extends BaseActivity {
                 break;
             case R.id.btn_commit:
                 makeJson();
+                showSendDialog();
                 break;
             case R.id.btn_return:
                 finish();
                 break;
         }
+    }
+
+    private void showSendDialog(){
+        sendDialog = new AlertDialog.Builder(this).create();
+        sendDialog.show();
+        sendDialog.setContentView(R.layout.send_dialog_bg);
+        TextView tv_send = sendDialog.findViewById(R.id.tv_send);
+        tv_send.setText(message);
+        tv_send.setTextIsSelectable(true);
     }
 
     //组装json
@@ -75,7 +98,7 @@ public class ListAnimationActivity extends BaseActivity {
             cmdJson.put(Constant.CMD_KEY, Constant.IA_CMD_CURRENT_UI_LIST_ANIMATION);
             cmdJson.put(Constant.JSON_KEY, jsonObject);
 
-            String message = cmdJson.toString();
+            message = cmdJson.toString();
             sendMessage(message);
             Log.d(TAG, "makeJson: " + message);
         } catch (JSONException e) {

@@ -1,5 +1,7 @@
 package com.fundrive.navaidlclient.modules;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -42,6 +44,9 @@ public class RouteByConditionActivity extends BaseActivity {
     TextView tvTitle;
     private boolean deleteRoute = false;
     private boolean startNavi = false;
+
+    private String message;
+    private Dialog sendDialog;
 
     public static JSONObject startPoint = Points.pointJson(351,
             12151236, 3129925,
@@ -111,6 +116,14 @@ public class RouteByConditionActivity extends BaseActivity {
         tvTitle.setText("条件算路");
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (sendDialog != null && sendDialog.isShowing()){
+            sendDialog.cancel();
+        }
+    }
+
     @OnClick({R.id.set_start, R.id.btn_end_pos, R.id.set_way_pos1, R.id.set_way_pos2, R.id.set_way_pos3, R.id.btn_commit, R.id.btn_return})
     public void onViewClicked(View view) {
 
@@ -149,11 +162,21 @@ public class RouteByConditionActivity extends BaseActivity {
                 deleteRoute = deleteMode.isChecked();
                 startNavi = isStart.isChecked();
                 makeJson();
+                showSendDialog();
                 break;
             case R.id.btn_return:
                 finish();
                 break;
         }
+    }
+
+    private void showSendDialog(){
+        sendDialog = new AlertDialog.Builder(this).create();
+        sendDialog.show();
+        sendDialog.setContentView(R.layout.send_dialog_bg);
+        TextView tv_send = sendDialog.findViewById(R.id.tv_send);
+        tv_send.setText(message);
+        tv_send.setTextIsSelectable(true);
     }
 
     //组装json
@@ -184,7 +207,7 @@ public class RouteByConditionActivity extends BaseActivity {
             cmdJson.put(Constant.CMD_KEY, Constant.IA_CMD_ROUTE_BY_CONDITION);
             cmdJson.put(Constant.JSON_KEY, jsonObject);
 
-            String message = cmdJson.toString();
+            message = cmdJson.toString();
             sendMessage(message);
             Log.d(TAG, "makeJson: " + message);
         } catch (JSONException e) {

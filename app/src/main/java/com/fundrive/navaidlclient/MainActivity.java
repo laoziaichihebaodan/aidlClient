@@ -257,13 +257,30 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
-        if (!((PageInfoBean.Lists) adapter.getItem(i)).getType().trim().equals("title")) {//点击标题不处理
-            if (((PageInfoBean.Lists) adapter.getItem(i)).getItem() == null) {
-                sendMessage(Integer.parseInt(((PageInfoBean.Lists) adapter.getItem(i)).getCmd(), 16));
-            } else {
-                Intent intent = new Intent(MainActivity.this, OpActivity.class);
-                intent.putExtra("PageInfoBean", (PageInfoBean.Lists) adapter.getItem(i));
-                startActivity(intent);
+        PageInfoBean.Lists lists = (PageInfoBean.Lists) adapter.getItem(i);
+        if (lists.getItem() == null) {
+            sendMessage(Integer.parseInt(lists.getCmd(), 16));
+        } else {
+            switch (Integer.parseInt(lists.getCmd(),16)){
+                case 0x1005:
+                    startActivity(new Intent(MainActivity.this,TimeInfoActivity.class));
+                    break;
+                case 0x1008:
+                    startActivity(new Intent(MainActivity.this,MutimediaInformationActivity.class));
+                    break;
+                case 0x200F:
+                    startActivity(new Intent(MainActivity.this,RouteByConditionActivity.class));
+                    break;
+                case 0x2011:
+                    startActivity(new Intent(MainActivity.this,ListAnimationActivity.class));
+                    break;
+                case 0x2014:
+                    startActivity(new Intent(MainActivity.this,ControlMutimediaActivity.class));
+                    break;
+                default:
+                    Intent intent = new Intent(MainActivity.this, OpActivity.class);
+                    intent.putExtra("PageInfoBean", lists);
+                    startActivity(intent);
             }
         }
 
