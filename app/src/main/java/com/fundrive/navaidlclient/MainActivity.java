@@ -19,6 +19,7 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
@@ -99,8 +100,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @BindView(R.id.tablayout)
     XTabLayout tabLayout;
 
-    PageInfoBean pageInfoBean = PageInfoBean.getInstance();
-
     INavRemoteRequest mNavService;
     boolean mBind = false;
 //    private ArrayAdapter<PageInfoBean> adapter;
@@ -124,12 +123,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         findViewById(R.id.btn_return).setVisibility(View.GONE);
         button.setOnClickListener(this);
 
-        adapter = new PageInfoAdapter(this, pageInfoBean.getLists(pageInfoBean.getListType().get((tabLayout.getSelectedTabPosition() == -1)?0:tabLayout.getSelectedTabPosition())));
+        adapter = new PageInfoAdapter(this, Resource.pageInfoBean.getLists(Resource.pageInfoBean.getListType().get((tabLayout.getSelectedTabPosition() == -1)?0:tabLayout.getSelectedTabPosition())));
         lv.setAdapter(adapter);
 
-        if (pageInfoBean.getListType() != null) {
-            for (int i = 0; i < pageInfoBean.getListType().size(); i++) {
-                tabLayout.addTab(tabLayout.newTab().setText(pageInfoBean.getListType().get(i)));
+        if (Resource.pageInfoBean.getListType() != null) {
+            for (int i = 0; i < Resource.pageInfoBean.getListType().size(); i++) {
+                tabLayout.addTab(tabLayout.newTab().setText(Resource.pageInfoBean.getListType().get(i)));
             }
         }
 
@@ -138,6 +137,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onTabSelected(XTabLayout.Tab tab) {
                 List<PageInfoBean.Lists> list_lists = pageInfoBean.getLists(tab.getText().toString());
+            public void onTabSelected(TabLayout.Tab tab) {
+                List<PageInfoBean.Lists> list_lists = Resource.pageInfoBean.getLists(tab.getText().toString());
                 adapter.setData(list_lists);
                 adapter.notifyDataSetChanged();
                 if (TextUtils.isEmpty(editText.getText().toString().trim()))
@@ -600,8 +601,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 return false;
             }
             Log.i("hebaodan", "strJson = " + strJson);
-            Resource.pageInfoBeans = pageInfoBean.getPageInfoBeanList(strJson);
-            Log.i("hebaodan", "pageinfobean = " + pageInfoBean.getPageInfoBeanList(strJson));
+            Resource.pageInfoBean = PageInfoBean.getPageInfoBeanList(strJson);
+            Log.i("hebaodan", "pageinfobean = " + Resource.pageInfoBean.getPageInfoBeanList(strJson));
             return true;
         }
         return false;
@@ -658,5 +659,20 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         }
 
+    }
+    private long firstTime = 0;
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        long secondTime = System.currentTimeMillis();
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (secondTime - firstTime < 2000) {
+                System.exit(0);
+            } else {
+                Toast.makeText(MainActivity.this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
+                firstTime = System.currentTimeMillis();
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

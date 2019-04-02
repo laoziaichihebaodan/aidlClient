@@ -3,6 +3,7 @@ package com.fundrive.navaidlclient.modules;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 
 import com.fundrive.navaidlclient.Resource;
 import com.fundrive.navaidlclient.ShareConfiguration;
@@ -26,5 +27,11 @@ public class BaseActivity extends AppCompatActivity {
         } else {
             Resource.callAidlFun(message);
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        finish();
+        return super.onKeyDown(keyCode, event);
     }
 }

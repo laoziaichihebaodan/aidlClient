@@ -15,19 +15,11 @@ public class PageInfoBean implements Serializable{
     private List<String> listType;
     private List<Lists> lists;
 
-    private static PageInfoBean pageInfoBean;
 
     private PageInfoBean(){
     }
 
-    public static PageInfoBean getInstance(){
-        if (pageInfoBean == null){
-            pageInfoBean = new PageInfoBean();
-        }
-        return pageInfoBean;
-    }
-
-    public List<PageInfoBean.Lists> getPageInfoBeanList(String strJson){
+    public static PageInfoBean getPageInfoBeanList(String strJson){
         Gson gson = new Gson();//创建Gson对象
 //        JsonParser jsonParser = new JsonParser();
 //        JsonArray jsonElements = jsonParser.parse(strJson).getAsJsonArray();//获取JsonArray对象
@@ -36,12 +28,8 @@ public class PageInfoBean implements Serializable{
 //            list.add(bean1);
 //        }
         PageInfoBean bean = gson.fromJson(strJson, PageInfoBean.class);//解析
-        if (bean != null){
-            setListType(bean.getListType());
-            setLists(bean.getLists());
-        }
         Log.i("hebaodan",bean+"");
-        return lists;
+        return bean;
     }
 
     public class Lists implements Serializable{
