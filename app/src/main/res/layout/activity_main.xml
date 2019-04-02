@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.fundrive.navaidlclient.MainActivity">
 
     <include
@@ -35,10 +36,14 @@
             android:text="清除文本" />
     </LinearLayout>
 
-    <android.support.design.widget.TabLayout
+    <com.androidkun.xtablayout.XTabLayout
         android:id="@+id/tablayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:xTabIndicatorColor="@color/colorPrimary"
+        app:xTabSelectedTextColor="@color/colorPrimary"
+        app:xTabSelectedTextSize="22sp"
+        app:xTabTextSize="20sp"
         android:layout_below="@id/ll_input" />
 
     <ListView

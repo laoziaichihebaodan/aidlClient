@@ -28,6 +28,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.support.design.widget.TabLayout;
 
+import com.androidkun.xtablayout.XTabLayout;
 import com.fundrive.andrive.INavRemoteNotifier;
 import com.fundrive.andrive.INavRemoteRequest;
 import com.fundrive.navaidlclient.adapter.PageInfoAdapter;
@@ -96,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @BindView(R.id.et_content)
     AutoCompleteTextView editText;
     @BindView(R.id.tablayout)
-    TabLayout tabLayout;
+    XTabLayout tabLayout;
 
     PageInfoBean pageInfoBean = PageInfoBean.getInstance();
 
@@ -133,9 +134,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
 
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        tabLayout.setOnTabSelectedListener(new XTabLayout.OnTabSelectedListener() {
             @Override
-            public void onTabSelected(TabLayout.Tab tab) {
+            public void onTabSelected(XTabLayout.Tab tab) {
                 List<PageInfoBean.Lists> list_lists = pageInfoBean.getLists(tab.getText().toString());
                 adapter.setData(list_lists);
                 adapter.notifyDataSetChanged();
@@ -146,11 +147,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
 
             @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
+            public void onTabUnselected(XTabLayout.Tab tab) {
+
             }
 
             @Override
-            public void onTabReselected(TabLayout.Tab tab) {
+            public void onTabReselected(XTabLayout.Tab tab) {
+
             }
         });
 
