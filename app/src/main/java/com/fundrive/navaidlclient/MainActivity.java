@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @BindView(R.id.tablayout)
     TabLayout tabLayout;
 
-    PageInfoBean pageInfoBean = new PageInfoBean();
+    PageInfoBean pageInfoBean = PageInfoBean.getInstance();
 
     INavRemoteRequest mNavService;
     boolean mBind = false;
