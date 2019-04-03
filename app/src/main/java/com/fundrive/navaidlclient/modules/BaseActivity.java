@@ -31,7 +31,10 @@ public class BaseActivity extends AppCompatActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        finish();
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            finish();
+            return true;
+        }
         return super.onKeyDown(keyCode, event);
     }
 }

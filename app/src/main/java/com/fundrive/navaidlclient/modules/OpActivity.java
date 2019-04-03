@@ -339,13 +339,4 @@ public class OpActivity extends BaseActivity {
                 break;
         }
     }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            finish();
-            return true;
-        }
-        return false;
-    }
 }
