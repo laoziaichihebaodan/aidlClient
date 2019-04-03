@@ -59,6 +59,11 @@ public class Resource {
     private static ShareConfiguration mShareConfiguration = null;
     public static int device_model = 0;
     private static String serverIpaddress = null;
+    public static final String fileName = "data.json";
+    public static final String notifyFileName = "output";
+    public static final String notifyFileFormat = ".txt";
+
+
     public static CmdBean[] beans = {
             new CmdBean(Constant.IA_CMD_SET_AUTHORIZE_SERIAL_NUMBER, "授权序列号",
                     Constant.IA_CMD_SET_AUTHORIZE_SERIAL_NUMBER_CONTENT),
@@ -462,7 +467,11 @@ public class Resource {
             try (FileWriter writer = new FileWriter(file,append);
                  BufferedWriter out = new BufferedWriter(writer)
             ) {
-                out.write(data+"\r\n");// \r\n即为换行
+                if (data.equals("")){
+                    out.write(data);
+                }else{
+                    out.write(data+"\r\n");// \r\n即为换行
+                }
                 out.flush();
                 out.close();
                 writer.close();
@@ -526,6 +535,6 @@ public class Resource {
         }
         inputChannel.close();
         fis.close();
-
+        Resource.writeFile("",notifyFileName+notifyFileFormat,false);
     }
 }

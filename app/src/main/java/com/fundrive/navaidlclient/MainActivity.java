@@ -108,9 +108,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 //    private ArrayAdapter<PageInfoBean> adapter;
     private PageInfoAdapter adapter;
     private int REQUEST_CODE = 1;
-    private String fileName = "data.json";
-    private String notifyFileName = "output";
-    private String notifyFileFormat = ".txt";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         checkPermission();
         //防止写入文件过大，分割成多个文件
         try {
-            Resource.splitFile(Environment.getExternalStorageDirectory().toString()+"/"+notifyFileName,notifyFileFormat,3,10);
+            Resource.splitFile(Environment.getExternalStorageDirectory().toString()+"/"+Resource.notifyFileName,Resource.notifyFileFormat,3,10);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -238,10 +236,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         @Override
         public void onNotify(int ia_cmd, String ia_json) throws RemoteException {
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss:SS");// HH:mm:ss:SS
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SS");// HH:mm:ss:SS
             Date date = new Date(System.currentTimeMillis());//获取当前时间
             String data = simpleDateFormat.format(date)+": cmd = "+ia_cmd + "---json = "+ia_json;
-            Resource.writeFile(data,notifyFileName+notifyFileFormat,true);
+            Resource.writeFile(data,Resource.notifyFileName+Resource.notifyFileFormat,true);
             Log.i("hebaodan",data);
         }
 
@@ -624,7 +622,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         Log.i("hebaodan", "sd卡是否存在 = " + sdCardExist);
         if (sdCardExist) {
             File sdDir = Environment.getExternalStorageDirectory();//获取根目录
-            String strJson = readString(sdDir, fileName);
+            String strJson = readString(sdDir, Resource.fileName);
             if (strJson == null) {
                 return false;
             }
@@ -682,9 +680,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         if (requestCode == REQUEST_CODE) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(this, "授权成功！", Toast.LENGTH_SHORT).show();
-                if (parseFileInfo()) {
-                    init();
-                }
+                Log.i("hebaodan_permission", "checkPermission: 已经授权！3333");
+                //授权成功会重新走Activity的生命周期
+//                if (parseFileInfo()) {
+//                    init();
+//                }
 
             }
         }
@@ -697,7 +697,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (secondTime - firstTime < 2000) {
                 Gson gson = new Gson();
-                Resource.writeFile(gson.toJson(Resource.pageInfoBean),fileName,false);
+                Resource.writeFile(gson.toJson(Resource.pageInfoBean),Resource.fileName,false);
                 System.exit(0);
             } else {
                 Toast.makeText(MainActivity.this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
