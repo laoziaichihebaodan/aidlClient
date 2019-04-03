@@ -178,7 +178,7 @@ public class Resource {
     public static void init(Context context) {
         ctx = context;
         mShareConfiguration = new ShareConfiguration(ctx, ShareConfiguration.SETTING_INFOS);
-        initWlan(mShareConfiguration.getDeviceModel());
+        initWlan(device_model = mShareConfiguration.getDeviceModel());
     }
 
     public static void changeWlan(){
