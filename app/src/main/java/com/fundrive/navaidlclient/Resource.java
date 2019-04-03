@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Build;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.os.RemoteException;
@@ -22,10 +23,13 @@ import com.fundrive.navaidlclient.bean.PageInfoBean;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -439,4 +443,28 @@ public class Resource {
         return ipAddress;
     }
 
+    /**
+     *
+     * @param data      写入文本内容
+     * @param fileName  文件名
+     * @param append    是否追加写入
+     */
+    public static void writeFile(String data,String fileName,Boolean append) {
+        try {
+            File file = new File(Environment.getExternalStorageDirectory(),fileName); // 相对路径，如果没有则要建立一个新的output.txt文件
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            try (FileWriter writer = new FileWriter(file,append);
+                 BufferedWriter out = new BufferedWriter(writer)
+            ) {
+                out.write(data+"\r\n");// \r\n即为换行
+                out.flush();
+                out.close();
+                writer.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

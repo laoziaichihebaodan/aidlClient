@@ -106,6 +106,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private PageInfoAdapter adapter;
     private int REQUEST_CODE = 1;
     private String fileName = "data.json";
+    private String notifyFileName = "output.txt";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -218,9 +219,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         @Override
         public void onNotify(int ia_cmd, String ia_json) throws RemoteException {
-            System.out.println(ia_cmd);
-            System.out.println("" + ia_json);
-            Toast.makeText(MainActivity.this, "cmd = " + ia_cmd + "\n json = " + ia_json, Toast.LENGTH_LONG).show();
+            String data = "cmd = "+ia_cmd + "---json = "+ia_json;
+            Resource.writeFile(data,notifyFileName,true);
+            Log.i("hebaodan",data);
         }
 
         @Override
