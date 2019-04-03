@@ -72,6 +72,7 @@ import com.fundrive.navaidlclient.modules.TimeInfoActivity;
 import com.fundrive.navaidlclient.modules.TmcActivity;
 import com.fundrive.navaidlclient.modules.UpdateFavActivity;
 import com.fundrive.navaidlclient.modules.WritingStateActivity;
+import com.google.gson.Gson;
 import com.google.gson.internal.bind.ReflectiveTypeAdapterFactory;
 
 import org.json.JSONException;
@@ -688,6 +689,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         long secondTime = System.currentTimeMillis();
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (secondTime - firstTime < 2000) {
+                Gson gson = new Gson();
+                Resource.writeFile(gson.toJson(Resource.pageInfoBean),fileName,false);
                 System.exit(0);
             } else {
                 Toast.makeText(MainActivity.this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
