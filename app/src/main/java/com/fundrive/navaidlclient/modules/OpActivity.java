@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.fundrive.navaidlclient.Constant;
 import com.fundrive.navaidlclient.R;
+import com.fundrive.navaidlclient.Resource;
 import com.fundrive.navaidlclient.bean.PageInfoBean;
 
 import org.json.JSONException;
@@ -48,6 +49,8 @@ public class OpActivity extends BaseActivity {
     LinearLayout ll_root;
 
     private PageInfoBean.Lists protocolData;
+    private int lists_index;
+
     List<PageInfoBean.Page> viewList = new ArrayList<>();
     List<PageInfoBean.SecondKey>  secondFloorKey = new ArrayList<>();
     List<PageInfoBean.ThirdKey>  thirdFloorKey = new ArrayList<>();
@@ -64,6 +67,7 @@ public class OpActivity extends BaseActivity {
 
         Intent intent = getIntent();
         protocolData = (PageInfoBean.Lists) intent.getSerializableExtra("PageInfoBean");
+        lists_index = intent.getIntExtra("lists_index",0);
 
         ininView();
         initData();
@@ -76,6 +80,14 @@ public class OpActivity extends BaseActivity {
         if (sendDialog != null && sendDialog.isShowing()){
             sendDialog.cancel();
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        Resource.pageInfoBean.getLists().remove(lists_index);
+        Resource.pageInfoBean.getLists().add(lists_index,protocolData);
     }
 
     @OnClick({R.id.btn_apply, R.id.iv_return})
@@ -238,15 +250,20 @@ public class OpActivity extends BaseActivity {
 
                 List<PageInfoBean.SpinnerValue> list_spinnerValue = page.getSpinnerValue();
                 List<String> list_spinnerValue_name = new ArrayList<>();
+                int select_index = 0;
                 final List<String> list_spinnerValue_value = new ArrayList<>();
                 for (PageInfoBean.SpinnerValue spinnerValue:list_spinnerValue){
                     list_spinnerValue_name.add(spinnerValue.getName());
                     list_spinnerValue_value.add(spinnerValue.getValue());
+                    if (spinnerValue.getValue().equals(page.getValue())){
+                        select_index = list_spinnerValue.indexOf(spinnerValue);
+                    }
                 }
 
                 ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,list_spinnerValue_name);
                 Spinner spinner = new Spinner(this);
                 spinner.setAdapter(adapter);
+                spinner.setSelection(select_index);
                 spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
