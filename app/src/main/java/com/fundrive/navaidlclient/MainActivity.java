@@ -119,6 +119,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         checkPermission();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        adapter.setData(null);
+        adapter.setData(Resource.pageInfoBean.getLists(Resource.pageInfoBean.getListType().get((tabLayout.getSelectedTabPosition() == -1)?0:tabLayout.getSelectedTabPosition())));
+        adapter.notifyDataSetChanged();
+    }
+
     private void init(){
         tv_change.setVisibility(View.VISIBLE);
         tv_change.setOnClickListener(this);
@@ -140,6 +148,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onTabSelected(XTabLayout.Tab tab) {
                 List<PageInfoBean.Lists> list_lists = Resource.pageInfoBean.getLists(tab.getText().toString());
+                adapter.setData(null);
                 adapter.setData(list_lists);
                 adapter.notifyDataSetChanged();
                 if (TextUtils.isEmpty(editText.getText().toString().trim()))
@@ -266,6 +275,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
         PageInfoBean.Lists lists = (PageInfoBean.Lists) adapter.getItem(i);
+        int lists_index = 0;
+
+        for (PageInfoBean.Lists lists_i:Resource.pageInfoBean.getLists()){
+            if (lists.getCmd().equals(lists_i.getCmd()) && lists.getName().equals(lists_i.getName())){
+                lists_index = Resource.pageInfoBean.getLists().indexOf(lists_i);
+            }
+        }
         if (lists.getItem() == null) {
             sendMessage(Integer.parseInt(lists.getCmd(), 16));
         } else {
@@ -288,6 +304,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 default:
                     Intent intent = new Intent(MainActivity.this, OpActivity.class);
                     intent.putExtra("PageInfoBean", lists);
+                    intent.putExtra("lists_index", lists_index);
                     startActivity(intent);
             }
         }
