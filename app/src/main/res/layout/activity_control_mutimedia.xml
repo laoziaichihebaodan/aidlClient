@@ -1,241 +1,247 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".modules.ControlMutimediaActivity">
 
     <include layout="@layout/item_title" />
 
-    <TextView
-        android:id="@+id/title"
-        style="@style/Text_Title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="100dp"
-        android:text="执行多媒体控制"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv_operation"
-        style="@style/Text_Body"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="24dp"
-        android:text="操作类型"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <Spinner
-        android:id="@+id/sp_op_type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:entries="@array/media_opration_type"
-        app:layout_constraintBottom_toBottomOf="@id/tv_operation"
-        app:layout_constraintStart_toEndOf="@id/tv_operation"
-        app:layout_constraintTop_toTopOf="@id/tv_operation" />
+            <TextView
+                android:id="@+id/title"
+                style="@style/Text_Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:text="执行多媒体控制" />
 
-    <TextView
-        android:id="@+id/tv_app"
-        style="@style/Text_Body"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="24dp"
-        android:text="多媒体应用类别"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sp_op_type" />
+            <TextView
+                android:id="@+id/tv_operation"
+                style="@style/Text_Body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
+                android:text="操作类型" />
 
-    <Spinner
-        android:id="@+id/sp_app_type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:entries="@array/media_app_type"
-        app:layout_constraintBottom_toBottomOf="@id/tv_app"
-        app:layout_constraintStart_toEndOf="@id/tv_app"
-        app:layout_constraintTop_toTopOf="@id/tv_app" />
+            <Spinner
+                android:id="@+id/sp_op_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
+                android:layout_toEndOf="@id/tv_operation"
+                android:entries="@array/media_opration_type" />
 
-    <TextView
-        android:id="@+id/tv_play_mode"
-        style="@style/Text_Body"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="24dp"
-        android:text="音乐播放模式"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sp_app_type" />
+            <TextView
+                android:id="@+id/tv_app"
+                style="@style/Text_Body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_operation"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
+                android:text="多媒体应用类别" />
 
-    <Spinner
-        android:id="@+id/sp_play_mode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:entries="@array/music_play_mode"
-        app:layout_constraintBottom_toBottomOf="@id/tv_play_mode"
-        app:layout_constraintStart_toEndOf="@id/tv_play_mode"
-        app:layout_constraintTop_toTopOf="@id/tv_play_mode" />
+            <Spinner
+                android:id="@+id/sp_app_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_operation"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
+                android:layout_toEndOf="@id/tv_app"
+                android:entries="@array/media_app_type" />
 
-    <TextView
-        android:id="@+id/tv_audio_src"
-        style="@style/Text_Body"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="24dp"
-        android:text="音频源类型"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sp_play_mode" />
+            <TextView
+                android:id="@+id/tv_play_mode"
+                style="@style/Text_Body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_app"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
+                android:text="音乐播放模式" />
 
-    <Spinner
-        android:id="@+id/sp_audio_src"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:entries="@array/audio_type"
-        app:layout_constraintBottom_toBottomOf="@id/tv_audio_src"
-        app:layout_constraintStart_toEndOf="@id/tv_audio_src"
-        app:layout_constraintTop_toTopOf="@id/tv_audio_src" />
+            <Spinner
+                android:id="@+id/sp_play_mode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_app"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
+                android:layout_toEndOf="@id/tv_play_mode"
+                android:entries="@array/music_play_mode" />
 
-    <TextView
-        android:id="@+id/tv_frequency"
-        style="@style/Text_Body"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="24dp"
-        android:text="频道"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sp_audio_src" />
+            <TextView
+                android:id="@+id/tv_audio_src"
+                style="@style/Text_Body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_play_mode"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
+                android:text="音频源类型"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/sp_play_mode" />
 
-    <EditText
-        android:id="@+id/et_frequenc_int"
-        style="@style/Text_Body_Pri"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:inputType="number"
-        android:text="90"
-        app:layout_constraintBottom_toBottomOf="@id/tv_frequency"
-        app:layout_constraintStart_toEndOf="@id/tv_frequency"
-        app:layout_constraintTop_toTopOf="@id/tv_frequency" />
+            <Spinner
+                android:id="@+id/sp_audio_src"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_play_mode"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
+                android:layout_toEndOf="@id/tv_audio_src"
+                android:entries="@array/audio_type" />
 
-    <EditText
-        android:id="@+id/et_frequenc_dec"
-        style="@style/Text_Body_Pri"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:inputType="number"
-        android:text="0"
-        app:layout_constraintBottom_toBottomOf="@id/tv_frequency"
-        app:layout_constraintStart_toEndOf="@id/et_frequenc_int"
-        app:layout_constraintTop_toTopOf="@id/tv_frequency" />
+            <TextView
+                android:id="@+id/tv_frequency"
+                style="@style/Text_Body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_audio_src"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
+                android:text="频道" />
 
-    <TextView
-        android:id="@+id/tv_singer"
-        style="@style/Text_Body"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="24dp"
-        android:text="歌手名"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_frequenc_int" />
+            <EditText
+                android:id="@+id/et_frequenc_int"
+                style="@style/Text_Body_Pri"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_audio_src"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
+                android:layout_toEndOf="@id/tv_frequency"
+                android:inputType="number"
+                android:text="90" />
 
-    <EditText
-        android:id="@+id/et_singer"
-        style="@style/Text_Body_Pri"
-        android:layout_width="220dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:text="汪峰"
-        app:layout_constraintBottom_toBottomOf="@id/tv_singer"
-        app:layout_constraintStart_toEndOf="@id/tv_singer"
-        app:layout_constraintTop_toTopOf="@id/tv_singer" />
+            <EditText
+                android:id="@+id/et_frequenc_dec"
+                style="@style/Text_Body_Pri"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_audio_src"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
+                android:layout_toEndOf="@id/et_frequenc_int"
+                android:inputType="number"
+                android:text="0" />
 
-    <TextView
-        android:id="@+id/tv_music_name"
-        style="@style/Text_Body"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="24dp"
-        android:text="歌曲名"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_singer" />
+            <TextView
+                android:id="@+id/tv_singer"
+                style="@style/Text_Body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_frequency"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
+                android:text="歌手名" />
 
-    <EditText
-        android:id="@+id/et_misc"
-        style="@style/Text_Body_Pri"
-        android:layout_width="220dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:text="春天里"
-        app:layout_constraintBottom_toBottomOf="@id/tv_music_name"
-        app:layout_constraintStart_toEndOf="@id/tv_music_name"
-        app:layout_constraintTop_toTopOf="@id/tv_music_name" />
+            <EditText
+                android:id="@+id/et_singer"
+                style="@style/Text_Body_Pri"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_frequency"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
+                android:layout_toEndOf="@id/tv_singer"
+                android:text="汪峰"
+                app:layout_constraintBottom_toBottomOf="@id/tv_singer"
+                app:layout_constraintStart_toEndOf="@id/tv_singer"
+                app:layout_constraintTop_toTopOf="@id/tv_singer" />
 
-    <TextView
-        android:id="@+id/tv_tag"
-        style="@style/Text_Body"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="24dp"
-        android:text="标签"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_music_name" />
+            <TextView
+                android:id="@+id/tv_music_name"
+                style="@style/Text_Body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_singer"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
+                android:text="歌曲名" />
 
-    <EditText
-        android:id="@+id/et_tag"
-        style="@style/Text_Body_Pri"
-        android:layout_width="220dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:text="中国移动"
-        app:layout_constraintBottom_toBottomOf="@id/tv_tag"
-        app:layout_constraintStart_toEndOf="@id/tv_tag"
-        app:layout_constraintTop_toTopOf="@id/tv_tag" />
+            <EditText
+                android:id="@+id/et_misc"
+                style="@style/Text_Body_Pri"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_singer"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
+                android:layout_toEndOf="@id/tv_music_name"
+                android:text="春天里" />
 
-    <TextView
-        android:id="@+id/tv_phone"
-        style="@style/Text_Body"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="24dp"
-        android:text="电话"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_tag" />
+            <TextView
+                android:id="@+id/tv_tag"
+                style="@style/Text_Body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_music_name"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
+                android:text="标签" />
 
-    <EditText
-        android:id="@+id/et_phone"
-        style="@style/Text_Body_Pri"
-        android:layout_width="220dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:inputType="phone"
-        android:text="10086"
-        app:layout_constraintBottom_toBottomOf="@id/tv_phone"
-        app:layout_constraintStart_toEndOf="@id/tv_phone"
-        app:layout_constraintTop_toTopOf="@id/tv_phone" />
+            <EditText
+                android:id="@+id/et_tag"
+                style="@style/Text_Body_Pri"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_music_name"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
+                android:layout_toEndOf="@id/tv_tag"
+                android:text="中国移动" />
 
-    <Button
-        android:id="@+id/btn_commit"
-        style="@style/Bottom_Solid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="应用"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                android:id="@+id/tv_phone"
+                style="@style/Text_Body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_tag"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
+                android:text="电话" />
 
-</android.support.constraint.ConstraintLayout>
+            <EditText
+                android:id="@+id/et_phone"
+                style="@style/Text_Body_Pri"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_tag"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
+                android:layout_toEndOf="@id/tv_phone"
+                android:inputType="phone"
+                android:text="10086" />
+
+            <Button
+                android:id="@+id/btn_commit"
+                style="@style/Bottom_Solid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_phone"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="40dp"
+                android:text="应用" />
+        </RelativeLayout>
+
+    </ScrollView>
+
+</LinearLayout>

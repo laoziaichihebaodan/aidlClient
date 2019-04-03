@@ -1,138 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".modules.MutimediaInformationActivity">
 
     <include
         android:id="@+id/ll_title"
         layout="@layout/item_title" />
 
-    <TextView
-        android:id="@+id/title"
-        style="@style/Text_Title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="100dp"
-        android:text="设置多媒体信息"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ll_title" />
-
-    <TextView
-        android:id="@+id/tv_source"
-        style="@style/Text_Body"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="24dp"
-        android:text="音频源"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
-
-    <Spinner
-        android:id="@+id/sp_source_"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="28dp"
-        android:entries="@array/source_type"
-        app:layout_constraintStart_toEndOf="@+id/tv_source"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
-
-    <TextView
-        android:id="@+id/tv_misc"
-        style="@style/Text_Body"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="24dp"
-        android:text="音乐名"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sp_source_" />
-
-    <EditText
-        android:id="@+id/et_misc"
-        android:layout_width="302dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintStart_toEndOf="@+id/tv_misc"
-        app:layout_constraintTop_toBottomOf="@id/sp_source_" />
-
-    <TextView
-        android:id="@+id/tv_radio_band"
-        style="@style/Text_Body"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="24dp"
-        android:text="收音波段"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_misc" />
-
-    <Spinner
-        android:id="@+id/sp_radio_band"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="28dp"
-        android:entries="@array/radio_band"
-        app:layout_constraintStart_toEndOf="@+id/tv_radio_band"
-        app:layout_constraintTop_toBottomOf="@+id/et_misc" />
-
-    <TextView
-        android:id="@+id/tv_frequency"
-        style="@style/Text_Body"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="60dp"
-        android:text="频率"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_radio_band" />
-
-    <NumberPicker
-        android:id="@+id/np_int"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="36dp"
-        app:layout_constraintStart_toEndOf="@+id/tv_frequency"
-        app:layout_constraintTop_toBottomOf="@+id/sp_radio_band" />
-
-    <NumberPicker
-        android:id="@+id/np_dec"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="36dp"
-        app:layout_constraintStart_toEndOf="@+id/np_int"
-        app:layout_constraintTop_toBottomOf="@+id/sp_radio_band" />
-
-    <Button
-        android:id="@+id/btn_commit"
-        style="@style/Bottom_Solid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="应用"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/np_int" />
-
-    <TextView
-        android:id="@+id/tv_instruct"
-        style="@style/Text_Body"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="24dp"
-        android:text="lgdirve无多媒体功能"
-        android:textColor="#f00"
-        app:layout_constraintStart_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_commit" />
-</android.support.constraint.ConstraintLayout>
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/title"
+                style="@style/Text_Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:text="设置多媒体信息" />
+
+            <TextView
+                android:id="@+id/tv_source"
+                style="@style/Text_Body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
+                android:text="音频源" />
+
+            <Spinner
+                android:id="@+id/sp_source_"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
+                android:layout_toEndOf="@id/tv_source"
+                android:entries="@array/source_type" />
+
+            <TextView
+                android:id="@+id/tv_misc"
+                style="@style/Text_Body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_source"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
+                android:text="音乐名" />
+
+            <EditText
+                android:id="@+id/et_misc"
+                android:layout_width="302dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_source"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_toEndOf="@id/tv_misc" />
+
+            <TextView
+                android:id="@+id/tv_radio_band"
+                style="@style/Text_Body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_misc"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
+                android:text="收音波段" />
+
+            <Spinner
+                android:id="@+id/sp_radio_band"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_misc"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="28dp"
+                android:layout_toEndOf="@id/tv_radio_band"
+                android:entries="@array/radio_band" />
+
+            <TextView
+                android:id="@+id/tv_frequency"
+                style="@style/Text_Body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_radio_band"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="60dp"
+                android:text="频率" />
+
+            <NumberPicker
+                android:id="@+id/np_int"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_radio_band"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="36dp"
+                android:layout_toEndOf="@id/tv_radio_band" />
+
+            <NumberPicker
+                android:id="@+id/np_dec"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_radio_band"
+                android:layout_marginStart="52dp"
+                android:layout_marginTop="36dp"
+                android:layout_toEndOf="@id/np_int" />
+
+            <Button
+                android:id="@+id/btn_commit"
+                style="@style/Bottom_Solid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/np_dec"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="40dp"
+                android:text="应用" />
+
+            <TextView
+                android:id="@+id/tv_instruct"
+                style="@style/Text_Body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btn_commit"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
+                android:text="lgdirve无多媒体功能"
+                android:textColor="#f00" />
+        </RelativeLayout>
+    </ScrollView>
+
+</LinearLayout>
