@@ -82,6 +82,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -219,7 +221,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         @Override
         public void onNotify(int ia_cmd, String ia_json) throws RemoteException {
-            String data = "cmd = "+ia_cmd + "---json = "+ia_json;
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss:SS");// HH:mm:ss:SS
+            Date date = new Date(System.currentTimeMillis());//获取当前时间
+            String data = simpleDateFormat.format(date)+": cmd = "+ia_cmd + "---json = "+ia_json;
             Resource.writeFile(data,notifyFileName,true);
             Log.i("hebaodan",data);
         }
