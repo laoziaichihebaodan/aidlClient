@@ -33,10 +33,8 @@ public class TimeInfoActivity extends BaseActivity implements OnDateSetListener 
 
     @BindView(R.id.sp_set_mode)
     Spinner spSetMode;
-    private int spSetMode_index;
     @BindView(R.id.sp_time_mode)
     Spinner spTimeMode;
-    private int spTimeMode_index;
     @BindView(R.id.tv_time)
     TextView tvTime;
     @BindView(R.id.tv_title)
@@ -78,10 +76,8 @@ public class TimeInfoActivity extends BaseActivity implements OnDateSetListener 
         if (protocolData.getSendJson()!=null && !protocolData.getSendJson().isEmpty()){
             try {
                 obj_sendJson = new JSONObject(protocolData.getSendJson());
-                spSetMode_index = obj_sendJson.getInt("timeType")-1;
-                spSetMode.setSelection(spSetMode_index);
-                spTimeMode_index = obj_sendJson.getInt("timeMode")-1;
-                spTimeMode.setSelection(spTimeMode_index);
+                spSetMode.setSelection(obj_sendJson.getInt("timeType")-1);
+                spTimeMode.setSelection(obj_sendJson.getInt("timeMode")-1);
                 JSONObject obj_timeValue = obj_sendJson.getJSONObject("timeValue");
                 year = obj_timeValue.getInt("year");
                 month = obj_timeValue.getInt("month");
@@ -89,9 +85,6 @@ public class TimeInfoActivity extends BaseActivity implements OnDateSetListener 
                 hour = obj_timeValue.getInt("hour");
                 minute = obj_timeValue.getInt("minute");
                 second = obj_timeValue.getInt("second");
-                if (instance == null){
-                    instance = Calendar.getInstance();
-                }
                 if (!(year == 0 && month == 0 && day == 0 && hour == 0 && minute == 0 && second == 0)){
                     tvTime.setText("" + year + "-" + month + "-" + day + " " + hour + ":"
                             + minute + ":" + second);
