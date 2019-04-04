@@ -291,28 +291,29 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         if (lists.getItem() == null) {
             sendMessage(Integer.parseInt(lists.getCmd(), 16));
         } else {
+            Intent intent;
             switch (Integer.parseInt(lists.getCmd(),16)){
                 case 0x1005:
-                    startActivity(new Intent(MainActivity.this,TimeInfoActivity.class));
+                    intent = new Intent(MainActivity.this, TimeInfoActivity.class);
                     break;
                 case 0x1008:
-                    startActivity(new Intent(MainActivity.this,MutimediaInformationActivity.class));
+                    intent = new Intent(MainActivity.this, MutimediaInformationActivity.class);
                     break;
                 case 0x200F:
-                    startActivity(new Intent(MainActivity.this,RouteByConditionActivity.class));
+                    intent = new Intent(MainActivity.this, RouteByConditionActivity.class);
                     break;
                 case 0x2011:
-                    startActivity(new Intent(MainActivity.this,ListAnimationActivity.class));
+                    intent = new Intent(MainActivity.this, ListAnimationActivity.class);
                     break;
                 case 0x2014:
-                    startActivity(new Intent(MainActivity.this,ControlMutimediaActivity.class));
+                    intent = new Intent(MainActivity.this, ControlMutimediaActivity.class);
                     break;
                 default:
-                    Intent intent = new Intent(MainActivity.this, OpActivity.class);
-                    intent.putExtra("PageInfoBean", lists);
-                    intent.putExtra("lists_index", lists_index);
-                    startActivity(intent);
+                    intent = new Intent(MainActivity.this, OpActivity.class);
             }
+            intent.putExtra("PageInfoBean", lists);
+            intent.putExtra("lists_index", lists_index);
+            startActivity(intent);
         }
 
 //        switch (bean.getCMD()) {
