@@ -238,7 +238,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         public void onNotify(int ia_cmd, String ia_json) throws RemoteException {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SS");// HH:mm:ss:SS
             Date date = new Date(System.currentTimeMillis());//获取当前时间
-            String data = simpleDateFormat.format(date)+": cmd = "+ia_cmd + "---json = "+ia_json;
+            String data = simpleDateFormat.format(date)+": cmd = "+Integer.toHexString(ia_cmd) + "---json = "+ia_json;
             Resource.writeFile(data,Resource.notifyFileName+Resource.notifyFileFormat,true);
             Log.i("hebaodan",data);
         }
