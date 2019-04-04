@@ -19,6 +19,10 @@ public class AnimationListAdapter extends BaseAdapter {
         this.animations = animations;
     }
 
+    public void setAnimations(List<Integer> animations){
+        this.animations = animations;
+    }
+
     @Override
     public int getCount() {
         return animations.size();
