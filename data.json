@@ -230,7 +230,8 @@
 		"type": "设置",
 		"tips": "",
 		"cmd": "1005",
-		"item": {}
+		"item": {},
+		"sendJson":"{\"timeType\":3,\"timeMode\":2,\"timeValue\":{\"year\":0,\"month\":0,\"date\":0,\"hour\":0,\"minute\":0,\"second\":0}}"
 	},
 	{
 		"name": "输入法(未定义)",
@@ -305,7 +306,8 @@
 		"type": "多媒体",
 		"tips": "lgdrive无多媒体功能",
 		"cmd": "1008",
-		"item": {}
+		"item": {},
+		"sendJson":""
 	},
 	{
 		"name": "导航信息发送开关",
@@ -738,7 +740,8 @@
 		"type": "算路",
 		"tips": "",
 		"cmd": "200F",
-		"item": {}
+		"item": {},
+		"sendJson":""
 	},
 	{
 		"name": "NavApp画面所在的显示屏幕",
@@ -775,7 +778,8 @@
 		"type": "巡航",
 		"tips": "",
 		"cmd": "2011",
-		"item": {}
+		"item": {},
+		"sendJson":""
 	},
 	{
 		"name": "收藏点导航(家/公司导航)",
@@ -838,7 +842,8 @@
 		"type": "多媒体",
 		"tips": "",
 		"cmd": "2014",
-		"item": {}
+		"item": {},
+		"sendJson":""
 	},
 	{
 		"name": "查看帮助信息",
