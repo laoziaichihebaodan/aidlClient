@@ -231,7 +231,7 @@
 		"tips": "",
 		"cmd": "1005",
 		"item": {},
-		"sendJson":""
+		"sendJson":"{\"timeType\":3,\"timeMode\":2,\"timeValue\":{\"year\":0,\"month\":0,\"date\":0,\"hour\":0,\"minute\":0,\"second\":0}}"
 	},
 	{
 		"name": "输入法(未定义)",

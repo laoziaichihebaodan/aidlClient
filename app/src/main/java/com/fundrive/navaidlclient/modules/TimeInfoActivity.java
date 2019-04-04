@@ -2,6 +2,7 @@ package com.fundrive.navaidlclient.modules;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 
 import com.fundrive.navaidlclient.Constant;
 import com.fundrive.navaidlclient.R;
+import com.fundrive.navaidlclient.Resource;
+import com.fundrive.navaidlclient.bean.PageInfoBean;
 import com.jzxiang.pickerview.TimePickerDialog;
 import com.jzxiang.pickerview.data.Type;
 import com.jzxiang.pickerview.listener.OnDateSetListener;
@@ -30,8 +33,10 @@ public class TimeInfoActivity extends BaseActivity implements OnDateSetListener 
 
     @BindView(R.id.sp_set_mode)
     Spinner spSetMode;
+    private int spSetMode_index;
     @BindView(R.id.sp_time_mode)
     Spinner spTimeMode;
+    private int spTimeMode_index;
     @BindView(R.id.tv_time)
     TextView tvTime;
     @BindView(R.id.tv_title)
@@ -57,17 +62,58 @@ public class TimeInfoActivity extends BaseActivity implements OnDateSetListener 
     SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private Calendar instance;
 
+    private PageInfoBean.Lists protocolData;
+    private int lists_index;
+    private JSONObject obj_sendJson;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time_info);
         ButterKnife.bind(this);
+
+        Intent intent = getIntent();
+        protocolData = (PageInfoBean.Lists) intent.getSerializableExtra("PageInfoBean");
+        lists_index = intent.getIntExtra("lists_index",0);
+        if (protocolData.getSendJson()!=null && !protocolData.getSendJson().isEmpty()){
+            try {
+                obj_sendJson = new JSONObject(protocolData.getSendJson());
+                spSetMode_index = obj_sendJson.getInt("timeType")-1;
+                spSetMode.setSelection(spSetMode_index);
+                spTimeMode_index = obj_sendJson.getInt("timeMode")-1;
+                spTimeMode.setSelection(spTimeMode_index);
+                JSONObject obj_timeValue = obj_sendJson.getJSONObject("timeValue");
+                year = obj_timeValue.getInt("year");
+                month = obj_timeValue.getInt("month");
+                day = obj_timeValue.getInt("date");
+                hour = obj_timeValue.getInt("hour");
+                minute = obj_timeValue.getInt("minute");
+                second = obj_timeValue.getInt("second");
+                if (instance == null){
+                    instance = Calendar.getInstance();
+                }
+                if (!(year == 0 && month == 0 && day == 0 && hour == 0 && minute == 0 && second == 0)){
+                    tvTime.setText("" + year + "-" + month + "-" + day + " " + hour + ":"
+                            + minute + ":" + second);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
         tvTitle.setText("时间信息");
         spSetMode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 timeType = timeTypes[position];
+                if (obj_sendJson != null){
+                    try {
+                        obj_sendJson.put("timeType",timeType);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
 
             @Override
@@ -79,6 +125,13 @@ public class TimeInfoActivity extends BaseActivity implements OnDateSetListener 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 timeMode = timeModes[position];
+                if (obj_sendJson != null){
+                    try {
+                        obj_sendJson.put("timeMode",timeMode);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
 
             @Override
@@ -115,6 +168,38 @@ public class TimeInfoActivity extends BaseActivity implements OnDateSetListener 
         if (sendDialog != null && sendDialog.isShowing()){
             sendDialog.cancel();
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        if (obj_sendJson != null){
+            protocolData.setSendJson(obj_sendJson.toString());
+        } else {
+            try {
+                JSONObject obj_sendJson_m = new JSONObject();
+                JSONObject timeJson = new JSONObject();
+
+                timeJson.put("year", year);
+                timeJson.put("month", month);
+                timeJson.put("date", day);
+                timeJson.put("hour", hour);
+                timeJson.put("minute", minute);
+                timeJson.put("second", second);
+
+                obj_sendJson_m.put("timeType",timeType);
+                obj_sendJson_m.put("timeMode", timeMode);
+                obj_sendJson_m.put("timeValue", timeJson);
+
+                protocolData.setSendJson(obj_sendJson_m.toString());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        Resource.pageInfoBean.getLists().remove(lists_index);
+        Resource.pageInfoBean.getLists().add(lists_index,protocolData);
     }
 
     @OnClick({R.id.btn_select, R.id.btn_commit, R.id.btn_return})
@@ -180,6 +265,21 @@ public class TimeInfoActivity extends BaseActivity implements OnDateSetListener 
         hour = instance.get(Calendar.HOUR_OF_DAY);
         minute = instance.get(Calendar.MINUTE);
         second = instance.get(Calendar.SECOND);
+
+        if (obj_sendJson != null){
+            try {
+                JSONObject obj_timeValue = obj_sendJson.getJSONObject("timeValue");
+                obj_timeValue.put("year",year);
+                obj_timeValue.put("month",month);
+                obj_timeValue.put("date",day);
+                obj_timeValue.put("hour",hour);
+                obj_timeValue.put("minute",minute);
+                obj_timeValue.put("second",second);
+                obj_sendJson.put("timeValue",obj_sendJson);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
 
         tvTime.setText("" + year + "-" + month + "-" + day + " " + hour + ":"
                 + minute + ":" + second);
