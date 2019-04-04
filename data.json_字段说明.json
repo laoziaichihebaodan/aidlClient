@@ -6,6 +6,7 @@
           "type": "设置",//首页分类类型，如果是标题 value = "title" 如果是其他 value = "listType列表中的其中一个值"
           "tips":"",//发送页提示内容
           "cmd": "1002",//协议标识（16进制去掉0x）
+		  "sendJson":"",//特殊页面的发送json，是实际发送内容的strJson字段的字符串形式
           "item": {
               "secondKey": [{"name":"volumeOperation"}],//协议json的二级key（page里面parentKey的值）
               "thirdKey": [],//协议json的三级key（page里面grandParentKey的值）
