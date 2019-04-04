@@ -38,6 +38,7 @@ public class PageInfoBean implements Serializable{
         private String tips;
         private String cmd;
         private Item item;
+        private String sendJson;
 
         public Lists(String name, String type, String tips, String cmd, Item item) {
             this.name = name;
@@ -85,6 +86,14 @@ public class PageInfoBean implements Serializable{
 
         public void setItem(Item item) {
             this.item = item;
+        }
+
+        public String getSendJson() {
+            return sendJson;
+        }
+
+        public void setSendJson(String sendJson) {
+            this.sendJson = sendJson;
         }
 
         @Override
