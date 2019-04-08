@@ -130,10 +130,10 @@ public class RouteByConditionActivity extends BaseActivity {
                 obj_sendJson = new JSONObject(protocolData.getSendJson());
                 isStart.setChecked(obj_sendJson.getBoolean("startNavi"));
                 deleteMode.setChecked(obj_sendJson.getBoolean("deleteCurRoute"));
-                setStart.setChecked(obj_sendJson.getJSONObject("startPoint") != null);
-                setWayPos1.setChecked(obj_sendJson.getJSONObject("routeWay1") != null);
-                setWayPos2.setChecked(obj_sendJson.getJSONObject("routeWay2") != null);
-                setWayPos3.setChecked(obj_sendJson.getJSONObject("routeWay3") != null);
+                setStart.setChecked(obj_sendJson.optJSONObject("startPoint") != null);
+                setWayPos1.setChecked(obj_sendJson.optJSONObject("routeWay1") != null);
+                setWayPos2.setChecked(obj_sendJson.optJSONObject("routeWay2") != null);
+                setWayPos3.setChecked(obj_sendJson.optJSONObject("routeWay3") != null);
 
             } catch (JSONException e) {
                 e.printStackTrace();
