@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.fundrive.navaidlclient.Constant;
 import com.fundrive.navaidlclient.R;
+import com.fundrive.navaidlclient.Resource;
+import com.fundrive.navaidlclient.bean.PageInfoBean;
 import com.fundrive.navaidlclient.position.PointActivity;
 import com.fundrive.navaidlclient.position.Points;
 
@@ -108,12 +110,70 @@ public class RouteByConditionActivity extends BaseActivity {
             "北京市海淀区",
             "公交车站");
 
+    private PageInfoBean.Lists protocolData;
+    private int lists_index;
+    private JSONObject obj_sendJson;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_route_by_condition);
         ButterKnife.bind(this);
         tvTitle.setText("条件算路");
+
+        Intent intent = getIntent();
+        protocolData = (PageInfoBean.Lists) intent.getSerializableExtra("PageInfoBean");
+
+        lists_index = intent.getIntExtra("lists_index",0);
+        if (protocolData.getSendJson()!=null && !protocolData.getSendJson().isEmpty()){
+            try {
+                obj_sendJson = new JSONObject(protocolData.getSendJson());
+                isStart.setChecked(obj_sendJson.getBoolean("startNavi"));
+                deleteMode.setChecked(obj_sendJson.getBoolean("deleteCurRoute"));
+                setStart.setChecked(obj_sendJson.getJSONObject("startPoint") != null);
+                setWayPos1.setChecked(obj_sendJson.getJSONObject("routeWay1") != null);
+                setWayPos2.setChecked(obj_sendJson.getJSONObject("routeWay2") != null);
+                setWayPos3.setChecked(obj_sendJson.getJSONObject("routeWay3") != null);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        try {
+            JSONObject obj_sendJson_m = new JSONObject();
+
+            obj_sendJson_m.put("startNavi", isStart.isChecked());
+            obj_sendJson_m.put("deleteCurRoute", deleteMode.isChecked());
+
+            if (setStart.isChecked()) {
+                obj_sendJson_m.put("startPoint", startPoint);
+            }
+
+            obj_sendJson_m.put("endPoint", endPoint);
+
+            if (setWayPos1.isChecked()) {
+                obj_sendJson_m.put("routeWay1", wayPoint1);
+            }
+            if (setWayPos2.isChecked()) {
+                obj_sendJson_m.put("routeWay2", wayPoint2);
+            }
+            if (setWayPos3.isChecked()) {
+                obj_sendJson_m.put("routeWay3", wayPoint3);
+            }
+
+            protocolData.setSendJson(obj_sendJson_m.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        Resource.pageInfoBean.getLists().remove(lists_index);
+        Resource.pageInfoBean.getLists().add(lists_index, protocolData);
     }
 
     @Override
@@ -124,38 +184,121 @@ public class RouteByConditionActivity extends BaseActivity {
         }
     }
 
-    @OnClick({R.id.set_start, R.id.btn_end_pos, R.id.set_way_pos1, R.id.set_way_pos2, R.id.set_way_pos3, R.id.btn_commit, R.id.btn_return})
+    @OnClick({R.id.set_start, R.id.btn_end_pos, R.id.set_way_pos1, R.id.set_way_pos2, R.id.set_way_pos3, R.id.btn_commit, R.id.btn_return,R.id.is_start,R.id.delete_mode})
     public void onViewClicked(View view) {
 
         Intent intent = new Intent(this, PointActivity.class);
         switch (view.getId()) {
+            case R.id.is_start:
+                if (obj_sendJson != null) {
+                    try {
+                        obj_sendJson.put("startNavi", isStart.isChecked());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                break;
+            case R.id.delete_mode:
+                if (obj_sendJson != null) {
+                    try {
+                        obj_sendJson.put("deleteCurRoute", deleteMode.isChecked());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                break;
             case R.id.set_start:
                 if (setStart.isChecked()){
-                    intent.putExtra("json", 0);
-                    startActivity(intent);
+                    String str_startPoint = "";
+                    if (obj_sendJson != null){
+                        try {
+                            if (!str_start_point_message.isEmpty()){
+                                str_startPoint = str_start_point_message;
+                            } else {
+                                str_startPoint = obj_sendJson.getJSONObject("startPoint").toString();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    intent.putExtra("json",0);
+                    intent.putExtra("point",str_startPoint);
+                    startActivityForResult(intent,0);
                 }
 
                 break;
             case R.id.btn_end_pos:
+                String str_endPoint = "";
+                if (obj_sendJson != null){
+                    try {
+                        if (!str_end_point_message.isEmpty()){
+                            str_endPoint = str_end_point_message;
+                        } else {
+                            str_endPoint = obj_sendJson.getJSONObject("endPoint").toString();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
                 intent.putExtra("json", 1);
-                startActivity(intent);
+                intent.putExtra("point",str_endPoint);
+                startActivityForResult(intent,1);
                 break;
             case R.id.set_way_pos1:
                 if (setWayPos1.isChecked()) {
+                    String str_routeWay1 = "";
+                    if (obj_sendJson != null){
+                        try {
+                            if (!str_route_way_1_point_message.isEmpty()){
+                                str_routeWay1 = str_route_way_1_point_message;
+                            } else {
+                                str_routeWay1 = obj_sendJson.getJSONObject("routeWay1").toString();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
                     intent.putExtra("json", 2);
-                    startActivity(intent);
+                    intent.putExtra("point",str_routeWay1);
+                    startActivityForResult(intent,2);
                 }
                 break;
             case R.id.set_way_pos2:
                 if (setWayPos2.isChecked()) {
-                    intent.putExtra("json", 3);
-                    startActivity(intent);
+                    String str_routeWay2 = "";
+                    if (obj_sendJson != null){
+                        try {
+                            if (!str_route_way_2_point_message.isEmpty()){
+                                str_routeWay2 = str_route_way_2_point_message;
+                            } else {
+                                str_routeWay2 = obj_sendJson.getJSONObject("routeWay2").toString();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        intent.putExtra("json", 3);
+                        intent.putExtra("point",str_routeWay2);
+                        startActivityForResult(intent,3);
+                    }
                 }
                 break;
             case R.id.set_way_pos3:
                 if (setWayPos3.isChecked()) {
-                    intent.putExtra("json", 4);
-                    startActivity(intent);
+                    String str_routeWay3 = "";
+                    if (obj_sendJson != null){
+                        try {
+                            if (!str_route_way_3_point_message.isEmpty()){
+                                str_routeWay3 = str_route_way_3_point_message;
+                            } else {
+                                str_routeWay3 = obj_sendJson.getJSONObject("routeWay3").toString();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        intent.putExtra("json", 4);
+                        intent.putExtra("point",str_routeWay3);
+                        startActivityForResult(intent,4);
+                    }
                 }
                 break;
             case R.id.btn_commit:
@@ -167,6 +310,47 @@ public class RouteByConditionActivity extends BaseActivity {
             case R.id.btn_return:
                 finish();
                 break;
+        }
+    }
+
+    String str_start_point_message = "";
+    String str_end_point_message = "";
+    String str_route_way_1_point_message = "";
+    String str_route_way_2_point_message = "";
+    String str_route_way_3_point_message = "";
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == 2) {
+            String str_point_message = data.getStringExtra("message");
+            if (!str_point_message.isEmpty()) {
+                try {
+                    switch (requestCode) {
+                        case 0:
+                            str_start_point_message = str_point_message;
+                            startPoint = new JSONObject(str_start_point_message);
+                            break;
+                        case 1:
+                            str_end_point_message = str_point_message;
+                            endPoint = new JSONObject(str_end_point_message);
+                            break;
+                        case 2:
+                            str_route_way_1_point_message = str_point_message;
+                            wayPoint1 = new JSONObject(str_route_way_1_point_message);
+                            break;
+                        case 3:
+                            str_route_way_2_point_message = str_point_message;
+                            wayPoint2 = new JSONObject(str_route_way_2_point_message);
+                            break;
+                        case 4:
+                            str_route_way_3_point_message = str_point_message;
+                            wayPoint3 = new JSONObject(str_route_way_3_point_message);
+                            break;
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 

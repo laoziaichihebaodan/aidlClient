@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -76,33 +77,42 @@ public class PointActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         tvTitle.setText("位置信息");
         intent = getIntent();
-        switch (intent.getIntExtra("json", 1)) {
-            case 0:
-                point = RouteByConditionActivity.startPoint;
-                break;
-            case 1:
-                point = RouteByConditionActivity.endPoint;
-                break;
-            case 2:
-                point = RouteByConditionActivity.wayPoint1;
-                break;
-            case 3:
-                point = RouteByConditionActivity.wayPoint2;
-                break;
-            case 4:
-                point = RouteByConditionActivity.wayPoint3;
-                break;
+        String str_point = intent.getStringExtra("point");
+        if (!str_point.isEmpty()){
+            try {
+                point = new JSONObject(str_point);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else {
+            switch (intent.getIntExtra("json", 1)) {
+                case 0:
+                    point = RouteByConditionActivity.startPoint;
+                    break;
+                case 1:
+                    point = RouteByConditionActivity.endPoint;
+                    break;
+                case 2:
+                    point = RouteByConditionActivity.wayPoint1;
+                    break;
+                case 3:
+                    point = RouteByConditionActivity.wayPoint2;
+                    break;
+                case 4:
+                    point = RouteByConditionActivity.wayPoint3;
+                    break;
+            }
         }
 
         try {
             poiJson = point.getJSONObject("iaPoiPos");
             disPoiJson = point.getJSONObject("iaPoiDisPos");
-            poiType = point.getInt("poiType");
+            poiType = point.getInt("iaPoiType");
             longitude = poiJson.getLong("longitude");
             latitude = poiJson.getLong("latitude");
             disLong = disPoiJson.getLong("longitude");
             disLat = disPoiJson.getLong("latitude");
-            poiId = point.getLong("poiId");
+            poiId = point.getLong("iaPoiId");
             childNum = point.getInt("iaChildPoiNum");
             compoundId = point.getInt("iaCompoundId");
             poiName = point.getString("iaPoiName");
@@ -140,9 +150,20 @@ public class PointActivity extends AppCompatActivity {
                 finish();
                 break;
             case R.id.btn_return:
+                makeJson();
                 finish();
                 break;
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            makeJson();
+            finish();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     public void makeJson() {
@@ -186,6 +207,11 @@ public class PointActivity extends AppCompatActivity {
 
 
             String message = point.toString();
+
+            Intent intent_resulr = new Intent();
+            intent_resulr.putExtra("message",message);
+            setResult(2,intent_resulr);
+
             Log.d(TAG, "makeJson: " + message);
         } catch (JSONException e) {
             e.printStackTrace();
