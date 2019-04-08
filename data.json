@@ -838,14 +838,6 @@
 		"cmd": "2013"
 	},
 	{
-		"name": "执行多媒体控制",
-		"type": "多媒体",
-		"tips": "",
-		"cmd": "2014",
-		"item": {},
-		"sendJson":""
-	},
-	{
 		"name": "查看帮助信息",
 		"type": "设置",
 		"tips": "",
@@ -2399,6 +2391,363 @@
 				"type": "edittext",
 				"floor": "1",
 				"spinnerValue": [],
+				"titleName": "",
+				"lineNum": "2"
+			}]
+		}
+	},
+	{
+		"name": "多媒体控制-播放控制",
+		"type": "多媒体",
+		"tips": "",
+		"cmd": "2014",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "操作类型",
+				"value": "1",
+				"valueType": "int",
+				"key": "iaMultimediaOpType",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"floor": "1",
+				"spinnerValue": [{
+					"name": "上一曲",
+					"value": "1"
+				},{
+					"name": "下一曲",
+					"value": "2"
+				},{
+					"name": "暂停",
+					"value": "3"
+				},{
+					"name": "搜索电台",
+					"value": "8"
+				}],
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
+		"name": "多媒体控制-打开/关闭应用",
+		"type": "多媒体",
+		"tips": "",
+		"cmd": "2014",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "操作类型",
+				"value": "4",
+				"valueType": "int",
+				"key": "iaMultimediaOpType",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"floor": "1",
+				"spinnerValue": [{
+					"name": "打开指定类型多媒体应用",
+					"value": "4"
+				},{
+					"name": "关闭指定类型多媒体应用",
+					"value": "5"
+				}],
+				"titleName": "",
+				"lineNum": "1"
+			},{
+				"name": "应用类别",
+				"value": "1",
+				"valueType": "int",
+				"key": "iaMultiMediaApp",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"floor": "1",
+				"spinnerValue": [{
+					"name": "收音机",
+					"value": "1"
+				},{
+					"name": "蓝牙电话",
+					"value": "2"
+				},{
+					"name": "音乐",
+					"value": "3"
+				},{
+					"name": "蓝牙音乐",
+					"value": "4"
+				},{
+					"name": "USB音乐",
+					"value": "5"
+				},{
+					"name": "音乐哼唱",
+					"value": "6"
+				},{
+					"name": "音乐识别",
+					"value": "7"
+				},{
+					"name": "音频输入",
+					"value": "8"
+				},{
+					"name": "音频设置",
+					"value": "9"
+				},{
+					"name": "视频",
+					"value": "10"
+				},{
+					"name": "蓝牙视频",
+					"value": "11"
+				},{
+					"name": "USB视频",
+					"value": "12"
+				},{
+					"name": "iPod",
+					"value": "13"
+				},{
+					"name": "CarLife",
+					"value": "14"
+				},{
+					"name": "天气预报",
+					"value": "15"
+				}],
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
+		"name": "多媒体控制-切换收音机调制方式",
+		"type": "多媒体",
+		"tips": "",
+		"cmd": "2014",
+		"item": {
+			"secondKey": [{"name":"iaFrequency"}],
+			"thirdKey": [],
+			"page": [{
+				"name": "操作类型",
+				"value": "6",
+				"valueType": "int",
+				"key": "iaMultimediaOpType",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"floor": "1",
+				"spinnerValue": [{
+					"name": "切换调制方式AM",
+					"value": "6"
+				},{
+					"name": "切换调制方式FM",
+					"value": "7"
+				}],
+				"titleName": "",
+				"lineNum": "1"
+			},{
+				"name": "频道",
+				"value": "90",
+				"valueType": "int",
+				"key": "integer",
+				"parentKey": "iaFrequency",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "2",
+				"spinnerValue": [],
+				"titleName": "",
+				"lineNum": "2"
+			},{
+				"name": "频道",
+				"value": "0",
+				"valueType": "int",
+				"key": "decimal",
+				"parentKey": "iaFrequency",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "2",
+				"spinnerValue": [],
+				"titleName": "",
+				"lineNum": "2"
+			}]
+		}
+	},
+	{
+		"name": "多媒体控制-打电话",
+		"type": "多媒体",
+		"tips": "",
+		"cmd": "2014",
+		"item": {
+			"secondKey": [{"name":"iaContactionInfo"}],
+			"thirdKey": [],
+			"page": [{
+				"name": "操作类型",
+				"value": "9",
+				"valueType": "int",
+				"key": "iaMultimediaOpType",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"floor": "1",
+				"spinnerValue": [{
+					"name": "打电话",
+					"value": "9"
+				}],
+				"titleName": "",
+				"lineNum": "1"
+			},{
+				"name": "标签",
+				"value": "中国移动",
+				"valueType": "string",
+				"key": "tag",
+				"parentKey": "iaContactionInfo",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "2",
+				"spinnerValue": [],
+				"titleName": "",
+				"lineNum": "2"
+			},{
+				"name": "频道",
+				"value": "10086",
+				"valueType": "string",
+				"key": "number",
+				"parentKey": "iaContactionInfo",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "2",
+				"spinnerValue": [],
+				"titleName": "",
+				"lineNum": "3"
+			}]
+		}
+	},
+	{
+		"name": "多媒体控制-播放/搜索音乐",
+		"type": "多媒体",
+		"tips": "",
+		"cmd": "2014",
+		"item": {
+			"secondKey": [{"name":"iaMusicInfo"}],
+			"thirdKey": [],
+			"page": [{
+				"name": "操作类型",
+				"value": "11",
+				"valueType": "int",
+				"key": "iaMultimediaOpType",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"floor": "1",
+				"spinnerValue": [{
+					"name": "播放音乐",
+					"value": "11"
+				},{
+					"name": "搜索音乐",
+					"value": "12"
+				}],
+				"titleName": "",
+				"lineNum": "1"
+			},{
+				"name": "音频源类型",
+				"value": "1",
+				"valueType": "int",
+				"key": "iaAudioSrc",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"floor": "1",
+				"spinnerValue": [{
+					"name": "调频",
+					"value": "1"
+				},{
+					"name": "USB",
+					"value": "2"
+				},{
+					"name": "蓝牙电话",
+					"value": "3"
+				},{
+					"name": "蓝牙音乐",
+					"value": "4"
+				},{
+					"name": "高清晰多媒体",
+					"value": "5"
+				},{
+					"name": "辅助音频输入",
+					"value": "6"
+				}],
+				"titleName": "",
+				"lineNum": "2"
+			},{
+				"name": "歌手名",
+				"value": "汪峰",
+				"valueType": "string",
+				"key": "singerName",
+				"parentKey": "iaMusicInfo",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "2",
+				"spinnerValue": [],
+				"titleName": "",
+				"lineNum": "3"
+			},{
+				"name": "歌曲名",
+				"value": "春天里",
+				"valueType": "string",
+				"key": "musicName",
+				"parentKey": "iaMusicInfo",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "2",
+				"spinnerValue": [],
+				"titleName": "",
+				"lineNum": "4"
+			}]
+		}
+	},
+	{
+		"name": "多媒体控制-音乐播放模式",
+		"type": "多媒体",
+		"tips": "",
+		"cmd": "2014",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "操作类型",
+				"value": "13",
+				"valueType": "int",
+				"key": "iaMultimediaOpType",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"floor": "1",
+				"spinnerValue": [{
+					"name": "设置音乐播放模式",
+					"value": "13"
+				}],
+				"titleName": "",
+				"lineNum": "1"
+			},{
+				"name": "音乐播放模式",
+				"value": "1",
+				"valueType": "int",
+				"key": "iaPlayMode",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"floor": "1",
+				"spinnerValue": [{
+					"name": "单曲循环",
+					"value": "1"
+				},{
+					"name": "顺序播放",
+					"value": "2"
+				},{
+					"name": "随机播放",
+					"value": "3"
+				},{
+					"name": "循环播放",
+					"value": "4"
+				}],
 				"titleName": "",
 				"lineNum": "2"
 			}]

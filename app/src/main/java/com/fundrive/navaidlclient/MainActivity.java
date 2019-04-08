@@ -305,9 +305,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 case 0x2011:
                     intent = new Intent(MainActivity.this, ListAnimationActivity.class);
                     break;
-                case 0x2014:
-                    intent = new Intent(MainActivity.this, ControlMutimediaActivity.class);
-                    break;
+//                case 0x9999:
+//                    intent = new Intent(MainActivity.this, ControlMutimediaActivity.class);
+//                    break;
                 default:
                     intent = new Intent(MainActivity.this, OpActivity.class);
             }
