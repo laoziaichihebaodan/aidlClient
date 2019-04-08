@@ -122,6 +122,7 @@ public class PointActivity extends AppCompatActivity {
             typeName = point.getString("iaPoiTypeName");
 
             etPoiType.setText(poiType + "");
+            etPoiType.setSelection(String.valueOf(poiType+"").length());
             etPoiLong.setText(longitude + "");
             etPoiLat.setText(latitude + "");
             etDisLong.setText("" + disLong);
