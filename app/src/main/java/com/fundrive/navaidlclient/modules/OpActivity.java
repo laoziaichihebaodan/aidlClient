@@ -216,6 +216,11 @@ public class OpActivity extends BaseActivity {
                     if (i<list_page.size()-1 && list_page.get(i+1).getName().equals(page.getName())){
                         final PageInfoBean.Page page2 = list_page.get(i+1);
                         EditText et2 = new EditText(this);
+                        if (page.getValueType().equals("string")){
+                            et2.setInputType(InputType.TYPE_CLASS_TEXT);
+                        } else if (page.getValueType().equals("int")){
+                            et2.setInputType(InputType.TYPE_CLASS_NUMBER);
+                        }
                         et2.setText(page2.getValue());
                         et2.setSelection(page2.getValue().length());
                         linearLayout.addView(et2);
