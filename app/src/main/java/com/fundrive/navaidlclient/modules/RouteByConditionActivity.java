@@ -309,10 +309,10 @@ public class RouteByConditionActivity extends BaseActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        intent.putExtra("json", 3);
-                        intent.putExtra("point",str_routeWay2);
-                        startActivityForResult(intent,3);
                     }
+                    intent.putExtra("json", 3);
+                    intent.putExtra("point",str_routeWay2);
+                    startActivityForResult(intent,3);
                 }
                 break;
             case R.id.set_way_pos3:
@@ -328,10 +328,10 @@ public class RouteByConditionActivity extends BaseActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        intent.putExtra("json", 4);
-                        intent.putExtra("point",str_routeWay3);
-                        startActivityForResult(intent,4);
                     }
+                    intent.putExtra("json", 4);
+                    intent.putExtra("point",str_routeWay3);
+                    startActivityForResult(intent,4);
                 }
                 break;
             case R.id.btn_commit:
