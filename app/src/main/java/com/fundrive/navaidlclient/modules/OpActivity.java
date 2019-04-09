@@ -141,7 +141,7 @@ public class OpActivity extends BaseActivity {
             LinearLayout linearLayout = new LinearLayout(this);
             linearLayout.setOrientation(LinearLayout.HORIZONTAL);
             LinearLayout.LayoutParams ll_params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT);
-            ll_params.height = 200;
+            ll_params.height = 150;
             if (!page_type.isEmpty()){
                 ll_root.addView(linearLayout,ll_params);
             }
@@ -159,7 +159,7 @@ public class OpActivity extends BaseActivity {
                     et.setSelection(page.getValue().length());
                     linearLayout.addView(et);
                     LinearLayout.LayoutParams et_params = (LinearLayout.LayoutParams) et.getLayoutParams();
-                    et_params.setMargins(20,0,50,0);
+                    et_params.setMargins(20,0,30,0);
                     et_params.width = 0;
                     et_params.weight =1;
                     et.addTextChangedListener(new TextWatcher() {
@@ -183,7 +183,7 @@ public class OpActivity extends BaseActivity {
                     tv.setText(page.getName());
                     linearLayout.addView(tv);
                     LinearLayout.LayoutParams tv_params = (LinearLayout.LayoutParams) tv.getLayoutParams();
-                    tv_params.setMargins(30,0,30,0);
+                    tv_params.setMargins(30,0,0,0);
 
                     EditText et = new EditText(this);
                     if (page.getValueType().equals("string")){
@@ -195,8 +195,13 @@ public class OpActivity extends BaseActivity {
                     et.setSelection(page.getValue().length());
                     linearLayout.addView(et);
                     LinearLayout.LayoutParams et_params = (LinearLayout.LayoutParams) et.getLayoutParams();
-                    et_params.setMargins(20,0,50,0);
-                    et_params.width = 400;
+                    et_params.setMargins(0,0,30,0);
+                    if (i<list_page.size()-1 && list_page.get(i+1).getName().equals(page.getName())){
+                        et_params.width = 300;
+                    } else {
+                        et_params.weight = 1;
+                        et_params.width = 0;
+                    }
                     et.addTextChangedListener(new TextWatcher() {
                         @Override
                         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -225,8 +230,8 @@ public class OpActivity extends BaseActivity {
                         et2.setSelection(page2.getValue().length());
                         linearLayout.addView(et2);
                         LinearLayout.LayoutParams et_params2 = (LinearLayout.LayoutParams) et2.getLayoutParams();
-                        et_params2.setMargins(20,0,50,0);
-                        et_params2.width = 400;
+                        et_params2.setMargins(0,0,30,0);
+                        et_params2.width = 300;
                         et2.addTextChangedListener(new TextWatcher() {
                             @Override
                             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
