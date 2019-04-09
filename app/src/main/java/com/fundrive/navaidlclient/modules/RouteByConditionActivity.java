@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -26,6 +28,8 @@ import butterknife.OnClick;
 
 public class RouteByConditionActivity extends BaseActivity {
 
+    @BindView(R.id.sp_type)
+    Spinner spType;
     @BindView(R.id.delete_mode)
     Switch deleteMode;
     @BindView(R.id.is_start)
@@ -114,6 +118,10 @@ public class RouteByConditionActivity extends BaseActivity {
     private int lists_index;
     private JSONObject obj_sendJson;
 
+    private int type;
+    //避让类型取值范围
+    private int[] types = {1, 1<<1 , 1<<8, 1<<9, 1<<10, 1<<11,1<<12,1<<13,1<<14, 1<<24,1<<25, 1<<26};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -128,6 +136,13 @@ public class RouteByConditionActivity extends BaseActivity {
         if (protocolData.getSendJson()!=null && !protocolData.getSendJson().isEmpty()){
             try {
                 obj_sendJson = new JSONObject(protocolData.getSendJson());
+                int spType_index = 0;
+                for (int i=0;i<types.length;i++){
+                    if (obj_sendJson.getInt("iaRoutePreference") == types[i]){
+                        spType_index = i;
+                    }
+                }
+                spType.setSelection(spType_index);
                 isStart.setChecked(obj_sendJson.getBoolean("startNavi"));
                 deleteMode.setChecked(obj_sendJson.getBoolean("deleteCurRoute"));
                 setStart.setChecked(obj_sendJson.optJSONObject("startPoint") != null);
@@ -139,6 +154,23 @@ public class RouteByConditionActivity extends BaseActivity {
                 e.printStackTrace();
             }
         }
+        spType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                type = types[position];
+                if (obj_sendJson != null){
+                    try {
+                        obj_sendJson.put("iaRoutePreference",type);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
     }
 
     @Override
@@ -149,6 +181,7 @@ public class RouteByConditionActivity extends BaseActivity {
             JSONObject obj_sendJson_m = new JSONObject();
 
             obj_sendJson_m.put("startNavi", isStart.isChecked());
+            obj_sendJson_m.put("iaRoutePreference", type);
             obj_sendJson_m.put("deleteCurRoute", deleteMode.isChecked());
 
             if (setStart.isChecked()) {
@@ -370,6 +403,7 @@ public class RouteByConditionActivity extends BaseActivity {
 
         try {
             jsonObject.put("startNavi",startNavi);
+            jsonObject.put("iaRoutePreference", type);
             jsonObject.put("deleteCurRoute", deleteRoute);
 
             if (setStart.isChecked()) {
