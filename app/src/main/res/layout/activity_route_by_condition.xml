@@ -37,7 +37,7 @@
 
                 <TextView
                     android:id="@+id/tv_type"
-                    android:text="算路偏好"
+                    android:text="算路偏好:"
                     style="@style/Text_Body"
                     android:layout_marginEnd="20dp"
                     android:layout_width="wrap_content"
@@ -59,7 +59,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="24dp"
                 android:switchPadding="50dp"
-                android:text="是否直接导航" />
+                android:text="是否直接导航:" />
 
             <Switch
                 android:id="@+id/delete_mode"
@@ -69,7 +69,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="24dp"
                 android:switchPadding="50dp"
-                android:text="强制删除当前路线" />
+                android:text="强制删除当前路线:" />
 
             <Switch
                 android:id="@+id/set_start"
@@ -79,7 +79,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="24dp"
                 android:switchPadding="50dp"
-                android:text="设置起点" />
+                android:text="设置起点:" />
 
             <Button
                 android:id="@+id/btn_end_pos"
@@ -98,7 +98,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="24dp"
                 android:switchPadding="50dp"
-                android:text="途经点1" />
+                android:text="途经点1:" />
 
             <Switch
                 android:id="@+id/set_way_pos2"
@@ -108,7 +108,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="24dp"
                 android:switchPadding="50dp"
-                android:text="途经点2" />
+                android:text="途经点2:" />
 
             <Switch
                 android:id="@+id/set_way_pos3"
@@ -118,7 +118,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="24dp"
                 android:switchPadding="50dp"
-                android:text="途经点3" />
+                android:text="途经点3:" />
 
             <Button
                 android:id="@+id/btn_commit"
