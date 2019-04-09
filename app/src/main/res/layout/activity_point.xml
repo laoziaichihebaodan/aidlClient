@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/title"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="12dp"
                 android:layout_toEndOf="@id/tv_poi_type"
                 android:inputType="number"
                 android:text="351" />
@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_poi_type"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="12dp"
                 android:layout_toEndOf="@id/tv_poi_long"
                 android:text="12141938" />
 
@@ -76,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_poi_type"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="12dp"
                 android:layout_toEndOf="@id/et_poi_long"
                 android:text="3116152" />
 
@@ -97,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_poi_long"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="12dp"
                 android:layout_toEndOf="@id/tv_dis_long"
                 android:text="12141708" />
 
@@ -108,7 +108,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_poi_long"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="12dp"
                 android:layout_toEndOf="@id/et_dis_long"
                 android:text="3116179" />
 
@@ -129,7 +129,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_dis_long"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="12dp"
                 android:layout_toEndOf="@id/tv_poi_id"
                 android:text="4294967295" />
 
@@ -150,7 +150,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_poi_id"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="12dp"
                 android:layout_toEndOf="@id/tv_child_num"
                 android:text="0" />
 
@@ -171,7 +171,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_child_num"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="12dp"
                 android:layout_toEndOf="@id/tv_compound_id"
                 android:text="0" />
 
@@ -192,7 +192,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_compound_id"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="12dp"
                 android:layout_toEndOf="@id/tv_poi_name"
                 android:text="上海师范大学徐汇校区" />
 
@@ -213,7 +213,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_poi_name"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="12dp"
                 android:layout_toEndOf="@id/tv_address"
                 android:text="上海市徐汇区桂林路100号" />
 
@@ -235,7 +235,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_address"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="12dp"
                 android:layout_toEndOf="@id/tv_phone" />
 
             <TextView
@@ -255,7 +255,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_phone"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="12dp"
                 android:layout_toEndOf="@id/tv_region_name"
                 android:text="上海市徐汇区" />
 
@@ -276,7 +276,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_region_name"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="12dp"
                 android:layout_toEndOf="@id/tv_type_name"
                 android:text="大专院校" />
 
