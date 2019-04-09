@@ -169,14 +169,14 @@ public class PointActivity extends AppCompatActivity {
 
     public void makeJson() {
         strPoiType = etPoiType.getText().toString().trim();
-        poiType = Integer.decode(strPoiType);
-        longitude = Long.decode(etPoiLong.getText().toString().trim());
-        latitude = Long.decode(etPoiLat.getText().toString().trim());
-        disLong = Long.decode(etDisLong.getText().toString().trim());
-        disLat = Long.decode(etDisLat.getText().toString().trim());
-        poiId = Long.decode(etPoiId.getText().toString().trim());
-        childNum = Integer.decode(etChildNum.getText().toString().trim());
-        compoundId = Integer.decode(etCompoundId.getText().toString().trim());
+        poiType = Integer.decode(strPoiType.isEmpty()?"0":strPoiType);
+        longitude = Long.decode(etPoiLong.getText().toString().trim().isEmpty()?"0":etPoiLong.getText().toString().trim());
+        latitude = Long.decode(etPoiLat.getText().toString().trim().isEmpty()?"0":etPoiLat.getText().toString().trim());
+        disLong = Long.decode(etDisLong.getText().toString().trim().isEmpty()?"0":etDisLong.getText().toString().trim());
+        disLat = Long.decode(etDisLat.getText().toString().trim().isEmpty()?"0":etDisLat.getText().toString().trim());
+        poiId = Long.decode(etPoiId.getText().toString().trim().isEmpty()?"0":etPoiId.getText().toString().trim());
+        childNum = Integer.decode(etChildNum.getText().toString().trim().isEmpty()?"0":etChildNum.getText().toString().trim());
+        compoundId = Integer.decode(etCompoundId.getText().toString().trim().isEmpty()?"0":etCompoundId.getText().toString().trim());
         poiName = etPoiName.getText().toString().trim();
         poiAddress = etAddress.getText().toString().trim();
         poiPhone = etPhone.getText().toString().trim();
