@@ -325,7 +325,7 @@ public class OpActivity extends BaseActivity {
                     JSONObject jsonObject3 = new JSONObject();
                     int num = 0;
                     for (int l = 0; l < thirdFloorView.size(); l++) {
-                        if (secondFloorKey.get(i).getName().equals(thirdFloorView.get(l).getGrandParentKey()) && thirdFloorKey.get(k).equals(thirdFloorView.get(l).getParentKey())){
+                        if (secondFloorKey.get(i).getName().equals(thirdFloorView.get(l).getGrandParentKey()) && thirdFloorKey.get(k).getNama().equals(thirdFloorView.get(l).getParentKey())){
 //                            jsonObject3.put(thirdFloorView.get(l).getKey(),thirdFloorView.get(l).getValue());
                             putJson(jsonObject3,thirdFloorView.get(l).getValueType(),thirdFloorView.get(l).getKey(),thirdFloorView.get(l).getValue());
                             num++;
@@ -363,6 +363,9 @@ public class OpActivity extends BaseActivity {
             case "boolean":
                 boolean bValue = value.equals("true") ? true : false;
                 object.put(key,bValue);
+                break;
+            case "long":
+                object.put(key,Long.parseLong(value));
                 break;
         }
     }

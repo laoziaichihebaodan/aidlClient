@@ -13,7 +13,7 @@
               "page": [{//一个object代表一个控件
                   "name": "音量设置模式：",//控件前边的名字
                   "value": "1",//拼接json的值
-                  "valueType": "int",//拼接json的值的类型（小写）（int   string    boolean）
+                  "valueType": "int",//拼接json的值的类型（小写）（int   string    boolean  long）
                   "key": "opType",//拼接json的key
                   "parentKey": "volumeOperation",//内容的父key
                   "grandParentKey": "",//内容的父key的父key（3级才有）

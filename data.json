@@ -1349,7 +1349,7 @@
 			{
 				"name": "位置ID:",
 				"value": "4294967295",
-				"valueType": "int",
+				"valueType": "long",
 				"key": "iaPoiId",
 				"parentKey": "favContent",
 				"grandParentKey": "",
@@ -1397,7 +1397,7 @@
 			{
 				"name": "地址:",
 				"value": "上海市徐汇区桂林路100号",
-				"valueType": "int",
+				"valueType": "string",
 				"key": "iaPoiAdress",
 				"parentKey": "favContent",
 				"grandParentKey": "",
@@ -1409,7 +1409,7 @@
 			{
 				"name": "电话:",
 				"value": "",
-				"valueType": "int",
+				"valueType": "string",
 				"key": "iaPoiPhone",
 				"parentKey": "favContent",
 				"grandParentKey": "",
@@ -1433,7 +1433,7 @@
 			{
 				"name": "类型:",
 				"value": "大专院校",
-				"valueType": "int",
+				"valueType": "string",
 				"key": "iaPoiTypeName",
 				"parentKey": "favContent",
 				"grandParentKey": "",
