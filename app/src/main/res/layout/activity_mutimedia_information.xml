@@ -60,9 +60,10 @@
 
             <EditText
                 android:id="@+id/et_misc"
-                android:layout_width="302dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_source"
+                android:layout_marginEnd="20dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_toEndOf="@id/tv_misc" />
@@ -94,7 +95,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_radio_band"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="30dp"
                 android:text="频率:" />
 
             <NumberPicker
@@ -102,8 +103,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_radio_band"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="36dp"
+                android:layout_marginTop="20dp"
                 android:layout_toEndOf="@id/tv_radio_band" />
 
             <NumberPicker
@@ -111,18 +111,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_radio_band"
-                android:layout_marginStart="52dp"
-                android:layout_marginTop="36dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
                 android:layout_toEndOf="@id/np_int" />
 
             <TextView
                 android:id="@+id/tv_instruct"
-                style="@style/Text_Body"
+                style="@style/Text_Explain"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/np_dec"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
                 android:text="lgdirve无多媒体功能"
                 android:textColor="#f00" />
 
@@ -133,7 +134,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_instruct"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="40dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="10dp"
                 android:text="应用" />
 
         </RelativeLayout>
