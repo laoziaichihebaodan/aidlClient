@@ -268,7 +268,7 @@ public class TimeInfoActivity extends BaseActivity implements OnDateSetListener 
                 obj_timeValue.put("hour",hour);
                 obj_timeValue.put("minute",minute);
                 obj_timeValue.put("second",second);
-                obj_sendJson.put("timeValue",obj_sendJson);
+                obj_sendJson.put("timeValue",obj_timeValue);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
