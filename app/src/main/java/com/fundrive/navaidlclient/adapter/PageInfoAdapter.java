@@ -30,7 +30,6 @@ public class PageInfoAdapter extends BaseAdapter implements Filterable {
     }
 
     public void setData(List<PageInfoBean.Lists> data) {
-        this.data = data;
         this.backData = data;
     }
 

@@ -129,7 +129,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     protected void onResume() {
         super.onResume();
         if(adapter != null){
-            adapter.setData(null);
             adapter.setData(Resource.pageInfoBean.getLists(Resource.pageInfoBean.getListType().get((tabLayout.getSelectedTabPosition() == -1)?0:tabLayout.getSelectedTabPosition())));
             adapter.notifyDataSetChanged();
             if (TextUtils.isEmpty(editText.getText().toString().trim()))
@@ -160,9 +159,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onTabSelected(XTabLayout.Tab tab) {
                 List<PageInfoBean.Lists> list_lists = Resource.pageInfoBean.getLists(tab.getText().toString());
-                adapter.setData(null);
                 adapter.setData(list_lists);
-                adapter.notifyDataSetChanged();
                 if (TextUtils.isEmpty(editText.getText().toString().trim()))
                     adapter.getFilter().filter(editText.getText());//搜索文本为空时，清除ListView的过滤
                 else
