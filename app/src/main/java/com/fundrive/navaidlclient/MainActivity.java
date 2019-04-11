@@ -128,13 +128,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     protected void onResume() {
         super.onResume();
-        adapter.setData(null);
-        adapter.setData(Resource.pageInfoBean.getLists(Resource.pageInfoBean.getListType().get((tabLayout.getSelectedTabPosition() == -1)?0:tabLayout.getSelectedTabPosition())));
-        adapter.notifyDataSetChanged();
-        if (TextUtils.isEmpty(editText.getText().toString().trim()))
-            adapter.getFilter().filter(editText.getText());//搜索文本为空时，清除ListView的过滤
-        else
-            adapter.getFilter().filter(editText.getText().toString().trim());//设置过滤关键字
+        if(adapter != null){
+            adapter.setData(null);
+            adapter.setData(Resource.pageInfoBean.getLists(Resource.pageInfoBean.getListType().get((tabLayout.getSelectedTabPosition() == -1)?0:tabLayout.getSelectedTabPosition())));
+            adapter.notifyDataSetChanged();
+            if (TextUtils.isEmpty(editText.getText().toString().trim()))
+                adapter.getFilter().filter(editText.getText());//搜索文本为空时，清除ListView的过滤
+            else
+                adapter.getFilter().filter(editText.getText().toString().trim());//设置过滤关键字
+        }
     }
 
     private void init(){
