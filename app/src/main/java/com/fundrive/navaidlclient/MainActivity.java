@@ -685,11 +685,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(this, "授权成功！", Toast.LENGTH_SHORT).show();
                 Log.i("hebaodan_permission", "checkPermission: 已经授权！3333");
-                //授权成功会重新走Activity的生命周期
-//                if (parseFileInfo()) {
-//                    init();
-//                }
-
+                if (parseFileInfo()) {
+                    init();
+                }
             }
         }
 
@@ -700,8 +698,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         long secondTime = System.currentTimeMillis();
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (secondTime - firstTime < 2000) {
-                Gson gson = new Gson();
-                Resource.writeFile(gson.toJson(Resource.pageInfoBean),Resource.fileName,false);
+                if (Resource.pageInfoBean != null) {
+                    Gson gson = new Gson();
+                    Resource.writeFile(gson.toJson(Resource.pageInfoBean),Resource.fileName,false);
+                }
                 System.exit(0);
             } else {
                 Toast.makeText(MainActivity.this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
