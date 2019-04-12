@@ -1664,6 +1664,44 @@
 		}
 	},
 	{
+		"name": "切换主/辅路",
+		"type": "设置",
+		"tips": "",
+		"cmd": "202D",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "切换操作:",
+				"value": "1",
+				"valueType": "int",
+				"key": "selectRoad",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "切换主路",
+					"value": "1"
+				},
+				{
+					"name": "切换辅路",
+					"value": "2"
+				},
+				{
+					"name": "切换桥上",
+					"value": "3"
+				},
+				{
+					"name": "切换桥下",
+					"value": "4"
+				}],
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
 		"name": "条件搜索poi",
 		"type": "搜索",
 		"tips": "",
