@@ -456,12 +456,13 @@ public class Resource {
     /**
      *
      * @param data      写入文本内容
+     * @param file_directory  文件所在目录
      * @param fileName  文件名
      * @param append    是否追加写入
      */
-    public static void writeFile(String data,String fileName,Boolean append) {
+    public static void writeFile(String data,File file_directory,String fileName,Boolean append) {
         try {
-            File file = new File(Environment.getExternalStorageDirectory(),fileName); // 相对路径，如果没有则要建立一个新的output.txt文件
+            File file = new File(file_directory,fileName); // 相对路径，如果没有则要建立一个新的output.txt文件
             if (!file.exists()) {
                 file.createNewFile();
             }
@@ -536,6 +537,6 @@ public class Resource {
         }
         inputChannel.close();
         fis.close();
-        Resource.writeFile("",notifyFileName+notifyFileFormat,false);
+        Resource.writeFile("",Environment.getExternalStorageDirectory(),notifyFileName+notifyFileFormat,false);
     }
 }

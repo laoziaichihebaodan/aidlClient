@@ -80,7 +80,9 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -240,7 +242,7 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SS");// HH:mm:ss:SS
             Date date = new Date(System.currentTimeMillis());//获取当前时间
             String data = simpleDateFormat.format(date)+": cmd = "+Integer.toHexString(ia_cmd) + "---json = "+ia_json;
-            Resource.writeFile(data,Resource.notifyFileName+Resource.notifyFileFormat,true);
+            Resource.writeFile(data,Environment.getExternalStorageDirectory(),Resource.notifyFileName+Resource.notifyFileFormat,true);
             Log.i("hebaodan",data);
         }
 
@@ -581,16 +583,15 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
 //            //Toast.makeText(this, "number: " + num, Toast.LENGTH_SHORT).show();
 //        }
 //    }
-    private String readString(File parent, String name) {
+    private String readString(File cach_file) {
         int len = 0;
         StringBuffer str = new StringBuffer("");
-        File file = new File(parent, name);
-        if (!file.exists()) {
-            Toast.makeText(MainActivity.this, "本地json文件不存在", Toast.LENGTH_LONG).show();
+        if (!cach_file.exists()) {
+            Toast.makeText(MainActivity.this, "json文件不存在:", Toast.LENGTH_LONG).show();
             return null;
         }
         try {
-            FileInputStream is = new FileInputStream(file);
+            FileInputStream is = new FileInputStream(cach_file);
             InputStreamReader isr = new InputStreamReader(is);
             BufferedReader in = new BufferedReader(isr);
             String line = null;
@@ -615,24 +616,40 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
 
     //获取&&解析json文件
     public boolean parseFileInfo() {
-        //判断sd卡是否存在
-        boolean sdCardExist = Environment.getExternalStorageState()
-                .equals(android.os.Environment.MEDIA_MOUNTED);
-        Log.i("hebaodan", "sd卡是否存在 = " + sdCardExist);
-        if (sdCardExist) {
-            File sdDir = Environment.getExternalStorageDirectory();//获取根目录
-            String strJson = readString(sdDir, Resource.fileName);
-            if (strJson == null) {
-                return false;
-            }
-            Log.i("hebaodan", "strJson = " + strJson);
-            if (Resource.pageInfoBean == null){
-                Resource.pageInfoBean = PageInfoBean.getPageInfoBeanList(strJson);
-            }
-            Log.i("hebaodan", "pageinfobean = " + Resource.pageInfoBean.getPageInfoBeanList(strJson));
-            return true;
+        File cach_file = new File(getCacheDir(), Resource.fileName);
+        if (!cach_file.exists()) {
+            Log.i("hebaodan", "copy from asset to cache");
+            copyFilesFromAssets(MainActivity.this, cach_file);
         }
-        return false;
+
+        String strJson = readString(cach_file);
+        if (strJson == null) {
+            Log.i("hebaodan", "strJson is null ");
+            return false;
+        }
+        Log.i("hebaodan", "strJson = " + strJson);
+        if (Resource.pageInfoBean == null) {
+            Resource.pageInfoBean = PageInfoBean.getPageInfoBeanList(strJson);
+        }
+        Log.i("hebaodan", "pageinfobean = " + Resource.pageInfoBean.getPageInfoBeanList(strJson));
+        return true;
+    }
+
+    public static void copyFilesFromAssets(Context context,File cach_file) {
+        try {
+            InputStream is = context.getAssets().open(Resource.fileName);
+            FileOutputStream fos = new FileOutputStream(cach_file);
+            byte[] buffer = new byte[1024];
+            int byteCount = 0;
+            while ((byteCount = is.read(buffer)) != -1) {
+                fos.write(buffer, 0, byteCount);
+            }
+            fos.flush();
+            is.close();
+            fos.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     //检查申请权限
@@ -695,7 +712,7 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
             if (secondTime - firstTime < 2000) {
                 if (Resource.pageInfoBean != null) {
                     Gson gson = new Gson();
-                    Resource.writeFile(gson.toJson(Resource.pageInfoBean),Resource.fileName,false);
+                    Resource.writeFile(gson.toJson(Resource.pageInfoBean),getCacheDir(),Resource.fileName,false);
                 }
                 System.exit(0);
             } else {
