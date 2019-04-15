@@ -1,14 +1,11 @@
 package com.fundrive.navaidlclient;
 
 import android.Manifest;
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
-import android.os.Binder;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -16,7 +13,6 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -38,6 +34,7 @@ import com.fundrive.navaidlclient.adapter.PageInfoAdapter;
 import com.fundrive.navaidlclient.bean.CmdBean;
 import com.fundrive.navaidlclient.bean.PageInfoBean;
 import com.fundrive.navaidlclient.modules.AuthorNumberActivity;
+import com.fundrive.navaidlclient.modules.BaseActivity;
 import com.fundrive.navaidlclient.modules.ControlMutimediaActivity;
 import com.fundrive.navaidlclient.modules.CustomMessageActivity;
 import com.fundrive.navaidlclient.modules.FavoriteGuidanceActivity;
@@ -92,8 +89,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, View.OnClickListener {
+public class MainActivity extends BaseActivity implements AdapterView.OnItemClickListener, View.OnClickListener {
     @BindView(R.id.lv)
     ListView lv;
     @BindView(R.id.btn_clear)
@@ -137,14 +133,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 adapter.getFilter().filter(editText.getText());//搜索文本为空时，清除ListView的过滤
             else
                 adapter.getFilter().filter(editText.getText().toString().trim());//设置过滤关键字
-        }
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        if (sendDialog != null && sendDialog.isShowing()){
-            sendDialog.cancel();
         }
     }
 
@@ -539,8 +527,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     }
 
-    private Dialog sendDialog;
-
     /**
      * 发送空消息
      */
@@ -553,15 +539,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         } catch (JSONException e) {
             e.printStackTrace();
         }
-    }
-
-    private void showSendDialog(String message){
-        sendDialog = new AlertDialog.Builder(this).create();
-        sendDialog.show();
-        sendDialog.setContentView(R.layout.send_dialog_bg);
-        TextView tv_send = sendDialog.findViewById(R.id.tv_send);
-        tv_send.setText(message);
-        tv_send.setTextIsSelectable(true);
     }
 
     /**
@@ -590,7 +567,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
 
     }
-
 
     /**
      * Called when a button is clicked (the button in the layout file attaches to

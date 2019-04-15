@@ -1,14 +1,11 @@
 package com.fundrive.navaidlclient.modules;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -57,7 +54,6 @@ public class OpActivity extends BaseActivity {
 
 
     private String message;
-    private Dialog sendDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,14 +71,6 @@ public class OpActivity extends BaseActivity {
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
-        if (sendDialog != null && sendDialog.isShowing()){
-            sendDialog.cancel();
-        }
-    }
-
-    @Override
     protected void onPause() {
         super.onPause();
 
@@ -96,21 +84,12 @@ public class OpActivity extends BaseActivity {
             case R.id.btn_apply:
                 //应用
                 makeJson();
-                showSendDialog();
+                showSendDialog(message);
                 break;
             case R.id.iv_return:
                 finish();
                 break;
         }
-    }
-
-    private void showSendDialog(){
-        sendDialog = new AlertDialog.Builder(this).create();
-        sendDialog.show();
-        sendDialog.setContentView(R.layout.send_dialog_bg);
-        TextView tv_send = sendDialog.findViewById(R.id.tv_send);
-        tv_send.setText(message);
-        tv_send.setTextIsSelectable(true);
     }
 
     private void initData(){
