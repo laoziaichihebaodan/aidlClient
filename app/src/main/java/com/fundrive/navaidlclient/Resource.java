@@ -11,6 +11,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.RemoteException;
 import android.support.annotation.RequiresApi;
+import android.text.InputType;
+import android.text.method.DigitsKeyListener;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -40,7 +42,6 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -312,8 +313,6 @@ public class Resource {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-
-
     }
 
     private static void initWlan(int device_model) {
@@ -405,6 +404,8 @@ public class Resource {
     private static void getIpaddress() {
         meditText = new EditText(ctx);
         SharedPreferences sp = ctx.getSharedPreferences("data", Activity.MODE_PRIVATE);
+        meditText.setInputType(InputType.TYPE_CLASS_NUMBER);
+        meditText.setKeyListener(DigitsKeyListener.getInstance("0123456789."));
         String ip = sp.getString("ip", "");
         meditText.setText(ip);
         meditText.setSelection(ip.length());
