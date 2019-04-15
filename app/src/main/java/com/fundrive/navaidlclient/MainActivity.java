@@ -1,6 +1,8 @@
 package com.fundrive.navaidlclient;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -135,6 +137,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 adapter.getFilter().filter(editText.getText());//搜索文本为空时，清除ListView的过滤
             else
                 adapter.getFilter().filter(editText.getText().toString().trim());//设置过滤关键字
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (sendDialog != null && sendDialog.isShowing()){
+            sendDialog.cancel();
         }
     }
 
@@ -308,9 +318,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 case 0x2011:
                     intent = new Intent(MainActivity.this, ListAnimationActivity.class);
                     break;
-//                case 0x9999:
-//                    intent = new Intent(MainActivity.this, ControlMutimediaActivity.class);
-//                    break;
                 default:
                     intent = new Intent(MainActivity.this, OpActivity.class);
             }
@@ -532,6 +539,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     }
 
+    private Dialog sendDialog;
+
     /**
      * 发送空消息
      */
@@ -546,12 +555,22 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
     }
 
+    private void showSendDialog(String message){
+        sendDialog = new AlertDialog.Builder(this).create();
+        sendDialog.show();
+        sendDialog.setContentView(R.layout.send_dialog_bg);
+        TextView tv_send = sendDialog.findViewById(R.id.tv_send);
+        tv_send.setText(message);
+        tv_send.setTextIsSelectable(true);
+    }
+
     /**
      * 发送消息
      *
      * @param message
      */
     protected void sendMessage(String message) {
+        showSendDialog(message);
         if (Resource.device_model == ShareConfiguration.MODEL_CLIENT) {
             Resource.udpClient(message);
         } else {
