@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -18,9 +19,13 @@ import com.fundrive.navaidlclient.Resource;
 import com.fundrive.navaidlclient.bean.PageInfoBean;
 import com.fundrive.navaidlclient.position.PointActivity;
 import com.fundrive.navaidlclient.position.Points;
+import com.fundrive.navaidlclient.view.MultiSelectPopupWindows;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,8 +33,8 @@ import butterknife.OnClick;
 
 public class RouteByConditionActivity extends BaseActivity {
 
-    @BindView(R.id.sp_type)
-    Spinner spType;
+    @BindView(R.id.tv_select_preference)
+    TextView tv_select_preference;
     @BindView(R.id.delete_mode)
     Switch deleteMode;
     @BindView(R.id.is_start)
@@ -118,9 +123,10 @@ public class RouteByConditionActivity extends BaseActivity {
     private int lists_index;
     private JSONObject obj_sendJson;
 
-    private int type;
     //避让类型取值范围
     private int[] types = {1, 1<<1 , 1<<8, 1<<9, 1<<10, 1<<11,1<<12,1<<13,1<<14, 1<<24,1<<25, 1<<26};
+    int page_value = 0;
+    List<PageInfoBean.MutilSelectValue> list_mutilSelectValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,13 +142,6 @@ public class RouteByConditionActivity extends BaseActivity {
         if (protocolData.getSendJson()!=null && !protocolData.getSendJson().isEmpty()){
             try {
                 obj_sendJson = new JSONObject(protocolData.getSendJson());
-                int spType_index = 0;
-                for (int i=0;i<types.length;i++){
-                    if (obj_sendJson.getInt("iaRoutePreference") == types[i]){
-                        spType_index = i;
-                    }
-                }
-                spType.setSelection(spType_index);
                 isStart.setChecked(obj_sendJson.getBoolean("startNavi"));
                 deleteMode.setChecked(obj_sendJson.getBoolean("deleteCurRoute"));
                 setStart.setChecked(obj_sendJson.optJSONObject("startPoint") != null);
@@ -154,21 +153,64 @@ public class RouteByConditionActivity extends BaseActivity {
                 e.printStackTrace();
             }
         }
-        spType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                type = types[position];
-                if (obj_sendJson != null){
-                    try {
-                        obj_sendJson.put("iaRoutePreference",type);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
 
+        list_mutilSelectValue = new ArrayList<>();
+        try {
+            if (obj_sendJson == null) {
+                list_mutilSelectValue.add(new PageInfoBean.MutilSelectValue("最短路线", "1", false));
+                list_mutilSelectValue.add(new PageInfoBean.MutilSelectValue("高速优先", "2", false));
+                list_mutilSelectValue.add(new PageInfoBean.MutilSelectValue("避让收费", "256", false));
+                list_mutilSelectValue.add(new PageInfoBean.MutilSelectValue("避让轮渡", "512", false));
+                list_mutilSelectValue.add(new PageInfoBean.MutilSelectValue("避让隧道(仅在v2版引擎中支持)", "1024", false));
+                list_mutilSelectValue.add(new PageInfoBean.MutilSelectValue("避让高速", "2048", false));
+                list_mutilSelectValue.add(new PageInfoBean.MutilSelectValue("避让城市快速路", "4096", false));
+                list_mutilSelectValue.add(new PageInfoBean.MutilSelectValue("避让高架(仅在v2版引擎中支持)", "8192", false));
+                list_mutilSelectValue.add(new PageInfoBean.MutilSelectValue("避让未铺设道路(仅在v2版引擎中支持)", "16384", false));
+                list_mutilSelectValue.add(new PageInfoBean.MutilSelectValue("避让拥堵(仅在v2版引擎中支持)", "16777216", false));
+                list_mutilSelectValue.add(new PageInfoBean.MutilSelectValue("避让因为交通事件阻断的道路(仅在v2版引擎中支持)", "33554432", false));
+                list_mutilSelectValue.add(new PageInfoBean.MutilSelectValue("算路时是否考虑红绿灯代价,WARNING:仅供调试试用", "67108864", false));
+            } else {
+                int iaRoutePreference = obj_sendJson.getInt("iaRoutePreference");
+                list_mutilSelectValue.add(new PageInfoBean.MutilSelectValue("最短路线", "1", (iaRoutePreference & 1) !=0));
+                list_mutilSelectValue.add(new PageInfoBean.MutilSelectValue("高速优先", "2", (iaRoutePreference & 2) !=0));
+                list_mutilSelectValue.add(new PageInfoBean.MutilSelectValue("避让收费", "256", (iaRoutePreference & 256) !=0));
+                list_mutilSelectValue.add(new PageInfoBean.MutilSelectValue("避让轮渡", "512", (iaRoutePreference & 512) !=0));
+                list_mutilSelectValue.add(new PageInfoBean.MutilSelectValue("避让隧道(仅在v2版引擎中支持)", "1024", (iaRoutePreference & 1024) !=0));
+                list_mutilSelectValue.add(new PageInfoBean.MutilSelectValue("避让高速", "2048", (iaRoutePreference & 2048) !=0));
+                list_mutilSelectValue.add(new PageInfoBean.MutilSelectValue("避让城市快速路", "4096", (iaRoutePreference & 4096) !=0));
+                list_mutilSelectValue.add(new PageInfoBean.MutilSelectValue("避让高架(仅在v2版引擎中支持)", "8192", (iaRoutePreference & 8192) !=0));
+                list_mutilSelectValue.add(new PageInfoBean.MutilSelectValue("避让未铺设道路(仅在v2版引擎中支持)", "16384", (iaRoutePreference & 16384) !=0));
+                list_mutilSelectValue.add(new PageInfoBean.MutilSelectValue("避让拥堵(仅在v2版引擎中支持)", "16777216", (iaRoutePreference & 16777216) !=0));
+                list_mutilSelectValue.add(new PageInfoBean.MutilSelectValue("避让因为交通事件阻断的道路(仅在v2版引擎中支持)", "33554432", (iaRoutePreference & 33554432) !=0));
+                list_mutilSelectValue.add(new PageInfoBean.MutilSelectValue("算路时是否考虑红绿灯代价,WARNING:仅供调试试用", "67108864", (iaRoutePreference & 67108864) !=0));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+        tv_select_preference.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+            public void onClick(View v) {
+                final MultiSelectPopupWindows productsMultiSelectPopupWindows = new MultiSelectPopupWindows(RouteByConditionActivity.this, tv_select_preference, 100, list_mutilSelectValue);
+                productsMultiSelectPopupWindows.setOnDismissListener(new PopupWindow.OnDismissListener() {
+                    @Override
+                    public void onDismiss() {
+                        List<PageInfoBean.MutilSelectValue> list_after_select = productsMultiSelectPopupWindows.getMutilSelectValues();
+                        for (PageInfoBean.MutilSelectValue mutilSelectValue:list_after_select){
+                            if (mutilSelectValue.isSelect()){
+                                page_value |= Integer.parseInt(mutilSelectValue.getValue());
+                            }
+                        }
+                        try {
+                            if (obj_sendJson != null) {
+                                obj_sendJson.put("iaRoutePreference", page_value);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
             }
         });
     }
@@ -181,7 +223,7 @@ public class RouteByConditionActivity extends BaseActivity {
             JSONObject obj_sendJson_m = new JSONObject();
 
             obj_sendJson_m.put("startNavi", isStart.isChecked());
-            obj_sendJson_m.put("iaRoutePreference", type);
+            obj_sendJson_m.put("iaRoutePreference", page_value);
             obj_sendJson_m.put("deleteCurRoute", deleteMode.isChecked());
 
             if (setStart.isChecked()) {
@@ -403,7 +445,7 @@ public class RouteByConditionActivity extends BaseActivity {
 
         try {
             jsonObject.put("startNavi",startNavi);
-            jsonObject.put("iaRoutePreference", type);
+            jsonObject.put("iaRoutePreference", page_value);
             jsonObject.put("deleteCurRoute", deleteRoute);
 
             if (setStart.isChecked()) {

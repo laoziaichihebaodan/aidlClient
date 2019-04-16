@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relativeLayout_search"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:layout_height="50dp">
+
+    <TextView
+        android:id="@+id/textView_listView_selector"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_marginStart="10dp"
+        android:text="路线偏好"
+        android:ellipsize="end"
+        android:textColor="@color/baseBlack"
+        android:textSize="16sp" />
+
+    <ImageView
+        android:id="@+id/image_search_check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:src="@mipmap/icon_unselected" />
+
+</LinearLayout>
