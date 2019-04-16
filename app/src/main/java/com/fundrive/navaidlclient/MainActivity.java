@@ -12,6 +12,7 @@ import android.os.Environment;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -71,6 +72,8 @@ import com.fundrive.navaidlclient.modules.TimeInfoActivity;
 import com.fundrive.navaidlclient.modules.TmcActivity;
 import com.fundrive.navaidlclient.modules.UpdateFavActivity;
 import com.fundrive.navaidlclient.modules.WritingStateActivity;
+import com.fundrive.navaidlclient.utils.FileUtils;
+import com.fundrive.navaidlclient.utils.VersionUpdateUtils;
 import com.google.gson.Gson;
 import com.google.gson.internal.bind.ReflectiveTypeAdapterFactory;
 
@@ -80,9 +83,7 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -107,21 +108,39 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
     boolean mBind = false;
 //    private ArrayAdapter<PageInfoBean> adapter;
     private PageInfoAdapter adapter;
-    private int REQUEST_CODE = 1;
-
+    public static final int REQUEST_CODE = 1;//读写权限code
+    public static final int REQUEST_INSTALL = 11;//安装权限code
+    public static final int INSTALL_PACKAGES_REQUESTCODE = 2;//安卓8.0安装权限code
+    private VersionUpdateUtils updateUtils;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        //检查更新
+        updateUtils = new VersionUpdateUtils(this);
+        updateUtils.checkVersionUpdate();
+//        updateUtils.startInstallPermissionSettingActivity();
         //检查读写权限
         checkPermission();
         //防止写入文件过大，分割成多个文件
         try {
-            Resource.splitFile(Environment.getExternalStorageDirectory().toString()+"/"+Resource.notifyFileName,Resource.notifyFileFormat,3,10);
+            FileUtils.splitFile(Environment.getExternalStorageDirectory().toString()+"/"+FileUtils.notifyFileName,FileUtils.notifyFileFormat,3,10);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == REQUEST_INSTALL) {
+            Log.i("hebaodan","未知应用安装授权成功");
+            updateUtils.installApk();
+        } else{
+            Log.i("hebaodan","未知应用安装授权失败");
+            Toast.makeText(this,"请打开未知应用安装权限",Toast.LENGTH_LONG).show();
         }
     }
 
@@ -242,7 +261,7 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SS");// HH:mm:ss:SS
             Date date = new Date(System.currentTimeMillis());//获取当前时间
             String data = simpleDateFormat.format(date)+": cmd = "+Integer.toHexString(ia_cmd) + "---json = "+ia_json;
-            Resource.writeFile(data,Environment.getExternalStorageDirectory(),Resource.notifyFileName+Resource.notifyFileFormat,true);
+            FileUtils.writeFile(data,Environment.getExternalStorageDirectory(),FileUtils.notifyFileName+FileUtils.notifyFileFormat,true);
             Log.i("hebaodan",data);
         }
 
@@ -616,10 +635,10 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
 
     //获取&&解析json文件
     public boolean parseFileInfo() {
-        File cach_file = new File(getCacheDir(), Resource.fileName);
+        File cach_file = new File(getCacheDir(), FileUtils.fileName);
         if (!cach_file.exists()) {
             Log.i("hebaodan", "copy from asset to cache");
-            copyFilesFromAssets(MainActivity.this, cach_file);
+            FileUtils.copyFilesFromAssets(MainActivity.this, cach_file);
         }
 
         String strJson = readString(cach_file);
@@ -635,22 +654,7 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
         return true;
     }
 
-    public static void copyFilesFromAssets(Context context,File cach_file) {
-        try {
-            InputStream is = context.getAssets().open(Resource.fileName);
-            FileOutputStream fos = new FileOutputStream(cach_file);
-            byte[] buffer = new byte[1024];
-            int byteCount = 0;
-            while ((byteCount = is.read(buffer)) != -1) {
-                fos.write(buffer, 0, byteCount);
-            }
-            fos.flush();
-            is.close();
-            fos.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+
 
     //检查申请权限
     private void checkPermission() {
@@ -696,12 +700,19 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
         if (requestCode == REQUEST_CODE) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(this, "授权成功！", Toast.LENGTH_SHORT).show();
-                Log.i("hebaodan_permission", "checkPermission: 已经授权！3333");
+                Log.i("hebaodan_permission", "checkPermission: 读写权限已经授权！3333");
                 if (parseFileInfo()) {
                     init();
                 }
             }
         }
+//        else if (requestCode == REQUEST_CODE) {
+//            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                Toast.makeText(this, "授权成功！", Toast.LENGTH_SHORT).show();
+//                Log.i("hebaodan_permission", "checkPermission: 安装权限已经授权！");
+//                updateUtils.installApk();
+//            }
+//        }
 
     }
     private long firstTime = 0;
@@ -712,7 +723,7 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
             if (secondTime - firstTime < 2000) {
                 if (Resource.pageInfoBean != null) {
                     Gson gson = new Gson();
-                    Resource.writeFile(gson.toJson(Resource.pageInfoBean),getCacheDir(),Resource.fileName,false);
+                    FileUtils.writeFile(gson.toJson(Resource.pageInfoBean),getCacheDir(),FileUtils.fileName,false);
                 }
                 System.exit(0);
             } else {
