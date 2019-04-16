@@ -205,7 +205,7 @@
 			},
 			{
 				"name": "勾选状态:",
-				"value": "false",
+				"value": "true",
 				"valueType": "boolean",
 				"key": "enable",
 				"parentKey": "",
@@ -214,11 +214,11 @@
 				"floor": "1",
 				"spinnerValue": [{
 					"name": "选中",
-					"value": "false"
+					"value": "true"
 				},
 				{
 					"name": "不选中",
-					"value": "true"
+					"value": "false"
 				}],
 				"titleName": "",
 				"lineNum": "1"
