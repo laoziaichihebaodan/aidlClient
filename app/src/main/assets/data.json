@@ -2705,6 +2705,35 @@
 		"cmd": "400A"
 	},
 	{
+		"name": "查询路况简图",
+		"type": "导航",
+		"tips": "",
+		"cmd": "5002",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "输入关键字:",
+				"value": "人民广场",
+				"valueType": "string",
+				"key": "keyword",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "1",
+				"spinnerValue": [],
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
+		"name": "查询当前导航路线的路况简图",
+		"type": "导航",
+		"tips": "",
+		"cmd": "5003"
+	},
+	{
 		"name": "查询指定PictureId对应的路况简图",
 		"type": "导航",
 		"tips": "",
@@ -2897,5 +2926,47 @@
 				"lineNum": "2"
 			}]
 		}
-	}]
+	},
+	{
+		"name": "发送点击按钮的操作",
+		"type": "地图显示",
+		"tips": "",
+		"cmd": "6000",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "点击按钮类型:",
+				"value": "1",
+				"valueType": "int",
+				"key": "clickButton",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"floor": "1",
+				"spinnerValue": [{
+					"name": "家",
+					"value": "1"
+				},{
+					"name": "公司",
+					"value": "2"
+				},{
+					"name": "收藏",
+					"value": "3"
+				},{
+					"name": "停止导航",
+					"value": "4"
+				},{
+					"name": "继续导航",
+					"value": "5"
+				},{
+					"name": "取消导航",
+					"value": "6"
+				}],
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	}
+	]
 }
