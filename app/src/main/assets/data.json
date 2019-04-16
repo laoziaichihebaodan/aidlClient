@@ -2574,12 +2574,19 @@
 				"grandParentKey": "",
 				"type": "spinner",
 				"spinnerValue": [{
+					"name": "无效",
+					"value": "0"
+				},{
 					"name": "简洁模式",
 					"value": "1"
 				},
 				{
 					"name": "标准模式",
 					"value": "2"
+				},
+				{
+					"name": "安全模式",
+					"value": "3"
 				}],
 				"floor": "1",
 				"titleName": "",
