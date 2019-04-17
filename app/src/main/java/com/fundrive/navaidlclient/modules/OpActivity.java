@@ -268,7 +268,7 @@ public class OpActivity extends BaseActivity {
                 });
                 linearLayout.addView(spinner);
 
-            }else if (page_type.equals("mutilselect")){//just for route preference mutilselect
+            }else if (page_type.equals("mutilselect")){
                 TextView tv = new TextView(this);
                 tv.setTextSize(20);
                 tv.setText(page.getName());
