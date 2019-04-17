@@ -34,6 +34,78 @@
                   "titleName": "",//暂时没用
                   "lineNum": "1"//控件所在行
               },
+			  {
+					"name": "算路偏好:",
+					"value": "1",
+					"valueType": "int",
+					"key": "iaRoutePreference",
+					"parentKey": "",
+					"grandParentKey": "",
+					"type": "mutilselect",//多选控件
+					"floor": "1",
+					"mutilSelectValue": [{//多选控件的各项
+						"name": "最短路线",//项名
+						"value": "1",//项值
+						"isSelect":false//该项是否被选中
+					},
+					{
+						"name": "高速优先",
+						"value": "2",
+						"isSelect":false
+					},
+					{
+						"name": "避让收费",
+						"value": "256",
+						"isSelect":false
+					},
+					{
+						"name": "避让轮渡",
+						"value": "512",
+						"isSelect":false
+					},
+					{
+						"name": "避让隧道(仅在v2版引擎中支持)",
+						"value": "1024",
+						"isSelect":false
+					},
+					{
+						"name": "避让高速",
+						"value": "2048",
+						"isSelect":false
+					},
+					{
+						"name": "避让城市快速路",
+						"value": "4096",
+						"isSelect":false
+					},
+					{
+						"name": "避让高架(仅在v2版引擎中支持)",
+						"value": "8192",
+						"isSelect":false
+					},
+					{
+						"name": "避让未铺设道路(仅在v2版引擎中支持)",
+						"value": "16384",
+						"isSelect":false
+					},
+					{
+						"name": "避让拥堵(仅在v2版引擎中支持)",
+						"value": "16777216",
+						"isSelect":false
+					},
+					{
+						"name": "避让因为交通事件阻断的道路(仅在v2版引擎中支持)",
+						"value": "33554432",
+						"isSelect":false
+					},
+					{
+						"name": "算路时是否考虑红绿灯代价,WARNING:仅供调试试用",
+						"value": "67108864",
+						"isSelect":false
+					}],
+					"titleName": "",
+					"lineNum": "1"
+			  },
               {
                   "name": "请输入音量值：",
                   "value": "2",
