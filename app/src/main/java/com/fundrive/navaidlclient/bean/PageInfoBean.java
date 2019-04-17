@@ -190,6 +190,7 @@ public class PageInfoBean implements Serializable{
         private String titleName;//"---",
         private String lineNum;//"1"
         private List<SpinnerValue> spinnerValue;
+        private List<MutilSelectValue> mutilSelectValue;
 
         @Override
         public String toString() {
@@ -222,6 +223,14 @@ public class PageInfoBean implements Serializable{
 
         public void setSpinnerValue(List<SpinnerValue> spinnerValue) {
             this.spinnerValue = spinnerValue;
+        }
+
+        public List<MutilSelectValue> getMutilSelectValue() {
+            return mutilSelectValue;
+        }
+
+        public void setMutilSelectValue(List<MutilSelectValue> mutilSelectValue) {
+            this.mutilSelectValue = mutilSelectValue;
         }
 
         public String getName() {
@@ -316,6 +325,53 @@ public class PageInfoBean implements Serializable{
 
         public void setValue(String value) {
             this.value = value;
+        }
+
+        @Override
+        public String toString() {
+            return "SpinnerValue{" +
+                    "name='" + name + '\'' +
+                    ", value='" + value + '\'' +
+                    '}';
+        }
+    }
+
+    public static class MutilSelectValue implements Serializable{
+        private String name;
+        private String value;
+        private boolean isSelect;
+
+        public MutilSelectValue(){
+
+        }
+        public MutilSelectValue(String name,String value,boolean isSelect){
+            this.name = name;
+            this.value = value;
+            this.isSelect = isSelect;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        public void setValue(String value) {
+            this.value = value;
+        }
+
+        public void setSelect(boolean isSelect){
+            this.isSelect = isSelect;
+        }
+
+        public boolean isSelect(){
+            return isSelect;
         }
 
         @Override

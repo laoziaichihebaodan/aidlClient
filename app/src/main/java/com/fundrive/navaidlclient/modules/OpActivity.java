@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +22,7 @@ import com.fundrive.navaidlclient.Constant;
 import com.fundrive.navaidlclient.R;
 import com.fundrive.navaidlclient.Resource;
 import com.fundrive.navaidlclient.bean.PageInfoBean;
+import com.fundrive.navaidlclient.view.MultiSelectPopupWindows;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -265,6 +267,45 @@ public class OpActivity extends BaseActivity {
                     }
                 });
                 linearLayout.addView(spinner);
+
+            }else if (page_type.equals("mutilselect")){
+                TextView tv = new TextView(this);
+                tv.setTextSize(20);
+                tv.setText(page.getName());
+                linearLayout.addView(tv);
+                LinearLayout.LayoutParams tv_params = (LinearLayout.LayoutParams) tv.getLayoutParams();
+                tv_params.setMargins(30,0,30,0);
+
+                final TextView tv_select = new TextView(this);
+                tv_select.setTextSize(20);
+                tv_select.setText("选择偏好");
+                linearLayout.addView(tv_select);
+                LinearLayout.LayoutParams tv_select_params = (LinearLayout.LayoutParams) tv_select.getLayoutParams();
+                tv_select_params.setMargins(0,0,30,0);
+                tv_select_params.weight = 1;
+                tv_select_params.width = 0;
+
+                tv_select.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final MultiSelectPopupWindows productsMultiSelectPopupWindows = new MultiSelectPopupWindows(OpActivity.this, tv_select, 100, page.getMutilSelectValue());
+                        productsMultiSelectPopupWindows.setOnDismissListener(new PopupWindow.OnDismissListener() {
+                            @Override
+                            public void onDismiss() {
+                                List<PageInfoBean.MutilSelectValue> list_after_select = productsMultiSelectPopupWindows.getMutilSelectValues();
+                                int page_value = 0;
+                                page.setMutilSelectValue(list_after_select);
+                                for (PageInfoBean.MutilSelectValue mutilSelectValue:list_after_select){
+                                    if (mutilSelectValue.isSelect()){
+                                        page_value |= Integer.parseInt(mutilSelectValue.getValue());
+                                    }
+                                }
+                                page.setValue(String.valueOf(page_value));
+                                protocolData.getItem().getPage().set(finalI,page);
+                            }
+                        });
+                    }
+                });
 
             }
         }

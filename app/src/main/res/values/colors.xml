@@ -12,4 +12,9 @@
     <color name="text_hint">#CCCCCC</color>
     <color name="bg_title">#a2aba3</color>
     <color name="transparent">#00000000</color>
+
+    <color name="baseBlack">#000000</color>
+
+    <color name="pull_down_bg">#F7F7F7</color>
+    <color name="pull_down_text">#EAEAEA</color>
 </resources>
