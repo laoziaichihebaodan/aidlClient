@@ -162,15 +162,15 @@ public class VersionUpdateUtils {
     protected void showUpdataDialog() {
         AlertDialog.Builder builer = new Builder(context);
         builer.setTitle("版本升级");
-        builer.setMessage("检测到新版本，是否更新版本");
+        builer.setMessage("检测到新版本，是否升级到新版本");
         //当点确定按钮时从服务器上下载 新的apk 然后安装   װ
-        builer.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+        builer.setPositiveButton("立即升级", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 Log.i(TAG, "下载apk,更新");
                 downLoadApk();
             }
         });
-		builer.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+		builer.setNegativeButton("下次再说", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
 				// TODO Auto-generated method stub
 				//do sth
