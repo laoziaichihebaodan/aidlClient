@@ -2015,6 +2015,36 @@
 		}
 	},
 	{
+		"name": "猜测家或公司语音控制",
+		"type": "导航",
+		"tips": "",
+		"cmd": "201D",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "操作:",
+				"value": "true",
+				"valueType": "boolean",
+				"key": "enable",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "确认导航",
+					"value": "true"
+				},
+				{
+					"name": "取消",
+					"value": "false"
+				}],
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
 		"name": "键盘输入字符串",
 		"type": "设置",
 		"tips": "",
@@ -2079,6 +2109,36 @@
 				{
 					"name": "切换桥下",
 					"value": "4"
+				}],
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
+		"name": "动态算路切换推荐路线",
+		"type": "导航",
+		"tips": "",
+		"cmd": "202E",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "是否切换:",
+				"value": "true",
+				"valueType": "boolean",
+				"key": "enable",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "切换",
+					"value": "true"
+				},
+				{
+					"name": "不切换",
+					"value": "false"
 				}],
 				"floor": "1",
 				"titleName": "",
