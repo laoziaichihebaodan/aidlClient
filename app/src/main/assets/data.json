@@ -2991,50 +2991,6 @@
 				}],
 				"titleName": "",
 				"lineNum": "1"
-			},
-			{
-				"name": "相对自车方向:",
-				"value": "东",
-				"valueType": "string",
-				"key": "direction",
-				"parentKey": "",
-				"grandParentKey": "",
-				"type": "spinner",
-				"floor": "1",
-				"spinnerValue": [{
-					"name": "东",
-					"value": "东"
-				},
-				{
-					"name": "南",
-					"value": "南"
-				},
-				{
-					"name": "西",
-					"value": "西"
-				},
-				{
-					"name": "北",
-					"value": "北"
-				},
-				{
-					"name": "东南",
-					"value": "东南"
-				},
-				{
-					"name": "东北",
-					"value": "东北"
-				},
-				{
-					"name": "西南",
-					"value": "西南"
-				},
-				{
-					"name": "西北",
-					"value": "西北"
-				}],
-				"titleName": "",
-				"lineNum": "2"
 			}]
 		}
 	},
