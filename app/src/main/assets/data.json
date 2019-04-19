@@ -2907,58 +2907,6 @@
 		}
 	},
 	{
-		"name": "查询路况简图",
-		"type": "导航",
-		"tips": "",
-		"cmd": "5002",
-		"item": {
-			"secondKey": [],
-			"thirdKey": [],
-			"page": [{
-				"name": "输入关键字:",
-				"value": "人民广场",
-				"valueType": "string",
-				"key": "keyword",
-				"parentKey": "",
-				"grandParentKey": "",
-				"type": "edittext",
-				"floor": "1",
-				"spinnerValue": [],
-				"titleName": "",
-				"lineNum": "1"
-			}]
-		}
-	},
-	{
-		"name": "查询当前导航路线的路况简图",
-		"type": "导航",
-		"tips": "",
-		"cmd": "5003"
-	},
-	{
-		"name": "查询指定PictureId对应的路况简图",
-		"type": "导航",
-		"tips": "",
-		"cmd": "5004",
-		"item": {
-			"secondKey": [],
-			"thirdKey": [],
-			"page": [{
-				"name": "输入Picture Id:",
-				"value": "0021_201_026",
-				"valueType": "string",
-				"key": "picID",
-				"parentKey": "",
-				"grandParentKey": "",
-				"type": "edittext",
-				"floor": "1",
-				"spinnerValue": [],
-				"titleName": "",
-				"lineNum": "1"
-			}]
-		}
-	},
-	{
 		"name": "查询当前城市",
 		"type": "搜索",
 		"tips": "",
