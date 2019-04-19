@@ -2147,6 +2147,84 @@
 		}
 	},
 	{
+		"name": "选择推荐目的地",
+		"type": "导航",
+		"tips": "",
+		"cmd": "202F",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "目的地类型:",
+				"value": "1",
+				"valueType": "int",
+				"key": "destination",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "无效",
+					"value": "0"
+				},
+				{
+					"name": "停车场",
+					"value": "1"
+				},
+				{
+					"name": "充电站",
+					"value": "2"
+				}],
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "操作:",
+				"value": "1",
+				"valueType": "int",
+				"key": "action",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "关闭",
+					"value": "0"
+				},
+				{
+					"name": "选择",
+					"value": "1"
+				}],
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "条目序号:",
+				"value": "0",
+				"valueType": "int",
+				"key": "select",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "0",
+					"value": "0"
+				},
+				{
+					"name": "1",
+					"value": "1"
+				},
+				{
+					"name": "2",
+					"value": "2"
+				}],
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
 		"name": "条件搜索poi",
 		"type": "搜索",
 		"tips": "",
