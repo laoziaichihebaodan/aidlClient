@@ -2855,46 +2855,6 @@
 		}
 	},
 	{
-		"name": "设置巡航静音",
-		"type": "设置",
-		"tips": "",
-		"cmd": "4009",
-		"item": {
-			"secondKey": [],
-			"thirdKey": [],
-			"page": [
-				{
-					"name": "巡航播报:",
-					"value": "true",
-					"valueType": "boolean",
-					"key": "enable",
-					"parentKey": "",
-					"grandParentKey": "",
-					"type": "spinner",
-					"spinnerValue": [
-						{
-							"name": "true",
-							"value": "true"
-						},
-						{
-							"name": "false",
-							"value": "false"
-						}
-					],
-					"floor": "1",
-					"titleName": "",
-					"lineNum": "1"
-				}
-			]
-		}
-	},
-	{
-		"name": "低电量通知",
-		"type": "设置",
-		"tips": "",
-		"cmd": "400A"
-	},
-	{
 		"name": "查询路况简图",
 		"type": "导航",
 		"tips": "",
