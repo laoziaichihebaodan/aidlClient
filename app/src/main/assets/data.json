@@ -460,6 +460,28 @@
 		}
 	},
 	{
+		"name": "设置车牌号",
+		"type": "设置",
+		"tips": "请传入合法的车牌号",
+		"cmd": "100D",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "输入车牌号:",
+				"value": "沪A123456",
+				"valueType": "string",
+				"key": "carNo",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
 		"name": "保存NavApp数据",
 		"type": "设置",
 		"tips": "",
