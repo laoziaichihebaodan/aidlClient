@@ -2885,6 +2885,28 @@
 		}
 	},
 	{
+		"name": "当前车速",
+		"type": "导航",
+		"tips": "速度为整数，单位：m/1000s",
+		"cmd": "400D",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "速度:",
+				"value": "3000",
+				"valueType": "int",
+				"key": "speed",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "edittext",
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
 		"name": "查询路况简图",
 		"type": "导航",
 		"tips": "",
