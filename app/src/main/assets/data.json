@@ -2237,6 +2237,36 @@
 		"cmd": "2032"
 	},
 	{
+		"name": "语音确认是否搜索充电桩",
+		"type": "搜索",
+		"tips": "",
+		"cmd": "2035",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "是否搜索:",
+				"value": "true",
+				"valueType": "boolean",
+				"key": "enable",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "确认搜索",
+					"value": "true"
+				},
+				{
+					"name": "取消搜索",
+					"value": "false"
+				}],
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			}]
+		}
+	},
+	{
 		"name": "条件搜索poi",
 		"type": "搜索",
 		"tips": "",
