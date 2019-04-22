@@ -42,6 +42,7 @@ import com.fundrive.navaidlclient.modules.FavoriteGuidanceActivity;
 import com.fundrive.navaidlclient.modules.GetFavoritePointActivity;
 import com.fundrive.navaidlclient.modules.GetPoiPageDataActivity;
 import com.fundrive.navaidlclient.modules.GetPonitInfoActivity;
+import com.fundrive.navaidlclient.modules.GuessHomeAndCompanyActivity;
 import com.fundrive.navaidlclient.modules.GuideSoundTypeActivity;
 import com.fundrive.navaidlclient.modules.HelpInfoActivity;
 import com.fundrive.navaidlclient.modules.InputActivity;
@@ -315,6 +316,9 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
         } else {
             Intent intent;
             switch (Integer.parseInt(lists.getCmd(),16)){
+                case 0x201B:
+                    intent = new Intent(MainActivity.this, GuessHomeAndCompanyActivity.class);
+                    break;
                 case 0x1005:
                     intent = new Intent(MainActivity.this, TimeInfoActivity.class);
                     break;
