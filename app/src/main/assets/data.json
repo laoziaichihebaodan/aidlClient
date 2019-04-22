@@ -3034,6 +3034,58 @@
 		}
 	},
 	{
+		"name": "停车无忧",
+		"type": "地图显示",
+		"tips": "",
+		"cmd": "500A",
+		"item": {
+			"secondKey": [],
+			"thirdKey": [],
+			"page": [{
+				"name": "操作类型:",
+				"value": "1",
+				"valueType": "int",
+				"key": "parkingAction",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"floor": "1",
+				"spinnerValue": [{
+					"name": "进入停车场",
+					"value": "1"
+				},{
+					"name": "离开停车场",
+					"value": "2"
+				},{
+					"name": "生成订单或者订单状态有更新",
+					"value": "3"
+				},{
+					"name": "支付失败",
+					"value": "4"
+				},{
+					"name": "支付成功",
+					"value": "5"
+				}],
+				"titleName": "",
+				"lineNum": "1"
+			},
+				{
+					"name": "停车场名称:",
+					"value": "上海电力大学停车场",
+					"valueType": "string",
+					"key": "parkingName",
+					"parentKey": "",
+					"grandParentKey": "",
+					"type": "edittext",
+					"floor": "1",
+					"spinnerValue": [],
+					"titleName": "",
+					"lineNum": "2"
+				}
+			]
+		}
+	},
+	{
 		"name": "发送点击按钮的操作",
 		"type": "地图显示",
 		"tips": "",
