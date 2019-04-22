@@ -49,7 +49,6 @@ public class MutimediaInformationActivity extends BaseActivity {
     private String miscName;
 
     private String message;
-    private Dialog sendDialog;
 
     private PageInfoBean.Lists protocolData;
     private int lists_index;
@@ -156,14 +155,6 @@ public class MutimediaInformationActivity extends BaseActivity {
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
-        if (sendDialog != null && sendDialog.isShowing()){
-            sendDialog.cancel();
-        }
-    }
-
-    @Override
     protected void onPause() {
         super.onPause();
         try {
@@ -208,21 +199,12 @@ public class MutimediaInformationActivity extends BaseActivity {
             case R.id.btn_commit:
                 miscName = etMisc.getText().toString().trim();
                 makeJson();
-                showSendDialog();
+                showSendDialog(message);
                 break;
             case R.id.btn_return:
                 finish();
                 break;
         }
-    }
-
-    private void showSendDialog(){
-        sendDialog = new AlertDialog.Builder(this).create();
-        sendDialog.show();
-        sendDialog.setContentView(R.layout.send_dialog_bg);
-        TextView tv_send = sendDialog.findViewById(R.id.tv_send);
-        tv_send.setText(message);
-        tv_send.setTextIsSelectable(true);
     }
 
     private void makeJson() {

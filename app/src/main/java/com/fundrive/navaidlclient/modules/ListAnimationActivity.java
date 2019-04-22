@@ -35,7 +35,6 @@ public class ListAnimationActivity extends BaseActivity {
     private AnimationListAdapter adapter;
 
     private String message;
-    private Dialog sendDialog;
 
     private PageInfoBean.Lists protocolData;
     private int lists_index;
@@ -68,14 +67,6 @@ public class ListAnimationActivity extends BaseActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        if (sendDialog != null && sendDialog.isShowing()){
-            sendDialog.cancel();
         }
     }
 
@@ -114,21 +105,12 @@ public class ListAnimationActivity extends BaseActivity {
                 break;
             case R.id.btn_commit:
                 makeJson();
-                showSendDialog();
+                showSendDialog(message);
                 break;
             case R.id.btn_return:
                 finish();
                 break;
         }
-    }
-
-    private void showSendDialog(){
-        sendDialog = new AlertDialog.Builder(this).create();
-        sendDialog.show();
-        sendDialog.setContentView(R.layout.send_dialog_bg);
-        TextView tv_send = sendDialog.findViewById(R.id.tv_send);
-        tv_send.setText(message);
-        tv_send.setTextIsSelectable(true);
     }
 
     //组装json

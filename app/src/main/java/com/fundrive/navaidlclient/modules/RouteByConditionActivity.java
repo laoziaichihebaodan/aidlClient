@@ -57,7 +57,6 @@ public class RouteByConditionActivity extends BaseActivity {
     private boolean startNavi = false;
 
     private String message;
-    private Dialog sendDialog;
 
     public static JSONObject startPoint = Points.pointJson(351,
             12151236, 3129925,
@@ -251,14 +250,6 @@ public class RouteByConditionActivity extends BaseActivity {
         Resource.pageInfoBean.getLists().add(lists_index, protocolData);
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        if (sendDialog != null && sendDialog.isShowing()){
-            sendDialog.cancel();
-        }
-    }
-
     @OnClick({R.id.set_start, R.id.btn_end_pos, R.id.set_way_pos1, R.id.set_way_pos2, R.id.set_way_pos3, R.id.btn_commit, R.id.btn_return,R.id.is_start,R.id.delete_mode})
     public void onViewClicked(View view) {
 
@@ -380,7 +371,7 @@ public class RouteByConditionActivity extends BaseActivity {
                 deleteRoute = deleteMode.isChecked();
                 startNavi = isStart.isChecked();
                 makeJson();
-                showSendDialog();
+                showSendDialog(message);
                 break;
             case R.id.btn_return:
                 finish();
@@ -427,15 +418,6 @@ public class RouteByConditionActivity extends BaseActivity {
                 }
             }
         }
-    }
-
-    private void showSendDialog(){
-        sendDialog = new AlertDialog.Builder(this).create();
-        sendDialog.show();
-        sendDialog.setContentView(R.layout.send_dialog_bg);
-        TextView tv_send = sendDialog.findViewById(R.id.tv_send);
-        tv_send.setText(message);
-        tv_send.setTextIsSelectable(true);
     }
 
     //组装json

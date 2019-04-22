@@ -55,7 +55,6 @@ public class TimeInfoActivity extends BaseActivity implements OnDateSetListener 
     private int timeMode = 0;
 
     private String message;
-    private Dialog sendDialog;
 
     SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private Calendar instance;
@@ -156,14 +155,6 @@ public class TimeInfoActivity extends BaseActivity implements OnDateSetListener 
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
-        if (sendDialog != null && sendDialog.isShowing()){
-            sendDialog.cancel();
-        }
-    }
-
-    @Override
     protected void onPause() {
         super.onPause();
 
@@ -203,21 +194,12 @@ public class TimeInfoActivity extends BaseActivity implements OnDateSetListener 
                 break;
             case R.id.btn_commit:
                 makeJson(timeType, timeMode, year, month, day, hour, minute, second);
-                showSendDialog();
+                showSendDialog(message);
                 break;
             case R.id.btn_return:
                 finish();
                 break;
         }
-    }
-
-    private void showSendDialog(){
-        sendDialog = new AlertDialog.Builder(this).create();
-        sendDialog.show();
-        sendDialog.setContentView(R.layout.send_dialog_bg);
-        TextView tv_send = sendDialog.findViewById(R.id.tv_send);
-        tv_send.setText(message);
-        tv_send.setTextIsSelectable(true);
     }
 
     private void makeJson(int timeType, int timeMode, int year, int month, int day, int hour, int minute, int second) {
