@@ -381,7 +381,7 @@ public class OpActivity extends BaseActivity {
                 object.put(key,value);
                 break;
             case "boolean":
-                boolean bValue = value.equals("true") ? true : false;
+                boolean bValue = value.equals("true");
                 object.put(key,bValue);
                 break;
             case "long":
