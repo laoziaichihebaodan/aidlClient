@@ -835,7 +835,7 @@
 				"type": "spinner",
 				"spinnerValue": [{
 					"name": "家",
-					"value": "2"
+					"value": "1"
 				},
 				{
 					"name": "公司",
