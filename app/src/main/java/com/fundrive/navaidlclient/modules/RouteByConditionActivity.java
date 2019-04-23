@@ -196,6 +196,7 @@ public class RouteByConditionActivity extends BaseActivity {
                     @Override
                     public void onDismiss() {
                         List<PageInfoBean.MutilSelectValue> list_after_select = productsMultiSelectPopupWindows.getMutilSelectValues();
+                        page_value = 0;
                         for (PageInfoBean.MutilSelectValue mutilSelectValue:list_after_select){
                             if (mutilSelectValue.isSelect()){
                                 page_value |= Integer.parseInt(mutilSelectValue.getValue());
