@@ -1,15 +1,11 @@
 package com.fundrive.navaidlclient.modules;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.PopupWindow;
-import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 

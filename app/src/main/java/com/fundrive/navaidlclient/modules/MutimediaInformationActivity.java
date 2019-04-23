@@ -1,7 +1,5 @@
 package com.fundrive.navaidlclient.modules;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -21,8 +19,6 @@ import com.fundrive.navaidlclient.bean.PageInfoBean;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.Calendar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
