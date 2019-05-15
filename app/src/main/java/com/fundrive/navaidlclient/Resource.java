@@ -46,6 +46,7 @@ public class Resource {
     private static EditText meditText = null;
     public static String data = null;
     private static boolean StartServer = false;
+    private static boolean StartClient = false;
     private static ShareConfiguration mShareConfiguration = null;
     public static int device_model = 0;
     private static String serverIpaddress = null;
@@ -226,6 +227,7 @@ public class Resource {
         }
     }
 
+    private static DatagramSocket client_dsocket = null;
     public static void udpClient(final String data) {
         if (serverIpaddress == null || serverIpaddress == "") {
             showInfo(ctx, "IP地址不正确.");
@@ -236,7 +238,6 @@ public class Resource {
             public void run() {
                 Message msg = new Message();
                 InetAddress addr = null;
-                DatagramSocket dsocket = null;
                 ByteArrayOutputStream byteArrayOutputStream = null;
                 DataOutputStream dataOutputStream = null;
                 try {
@@ -248,7 +249,7 @@ public class Resource {
                     e.printStackTrace();
                 }
                 try {
-                    dsocket = new DatagramSocket();
+                    client_dsocket = new DatagramSocket();
                     byteArrayOutputStream = new ByteArrayOutputStream();
                     dataOutputStream = new DataOutputStream(byteArrayOutputStream);
                     dataOutputStream.writeUTF(data);
@@ -265,7 +266,7 @@ public class Resource {
                 byte[] wrapData = byteArrayOutputStream.toByteArray();
                 DatagramPacket dpacket = new DatagramPacket(wrapData, wrapData.length, addr, PORT);
                 try {
-                    dsocket.send(dpacket);
+                    client_dsocket.send(dpacket);
                     msg.what = CONNECTED_SEVER_STATE;
                     msg.arg1 = 2;
                     myHandler.sendMessage(msg);
@@ -275,7 +276,7 @@ public class Resource {
                     msg.arg1 = 3;
                     myHandler.sendMessage(msg);
                 }
-                dsocket.close();
+//                client_dsocket.close();
             }
         }.start();
     }
@@ -318,6 +319,58 @@ public class Resource {
         }
     }
 
+    /**
+     * 客户端从服务端接收返回数据
+     */
+    private static void receiveFromServer(){
+        new Thread(){
+            @Override
+            public void run() {
+                byte[] buf = new byte[1024 * 2];
+                while (StartClient) {
+                    DatagramPacket dp = new DatagramPacket(buf, 1024 * 2);
+                    try {
+                        if (client_dsocket!=null){
+                            client_dsocket.receive(dp);
+                            String data;
+                            try (DataInputStream dataInputStream = new DataInputStream(new ByteArrayInputStream(dp.getData()))) {
+                                data = dataInputStream.readUTF();
+                            }
+                            Log.e("zzz","client receive:"+data);
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }.start();
+    }
+
+    /**
+     * 服务端发返回数据给客户端
+     * 此方法不要再主线程调用
+     * @param data
+     */
+    static void sendFromServerToClient(String data){
+        try {
+            DatagramSocket socket = new DatagramSocket();
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
+            dataOutputStream.writeUTF(data);
+            dataOutputStream.close();
+            byte[] wrapData = byteArrayOutputStream.toByteArray();
+            DatagramPacket packet = null;
+            if (client_address != null && client_port != 0){
+                packet = new DatagramPacket(wrapData,wrapData.length,client_address,client_port);
+                socket.send(packet);
+            } else {
+                Log.e("zzz","客户端未知");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private static void ModelChooseDialog() {
         /* @setIcon 设置对话框图标
          * @setTitle 设置对话框标题
@@ -350,6 +403,9 @@ public class Resource {
         ModelChooseDialog.show();
     }
 
+    private static InetAddress client_address;
+    private static int client_port;
+
     private static void startUdpServer() {
         new Thread() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -369,6 +425,8 @@ public class Resource {
                             return;
                         }
                         ds.receive(dp);
+                        client_address = dp.getAddress();
+                        client_port = dp.getPort();
                         String data;
                         try (DataInputStream dataInputStream = new DataInputStream(new ByteArrayInputStream(dp.getData()))) {
                             data = dataInputStream.readUTF();
@@ -416,7 +474,9 @@ public class Resource {
                     SharedPreferences sp = ctx.getSharedPreferences("data", Activity.MODE_PRIVATE);
                     sp.edit().putString("ip", input).commit();
                 }
+                StartClient = true;
                 dialog.dismiss();
+                receiveFromServer();
             }
         });
     }
