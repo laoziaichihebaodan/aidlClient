@@ -6,7 +6,9 @@ import android.text.InputType;
 import android.text.method.DigitsKeyListener;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.fundrive.navaidlclient.Constant;
@@ -29,47 +31,35 @@ public class GuessHomeAndCompanyActivity extends BaseActivity {
     @BindView(R.id.tv_tips)
     TextView tv_tips;
 
-    @BindView(R.id.et_home_1_start_time)
-    EditText et_home_1_start_time;
-    @BindView(R.id.et_home_1_radius)
-    EditText et_home_1_radius;
-    @BindView(R.id.et_home_1_lon)
-    EditText et_home_1_lon;
-    @BindView(R.id.et_home_1_lat)
-    EditText et_home_1_lat;
+    @BindView(R.id.sp_iaFavType)
+    Spinner sp_iaFavType;
 
-    @BindView(R.id.et_home_2_start_time)
-    EditText et_home_2_start_time;
-    @BindView(R.id.et_home_2_radius)
-    EditText et_home_2_radius;
-    @BindView(R.id.et_home_2_lon)
-    EditText et_home_2_lon;
-    @BindView(R.id.et_home_2_lat)
-    EditText et_home_2_lat;
+    @BindView(R.id.et_lon)
+    EditText et_lon;
+    @BindView(R.id.et_lat)
+    EditText et_lat;
 
-    @BindView(R.id.et_company_1_start_time)
-    EditText et_company_1_start_time;
-    @BindView(R.id.et_company_1_radius)
-    EditText et_company_1_radius;
-    @BindView(R.id.et_company_1_lon)
-    EditText et_company_1_lon;
-    @BindView(R.id.et_company_1_lat)
-    EditText et_company_1_lat;
+    @BindView(R.id.et_start_time_hour)
+    EditText et_start_time_hour;
+    @BindView(R.id.et_start_time_minute)
+    EditText et_start_time_minute;
 
-    @BindView(R.id.et_company_2_start_time)
-    EditText et_company_2_start_time;
-    @BindView(R.id.et_company_2_radius)
-    EditText et_company_2_radius;
-    @BindView(R.id.et_company_2_lon)
-    EditText et_company_2_lon;
-    @BindView(R.id.et_company_2_lat)
-    EditText et_company_2_lat;
+    @BindView(R.id.et_end_time_hour)
+    EditText et_end_time_hour;
+    @BindView(R.id.et_end_time_minute)
+    EditText et_end_time_minute;
+
+    @BindView(R.id.sp_isFestival)
+    Spinner sp_isFestival;
 
     private String message;
 
     private PageInfoBean.Lists protocolData;
     private int lists_index;
     private JSONObject obj_sendJson;
+
+    private int iaFavType;
+    private boolean isFestival;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,65 +79,56 @@ public class GuessHomeAndCompanyActivity extends BaseActivity {
         }
 
         tvTitle.setText("猜测家和公司");
-        et_home_1_lon.setInputType(InputType.TYPE_CLASS_NUMBER);
-        et_home_1_lon.setKeyListener(DigitsKeyListener.getInstance("0123456789."));
-        et_home_1_lat.setInputType(InputType.TYPE_CLASS_NUMBER);
-        et_home_1_lat.setKeyListener(DigitsKeyListener.getInstance("0123456789."));
-        et_home_2_lon.setInputType(InputType.TYPE_CLASS_NUMBER);
-        et_home_2_lon.setKeyListener(DigitsKeyListener.getInstance("0123456789."));
-        et_home_2_lat.setInputType(InputType.TYPE_CLASS_NUMBER);
-        et_home_2_lat.setKeyListener(DigitsKeyListener.getInstance("0123456789."));
-        et_company_1_lon.setInputType(InputType.TYPE_CLASS_NUMBER);
-        et_company_1_lon.setKeyListener(DigitsKeyListener.getInstance("0123456789."));
-        et_company_1_lat.setInputType(InputType.TYPE_CLASS_NUMBER);
-        et_company_1_lat.setKeyListener(DigitsKeyListener.getInstance("0123456789."));
-        et_company_2_lon.setInputType(InputType.TYPE_CLASS_NUMBER);
-        et_company_2_lon.setKeyListener(DigitsKeyListener.getInstance("0123456789."));
-        et_company_2_lat.setInputType(InputType.TYPE_CLASS_NUMBER);
-        et_company_2_lat.setKeyListener(DigitsKeyListener.getInstance("0123456789."));
 
         if (protocolData.getSendJson()!=null && !protocolData.getSendJson().isEmpty()){
             try {
                 obj_sendJson = new JSONObject(protocolData.getSendJson());
 
-                JSONArray arr_homeList = obj_sendJson.getJSONArray("homeList");
-                if (arr_homeList.length() == 2) {
-                    JSONObject obj_home_1 = arr_homeList.getJSONObject(0);
-                    et_home_1_start_time.setText(obj_home_1.getJSONArray("startTime").get(0).toString());
-                    et_home_1_radius.setText(String.valueOf(obj_home_1.getInt("radius")));
-                    String lonAndLat_1 = obj_home_1.getString("lonLat");
-                    et_home_1_lon.setText(lonAndLat_1.substring(0,lonAndLat_1.indexOf(",")));
-                    et_home_1_lat.setText(lonAndLat_1.substring(lonAndLat_1.indexOf(",")+1,lonAndLat_1.length()));
+                iaFavType = obj_sendJson.getInt("iaFavType");
+                sp_iaFavType.setSelection(iaFavType);
 
-                    JSONObject obj_home_2 = arr_homeList.getJSONObject(1);
-                    et_home_2_start_time.setText(obj_home_2.getJSONArray("startTime").get(0).toString());
-                    et_home_2_radius.setText(String.valueOf(obj_home_2.getInt("radius")));
-                    String lonAndLat_2 = obj_home_2.getString("lonLat");
-                    et_home_2_lon.setText(lonAndLat_2.substring(0,lonAndLat_2.indexOf(",")));
-                    et_home_2_lat.setText(lonAndLat_2.substring(lonAndLat_2.indexOf(",")+1,lonAndLat_2.length()));
-                }
+                JSONObject obj_lonAndLat = obj_sendJson.getJSONObject("iaPoiPos");
+                et_lon.setText(String.valueOf(obj_lonAndLat.getInt("longitude")));
+                et_lat.setText(String.valueOf(obj_lonAndLat.getInt("latitude")));
+                et_lon.setSelection(et_lon.getText().length());
 
-                JSONArray arr_companyList = obj_sendJson.getJSONArray("companyList");
-                if (arr_companyList.length() == 2) {
-                    JSONObject obj_company_1 = arr_companyList.getJSONObject(0);
-                    et_company_1_start_time.setText(obj_company_1.getJSONArray("startTime").get(0).toString());
-                    et_company_1_radius.setText(String.valueOf(obj_company_1.getInt("radius")));
-                    String lonAndLat_1 = obj_company_1.getString("lonLat");
-                    et_company_1_lon.setText(lonAndLat_1.substring(0,lonAndLat_1.indexOf(",")));
-                    et_company_1_lat.setText(lonAndLat_1.substring(lonAndLat_1.indexOf(",")+1,lonAndLat_1.length()));
+                JSONObject obj_startTime = obj_sendJson.getJSONObject("startTime");
+                et_start_time_hour.setText(String.valueOf(obj_startTime.getInt("hour")));
+                et_start_time_minute.setText(String.valueOf(obj_startTime.getInt("minute")));
 
-                    JSONObject obj_company_2 = arr_companyList.getJSONObject(1);
-                    et_company_2_start_time.setText(obj_company_2.getJSONArray("startTime").get(0).toString());
-                    et_company_2_radius.setText(String.valueOf(obj_company_2.getInt("radius")));
-                    String lonAndLat_2 = obj_company_2.getString("lonLat");
-                    et_company_2_lon.setText(lonAndLat_2.substring(0,lonAndLat_2.indexOf(",")));
-                    et_company_2_lat.setText(lonAndLat_2.substring(lonAndLat_2.indexOf(",")+1,lonAndLat_2.length()));
-                }
+                JSONObject obj_endTime = obj_sendJson.getJSONObject("endTime");
+                et_end_time_hour.setText(String.valueOf(obj_endTime.getInt("hour")));
+                et_end_time_minute.setText(String.valueOf(obj_endTime.getInt("minute")));
+
+                isFestival = obj_sendJson.getBoolean("isFestival");
+                sp_isFestival.setSelection(isFestival?1:0);
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
-        et_home_1_start_time.setSelection(et_home_1_start_time.getText().length());
+
+        sp_iaFavType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                iaFavType = position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        sp_isFestival.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                isFestival = position!= 0;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
     }
 
     @Override
@@ -155,79 +136,44 @@ public class GuessHomeAndCompanyActivity extends BaseActivity {
         super.onPause();
         try {
             if (obj_sendJson != null) {
-                obj_sendJson.put("timestemp",System.currentTimeMillis());
+                obj_sendJson.put("iaFavType",iaFavType);
 
-                JSONArray arr_homeList = obj_sendJson.getJSONArray("homeList");
-                if (arr_homeList.length() == 2){
-                    JSONObject obj_home_1 = arr_homeList.getJSONObject(0);
-                    obj_home_1.put("lonLat",et_home_1_lon.getText()+","+et_home_1_lat.getText());
-                    obj_home_1.put("radius",Integer.parseInt(et_home_1_radius.getText().toString()));
-                    obj_home_1.put("startTime",new JSONArray().put(et_home_1_start_time.getText().toString()));
-                    arr_homeList.put(0,obj_home_1);
+                JSONObject obj_iaPoiPos = obj_sendJson.getJSONObject("iaPoiPos");
+                obj_iaPoiPos.put("longitude",Integer.parseInt(et_lon.getText().toString()));
+                obj_iaPoiPos.put("latitude",Integer.parseInt(et_lat.getText().toString()));
 
-                    JSONObject obj_home_2 = arr_homeList.getJSONObject(1);
-                    obj_home_2.put("lonLat",et_home_2_lon.getText()+","+et_home_2_lat.getText());
-                    obj_home_2.put("radius",Integer.parseInt(et_home_2_radius.getText().toString()));
-                    obj_home_2.put("startTime",new JSONArray().put(et_home_2_start_time.getText().toString()));
-                    arr_homeList.put(1,obj_home_2);
-                }
-                obj_sendJson.put("homeList",arr_homeList);
+                JSONObject obj_startTime = obj_sendJson.getJSONObject("startTime");
+                obj_startTime.put("hour",Integer.parseInt(et_start_time_hour.getText().toString()));
+                obj_startTime.put("minute",Integer.parseInt(et_start_time_minute.getText().toString()));
 
-                JSONArray arr_companyList = obj_sendJson.getJSONArray("companyList");
-                if (arr_companyList.length() == 2){
-                    JSONObject obj_company_1 = arr_companyList.getJSONObject(0);
-                    obj_company_1.put("lonLat",et_company_1_lon.getText()+","+et_company_1_lat.getText());
-                    obj_company_1.put("radius",Integer.parseInt(et_company_1_radius.getText().toString()));
-                    obj_company_1.put("startTime",new JSONArray().put(et_company_1_start_time.getText()));
-                    arr_companyList.put(0,obj_company_1);
+                JSONObject obj_endTime = obj_sendJson.getJSONObject("endTime");
+                obj_endTime.put("hour",Integer.parseInt(et_end_time_hour.getText().toString()));
+                obj_endTime.put("minute",Integer.parseInt(et_end_time_minute.getText().toString()));
 
-                    JSONObject obj_company_2 = arr_companyList.getJSONObject(1);
-                    obj_company_2.put("lonLat",et_company_2_lon.getText()+","+et_company_2_lat.getText());
-                    obj_company_2.put("radius",Integer.parseInt(et_company_2_radius.getText().toString()));
-                    obj_company_2.put("startTime",new JSONArray().put(et_company_2_start_time.getText()));
-                    arr_companyList.put(1,obj_company_2);
-                }
-                obj_sendJson.put("companyList",arr_companyList);
+                obj_sendJson.put("isFestival",isFestival);
 
                 protocolData.setSendJson(obj_sendJson.toString());
             } else {
                 JSONObject obj_sendJson_m = new JSONObject();
-                JSONArray arr_home_list = new JSONArray();
-                JSONObject obj_home_1 = new JSONObject();
-                JSONObject obj_home_2 = new JSONObject();
-                JSONArray arr_company_list = new JSONArray();
-                JSONObject obj_company_1 = new JSONObject();
-                JSONObject obj_company_2 = new JSONObject();
-                JSONArray arr_home_1_start_time = new JSONArray();
-                JSONArray arr_home_2_start_time = new JSONArray();
-                JSONArray arr_company_1_start_time = new JSONArray();
-                JSONArray arr_company_2_start_time = new JSONArray();
 
-                obj_sendJson_m.put("timestemp", System.currentTimeMillis());
+                obj_sendJson_m.put("iaFavType",iaFavType);
 
-                arr_home_1_start_time.put(et_home_1_start_time.getText().toString());
-                obj_home_1.put("startTime", arr_home_1_start_time);
-                obj_home_1.put("radius", Integer.parseInt(et_home_1_radius.getText().toString()));
-                obj_home_1.put("lonLat", et_home_1_lon.getText().toString() + "," + et_home_1_lat.getText());
-                arr_home_list.put(obj_home_1);
-                arr_home_2_start_time.put(et_home_2_start_time.getText().toString());
-                obj_home_2.put("startTime", arr_home_2_start_time);
-                obj_home_2.put("radius", Integer.parseInt(et_home_2_radius.getText().toString()));
-                obj_home_2.put("lonLat", et_home_2_lon.getText().toString() + "," + et_home_2_lat.getText());
-                arr_home_list.put(obj_home_2);
-                obj_sendJson_m.put("homeList", arr_home_list);
+                JSONObject obj_iaPoiPos = new JSONObject();
+                obj_iaPoiPos.put("longitude",et_lon.getText().toString().isEmpty()?0:Integer.parseInt(et_lon.getText().toString()));
+                obj_iaPoiPos.put("latitude",et_lat.getText().toString().isEmpty()?0:Integer.parseInt(et_lat.getText().toString()));
+                obj_sendJson_m.put("iaPoiPos",obj_iaPoiPos);
 
-                arr_home_1_start_time.put(et_company_1_start_time.getText().toString());
-                obj_company_1.put("startTime", arr_company_1_start_time);
-                obj_company_1.put("radius", Integer.parseInt(et_company_1_radius.getText().toString()));
-                obj_company_1.put("lonLat", et_company_1_lon.getText().toString() + "," + et_company_1_lat.getText());
-                arr_company_list.put(obj_company_1);
-                arr_home_2_start_time.put(et_company_2_start_time.getText().toString());
-                obj_company_2.put("startTime", arr_company_2_start_time);
-                obj_company_2.put("radius", Integer.parseInt(et_company_2_radius.getText().toString()));
-                obj_company_2.put("lonLat", et_company_2_lon.getText().toString() + "," + et_company_2_lat.getText());
-                arr_company_list.put(obj_company_2);
-                obj_sendJson_m.put("companyList", arr_company_list);
+                JSONObject obj_startTime = new JSONObject();
+                obj_startTime.put("hour",et_start_time_hour.getText().toString().isEmpty()?0:Integer.parseInt(et_start_time_hour.getText().toString()));
+                obj_startTime.put("minute",et_start_time_minute.getText().toString().isEmpty()?0:Integer.parseInt(et_start_time_minute.getText().toString()));
+                obj_sendJson_m.put("startTime",obj_startTime);
+
+                JSONObject obj_endTime = new JSONObject();
+                obj_endTime.put("hour",et_end_time_hour.getText().toString().isEmpty()?0:Integer.parseInt(et_end_time_hour.getText().toString()));
+                obj_endTime.put("minute",et_end_time_minute.getText().toString().isEmpty()?0:Integer.parseInt(et_end_time_minute.getText().toString()));
+                obj_sendJson_m.put("endTime",obj_endTime);
+
+                obj_sendJson_m.put("isFestival",isFestival);
 
                 protocolData.setSendJson(obj_sendJson_m.toString());
             }
@@ -255,43 +201,26 @@ public class GuessHomeAndCompanyActivity extends BaseActivity {
     private void makeJson() {
         JSONObject cmdJson = new JSONObject();
         JSONObject jsonObject = new JSONObject();
-        JSONArray arr_home_list = new JSONArray();
-        JSONObject obj_home_1 = new JSONObject();
-        JSONObject obj_home_2 = new JSONObject();
-        JSONArray arr_company_list = new JSONArray();
-        JSONObject obj_company_1 = new JSONObject();
-        JSONObject obj_company_2 = new JSONObject();
-        JSONArray arr_home_1_start_time = new JSONArray();
-        JSONArray arr_home_2_start_time = new JSONArray();
-        JSONArray arr_company_1_start_time = new JSONArray();
-        JSONArray arr_company_2_start_time = new JSONArray();
 
         try {
-            jsonObject.put("timestemp",System.currentTimeMillis());
+            jsonObject.put("iaFavType",iaFavType);
 
-            arr_home_1_start_time.put(et_home_1_start_time.getText().toString());
-            obj_home_1.put("startTime",arr_home_1_start_time);
-            obj_home_1.put("radius",Integer.parseInt(et_home_1_radius.getText().toString().equals("")?"10":et_home_1_radius.getText().toString()));
-            obj_home_1.put("lonLat",et_home_1_lon.getText().toString()+","+et_home_1_lat.getText());
-            arr_home_list.put(obj_home_1);
-            arr_home_2_start_time.put(et_home_2_start_time.getText().toString());
-            obj_home_2.put("startTime",arr_home_2_start_time);
-            obj_home_2.put("radius",Integer.parseInt(et_home_2_radius.getText().toString().equals("")?"10":et_home_2_radius.getText().toString()));
-            obj_home_2.put("lonLat",et_home_2_lon.getText().toString()+","+et_home_2_lat.getText());
-            arr_home_list.put(obj_home_2);
-            jsonObject.put("homeList",arr_home_list);
+            JSONObject obj_iaPoiPos = new JSONObject();
+            obj_iaPoiPos.put("longitude",et_lon.getText().toString().isEmpty()?0:Integer.parseInt(et_lon.getText().toString()));
+            obj_iaPoiPos.put("latitude",et_lat.getText().toString().isEmpty()?0:Integer.parseInt(et_lat.getText().toString()));
+            jsonObject.put("iaPoiPos",obj_iaPoiPos);
 
-            arr_home_1_start_time.put(et_company_1_start_time.getText().toString());
-            obj_company_1.put("startTime",arr_company_1_start_time);
-            obj_company_1.put("radius",Integer.parseInt(et_company_1_radius.getText().toString().equals("")?"10":et_company_1_radius.getText().toString()));
-            obj_company_1.put("lonLat",et_company_1_lon.getText().toString()+","+et_company_1_lat.getText());
-            arr_company_list.put(obj_company_1);
-            arr_home_2_start_time.put(et_company_2_start_time.getText().toString());
-            obj_company_2.put("startTime",arr_company_2_start_time);
-            obj_company_2.put("radius",Integer.parseInt(et_company_2_radius.getText().toString().equals("")?"10":et_company_2_radius.getText().toString()));
-            obj_company_2.put("lonLat",et_company_2_lon.getText().toString()+","+et_company_2_lat.getText());
-            arr_company_list.put(obj_company_2);
-            jsonObject.put("companyList",arr_company_list);
+            JSONObject obj_startTime = new JSONObject();
+            obj_startTime.put("hour",et_start_time_hour.getText().toString().isEmpty()?0:Integer.parseInt(et_start_time_hour.getText().toString()));
+            obj_startTime.put("minute",et_start_time_minute.getText().toString().isEmpty()?0:Integer.parseInt(et_start_time_minute.getText().toString()));
+            jsonObject.put("startTime",obj_startTime);
+
+            JSONObject obj_endTime = new JSONObject();
+            obj_endTime.put("hour",et_end_time_hour.getText().toString().isEmpty()?0:Integer.parseInt(et_end_time_hour.getText().toString()));
+            obj_endTime.put("minute",et_end_time_minute.getText().toString().isEmpty()?0:Integer.parseInt(et_end_time_minute.getText().toString()));
+            jsonObject.put("endTime",obj_endTime);
+
+            jsonObject.put("isFestival",isFestival);
 
             cmdJson.put(Constant.CMD_KEY, Integer.parseInt("201B",16));
             cmdJson.put(Constant.JSON_KEY, jsonObject);
