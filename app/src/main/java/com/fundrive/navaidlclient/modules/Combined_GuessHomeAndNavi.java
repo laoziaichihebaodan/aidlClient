@@ -244,6 +244,7 @@ public class Combined_GuessHomeAndNavi extends BaseActivity {
             message = "要导航到公司吗？";
         }
         new AlertDialog.Builder(this)
+                .setCancelable(false)
                 .setMessage(message)
                 .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
