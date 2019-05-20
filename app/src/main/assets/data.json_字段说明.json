@@ -46,7 +46,7 @@
 					"mutilSelectValue": [{//多选控件的各项
 						"name": "最短路线",//项名
 						"value": "1",//项值
-						"isSelect":false//该项是否被选中
+						"isSelect":false //该项是否被选中
 					},
 					{
 						"name": "高速优先",

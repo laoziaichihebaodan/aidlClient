@@ -241,17 +241,21 @@ public class Resource {
     }
 
     public static void removeObserver(Observer o) {
-        if (!list_observer.isEmpty()){
+        if (list_observer.contains(o)){
             list_observer.remove(o);
         }
     }
 
     private static void notifyObserver(String data) {
-        for (int i = 0; i < list_observer.size(); i++) {
-            int index = data.indexOf("&");
-            int cmd = Integer.parseInt(data.substring(0,index));
-            String string = data.substring(index+1);
-            list_observer.get(i).update(cmd,string);
+        try {
+            JSONObject object = new JSONObject(data);
+            int cmd = object.getInt(Constant.CMD_KEY);
+            String message = object.getString(Constant.JSON_KEY);
+            for (int i = 0; i < list_observer.size(); i++) {
+                list_observer.get(i).update(cmd,message);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
 

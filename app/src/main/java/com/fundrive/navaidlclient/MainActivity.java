@@ -36,6 +36,7 @@ import com.fundrive.navaidlclient.bean.CmdBean;
 import com.fundrive.navaidlclient.bean.PageInfoBean;
 import com.fundrive.navaidlclient.modules.AuthorNumberActivity;
 import com.fundrive.navaidlclient.modules.BaseActivity;
+import com.fundrive.navaidlclient.modules.Combined_GuessHomeAndNavi;
 import com.fundrive.navaidlclient.modules.ControlMutimediaActivity;
 import com.fundrive.navaidlclient.modules.CustomMessageActivity;
 import com.fundrive.navaidlclient.modules.FavoriteGuidanceActivity;
@@ -263,8 +264,7 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
             Date date = new Date(System.currentTimeMillis());//获取当前时间
             String data = simpleDateFormat.format(date)+": cmd = "+Integer.toHexString(ia_cmd) + "---json = "+ia_json;
             FileUtils.writeFile(data,Environment.getExternalStorageDirectory(),FileUtils.notifyFileName+FileUtils.notifyFileFormat,true);
-            Log.i("hebaodan",data);
-            Resource.sendFromServerToClient(ia_cmd+"&"+ia_json);
+            sendMessageFromServerToClient(ia_cmd,ia_json);
             Log.e("zzz","server send:"+data);
         }
 
@@ -333,12 +333,29 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
                 case 0x2011:
                     intent = new Intent(MainActivity.this, ListAnimationActivity.class);
                     break;
+                case 0xC201B:
+                    intent = new Intent(MainActivity.this, Combined_GuessHomeAndNavi.class);
+                    break;
                 default:
                     intent = new Intent(MainActivity.this, OpActivity.class);
             }
             intent.putExtra("PageInfoBean", lists);
             intent.putExtra("lists_index", lists_index);
             startActivity(intent);
+        }
+    }
+
+    /**
+     * 服务端发送消息给客户端
+     */
+    protected void sendMessageFromServerToClient(int cmd,String json) {
+        JSONObject cmdJson = new JSONObject();
+        try {
+            cmdJson.put(Constant.CMD_KEY, cmd);
+            cmdJson.put(Constant.JSON_KEY, json);
+            Resource.sendFromServerToClient(cmdJson.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
 
