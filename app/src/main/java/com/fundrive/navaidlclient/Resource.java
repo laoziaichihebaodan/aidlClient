@@ -248,7 +248,10 @@ public class Resource {
 
     private static void notifyObserver(String data) {
         for (int i = 0; i < list_observer.size(); i++) {
-            list_observer.get(i).update(data);
+            int index = data.indexOf("&");
+            int cmd = Integer.parseInt(data.substring(0,index));
+            String string = data.substring(index+1);
+            list_observer.get(i).update(cmd,string);
         }
     }
 

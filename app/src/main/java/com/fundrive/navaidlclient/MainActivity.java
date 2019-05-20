@@ -264,7 +264,7 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
             String data = simpleDateFormat.format(date)+": cmd = "+Integer.toHexString(ia_cmd) + "---json = "+ia_json;
             FileUtils.writeFile(data,Environment.getExternalStorageDirectory(),FileUtils.notifyFileName+FileUtils.notifyFileFormat,true);
             Log.i("hebaodan",data);
-            Resource.sendFromServerToClient(data);
+            Resource.sendFromServerToClient(ia_cmd+"&"+ia_json);
             Log.e("zzz","server send:"+data);
         }
 

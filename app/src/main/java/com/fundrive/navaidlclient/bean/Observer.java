@@ -6,5 +6,5 @@ package com.fundrive.navaidlclient.bean;
  */
 
 public interface Observer {
-    public void update(String message);
+    public void update(int cmd,String message);
 }
