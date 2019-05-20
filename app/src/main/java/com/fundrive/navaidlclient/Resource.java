@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 import com.fundrive.andrive.INavRemoteRequest;
 import com.fundrive.navaidlclient.bean.CmdBean;
+import com.fundrive.navaidlclient.bean.Observer;
 import com.fundrive.navaidlclient.bean.PageInfoBean;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,6 +32,8 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -42,7 +45,8 @@ public class Resource {
     public static PageInfoBean pageInfoBean;
     private static final int PORT = 8888;
     private static final int CONNECTED_SEVER_STATE = 1; //连接服务器状态
-    private static final int RECIVEDATA_STATE = 2;      //接收数据
+    private static final int RECIVEDATA_STATE = 2;      //服务端接收数据
+    private static final int CLIENTRECIVEDATA_STATE = 3;//客户端接收数据
     private static EditText meditText = null;
     public static String data = null;
     private static boolean StartServer = false;
@@ -221,9 +225,30 @@ public class Resource {
                     Resource.showInfo(ctx, data);
                     Resource.callAidlFun(data);
                     break;
+                case CLIENTRECIVEDATA_STATE://客户端收到返回数据
+                    notifyObserver(msg.obj.toString());
+                    break;
                 default:
                     break;
             }
+        }
+    }
+
+    private static List<Observer> list_observer = new ArrayList<>();
+
+    public static void registerObserver(Observer o) {
+        list_observer.add(o);
+    }
+
+    public static void removeObserver(Observer o) {
+        if (!list_observer.isEmpty()){
+            list_observer.remove(o);
+        }
+    }
+
+    private static void notifyObserver(String data) {
+        for (int i = 0; i < list_observer.size(); i++) {
+            list_observer.get(i).update(data);
         }
     }
 
@@ -249,7 +274,9 @@ public class Resource {
                     e.printStackTrace();
                 }
                 try {
-                    client_dsocket = new DatagramSocket();
+                    if (client_dsocket == null){
+                        client_dsocket = new DatagramSocket();
+                    }
                     byteArrayOutputStream = new ByteArrayOutputStream();
                     dataOutputStream = new DataOutputStream(byteArrayOutputStream);
                     dataOutputStream.writeUTF(data);
@@ -337,6 +364,10 @@ public class Resource {
                                 data = dataInputStream.readUTF();
                             }
                             Log.e("zzz","client receive:"+data);
+                            Message msg = new Message();
+                            msg.what = CLIENTRECIVEDATA_STATE;
+                            msg.obj = data;
+                            myHandler.sendMessage(msg);
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
