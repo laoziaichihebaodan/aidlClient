@@ -360,9 +360,9 @@ public class Resource {
         new Thread(){
             @Override
             public void run() {
-                byte[] buf = new byte[1024 * 2];
+                byte[] buf = new byte[1024 * 1024];
                 while (StartClient) {
-                    DatagramPacket dp = new DatagramPacket(buf, 1024 * 2);
+                    DatagramPacket dp = new DatagramPacket(buf, 1024 * 1024);
                     try {
                         if (client_dsocket!=null){
                             client_dsocket.receive(dp);
