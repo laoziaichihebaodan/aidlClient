@@ -20,6 +20,7 @@ import android.os.Message;
 import android.provider.Settings;
 import android.support.annotation.RequiresApi;
 import android.support.v4.content.FileProvider;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
@@ -48,7 +49,7 @@ public class VersionUpdateUtils {
     private String updateurl = "http://203.195.167.189:8080/v1/apk/RkD0OUjiZCLqYUTsbAWu";
     private Activity context;
     private File file;
-
+    private String updataMessage = "";
 
     public VersionUpdateUtils(Activity context) {
         // TODO Auto-generated constructor stub
@@ -79,6 +80,8 @@ public class VersionUpdateUtils {
                     JSONObject object1 = object.getJSONObject("data");
                     boolean isUpdate= object1.getBoolean("update");
                     if (isUpdate){
+                        JSONObject object2 = object1.getJSONObject("versionInfo");
+                        updataMessage = object2.getString("versionDescrtiption");
                         Message msg = new Message();
                         msg.what = UPDATA_CLIENT;
                         handler.sendMessage(msg);
@@ -162,7 +165,11 @@ public class VersionUpdateUtils {
     protected void showUpdataDialog() {
         AlertDialog.Builder builer = new Builder(context);
         builer.setTitle("版本升级");
-        builer.setMessage("检测到新版本，是否升级到新版本");
+        if (TextUtils.isEmpty(updataMessage)) {
+            builer.setMessage("检测到新版本，是否升级到新版本?");
+        }else{
+            builer.setMessage(updataMessage);
+        }
         //当点确定按钮时从服务器上下载 新的apk 然后安装   װ
         builer.setPositiveButton("立即升级", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
