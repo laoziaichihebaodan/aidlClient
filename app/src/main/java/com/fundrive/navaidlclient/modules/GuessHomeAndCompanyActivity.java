@@ -139,16 +139,16 @@ public class GuessHomeAndCompanyActivity extends BaseActivity {
                 obj_sendJson.put("iaFavType",iaFavType);
 
                 JSONObject obj_iaPoiPos = obj_sendJson.getJSONObject("iaPoiPos");
-                obj_iaPoiPos.put("longitude",Integer.parseInt(et_lon.getText().toString()));
-                obj_iaPoiPos.put("latitude",Integer.parseInt(et_lat.getText().toString()));
+                obj_iaPoiPos.put("longitude",et_lon.getText().toString().isEmpty()?0:Integer.parseInt(et_lon.getText().toString()));
+                obj_iaPoiPos.put("latitude",et_lat.getText().toString().isEmpty()?0:Integer.parseInt(et_lat.getText().toString()));
 
                 JSONObject obj_startTime = obj_sendJson.getJSONObject("startTime");
-                obj_startTime.put("hour",Integer.parseInt(et_start_time_hour.getText().toString()));
-                obj_startTime.put("minute",Integer.parseInt(et_start_time_minute.getText().toString()));
+                obj_startTime.put("hour",et_start_time_hour.getText().toString().isEmpty()?0:Integer.parseInt(et_start_time_hour.getText().toString()));
+                obj_startTime.put("minute",et_start_time_minute.getText().toString().isEmpty()?0:Integer.parseInt(et_start_time_minute.getText().toString()));
 
                 JSONObject obj_endTime = obj_sendJson.getJSONObject("endTime");
-                obj_endTime.put("hour",Integer.parseInt(et_end_time_hour.getText().toString()));
-                obj_endTime.put("minute",Integer.parseInt(et_end_time_minute.getText().toString()));
+                obj_endTime.put("hour",et_end_time_hour.getText().toString().isEmpty()?0:Integer.parseInt(et_end_time_hour.getText().toString()));
+                obj_endTime.put("minute",et_end_time_minute.getText().toString().isEmpty()?0:Integer.parseInt(et_end_time_minute.getText().toString()));
 
                 obj_sendJson.put("isFestival",isFestival);
 

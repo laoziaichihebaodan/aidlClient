@@ -80,6 +80,7 @@
                 <EditText
                     android:id="@+id/et_start_time_hour"
                     android:layout_width="100dp"
+                    android:text="18"
                     android:layout_height="wrap_content" />
 
                 <TextView
@@ -88,6 +89,7 @@
                     android:text="时" />
 
                 <EditText
+                    android:text="15"
                     android:id="@+id/et_start_time_minute"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content" />
@@ -110,6 +112,7 @@
                     android:text="结束时间:" />
 
                 <EditText
+                    android:text="18"
                     android:id="@+id/et_end_time_hour"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content" />
@@ -120,6 +123,7 @@
                     android:text="时" />
 
                 <EditText
+                    android:text="15"
                     android:id="@+id/et_end_time_minute"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content" />
