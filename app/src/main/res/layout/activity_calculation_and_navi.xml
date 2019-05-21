@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".modules.RouteByConditionActivity">
+
+    <include layout="@layout/item_title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@+id/ll_calculation"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/title"
+                    style="@style/Text_Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="条件算路" />
+
+                <LinearLayout
+                    android:id="@+id/ll_type"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_type"
+                        android:text="算路偏好:"
+                        style="@style/Text_Body"
+                        android:layout_marginEnd="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/tv_select_preference"
+                        android:text="选择偏好"
+                        style="@style/Text_Body"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <Switch
+                    android:id="@+id/is_start"
+                    style="@style/Text_Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="24dp"
+                    android:switchPadding="50dp"
+                    android:text="是否直接导航:" />
+
+                <Switch
+                    android:id="@+id/delete_mode"
+                    style="@style/Text_Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="24dp"
+                    android:switchPadding="50dp"
+                    android:text="强制删除当前路线:" />
+
+                <Switch
+                    android:id="@+id/set_start"
+                    style="@style/Text_Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="24dp"
+                    android:switchPadding="50dp"
+                    android:text="设置起点:" />
+
+                <Button
+                    android:id="@+id/btn_end_pos"
+                    style="@style/Bottom_Solid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="24dp"
+                    android:text="设置终点" />
+
+                <Switch
+                    android:id="@+id/set_way_pos1"
+                    style="@style/Text_Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="24dp"
+                    android:switchPadding="50dp"
+                    android:text="途经点1:" />
+
+                <Switch
+                    android:id="@+id/set_way_pos2"
+                    style="@style/Text_Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="24dp"
+                    android:switchPadding="50dp"
+                    android:text="途经点2:" />
+
+                <Switch
+                    android:id="@+id/set_way_pos3"
+                    style="@style/Text_Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="24dp"
+                    android:switchPadding="50dp"
+                    android:text="途经点3:" />
+
+                <Button
+                    android:id="@+id/btn_commit"
+                    style="@style/Bottom_Solid"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="30dp"
+                    android:text="应用" />
+            </LinearLayout>
+            <LinearLayout
+                android:padding="10dp"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:id="@+id/ll_calculation_result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <View
+                    android:background="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_height="1dp"/>
+
+                <TextView
+                    android:id="@+id/tv_calculation_result_title"
+                    android:layout_width="wrap_content"
+                    android:text="算路结果如下:"
+                    android:layout_height="wrap_content" />
+
+                <ListView
+                    android:id="@+id/lv_calculation_result"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="真实导航/模拟导航:"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <Spinner
+                        android:id="@+id/sp_guideType"
+                        android:entries="@array/navi_mode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="是否熟路模式:"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <Spinner
+                        android:id="@+id/sp_isFamiliarRoad"
+                        android:entries="@array/false_true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_navigating"
+                android:visibility="gone"
+                android:padding="10dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="导航中:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/tv_tbt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/tv_remainingTimeAndDistance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

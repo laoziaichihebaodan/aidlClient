@@ -36,6 +36,7 @@ import com.fundrive.navaidlclient.bean.CmdBean;
 import com.fundrive.navaidlclient.bean.PageInfoBean;
 import com.fundrive.navaidlclient.modules.AuthorNumberActivity;
 import com.fundrive.navaidlclient.modules.BaseActivity;
+import com.fundrive.navaidlclient.modules.CalculationAndNaviActivity;
 import com.fundrive.navaidlclient.modules.Combined_GuessHomeAndNavi;
 import com.fundrive.navaidlclient.modules.ControlMutimediaActivity;
 import com.fundrive.navaidlclient.modules.CustomMessageActivity;
@@ -335,6 +336,9 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
                     break;
                 case 0xC201B:
                     intent = new Intent(MainActivity.this, Combined_GuessHomeAndNavi.class);
+                    break;
+                case 0xC200F:
+                    intent = new Intent(MainActivity.this, CalculationAndNaviActivity.class);
                     break;
                 default:
                     intent = new Intent(MainActivity.this, OpActivity.class);

@@ -1255,7 +1255,7 @@
 		}
 	},
 	{
-		"name": "指定线路导航(协议中是否熟路模式字段未使用)",
+		"name": "指定线路导航",
 		"type": "导航",
 		"tips": "该功能仅在算路成功存在路线并且未导航时有效",
 		"cmd": "2016",
@@ -1305,6 +1305,26 @@
 				{
 					"name": "模拟导航",
 					"value": "1"
+				}],
+				"floor": "1",
+				"titleName": "",
+				"lineNum": "1"
+			},
+			{
+				"name": "是否熟路模式:",
+				"value": "false",
+				"valueType": "boolean",
+				"key": "isFamiliarRoad",
+				"parentKey": "",
+				"grandParentKey": "",
+				"type": "spinner",
+				"spinnerValue": [{
+					"name": "true",
+					"value": "true"
+				},
+				{
+					"name": "false",
+					"value": "false"
 				}],
 				"floor": "1",
 				"titleName": "",
@@ -2905,6 +2925,14 @@
       "type": "组合指令",
       "tips": "",
       "cmd": "C201B",
+      "item": {},
+      "sendJson":""
+    },
+    {
+      "name": "条件算路并选择路线导航",
+      "type": "组合指令",
+      "tips": "",
+      "cmd": "C200F",
       "item": {},
       "sendJson":""
     }
