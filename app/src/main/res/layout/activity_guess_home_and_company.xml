@@ -35,7 +35,7 @@
                     android:id="@+id/sp_iaFavType"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:entries="@array/favi_type"/>
+                    android:entries="@array/favi_type" />
 
             </LinearLayout>
 
@@ -55,6 +55,7 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="20dp"
+                    android:inputType="number"
                     android:text="12141938" />
 
                 <EditText
@@ -62,6 +63,7 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="20dp"
+                    android:inputType="number"
                     android:text="3116152" />
 
             </LinearLayout>
@@ -80,8 +82,9 @@
                 <EditText
                     android:id="@+id/et_start_time_hour"
                     android:layout_width="100dp"
-                    android:text="18"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:text="18" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -89,10 +92,11 @@
                     android:text="时" />
 
                 <EditText
-                    android:text="15"
                     android:id="@+id/et_start_time_minute"
                     android:layout_width="100dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:text="15" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -112,10 +116,11 @@
                     android:text="结束时间:" />
 
                 <EditText
-                    android:text="18"
                     android:id="@+id/et_end_time_hour"
                     android:layout_width="100dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:text="18" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -123,10 +128,11 @@
                     android:text="时" />
 
                 <EditText
-                    android:text="15"
                     android:id="@+id/et_end_time_minute"
                     android:layout_width="100dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:text="15" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -150,7 +156,7 @@
                     android:id="@+id/sp_isFestival"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:entries="@array/false_true"/>
+                    android:entries="@array/false_true" />
 
             </LinearLayout>
 
