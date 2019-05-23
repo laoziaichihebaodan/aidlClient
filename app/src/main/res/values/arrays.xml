@@ -229,15 +229,27 @@
     </string-array>
     <!--POI搜索类型-->
     <string-array name="poi_search_type">
-        <item>选择POI搜索类型</item>
         <item>默认搜索类型</item>
         <item>周边搜索</item>
         <item>沿路搜索</item>
-        <item>类型搜索</item>
+    </string-array>
+    <!--深度信息-->
+    <string-array name="poi_detail_info">
+        <item>不需要</item>
+        <item>需要</item>
+    </string-array>
+    <!--排序方式-->
+    <string-array name="poi_sort_type">
+        <item>距离升序</item>
+        <item>环境降序</item>
+        <item>服务降序</item>
+        <item>口味降序</item>
+        <item>价格升序</item>
+        <item>价格降序</item>
+        <item>智能排序</item>
     </string-array>
     <!--搜索时中心点类型-->
     <string-array name="search_center_type">
-        <item>选择中心点类型</item>
         <item>以交互目标指定的中心点为搜索中心点</item>
         <item>以当前自车为搜索中心点</item>
         <item>以当前路线的起点为搜索中心点(沿路搜时可用)</item>
@@ -245,19 +257,16 @@
     </string-array>
     <!--搜索时参照点的表现形式-->
     <string-array name="search_center_expression">
-        <item>搜索中心的表现形式</item>
         <item>字符串的形式</item>
         <item>经纬度的形式</item>
     </string-array>
     <!--搜索范围的类型-->
     <string-array name="search_scope_type">
-        <item>选择搜索范围的类型</item>
         <item>以NavApp默认的搜索范围进行搜索</item>
         <item>以交互目标指定的搜索范围进行搜索</item>
     </string-array>
     <!--搜索范围的表现类型-->
     <string-array name="search_scope_expression">
-        <item>选择搜索范围的表现类型</item>
         <item>字符串的形式</item>
         <item>行政区域码的形式</item>
     </string-array>

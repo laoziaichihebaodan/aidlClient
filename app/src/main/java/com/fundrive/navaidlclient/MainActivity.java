@@ -38,6 +38,7 @@ import com.fundrive.navaidlclient.modules.AuthorNumberActivity;
 import com.fundrive.navaidlclient.modules.BaseActivity;
 import com.fundrive.navaidlclient.modules.CalculationAndNaviActivity;
 import com.fundrive.navaidlclient.modules.Combined_GuessHomeAndNavi;
+import com.fundrive.navaidlclient.modules.Combined_SearchActivity;
 import com.fundrive.navaidlclient.modules.ControlMutimediaActivity;
 import com.fundrive.navaidlclient.modules.CustomMessageActivity;
 import com.fundrive.navaidlclient.modules.FavoriteGuidanceActivity;
@@ -58,6 +59,7 @@ import com.fundrive.navaidlclient.modules.RoutStateActivity;
 import com.fundrive.navaidlclient.modules.RouteByConditionActivity;
 import com.fundrive.navaidlclient.modules.RouteConditionActivity;
 import com.fundrive.navaidlclient.modules.ScaleMapActivity;
+import com.fundrive.navaidlclient.modules.SearchActivity;
 import com.fundrive.navaidlclient.modules.SearchPoiByConditionActivity;
 import com.fundrive.navaidlclient.modules.SelectPoiSearchCenter;
 import com.fundrive.navaidlclient.modules.SelectRouteGuideActivity;
@@ -333,6 +335,9 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
                     break;
                 case 0x2011:
                     intent = new Intent(MainActivity.this, ListAnimationActivity.class);
+                    break;
+                case 0x3000:
+                    intent = new Intent(MainActivity.this, SearchActivity.class);
                     break;
                 case 0xC201B:
                     intent = new Intent(MainActivity.this, Combined_GuessHomeAndNavi.class);
