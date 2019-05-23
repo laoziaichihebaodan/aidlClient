@@ -34,7 +34,7 @@ import com.fundrive.navaidlclient.bean.PageInfoBean;
 import com.fundrive.navaidlclient.modules.BaseActivity;
 import com.fundrive.navaidlclient.modules.CalculationAndNaviActivity;
 import com.fundrive.navaidlclient.modules.Combined_GuessHomeAndNavi;
-//import com.fundrive.navaidlclient.modules.Combined_SearchActivity;
+import com.fundrive.navaidlclient.modules.Combined_SearchActivity;
 import com.fundrive.navaidlclient.modules.GuessHomeAndCompanyActivity;
 import com.fundrive.navaidlclient.modules.ListAnimationActivity;
 import com.fundrive.navaidlclient.modules.MutimediaInformationActivity;
