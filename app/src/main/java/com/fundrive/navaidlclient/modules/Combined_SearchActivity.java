@@ -1,25 +1,38 @@
 package com.fundrive.navaidlclient.modules;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
+import android.text.Layout;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.fundrive.navaidlclient.Constant;
 import com.fundrive.navaidlclient.R;
 import com.fundrive.navaidlclient.Resource;
+import com.fundrive.navaidlclient.ShareConfiguration;
 import com.fundrive.navaidlclient.bean.Observer;
 import com.fundrive.navaidlclient.bean.PageInfoBean;
+import com.fundrive.navaidlclient.bean.PoiSearchResultBean;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -92,6 +105,7 @@ public class Combined_SearchActivity extends BaseActivity {
     private int scopeType;
     private int scopeExp;
     private Observer response = new SearchResponse();
+    private PoiSearchResultBean poiSearchResultBean;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -293,7 +307,7 @@ public class Combined_SearchActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.btn_commit:
                 makeJson();
-                showSendDialog(message);
+//                showSendDialog(message);
                 break;
             case R.id.btn_return:
                 finish();
@@ -347,23 +361,142 @@ public class Combined_SearchActivity extends BaseActivity {
 
             message = cmdJson.toString();
             sendMessage(message);
-            Log.d(TAG, "makeJson: " + message);
+//            Log.d(TAG, "makeJson: " + message);
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
+    private AlertDialog searchResultDialog;
+    private SearchResultAdapter adapter;
+    private void showSearchResultDialog() {
 
+//        if (searchResultDialog == null) {
+//            searchResultDialog = new AlertDialog.Builder(context).create();
+            View view = LayoutInflater.from(this).inflate(R.layout.layout_list_search_result,null,false);//View.inflate(getParent(),R.layout.layout_list_search_result,null);
+            ListView lv = view.findViewById(R.id.lv_search_result);
+            adapter = new SearchResultAdapter(poiSearchResultBean.getCurPoiDatum());
+            lv.setAdapter(adapter);
+//            searchResultDialog.setView(view);
+//        }else{
+//           adapter.setCurPoiDatum(poiSearchResultBean.getCurPoiDatum());
+//           adapter.notifyDataSetChanged();
+//        }
+
+//        searchResultDialog.show();
+        new AlertDialog.Builder(this)
+                .setView(view)
+                .setCancelable(false)
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .show();
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (searchResultDialog != null){
+            searchResultDialog.dismiss();
+            searchResultDialog.cancel();
+            searchResultDialog = null;
+        }
+
+    }
+
+    class SearchResultAdapter extends BaseAdapter{
+        private List<PoiSearchResultBean.CurPoiDatum> curPoiDatum;
+
+        public void setCurPoiDatum(List<PoiSearchResultBean.CurPoiDatum> curPoiDatum) {
+            this.curPoiDatum = curPoiDatum;
+        }
+
+        public SearchResultAdapter(List<PoiSearchResultBean.CurPoiDatum> curPoiDatum) {
+            this.curPoiDatum = curPoiDatum;
+        }
+
+        @Override
+        public int getCount() {
+            return curPoiDatum.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return curPoiDatum.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(final int position, View convertView, ViewGroup parent) {
+            convertView = View.inflate(Combined_SearchActivity.this,R.layout.item_list_search_result,null);
+            final PoiSearchResultBean.CurPoiDatum bean = curPoiDatum.get(position);
+            TextView name = convertView.findViewById(R.id.poi_name);
+            TextView adress = convertView.findViewById(R.id.poi_adress);
+            final Button center = convertView.findViewById(R.id.poi_center);
+
+            if (poiSearchResultBean.getPoiDataType() == 1){
+                center.setText("设为中心点");
+            }else if (poiSearchResultBean.getPoiDataType() == 2) {
+                center.setText("导航");
+            }
+            name.setText(bean.getIaPoiName());
+            adress.setText(bean.getIaPoiAdress());
+            center.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (poiSearchResultBean.getPoiDataType() == 1){
+                        center.setText("设为中心点");
+                        makeCenterJson(position+1);
+
+                    }else if (poiSearchResultBean.getPoiDataType() == 2) {
+                        center.setText("导航");
+                    }
+                }
+            });
+
+            return convertView;
+        }
+    }
+
+    private void makeCenterJson(int position) {
+
+        try {
+            JSONObject sendJson = new JSONObject();
+            sendJson.put("poiSearchCenterIndex",position);
+
+            JSONObject cmdJson = new JSONObject();
+            cmdJson.put(Constant.CMD_KEY, Integer.parseInt("3001",16));
+            cmdJson.put(Constant.JSON_KEY, sendJson);
+
+            message = cmdJson.toString();
+            sendMessage(message);
+            Log.d(TAG, "makeJson: " + message);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+    protected void sendMessage(String message) {
+        if (Resource.device_model == ShareConfiguration.MODEL_CLIENT) {
+            Resource.udpClient(message);
+        } else {
+            Resource.callAidlFun(message);
+        }
+    }
     class SearchResponse implements Observer {
 
         @Override
-        public void update(int cmd, String message) {
+        public void update(final int cmd, final String message) {
             if ("c001".equals(Integer.toHexString(cmd))){
-                try {
-                    JSONObject object = new JSONObject(message);
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                poiSearchResultBean = new Gson().fromJson(message,PoiSearchResultBean.class);
+                showSearchResultDialog();
             }
         }
     }

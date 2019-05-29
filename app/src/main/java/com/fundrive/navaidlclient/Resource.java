@@ -234,7 +234,7 @@ public class Resource {
         }
     }
 
-    private static List<Observer> list_observer = new ArrayList<>();
+    public static List<Observer> list_observer = new ArrayList<>();
 
     public static void registerObserver(Observer o) {
         list_observer.add(o);

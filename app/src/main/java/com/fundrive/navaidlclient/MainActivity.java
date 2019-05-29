@@ -224,11 +224,19 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
     private INavRemoteNotifier iMyNaviNotifyHandler = new INavRemoteNotifier.Stub() {
 
         @Override
-        public void onNotify(int ia_cmd, String ia_json) throws RemoteException {
+        public void onNotify(final int ia_cmd, final String ia_json) throws RemoteException {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SS");// HH:mm:ss:SS
             Date date = new Date(System.currentTimeMillis());//获取当前时间
             String data = simpleDateFormat.format(date)+": cmd = "+Integer.toHexString(ia_cmd) + "---json = "+ia_json;
             FileUtils.writeFile(data,Environment.getExternalStorageDirectory(),FileUtils.notifyFileName+FileUtils.notifyFileFormat,true);
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    for (int i = 0; i < Resource.list_observer.size(); i++) {
+                        Resource.list_observer.get(i).update(ia_cmd,ia_json);
+                    }
+                }
+            });
             sendMessageFromServerToClient(ia_cmd,ia_json);
             Log.e("zzz","server send:"+data);
         }
