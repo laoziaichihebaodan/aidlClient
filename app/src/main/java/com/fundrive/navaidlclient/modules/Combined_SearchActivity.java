@@ -27,6 +27,7 @@ import com.fundrive.navaidlclient.ShareConfiguration;
 import com.fundrive.navaidlclient.bean.Observer;
 import com.fundrive.navaidlclient.bean.PageInfoBean;
 import com.fundrive.navaidlclient.bean.PoiSearchResultBean;
+import com.fundrive.navaidlclient.position.Points;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -404,7 +405,7 @@ public class Combined_SearchActivity extends BaseActivity {
             searchResultDialog.cancel();
             searchResultDialog = null;
         }
-
+        Resource.removeObserver(response);
     }
 
     class SearchResultAdapter extends BaseAdapter{
@@ -457,6 +458,12 @@ public class Combined_SearchActivity extends BaseActivity {
 
                     }else if (poiSearchResultBean.getPoiDataType() == 2) {
                         center.setText("导航");
+                        Intent intent = new Intent(Combined_SearchActivity.this,CalculationAndNaviActivity.class);
+                        JSONObject obj_endPoint = Points.pointJson(bean.getIaPoiType(),bean.getIaPoiPos().getLongitude(),bean.getIaPoiPos().getLatitude(),
+                                bean.getIaPoiDisPos().getLongitude(), bean.getIaPoiDisPos().getLatitude(),Long.decode(bean.getIaPoiId()),bean.getIaChildPoiNum(),0,bean.getIaPoiName(),bean.getIaPoiAdress(),bean.getIaPoiPhone(),bean.getIaRegionName(),
+                                bean.getIaPoiTypeName());
+                        intent.putExtra("search_endPoint",obj_endPoint.toString());
+                        startActivity(intent);
                     }
                 }
             });

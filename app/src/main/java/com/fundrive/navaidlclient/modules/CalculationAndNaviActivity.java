@@ -155,18 +155,29 @@ public class CalculationAndNaviActivity extends BaseActivity implements Observer
     int page_value = 0;
     List<PageInfoBean.MutilSelectValue> list_mutilSelectValue;
 
+    private String search_endPoint;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculation_and_navi);
         ButterKnife.bind(this);
-        tvTitle.setText("条件算路");
+        tvTitle.setText("组合:算路_导航");
 
         Intent intent = getIntent();
-        protocolData = (PageInfoBean.Lists) intent.getSerializableExtra("PageInfoBean");
 
+        search_endPoint = intent.getStringExtra("search_endPoint");
+        try {
+            if (search_endPoint!= null && !search_endPoint.isEmpty()){
+                endPoint = new JSONObject(search_endPoint);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        protocolData = (PageInfoBean.Lists) intent.getSerializableExtra("PageInfoBean");
         lists_index = intent.getIntExtra("lists_index",0);
-        if (protocolData.getSendJson()!=null && !protocolData.getSendJson().isEmpty()){
+        if (protocolData != null && protocolData.getSendJson()!=null && !protocolData.getSendJson().isEmpty()){
             try {
                 obj_sendJson = new JSONObject(protocolData.getSendJson());
                 isStart.setChecked(obj_sendJson.getBoolean("startNavi"));
@@ -272,7 +283,9 @@ public class CalculationAndNaviActivity extends BaseActivity implements Observer
                 obj_sendJson_m.put("routeWay3", wayPoint3);
             }
 
-            protocolData.setSendJson(obj_sendJson_m.toString());
+            if (protocolData != null){
+                protocolData.setSendJson(obj_sendJson_m.toString());
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -332,20 +345,22 @@ public class CalculationAndNaviActivity extends BaseActivity implements Observer
                 break;
             case R.id.btn_end_pos:
                 String str_endPoint = "";
-                if (obj_sendJson != null){
-                    try {
-                        if (!str_end_point_message.isEmpty()){
-                            str_endPoint = str_end_point_message;
-                        } else {
+                try {
+                    if (!str_end_point_message.isEmpty()) {
+                        str_endPoint = str_end_point_message;
+                    } else if (search_endPoint != null) {
+                        str_endPoint = search_endPoint;
+                    } else {
+                        if (obj_sendJson != null) {
                             str_endPoint = obj_sendJson.getJSONObject("endPoint").toString();
                         }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
                     }
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
                 intent.putExtra("json", 1);
-                intent.putExtra("point",str_endPoint);
-                startActivityForResult(intent,1);
+                intent.putExtra("point", str_endPoint);
+                startActivityForResult(intent, 1);
                 break;
             case R.id.set_way_pos1:
                 if (setWayPos1.isChecked()) {

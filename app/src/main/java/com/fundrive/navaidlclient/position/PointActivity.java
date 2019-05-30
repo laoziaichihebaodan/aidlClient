@@ -116,7 +116,7 @@ public class PointActivity extends AppCompatActivity {
             childNum = point.getInt("iaChildPoiNum");
             compoundId = point.getInt("iaCompoundId");
             poiName = point.getString("iaPoiName");
-            poiAddress = point.getString("iaPoiAddress");
+            poiAddress = point.getString("iaPoiAdress");
             poiPhone = point.getString("iaPoiPhone");
             region = point.getString("iaRegionName");
             typeName = point.getString("iaPoiTypeName");
@@ -201,7 +201,7 @@ public class PointActivity extends AppCompatActivity {
             point.put("iaChildPoiNum", childNum);
             point.put("iaCompoundId", compoundId);
             point.put("iaPoiName", poiName);
-            point.put("iaPoiAddress", poiAddress);
+            point.put("iaPoiAdress", poiAddress);
             point.put("iaPoiPhone", poiPhone);
             point.put("iaRegionName", region);
             point.put("iaPoiTypeName", typeName);

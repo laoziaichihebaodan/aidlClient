@@ -282,6 +282,9 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
         int lists_index = 0;
 
         for (PageInfoBean.Lists lists_i:Resource.pageInfoBean.getLists()){
+            if (lists_i == null){
+                continue;
+            }
             if (lists.getCmd().equals(lists_i.getCmd()) && lists.getName().equals(lists_i.getName())){
                 lists_index = Resource.pageInfoBean.getLists().indexOf(lists_i);
             }

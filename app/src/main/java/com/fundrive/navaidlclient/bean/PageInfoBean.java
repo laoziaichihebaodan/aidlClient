@@ -397,7 +397,7 @@ public class PageInfoBean implements Serializable{
     public List<Lists> getLists(String str_listType) {
         List<Lists> list_listType = new ArrayList<>();
         for (Lists lists_i:lists){
-            if (lists_i.getType().equals(str_listType)){
+            if (lists_i != null && lists_i.getType().equals(str_listType)){
                 list_listType.add(lists_i);
             }
         }
