@@ -714,7 +714,7 @@ public class Combined_SearchActivity extends BaseActivity {
             if (poiSearchResultBean.getPoiDataType() == 1){
                 center.setText("设为中心点");
             }else if (poiSearchResultBean.getPoiDataType() == 2) {
-                center.setText("导航");
+                center.setText("去这里");
             }
             name.setText(bean.getIaPoiName());
             adress.setText(bean.getIaPoiAdress());
@@ -726,7 +726,7 @@ public class Combined_SearchActivity extends BaseActivity {
                         makeCenterJson(position+1);
 
                     }else if (poiSearchResultBean.getPoiDataType() == 2) {
-                        center.setText("去算路");
+                        center.setText("去这里");
                         Intent intent = new Intent(Combined_SearchActivity.this,CalculationAndNaviActivity.class);
                         JSONObject obj_endPoint = Points.pointJson(bean.getIaPoiType(),bean.getIaPoiPos().getLongitude(),bean.getIaPoiPos().getLatitude(),
                                 bean.getIaPoiDisPos().getLongitude(), bean.getIaPoiDisPos().getLatitude(),Long.decode(bean.getIaPoiId()),bean.getIaChildPoiNum(),0,bean.getIaPoiName(),bean.getIaPoiAdress(),bean.getIaPoiPhone(),bean.getIaRegionName(),
