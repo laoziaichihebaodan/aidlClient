@@ -1,15 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:padding="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/init_poi_paint"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/bottom_bg_solid"
+            android:text="poi画点"
+            android:textColor="@color/white" />
+
+        <Spinner
+            android:id="@+id/sp_select_poi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            />
+
+        <Button
+            android:id="@+id/clear_poi_paint"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_weight="2"
+            android:background="@drawable/bottom_bg_solid"
+            android:text="清除poi画点"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
 
     <ListView
         android:id="@+id/lv_search_result"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="300dp">
 
     </ListView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+        <TextView
+            android:text="第 "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/page_cur_num"
+            android:text="1"
+            android:textColor="@color/colorAccent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text=" 页"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"/>
 
+        <TextView
+            android:text="共 "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/page_total_num"
+            android:text="20"
+            android:textColor="@color/colorAccent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text=" 页"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"/>
+
+        <Button
+            android:id="@+id/page_previous"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/bottom_bg_solid_grey"
+            android:text="上一页"
+            android:textColor="@color/white" />
+        <Button
+            android:id="@+id/page_next"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="10dp"
+            android:text="下一页"
+            android:background="@drawable/bottom_bg_solid"
+            android:textColor="@color/white" />
+        <EditText
+            android:id="@+id/et_page_num"
+            android:layout_width="40dp"
+            android:inputType="number"
+            android:layout_height="60dp"/>
+        <Button
+            android:id="@+id/page_jump_to"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="10dp"
+            android:text="跳转到"
+
+            android:background="@drawable/bottom_bg_solid"
+            android:textColor="@color/white" />
+    </LinearLayout>
 </LinearLayout>

@@ -283,5 +283,12 @@
         <item>FrontTmc</item>
         <item>RoundTmc</item>
     </string-array>
-
+    <!--Poi画点数据id-->
+    <string-array name="ia_poi_id">
+        <item>高亮选中第1个</item>
+        <item>高亮选中第2个</item>
+        <item>高亮选中第3个</item>
+        <item>高亮选中第4个</item>
+        <item>高亮选中第5个</item>
+    </string-array>
 </resources>
