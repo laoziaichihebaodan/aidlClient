@@ -126,7 +126,7 @@ public class PointActivity extends AppCompatActivity {
             etPoiLong.setText(longitude + "");
             etPoiLat.setText(latitude + "");
             etDisLong.setText("" + disLong);
-            etPoiLat.setText("" + disLat);
+            etDisLat.setText("" + disLat);
             etPoiId.setText("" + poiId);
             etChildNum.setText("" + childNum);
             etCompoundId.setText("" + compoundId);
