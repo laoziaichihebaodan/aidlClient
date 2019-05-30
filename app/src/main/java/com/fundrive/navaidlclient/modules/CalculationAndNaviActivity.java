@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -38,6 +39,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class CalculationAndNaviActivity extends BaseActivity implements Observer{
+
+    @BindView(R.id.scrollView)
+    ScrollView scrollView;
 
     @BindView(R.id.ll_calculation)
     LinearLayout ll_calculation;
@@ -516,6 +520,12 @@ public class CalculationAndNaviActivity extends BaseActivity implements Observer
         if (cmd == 0xC002){
             ll_calculation_result.setVisibility(View.VISIBLE);
             ll_navigating.setVisibility(View.GONE);
+
+            scrollView.post(new Runnable() {
+                public void run() {
+                    scrollView.fullScroll(View.FOCUS_DOWN);
+                }
+            });
 
             RouteInfo routeInfo =null;
             try {
