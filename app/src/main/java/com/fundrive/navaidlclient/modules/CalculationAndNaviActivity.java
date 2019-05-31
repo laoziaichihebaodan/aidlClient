@@ -38,7 +38,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class CalculationAndNaviActivity extends BaseActivity implements Observer{
+public class CalculationAndNaviActivity extends BaseActivity implements Observer ,RouteCalculationResultAdapter.ClickCallback{
 
     @BindView(R.id.scrollView)
     ScrollView scrollView;
@@ -60,8 +60,6 @@ public class CalculationAndNaviActivity extends BaseActivity implements Observer
     @BindView(R.id.tv_remainingTimeAndDistance)
     TextView tv_remainingTimeAndDistance;
 
-    @BindView(R.id.sp_guideType)
-    Spinner sp_guideType;
     @BindView(R.id.sp_isFamiliarRoad)
     Spinner sp_isFamiliarRoad;
 
@@ -552,26 +550,11 @@ public class CalculationAndNaviActivity extends BaseActivity implements Observer
                 e.printStackTrace();
             }
 
-            RouteCalculationResultAdapter adapter = new RouteCalculationResultAdapter(CalculationAndNaviActivity.this,list);
+            RouteCalculationResultAdapter adapter = new RouteCalculationResultAdapter(CalculationAndNaviActivity.this,list,CalculationAndNaviActivity.this);
             lv_calculation_result.setAdapter(adapter);
             adapter.notifyDataSetChanged();
             setListViewHeightBasedOnChildren(lv_calculation_result);
 
-            lv_calculation_result.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    makeNaviJson(list.get(position));
-                }
-            });
-            sp_guideType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    navMode = position;
-                }
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-                }
-            });
             sp_isFamiliarRoad.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -677,5 +660,19 @@ public class CalculationAndNaviActivity extends BaseActivity implements Observer
         ViewGroup.LayoutParams params = listView.getLayoutParams();
         params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
         listView.setLayoutParams(params);
+    }
+
+    @Override
+    public void callback(View view) {
+        switch (view.getId()){
+            case R.id.btn_realNav:
+                navMode = 2;
+                break;
+            case R.id.btn_simulateNav:
+                navMode = 1;
+                break;
+        }
+        int position = (int) view.getTag();
+        makeNaviJson(list.get(position));
     }
 }

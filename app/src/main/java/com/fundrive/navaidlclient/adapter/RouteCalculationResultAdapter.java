@@ -2,10 +2,12 @@ package com.fundrive.navaidlclient.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.fundrive.navaidlclient.R;
@@ -18,16 +20,18 @@ import java.util.List;
  * 算路结果列表适配器
  */
 
-public class RouteCalculationResultAdapter extends BaseAdapter {
+public class RouteCalculationResultAdapter extends BaseAdapter implements View.OnClickListener{
 
     private Context context;
     private LayoutInflater inflater;
     private List<RouteInfo> list;
+    private ClickCallback mCallback;
 
-    public RouteCalculationResultAdapter(Context context, List<RouteInfo> list){
+    public RouteCalculationResultAdapter(Context context, List<RouteInfo> list,@NonNull ClickCallback callback){
         this.context = context;
         this.list = list;
         inflater = LayoutInflater.from(context);
+        mCallback = callback;
     }
 
     @Override
@@ -56,6 +60,8 @@ public class RouteCalculationResultAdapter extends BaseAdapter {
             holder.tv_routeLength = convertView.findViewById(R.id.tv_routeLength);
             holder.tv_trafficlightCount = convertView.findViewById(R.id.tv_trafficlightCount);
             holder.tv_tollChargr = convertView.findViewById(R.id.tv_tollChargr);
+            holder.btn_realNav = convertView.findViewById(R.id.btn_realNav);
+            holder.btn_simulateNav = convertView.findViewById(R.id.btn_simulateNav);
             convertView.setTag(holder);
         } else {
             holder = (MyHolder) convertView.getTag();
@@ -67,6 +73,11 @@ public class RouteCalculationResultAdapter extends BaseAdapter {
         holder.tv_routeLength.setText(lengthTransformation(routeInfo.getRouteLength()));
         holder.tv_trafficlightCount.setText("红绿灯"+routeInfo.getTrafficlightCount()+"个");
         holder.tv_tollChargr.setText("收费"+routeInfo.getTollChargr()+"元");
+
+        holder.btn_realNav.setOnClickListener(this);
+        holder.btn_realNav.setTag(position);
+        holder.btn_simulateNav.setOnClickListener(this);
+        holder.btn_simulateNav.setTag(position);
 
         return convertView;
     }
@@ -104,7 +115,17 @@ public class RouteCalculationResultAdapter extends BaseAdapter {
         return result;
     }
 
+    @Override
+    public void onClick(View v) {
+        mCallback.callback(v);
+    }
+
     class MyHolder{
         TextView tv_description,tv_routeTime,tv_routeLength,tv_trafficlightCount,tv_tollChargr;
+        Button btn_realNav,btn_simulateNav;
+    }
+
+    public interface ClickCallback{
+        public void callback(View view);
     }
 }

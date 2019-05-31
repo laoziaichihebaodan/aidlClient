@@ -47,4 +47,29 @@
 
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btn_realNav"
+            android:text="真实导航"
+            android:textColor="@color/white"
+            android:background="@drawable/bottom_bg_solid"
+            android:layout_alignParentStart="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btn_simulateNav"
+            android:text="模拟导航"
+            android:textColor="@color/white"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/bottom_bg_solid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
 </LinearLayout>
